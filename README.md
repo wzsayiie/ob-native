@@ -1,7 +1,7 @@
 ## introduction
 
 a cross-platform program that has least dependencies on os api and gpu api.
-the prefix `ep` of repository name is short for *"`e`x`p`eriment"*,
+the prefix `ep` of repository name is short for *"experiment"*,
 which means this is a experimental project.
 
 ## directory structure

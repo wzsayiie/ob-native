@@ -1,0 +1,38 @@
+#!/bin/zsh
+
+# this script will traverse headers and create new homonymic headers reference former.
+# it will avoid developer adding vast header search paths tediously.
+
+set -e -u
+
+cd `dirname $0`
+
+loc=`pwd`
+dst="GHEADERS"
+
+function clean() {
+    rm -rf $dst
+}
+
+function gen() {
+    mkdir -p $dst
+
+    local list=`find $loc/$1 -name "*.h"`
+    for it in $list; do
+
+        local name=`basename $it`
+        local copy=$dst/$name
+
+        if [ ! -f $copy ]; then
+            echo "#include \"$it\"" > $copy
+        else
+            echo "error: homonymic '$name'."
+            clean
+            exit 1
+        fi
+
+    done
+}
+
+clean
+gen mainsrc

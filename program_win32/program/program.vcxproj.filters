@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="program">
+      <UniqueIdentifier>{b223fba0-c347-4dc1-9f70-06307d4bfbbf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mainsrc">
+      <UniqueIdentifier>{6f905a0e-a1c2-4427-a8f7-12a5ae1ce70c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mainsrc\uidev">
+      <UniqueIdentifier>{8afa564e-da15-4b0b-8176-be04c1c4244a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mainsrc\craise">
+      <UniqueIdentifier>{03618530-ce47-4ddf-b663-6aec2c6a33f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mainsrc\main">
+      <UniqueIdentifier>{503fcbd7-ca83-4607-8071-b3e1691c780c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mainsrc\craise\craise">
+      <UniqueIdentifier>{b62e1265-28d1-4c47-876c-ab56d4970a03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mainsrc\main\main">
+      <UniqueIdentifier>{853b48a0-8340-4e2b-8454-e8ef041fcb70}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mainsrc\uidev\uidev">
+      <UniqueIdentifier>{cfa72af9-1e0d-49ee-8086-d91119e860c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mainsrc\uidev\uidev_win32">
+      <UniqueIdentifier>{70fea9ca-1ca6-41ba-a277-729c2569c073}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="winmain.c">
+      <Filter>program</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mainsrc\craise\craise\craise.c">
+      <Filter>mainsrc\craise\craise</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mainsrc\main\main\main.c">
+      <Filter>mainsrc\main\main</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mainsrc\uidev\uidev\uidev.c">
+      <Filter>mainsrc\uidev\uidev</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mainsrc\uidev\uidev_win32\UDWinMain.c">
+      <Filter>mainsrc\uidev\uidev_win32</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\mainsrc\craise\craise\craise.h">
+      <Filter>mainsrc\craise\craise</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mainsrc\uidev\uidev\uidev.h">
+      <Filter>mainsrc\uidev\uidev</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mainsrc\uidev\uidev_win32\UDWinMain.h">
+      <Filter>mainsrc\uidev\uidev_win32</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

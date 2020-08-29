@@ -2,23 +2,30 @@
 .DS_Store
 
 # android studio local files:
-*_android/**/*.iml
-*_android/**/.classpath
-*_android/**/.cxx/
-*_android/**/.externalNativeBuild/
-*_android/**/.gradle/
-*_android/**/.idea/
-*_android/**/.project
-*_android/**/.settings/
-*_android/**/build/
-*_android/**/local.properties
+program_android/**/*.iml
+program_android/**/.classpath
+program_android/**/.cxx/
+program_android/**/.externalNativeBuild/
+program_android/**/.gradle/
+program_android/**/.idea/
+program_android/**/.project
+program_android/**/.settings/
+program_android/**/build/
+program_android/**/local.properties
 
 # xcode local files:
-*_ios/**/build/
-*_ios/**/xcuserdata/
+program_ios/**/build/
+program_ios/**/xcuserdata/
 
-*_osx/**/build/
-*_osx/**/xcuserdata/
+program_osx/**/build/
+program_osx/**/xcuserdata/
+
+# visual studio local files:
+program_win32/**/*.vcxproj.user
+program_win32/**/Debug/
+program_win32/**/Release/
+program_win32/**/x64/
+program_win32/.vs/
 
 # vs code local files:
 .vscode/

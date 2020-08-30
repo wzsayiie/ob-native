@@ -1,5 +1,6 @@
 #import "UDXAppDelegate.h"
 #import "UDXWindowController.h"
+#import "uidev.h"
 
 @interface UDXAppDelegate ()
 @property (nonatomic) UDXWindowController *windowController;
@@ -8,6 +9,8 @@
 @implementation UDXAppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification {
+    appmain();
+    
     self.windowController = [UDXWindowController windowController];
     [self.windowController showWindow:nil];
 }

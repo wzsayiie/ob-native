@@ -5,6 +5,10 @@ import android.os.Bundle;
 
 public class UDActivity extends Activity {
 
+    static {
+        System.loadLibrary("main");
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

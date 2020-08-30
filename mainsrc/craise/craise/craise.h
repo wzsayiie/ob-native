@@ -12,6 +12,7 @@
 #include <stdbool.h>
 #include <stdint.h>
 
+#include "io.h"
 #include "macro.h"
 #include "ustr.h"
 #include "xlist.h"

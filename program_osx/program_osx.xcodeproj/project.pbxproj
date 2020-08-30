@@ -22,6 +22,7 @@
 		CED5770324FB76E400278C95 /* VITAL.c in Sources */ = {isa = PBXBuildFile; fileRef = CED5770224FB76E300278C95 /* VITAL.c */; };
 		CED80C2624F2ADA30063F3DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CED80C2524F2ADA30063F3DE /* Assets.xcassets */; };
 		CED80C2C24F2ADA30063F3DE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CED80C2B24F2ADA30063F3DE /* main.m */; };
+		CEF9F67424FB92590058E8D1 /* io.c in Sources */ = {isa = PBXBuildFile; fileRef = CEF9F67324FB92590058E8D1 /* io.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +56,8 @@
 		CED80C2A24F2ADA30063F3DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CED80C2B24F2ADA30063F3DE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CED80C2D24F2ADA30063F3DE /* program.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = program.entitlements; sourceTree = "<group>"; };
+		CEF9F67224FB92590058E8D1 /* io.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = io.h; sourceTree = "<group>"; };
+		CEF9F67324FB92590058E8D1 /* io.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = io.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +95,8 @@
 			children = (
 				CE0B3ED924F2AF360038E58A /* craise.c */,
 				CE0B3ED824F2AF360038E58A /* craise.h */,
+				CEF9F67324FB92590058E8D1 /* io.c */,
+				CEF9F67224FB92590058E8D1 /* io.h */,
 				CE8498F824FB71890098ABAF /* macro.c */,
 				CE8498F924FB71890098ABAF /* macro.h */,
 				CE8498FF24FB736B0098ABAF /* ustr.c */,
@@ -263,6 +268,7 @@
 				CE84990624FB74380098ABAF /* entry.c in Sources */,
 				CED5770324FB76E400278C95 /* VITAL.c in Sources */,
 				CE0B3EFC24F2AF360038E58A /* uidev.c in Sources */,
+				CEF9F67424FB92590058E8D1 /* io.c in Sources */,
 				CE0B3EFF24F2AF360038E58A /* UDXWindowController.m in Sources */,
 				CE0B3EFE24F2AF360038E58A /* UDXViewController.m in Sources */,
 				CED80C2C24F2ADA30063F3DE /* main.m in Sources */,

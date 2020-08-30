@@ -15,12 +15,12 @@ function(get_absolute_paths paths)
 endfunction()
 
 ### configuration begin
-set(lib_name cargo)
+set(lib_name main)
 
 list(APPEND inc_path ../../GHEADERS)
 
-list(APPEND src_aims ../../mainsrc/craise/*.c)
-list(APPEND src_aims ../../mainsrc/main/*.c)
+list(APPEND src_aims ../../mainsrc/craise/craise/*.c)
+list(APPEND src_aims ../../mainsrc/main/main/*.c)
 list(APPEND src_aims ../../mainsrc/uidev/uidev/*.c)
 list(APPEND src_aims ../../mainsrc/uidev/uidev_android/*.c)
 

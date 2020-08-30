@@ -22,6 +22,7 @@
 		CED576FC24FB763300278C95 /* wnd.c in Sources */ = {isa = PBXBuildFile; fileRef = CED576F824FB763300278C95 /* wnd.c */; };
 		CED576FD24FB763300278C95 /* entry.c in Sources */ = {isa = PBXBuildFile; fileRef = CED576F924FB763300278C95 /* entry.c */; };
 		CED5770024FB76B300278C95 /* VITAL.c in Sources */ = {isa = PBXBuildFile; fileRef = CED576FF24FB76B300278C95 /* VITAL.c */; };
+		CEF9F67724FB9B8B0058E8D1 /* io.c in Sources */ = {isa = PBXBuildFile; fileRef = CEF9F67524FB9B8B0058E8D1 /* io.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,8 @@
 		CED576FB24FB763300278C95 /* entry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = entry.h; sourceTree = "<group>"; };
 		CED576FE24FB76B300278C95 /* VITAL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VITAL.h; sourceTree = "<group>"; };
 		CED576FF24FB76B300278C95 /* VITAL.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = VITAL.c; sourceTree = "<group>"; };
+		CEF9F67524FB9B8B0058E8D1 /* io.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = io.c; sourceTree = "<group>"; };
+		CEF9F67624FB9B8B0058E8D1 /* io.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = io.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +93,8 @@
 			children = (
 				CE0379EA24F2444C0047FE7E /* craise.c */,
 				CE0379E924F2444C0047FE7E /* craise.h */,
+				CEF9F67524FB9B8B0058E8D1 /* io.c */,
+				CEF9F67624FB9B8B0058E8D1 /* io.h */,
 				CED576F224FB761F00278C95 /* macro.c */,
 				CED576F024FB761F00278C95 /* macro.h */,
 				CED576ED24FB761F00278C95 /* ustr.c */,
@@ -263,6 +268,7 @@
 				CED576F524FB762000278C95 /* ustr.c in Sources */,
 				CED576F424FB762000278C95 /* xmap.c in Sources */,
 				CE9FEBB424F2439B0029E036 /* main.m in Sources */,
+				CEF9F67724FB9B8B0058E8D1 /* io.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

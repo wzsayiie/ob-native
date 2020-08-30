@@ -1,9 +1,9 @@
-#import "UDViewController.h"
+#import "UDIViewController.h"
 
-@interface UDViewController ()
+@interface UDIViewController ()
 @end
 
-@implementation UDViewController
+@implementation UDIViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

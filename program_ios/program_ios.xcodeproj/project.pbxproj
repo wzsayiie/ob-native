@@ -9,12 +9,19 @@
 /* Begin PBXBuildFile section */
 		CE037A0324F2444C0047FE7E /* craise.c in Sources */ = {isa = PBXBuildFile; fileRef = CE0379EA24F2444C0047FE7E /* craise.c */; };
 		CE037A0624F2444C0047FE7E /* uidev.c in Sources */ = {isa = PBXBuildFile; fileRef = CE0379F724F2444C0047FE7E /* uidev.c */; };
-		CE037A0824F2444C0047FE7E /* UDAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0379FC24F2444C0047FE7E /* UDAppDelegate.m */; };
-		CE037A0924F2444C0047FE7E /* UDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0379FD24F2444C0047FE7E /* UDViewController.m */; };
+		CE037A0824F2444C0047FE7E /* UDIAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0379FC24F2444C0047FE7E /* UDIAppDelegate.m */; };
+		CE037A0924F2444C0047FE7E /* UDIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0379FD24F2444C0047FE7E /* UDIViewController.m */; };
 		CE037A0A24F2444C0047FE7E /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = CE037A0224F2444C0047FE7E /* main.c */; };
 		CE9FEBB224F2439B0029E036 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE9FEBAE24F2439B0029E036 /* Assets.xcassets */; };
 		CE9FEBB324F2439B0029E036 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE9FEBAF24F2439B0029E036 /* LaunchScreen.storyboard */; };
 		CE9FEBB424F2439B0029E036 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9FEBB024F2439B0029E036 /* main.m */; };
+		CED576F424FB762000278C95 /* xmap.c in Sources */ = {isa = PBXBuildFile; fileRef = CED576EC24FB761F00278C95 /* xmap.c */; };
+		CED576F524FB762000278C95 /* ustr.c in Sources */ = {isa = PBXBuildFile; fileRef = CED576ED24FB761F00278C95 /* ustr.c */; };
+		CED576F624FB762000278C95 /* xlist.c in Sources */ = {isa = PBXBuildFile; fileRef = CED576EE24FB761F00278C95 /* xlist.c */; };
+		CED576F724FB762000278C95 /* macro.c in Sources */ = {isa = PBXBuildFile; fileRef = CED576F224FB761F00278C95 /* macro.c */; };
+		CED576FC24FB763300278C95 /* wnd.c in Sources */ = {isa = PBXBuildFile; fileRef = CED576F824FB763300278C95 /* wnd.c */; };
+		CED576FD24FB763300278C95 /* entry.c in Sources */ = {isa = PBXBuildFile; fileRef = CED576F924FB763300278C95 /* entry.c */; };
+		CED5770024FB76B300278C95 /* VITAL.c in Sources */ = {isa = PBXBuildFile; fileRef = CED576FF24FB76B300278C95 /* VITAL.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,16 +29,30 @@
 		CE0379EA24F2444C0047FE7E /* craise.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = craise.c; sourceTree = "<group>"; };
 		CE0379F624F2444C0047FE7E /* uidev.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uidev.h; sourceTree = "<group>"; };
 		CE0379F724F2444C0047FE7E /* uidev.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = uidev.c; sourceTree = "<group>"; };
-		CE0379FC24F2444C0047FE7E /* UDAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UDAppDelegate.m; sourceTree = "<group>"; };
-		CE0379FD24F2444C0047FE7E /* UDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UDViewController.m; sourceTree = "<group>"; };
-		CE0379FE24F2444C0047FE7E /* UDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDViewController.h; sourceTree = "<group>"; };
-		CE0379FF24F2444C0047FE7E /* UDAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDAppDelegate.h; sourceTree = "<group>"; };
+		CE0379FC24F2444C0047FE7E /* UDIAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UDIAppDelegate.m; sourceTree = "<group>"; };
+		CE0379FD24F2444C0047FE7E /* UDIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UDIViewController.m; sourceTree = "<group>"; };
+		CE0379FE24F2444C0047FE7E /* UDIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDIViewController.h; sourceTree = "<group>"; };
+		CE0379FF24F2444C0047FE7E /* UDIAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDIAppDelegate.h; sourceTree = "<group>"; };
 		CE037A0224F2444C0047FE7E /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		CE9FEB9124F243360029E036 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE9FEBAD24F2439B0029E036 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE9FEBAE24F2439B0029E036 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE9FEBAF24F2439B0029E036 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE9FEBB024F2439B0029E036 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		CED576EC24FB761F00278C95 /* xmap.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = xmap.c; sourceTree = "<group>"; };
+		CED576ED24FB761F00278C95 /* ustr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ustr.c; sourceTree = "<group>"; };
+		CED576EE24FB761F00278C95 /* xlist.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = xlist.c; sourceTree = "<group>"; };
+		CED576EF24FB761F00278C95 /* xlist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xlist.h; sourceTree = "<group>"; };
+		CED576F024FB761F00278C95 /* macro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macro.h; sourceTree = "<group>"; };
+		CED576F124FB761F00278C95 /* ustr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ustr.h; sourceTree = "<group>"; };
+		CED576F224FB761F00278C95 /* macro.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = macro.c; sourceTree = "<group>"; };
+		CED576F324FB761F00278C95 /* xmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xmap.h; sourceTree = "<group>"; };
+		CED576F824FB763300278C95 /* wnd.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = wnd.c; sourceTree = "<group>"; };
+		CED576F924FB763300278C95 /* entry.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = entry.c; sourceTree = "<group>"; };
+		CED576FA24FB763300278C95 /* wnd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wnd.h; sourceTree = "<group>"; };
+		CED576FB24FB763300278C95 /* entry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = entry.h; sourceTree = "<group>"; };
+		CED576FE24FB76B300278C95 /* VITAL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VITAL.h; sourceTree = "<group>"; };
+		CED576FF24FB76B300278C95 /* VITAL.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = VITAL.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +90,16 @@
 			children = (
 				CE0379EA24F2444C0047FE7E /* craise.c */,
 				CE0379E924F2444C0047FE7E /* craise.h */,
+				CED576F224FB761F00278C95 /* macro.c */,
+				CED576F024FB761F00278C95 /* macro.h */,
+				CED576ED24FB761F00278C95 /* ustr.c */,
+				CED576F124FB761F00278C95 /* ustr.h */,
+				CED576FF24FB76B300278C95 /* VITAL.c */,
+				CED576FE24FB76B300278C95 /* VITAL.h */,
+				CED576EE24FB761F00278C95 /* xlist.c */,
+				CED576EF24FB761F00278C95 /* xlist.h */,
+				CED576EC24FB761F00278C95 /* xmap.c */,
+				CED576F324FB761F00278C95 /* xmap.h */,
 			);
 			path = craise;
 			sourceTree = "<group>";
@@ -85,8 +116,12 @@
 		CE0379F524F2444C0047FE7E /* uidev */ = {
 			isa = PBXGroup;
 			children = (
+				CED576F924FB763300278C95 /* entry.c */,
+				CED576FB24FB763300278C95 /* entry.h */,
 				CE0379F724F2444C0047FE7E /* uidev.c */,
 				CE0379F624F2444C0047FE7E /* uidev.h */,
+				CED576F824FB763300278C95 /* wnd.c */,
+				CED576FA24FB763300278C95 /* wnd.h */,
 			);
 			path = uidev;
 			sourceTree = "<group>";
@@ -94,10 +129,10 @@
 		CE0379FB24F2444C0047FE7E /* uidev_ios */ = {
 			isa = PBXGroup;
 			children = (
-				CE0379FF24F2444C0047FE7E /* UDAppDelegate.h */,
-				CE0379FC24F2444C0047FE7E /* UDAppDelegate.m */,
-				CE0379FE24F2444C0047FE7E /* UDViewController.h */,
-				CE0379FD24F2444C0047FE7E /* UDViewController.m */,
+				CE0379FF24F2444C0047FE7E /* UDIAppDelegate.h */,
+				CE0379FC24F2444C0047FE7E /* UDIAppDelegate.m */,
+				CE0379FE24F2444C0047FE7E /* UDIViewController.h */,
+				CE0379FD24F2444C0047FE7E /* UDIViewController.m */,
 			);
 			path = uidev_ios;
 			sourceTree = "<group>";
@@ -215,11 +250,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CED576FC24FB763300278C95 /* wnd.c in Sources */,
+				CED576F624FB762000278C95 /* xlist.c in Sources */,
 				CE037A0324F2444C0047FE7E /* craise.c in Sources */,
 				CE037A0624F2444C0047FE7E /* uidev.c in Sources */,
-				CE037A0824F2444C0047FE7E /* UDAppDelegate.m in Sources */,
+				CE037A0824F2444C0047FE7E /* UDIAppDelegate.m in Sources */,
+				CED576F724FB762000278C95 /* macro.c in Sources */,
+				CED576FD24FB763300278C95 /* entry.c in Sources */,
 				CE037A0A24F2444C0047FE7E /* main.c in Sources */,
-				CE037A0924F2444C0047FE7E /* UDViewController.m in Sources */,
+				CE037A0924F2444C0047FE7E /* UDIViewController.m in Sources */,
+				CED5770024FB76B300278C95 /* VITAL.c in Sources */,
+				CED576F524FB762000278C95 /* ustr.c in Sources */,
+				CED576F424FB762000278C95 /* xmap.c in Sources */,
 				CE9FEBB424F2439B0029E036 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

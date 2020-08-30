@@ -1,9 +1,9 @@
-#import "UDViewController.h"
+#import "UDXViewController.h"
 
-@interface UDViewController ()
+@interface UDXViewController ()
 @end
 
-@implementation UDViewController
+@implementation UDXViewController
 
 - (void)loadView {
     //NOTE: don't call [super loadView], that will try to unarchive a nib.

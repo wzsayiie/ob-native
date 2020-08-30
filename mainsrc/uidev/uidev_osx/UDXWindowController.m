@@ -1,12 +1,12 @@
-#import "UDWindowController.h"
-#import "UDViewController.h"
+#import "UDXWindowController.h"
+#import "UDXViewController.h"
 
-@interface UDWindowController () <NSWindowDelegate>
+@interface UDXWindowController () <NSWindowDelegate>
 @end
 
-@implementation UDWindowController
+@implementation UDXWindowController
 
-+ (UDWindowController *)windowController {
++ (UDXWindowController *)windowController {
     //onyl assign the origin, the size will be taken care of by contentView.
     NSRect rect = NSMakeRect(100, 500, 0, 0);
     
@@ -19,8 +19,8 @@
     NSBackingStoreType backing = NSBackingStoreBuffered;
     
     NSWindow *window = [[NSWindow alloc] initWithContentRect:rect styleMask:style backing:backing defer:NO];
-    UDWindowController *controller = [[UDWindowController alloc] initWithWindow:window];
-    window.contentViewController = [[UDViewController alloc] init];
+    UDXWindowController *controller = [[UDXWindowController alloc] initWithWindow:window];
+    window.contentViewController = [[UDXViewController alloc] init];
     window.delegate = controller;
     
     return controller;

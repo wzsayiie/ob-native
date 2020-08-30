@@ -1,5 +1,5 @@
 #import <UIKit/UIKit.h>
 
-@interface UDAppDelegate : UIResponder <UIApplicationDelegate>
+@interface UDIAppDelegate : UIResponder <UIApplicationDelegate>
 @property (nonatomic) UIWindow *window;
 @end

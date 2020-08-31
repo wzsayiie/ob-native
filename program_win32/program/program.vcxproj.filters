@@ -45,6 +45,30 @@
     <ClCompile Include="..\..\mainsrc\uidev\uidev_win32\UDWinMain.c">
       <Filter>mainsrc\uidev\uidev_win32</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\mainsrc\uidev\uidev\entry.c">
+      <Filter>mainsrc\uidev\uidev</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mainsrc\uidev\uidev\wnd.c">
+      <Filter>mainsrc\uidev\uidev</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mainsrc\craise\craise\io.c">
+      <Filter>mainsrc\craise\craise</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mainsrc\craise\craise\macro.c">
+      <Filter>mainsrc\craise\craise</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mainsrc\craise\craise\ustr.c">
+      <Filter>mainsrc\craise\craise</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mainsrc\craise\craise\VITAL.c">
+      <Filter>mainsrc\craise\craise</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mainsrc\craise\craise\xlist.c">
+      <Filter>mainsrc\craise\craise</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mainsrc\craise\craise\xmap.c">
+      <Filter>mainsrc\craise\craise</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\mainsrc\craise\craise\craise.h">
@@ -55,6 +79,30 @@
     </ClInclude>
     <ClInclude Include="..\..\mainsrc\uidev\uidev_win32\UDWinMain.h">
       <Filter>mainsrc\uidev\uidev_win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mainsrc\uidev\uidev\entry.h">
+      <Filter>mainsrc\uidev\uidev</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mainsrc\uidev\uidev\wnd.h">
+      <Filter>mainsrc\uidev\uidev</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mainsrc\craise\craise\io.h">
+      <Filter>mainsrc\craise\craise</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mainsrc\craise\craise\macro.h">
+      <Filter>mainsrc\craise\craise</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mainsrc\craise\craise\ustr.h">
+      <Filter>mainsrc\craise\craise</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mainsrc\craise\craise\VITAL.h">
+      <Filter>mainsrc\craise\craise</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mainsrc\craise\craise\xlist.h">
+      <Filter>mainsrc\craise\craise</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mainsrc\craise\craise\xmap.h">
+      <Filter>mainsrc\craise\craise</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

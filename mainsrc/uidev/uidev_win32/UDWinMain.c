@@ -1,5 +1,6 @@
 #include "UDWinMain.h"
 #include <stdio.h>
+#include "uidev.h"
 
 static VOID OpenConsole(VOID)
 {
@@ -53,6 +54,8 @@ static LRESULT CALLBACK MainWndProc(HWND hWnd, UINT nMsg, WPARAM wParam, LPARAM 
 int UDWinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPWSTR lpCmdLine, int nCmdShow)
 {
     OpenConsole();
+
+    appmain();
 
     //register main window class.
     LPCWSTR lpszClassName = L"UDMainWindow";

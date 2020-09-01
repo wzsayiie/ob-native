@@ -7,7 +7,7 @@
 #include <android/log.h>
 #include <stdarg.h>
 
-int printf(_Printf_format_string_ const char *format, ...) {
+int printf(const char *format, ...) {
     va_list list;
     va_start(list, format);
     int n = __android_log_vprint(ANDROID_LOG_INFO, "zzz", format, list);

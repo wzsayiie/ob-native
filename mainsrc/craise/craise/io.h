@@ -2,12 +2,15 @@
 
 #include "macro.h"
 
-//this including is necessary.
-//vs use it to determine whether to link the library.
+//the including is necessary.
+//visual studio use it to determine whether to link the library.
+//this can also check whether the declarations of rewritten functions
+//is consistent with the standard's.
 #include <stdio.h>
 
 # if ON_WINDOWS
-#   include <sal.h>                 //_Printf_format_string_
+#   include <sal.h>                 //_In_z_
+                                    //_Printf_format_string_
 #   define __printflike(fmt, args)  //__printflike
 # else
 #   define _In_z_                   //_In_z_

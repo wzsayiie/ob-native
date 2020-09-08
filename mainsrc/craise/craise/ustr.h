@@ -1,9 +1,8 @@
 #pragma once
 
 #include "macro.h"
-#include <stdint.h>
 
-_enum(uencode) {
+defenum(uencode) {
     UTF8  = 1,
     UTF16 = 2,
     UTF32 = 3,
@@ -12,7 +11,7 @@ _enum(uencode) {
 typedef uint16_t char16_t;
 typedef uint32_t char32_t;
 
-_struct(ustr);
+defstruct(ustr);
 
 ustr *ustrnew  (const char     *raw);
 ustr *ustrnew16(const char16_t *raw);

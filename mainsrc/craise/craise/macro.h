@@ -1,6 +1,8 @@
 #pragma once
 
+#include <stdbool.h>
 #include <stddef.h>
+#include <stdint.h>
 
 // +-------+ +-------------+ +---------+
 // |       | |     mac     | | windows |
@@ -36,26 +38,17 @@
 #   error "unknown os"
 # endif
 
-#define _struct(n) typedef struct n n; struct n
-#define _union( n) typedef union  n n; union  n
-#define _enum(  n) typedef enum   n n; enum   n
+#define defstruct(n) typedef struct n n; struct n
+#define defunion( n) typedef union  n n; union  n
+#define defenum(  n) typedef enum   n n; enum   n
 
-#define _inline static inline
+#define inlinable static inline
 
 # ifdef _MSC_VER
-#   define _threadlocal __declspec(thread)
+#   define threadlocal __declspec(thread)
 # else
-#   define _threadlocal _Thread_local
+#   define threadlocal _Thread_local
 # endif
-
-//range-based traversal.
-//the last parameter "step" is optional, it's default value is 1.
-#define _forrange(var, begin, end, ...) \
-/**/    for (                           \
-/**/        int var = begin;            \
-/**/        (1, ##__VA_ARGS__) > 0 && var < end || (1, ##__VA_ARGS__) < 0 && var > end; \
-/**/        var += (1, ##__VA_ARGS__)   \
-/**/    )
 
 //general delete functin.
 //"addr" is address of the structure or pointer.

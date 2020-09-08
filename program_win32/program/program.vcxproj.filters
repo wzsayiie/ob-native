@@ -69,6 +69,9 @@
     <ClCompile Include="..\..\mainsrc\craise\craise\xmap.c">
       <Filter>mainsrc\craise\craise</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\mainsrc\craise\craise\xcursor.c">
+      <Filter>mainsrc\craise\craise</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\mainsrc\craise\craise\craise.h">
@@ -102,6 +105,9 @@
       <Filter>mainsrc\craise\craise</Filter>
     </ClInclude>
     <ClInclude Include="..\..\mainsrc\craise\craise\xmap.h">
+      <Filter>mainsrc\craise\craise</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mainsrc\craise\craise\xcursor.h">
       <Filter>mainsrc\craise\craise</Filter>
     </ClInclude>
   </ItemGroup>

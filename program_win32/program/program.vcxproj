@@ -26,6 +26,7 @@
     <ClCompile Include="..\..\mainsrc\craise\craise\VITAL.c" />
     <ClCompile Include="..\..\mainsrc\craise\craise\xlist.c" />
     <ClCompile Include="..\..\mainsrc\craise\craise\xmap.c" />
+    <ClCompile Include="..\..\mainsrc\craise\craise\xcursor.c" />
     <ClCompile Include="..\..\mainsrc\main\main\main.c" />
     <ClCompile Include="..\..\mainsrc\uidev\uidev\entry.c" />
     <ClCompile Include="..\..\mainsrc\uidev\uidev\uidev.c" />
@@ -41,6 +42,7 @@
     <ClInclude Include="..\..\mainsrc\craise\craise\VITAL.h" />
     <ClInclude Include="..\..\mainsrc\craise\craise\xlist.h" />
     <ClInclude Include="..\..\mainsrc\craise\craise\xmap.h" />
+    <ClInclude Include="..\..\mainsrc\craise\craise\xcursor.h" />
     <ClInclude Include="..\..\mainsrc\uidev\uidev\entry.h" />
     <ClInclude Include="..\..\mainsrc\uidev\uidev\uidev.h" />
     <ClInclude Include="..\..\mainsrc\uidev\uidev\wnd.h" />

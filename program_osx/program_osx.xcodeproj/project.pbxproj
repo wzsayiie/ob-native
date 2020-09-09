@@ -13,6 +13,7 @@
 		CE0B3EFE24F2AF360038E58A /* UDXViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0B3EE924F2AF360038E58A /* UDXViewController.m */; };
 		CE0B3EFF24F2AF360038E58A /* UDXWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0B3EEA24F2AF360038E58A /* UDXWindowController.m */; };
 		CE0B3F0324F2AF360038E58A /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = CE0B3EF824F2AF360038E58A /* main.c */; };
+		CE61C092250915C700084950 /* xcursor.c in Sources */ = {isa = PBXBuildFile; fileRef = CE61C091250915C700084950 /* xcursor.c */; };
 		CE8498FA24FB71890098ABAF /* macro.c in Sources */ = {isa = PBXBuildFile; fileRef = CE8498F824FB71890098ABAF /* macro.c */; };
 		CE84990124FB736B0098ABAF /* xmap.c in Sources */ = {isa = PBXBuildFile; fileRef = CE8498FC24FB736B0098ABAF /* xmap.c */; };
 		CE84990224FB736B0098ABAF /* xlist.c in Sources */ = {isa = PBXBuildFile; fileRef = CE8498FD24FB736B0098ABAF /* xlist.c */; };
@@ -37,6 +38,8 @@
 		CE0B3EEC24F2AF360038E58A /* UDXAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDXAppDelegate.h; sourceTree = "<group>"; };
 		CE0B3EED24F2AF360038E58A /* UDXWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDXWindowController.h; sourceTree = "<group>"; };
 		CE0B3EF824F2AF360038E58A /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		CE61C090250915C700084950 /* xcursor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xcursor.h; sourceTree = "<group>"; };
+		CE61C091250915C700084950 /* xcursor.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = xcursor.c; sourceTree = "<group>"; };
 		CE8498F824FB71890098ABAF /* macro.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = macro.c; sourceTree = "<group>"; };
 		CE8498F924FB71890098ABAF /* macro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macro.h; sourceTree = "<group>"; };
 		CE8498FB24FB736B0098ABAF /* ustr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ustr.h; sourceTree = "<group>"; };
@@ -103,6 +106,8 @@
 				CE8498FB24FB736B0098ABAF /* ustr.h */,
 				CED5770224FB76E300278C95 /* VITAL.c */,
 				CED5770124FB76E300278C95 /* VITAL.h */,
+				CE61C091250915C700084950 /* xcursor.c */,
+				CE61C090250915C700084950 /* xcursor.h */,
 				CE8498FD24FB736B0098ABAF /* xlist.c */,
 				CE84990024FB736B0098ABAF /* xlist.h */,
 				CE8498FC24FB736B0098ABAF /* xmap.c */,
@@ -258,6 +263,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE61C092250915C700084950 /* xcursor.c in Sources */,
 				CE84990124FB736B0098ABAF /* xmap.c in Sources */,
 				CE84990924FB74DE0098ABAF /* wnd.c in Sources */,
 				CE0B3EF924F2AF360038E58A /* craise.c in Sources */,

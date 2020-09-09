@@ -12,6 +12,7 @@
 		CE037A0824F2444C0047FE7E /* UDIAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0379FC24F2444C0047FE7E /* UDIAppDelegate.m */; };
 		CE037A0924F2444C0047FE7E /* UDIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0379FD24F2444C0047FE7E /* UDIViewController.m */; };
 		CE037A0A24F2444C0047FE7E /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = CE037A0224F2444C0047FE7E /* main.c */; };
+		CE61C0952509160300084950 /* xcursor.c in Sources */ = {isa = PBXBuildFile; fileRef = CE61C0942509160300084950 /* xcursor.c */; };
 		CE9FEBB224F2439B0029E036 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE9FEBAE24F2439B0029E036 /* Assets.xcassets */; };
 		CE9FEBB324F2439B0029E036 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE9FEBAF24F2439B0029E036 /* LaunchScreen.storyboard */; };
 		CE9FEBB424F2439B0029E036 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9FEBB024F2439B0029E036 /* main.m */; };
@@ -35,6 +36,8 @@
 		CE0379FE24F2444C0047FE7E /* UDIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDIViewController.h; sourceTree = "<group>"; };
 		CE0379FF24F2444C0047FE7E /* UDIAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDIAppDelegate.h; sourceTree = "<group>"; };
 		CE037A0224F2444C0047FE7E /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		CE61C0932509160300084950 /* xcursor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xcursor.h; sourceTree = "<group>"; };
+		CE61C0942509160300084950 /* xcursor.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = xcursor.c; sourceTree = "<group>"; };
 		CE9FEB9124F243360029E036 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE9FEBAD24F2439B0029E036 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE9FEBAE24F2439B0029E036 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -101,6 +104,8 @@
 				CED576F124FB761F00278C95 /* ustr.h */,
 				CED576FF24FB76B300278C95 /* VITAL.c */,
 				CED576FE24FB76B300278C95 /* VITAL.h */,
+				CE61C0942509160300084950 /* xcursor.c */,
+				CE61C0932509160300084950 /* xcursor.h */,
 				CED576EE24FB761F00278C95 /* xlist.c */,
 				CED576EF24FB761F00278C95 /* xlist.h */,
 				CED576EC24FB761F00278C95 /* xmap.c */,
@@ -266,6 +271,7 @@
 				CE037A0924F2444C0047FE7E /* UDIViewController.m in Sources */,
 				CED5770024FB76B300278C95 /* VITAL.c in Sources */,
 				CED576F524FB762000278C95 /* ustr.c in Sources */,
+				CE61C0952509160300084950 /* xcursor.c in Sources */,
 				CED576F424FB762000278C95 /* xmap.c in Sources */,
 				CE9FEBB424F2439B0029E036 /* main.m in Sources */,
 				CEF9F67724FB9B8B0058E8D1 /* io.c in Sources */,

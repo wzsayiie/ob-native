@@ -12,11 +12,6 @@ android {
         targetSdkVersion 29
         versionName "1.0"
         versionCode 1000
-        externalNativeBuild {
-            cmake {
-                cppFlags '-std=c++14'
-            }
-        }
         ndk {
             abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86'
         }

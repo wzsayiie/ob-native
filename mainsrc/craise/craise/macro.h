@@ -50,6 +50,4 @@
 #   define threadlocal _Thread_local
 # endif
 
-//general delete functin.
-//"addr" is address of the structure or pointer.
-typedef void (*fdel)(void **addr);
+#define synchronize(...)

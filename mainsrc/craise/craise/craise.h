@@ -9,9 +9,6 @@
 //|     #include "xx.h"
 //| }
 
+#include "cobj.h"
 #include "io.h"
 #include "macro.h"
-#include "ustr.h"
-#include "xcursor.h"
-#include "xlist.h"
-#include "xmap.h"

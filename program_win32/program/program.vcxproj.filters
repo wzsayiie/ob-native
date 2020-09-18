@@ -57,19 +57,7 @@
     <ClCompile Include="..\..\mainsrc\craise\craise\macro.c">
       <Filter>mainsrc\craise\craise</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\mainsrc\craise\craise\ustr.c">
-      <Filter>mainsrc\craise\craise</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\mainsrc\craise\craise\VITAL.c">
-      <Filter>mainsrc\craise\craise</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\mainsrc\craise\craise\xlist.c">
-      <Filter>mainsrc\craise\craise</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\mainsrc\craise\craise\xmap.c">
-      <Filter>mainsrc\craise\craise</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\mainsrc\craise\craise\xcursor.c">
+    <ClCompile Include="..\..\mainsrc\craise\craise\cobj.c">
       <Filter>mainsrc\craise\craise</Filter>
     </ClCompile>
   </ItemGroup>
@@ -95,19 +83,7 @@
     <ClInclude Include="..\..\mainsrc\craise\craise\macro.h">
       <Filter>mainsrc\craise\craise</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\mainsrc\craise\craise\ustr.h">
-      <Filter>mainsrc\craise\craise</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\mainsrc\craise\craise\VITAL.h">
-      <Filter>mainsrc\craise\craise</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\mainsrc\craise\craise\xlist.h">
-      <Filter>mainsrc\craise\craise</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\mainsrc\craise\craise\xmap.h">
-      <Filter>mainsrc\craise\craise</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\mainsrc\craise\craise\xcursor.h">
+    <ClInclude Include="..\..\mainsrc\craise\craise\cobj.h">
       <Filter>mainsrc\craise\craise</Filter>
     </ClInclude>
   </ItemGroup>

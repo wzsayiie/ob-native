@@ -9,6 +9,11 @@
 //|     #include "xx.h"
 //| }
 
+#include "ccont.h"
+#include "clist.h"
 #include "cobj.h"
+#include "cstr.h"
+#include "imap.h"
 #include "io.h"
 #include "macro.h"
+#include "smap.h"

@@ -60,9 +60,6 @@
     <ClCompile Include="..\..\mainsrc\craise\craise\cobj.c">
       <Filter>mainsrc\craise\craise</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\mainsrc\craise\craise\ccont.c">
-      <Filter>mainsrc\craise\craise</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\mainsrc\craise\craise\clist.c">
       <Filter>mainsrc\craise\craise</Filter>
     </ClCompile>
@@ -73,6 +70,21 @@
       <Filter>mainsrc\craise\craise</Filter>
     </ClCompile>
     <ClCompile Include="..\..\mainsrc\craise\craise\smap.c">
+      <Filter>mainsrc\craise\craise</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mainsrc\craise\craise\dearray.c">
+      <Filter>mainsrc\craise\craise</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mainsrc\craise\craise\hashmap.c">
+      <Filter>mainsrc\craise\craise</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mainsrc\craise\craise\rbtree.c">
+      <Filter>mainsrc\craise\craise</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mainsrc\craise\craise\pod.c">
+      <Filter>mainsrc\craise\craise</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mainsrc\craise\craise\cont.c">
       <Filter>mainsrc\craise\craise</Filter>
     </ClCompile>
   </ItemGroup>
@@ -101,9 +113,6 @@
     <ClInclude Include="..\..\mainsrc\craise\craise\cobj.h">
       <Filter>mainsrc\craise\craise</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\mainsrc\craise\craise\ccont.h">
-      <Filter>mainsrc\craise\craise</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\mainsrc\craise\craise\clist.h">
       <Filter>mainsrc\craise\craise</Filter>
     </ClInclude>
@@ -114,6 +123,21 @@
       <Filter>mainsrc\craise\craise</Filter>
     </ClInclude>
     <ClInclude Include="..\..\mainsrc\craise\craise\smap.h">
+      <Filter>mainsrc\craise\craise</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mainsrc\craise\craise\dearray.h">
+      <Filter>mainsrc\craise\craise</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mainsrc\craise\craise\hashmap.h">
+      <Filter>mainsrc\craise\craise</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mainsrc\craise\craise\rbtree.h">
+      <Filter>mainsrc\craise\craise</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mainsrc\craise\craise\pod.h">
+      <Filter>mainsrc\craise\craise</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mainsrc\craise\craise\cont.h">
       <Filter>mainsrc\craise\craise</Filter>
     </ClInclude>
   </ItemGroup>

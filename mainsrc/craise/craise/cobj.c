@@ -2,50 +2,50 @@
 #include <stdlib.h>
 
 defstruct(cobjreal) {
-    int   refn;
-    cdtor dtor;
+    int refn;
+    cdeleter del;
 };
 
-cref __cnew(size_t size, cctor ctor, cdtor dtor) {
+cref newcobj(size_t size, cdeleter del) {
     if (size == 0) {
         return NULL;
     }
 
-    cobjreal *real = calloc(1, size);
-    if (real) {
-        real->refn = 1;
-        real->dtor = dtor;
-        if (ctor) {
-            ctor(real);
-        }
+    cobjreal *obj = calloc(1, size);
+    if (obj) {
+        obj->refn = 1;
+        obj->del = del;
     }
-    return real;
+    return obj;
 }
 
-cref cretain(cref obj) {
-    if (!obj) {
-        return obj;
-    }
-
-    cobjreal *real = obj;
-    synchronize(real) {
-        real->refn += 1;
-    }
-    return real;
+void _delcobj(cobj *obj) {
 }
 
-void crelease(cref obj) {
-    if (!obj) {
+cref retain(cref ref) {
+    if (!ref) {
+        return NULL;
+    }
+
+    cobjreal *obj = ref;
+    synchronize(obj) {
+        obj->refn += 1;
+    }
+    return obj;
+}
+
+void release(cref ref) {
+    if (!ref) {
         return;
     }
 
-    cobjreal *real = obj;
-    synchronize(real) {
-        if (real->refn-- == 1) {
-            if (real->dtor) {
-                real->dtor(real);
+    cobjreal *obj = ref;
+    synchronize(obj) {
+        if (obj->refn-- == 1) {
+            if (obj->del) {
+                obj->del(obj);
             }
-            free(real);
+            free(obj);
         }
     }
 }

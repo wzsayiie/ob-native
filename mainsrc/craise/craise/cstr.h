@@ -13,20 +13,20 @@ typedef int32_t char32_t;
 
 defstruct(cstr);
 
-cstr *cstrnewbt(const void *bytes, size_t size, sencode enc);
-
-cstr *cstrnew  (const char     *raw);
-cstr *cstrnew16(const char16_t *raw);
-cstr *cstrnew32(const char32_t *raw);
+cstr *newcstrbt(const void     *bytes, size_t size, sencode enc);
+cstr *newcstr  (const char     *raw);
+cstr *newcstr16(const char16_t *raw);
+cstr *newcstr32(const char32_t *raw);
+void _delcstr  (cstr *str);
 
 //for bytes process:
-const void *cstrbytes(cstr *str, sencode enc);
-int cstrbsize(cstr *str, sencode enc);
+const void *cstr_bytes(cstr *str, sencode enc);
+int cstr_bsize(cstr *str, sencode enc);
 
 //for characters process:
-char32_t cstrchar(cstr *str, sencode enc, int idx);
-int cstrclen(cstr *str, sencode env);
+char32_t cstr_char(cstr *str, sencode enc, int idx);
+int cstr_clen(cstr *str, sencode env);
 
-int  cstrlen(cstr *str);
-int  cstrcmp(cstr *str, cstr *tht);
-void cstrcat(cstr *str, cstr *tht);
+int  cstr_len(cstr *str);
+int  cstr_cmp(cstr *str, cstr *tht);
+void cstr_cat(cstr *str, cstr *tht);

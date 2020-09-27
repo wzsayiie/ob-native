@@ -1,21 +1,22 @@
 #pragma once
 
-#include "ccont.h"
+#include "cont.h"
 
 defstruct(imap);
 
-imap *imapnew(void);
+imap *newimap(void);
+void _delimap(imap *map);
 
-void imapseti(imap *map, int key, int   val);
-void imapsetf(imap *map, int key, float val);
-void imapset (imap *map, int key, cref  val);
+void imap_seti(imap *map, int key, int   val);
+void imap_setf(imap *map, int key, float val);
+void imap_set (imap *map, int key, cref  val);
 
-int   imapgeti(imap *map, int key);
-float imapgetf(imap *map, int key);
-cref  imapget (imap *map, int key);
+int   imap_geti(imap *map, int key);
+float imap_getf(imap *map, int key);
+cref  imap_get (imap *map, int key);
 
-int  imaplen(imap *map);
-bool imaphas(imap *map, int key);
-void imaprm (imap *map, int key);
+int  imap_len(imap *map);
+bool imap_has(imap *map, int key);
+void imap_rm (imap *map, int key);
 
-cranger *imappairs(imap *map);
+cranger *imap_pairs(imap *map);

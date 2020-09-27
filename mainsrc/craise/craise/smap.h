@@ -1,21 +1,22 @@
 #pragma once
 
-#include "ccont.h"
+#include "cont.h"
 
 defstruct(smap);
 
-smap *smapnew(void);
+smap *newsmap(void);
+void _delsmap(smap *map);
 
-void smapseti(smap *map, cstr *key, int   val);
-void smapsetf(smap *map, cstr *key, float val);
-void smapset (smap *map, cstr *key, cref  val);
+void smap_seti(smap *map, cstr *key, int   val);
+void smap_setf(smap *map, cstr *key, float val);
+void smap_set (smap *map, cstr *key, cref  val);
 
-int   smapgeti(smap *map, cstr *key);
-float smapgetf(smap *map, cstr *key);
-cref  smapget (smap *map, cstr *key);
+int   smap_geti(smap *map, cstr *key);
+float smap_getf(smap *map, cstr *key);
+cref  smap_get (smap *map, cstr *key);
 
-int  smaplen(smap *map);
-bool smaphas(smap *map, cstr *key);
-void smaprm (smap *map, cstr *key);
+int  smap_len(smap *map);
+bool smap_has(smap *map, cstr *key);
+void smap_rm (smap *map, cstr *key);
 
-cranger *smappairs(smap *map);
+cranger *smap_pairs(smap *map);

@@ -1,29 +1,30 @@
 #pragma once
 
-#include "ccont.h"
+#include "cont.h"
 
 defstruct(clist);
 
-clist *clistnew(void);
+clist *newclist(void);
+void  _delclist(clist *list);
 
 //for list process:
-void  clistaddi(clist *list, int idx, int   val);
-void  clistaddf(clist *list, int idx, float val);
-void  clistadd (clist *list, int idx, cref  val);
-int   clistgeti(clist *list, int idx);
-float clistgetf(clist *list, int idx);
-cref  clistget (clist *list, int idx);
-void  clistrm  (clist *list, int idx);
+void  clist_addi(clist *list, int idx, int   val);
+void  clist_addf(clist *list, int idx, float val);
+void  clist_add (clist *list, int idx, cref  val);
+int   clist_ati (clist *list, int idx);
+float clist_atf (clist *list, int idx);
+cref  clist_at  (clist *list, int idx);
+void  clist_rm  (clist *list, int idx);
 
 //for stack process:
-void  clistpushi(clist *list, int   val);
-void  clistpushf(clist *list, float val);
-void  clistpush (clist *list, cref  val);
-int   clistlasti(clist *list);
-float clistlastf(clist *list);
-cref  clistlast (clist *list);
-void  clistpop  (clist *list);
+void  clist_pushi(clist *list, int   val);
+void  clist_pushf(clist *list, float val);
+void  clist_push (clist *list, cref  val);
+int   clist_lasti(clist *list);
+float clist_lastf(clist *list);
+cref  clist_last (clist *list);
+void  clist_pop  (clist *list);
 
-int clistlen(clist *list);
+int clist_len(clist *list);
 
-cranger *clistitems(clist *list);
+cranger *clist_items(clist *list);

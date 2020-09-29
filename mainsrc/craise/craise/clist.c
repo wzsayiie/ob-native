@@ -7,7 +7,7 @@ defstruct(clist) {
 };
 
 clist *newclist(void) {
-    clist *list = newcobj(sizeof(clist), _delclist);
+    clist *list = newcobj(derives(clist));
 
     mzero(&list->array, sizeof(dearray));
     list->array.isize = sizeof(cval);
@@ -18,5 +18,5 @@ clist *newclist(void) {
 
 void _delclist(clist *list) {
     dearray_clear(&list->array);
-    _delcobj(&list->super);
+    _delcobj(superof(list));
 }

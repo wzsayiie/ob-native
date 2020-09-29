@@ -1,20 +1,18 @@
 #include "cobj.h"
 #include <stdlib.h>
 
-defstruct(cobjreal) {
-    int refn;
-    cdeleter del;
-};
+narg mknarg(size_t size, cdeleter del) {
+    narg arg;
+    arg.size = size;
+    arg.delr = del;
+    return arg;
+}
 
-cref newcobj(size_t size, cdeleter del) {
-    if (size == 0) {
-        return NULL;
-    }
-
-    cobjreal *obj = calloc(1, size);
+cref newcobj(narg arg) {
+    cobj *obj = calloc(1, arg.size);
     if (obj) {
         obj->refn = 1;
-        obj->del = del;
+        obj->delr = arg.delr;
     }
     return obj;
 }
@@ -27,7 +25,7 @@ cref retain(cref ref) {
         return NULL;
     }
 
-    cobjreal *obj = ref;
+    cobj *obj = ref;
     synchronize(obj) {
         obj->refn += 1;
     }
@@ -39,11 +37,11 @@ void release(cref ref) {
         return;
     }
 
-    cobjreal *obj = ref;
+    cobj *obj = ref;
     synchronize(obj) {
         if (obj->refn-- == 1) {
-            if (obj->del) {
-                obj->del(obj);
+            if (obj->delr) {
+                obj->delr(obj);
             }
             free(obj);
         }

@@ -9,14 +9,13 @@ defstruct(clist) {
 clist *newclist(void) {
     clist *list = newcobj(derives(clist));
 
-    mzero(&list->array, sizeof(dearray));
-    list->array.isize = sizeof(cval);
-    dearray_init(&list->array);
+    memzero(&list->array, sizeof(dearray));
+    dearray_init(&list->array, sizeof(cval));
 
     return list;
 }
 
 void _delclist(clist *list) {
-    dearray_clear(&list->array);
+    dearray_deinit(&list->array);
     _delcobj(superof(list));
 }

@@ -3,16 +3,18 @@
 #include "pod.h"
 
 defstruct(dearray) {
-    void  *mptr;  //memory block begin.
-    void  *mend;  //memory block end (the position unavailable).
-    void  *iptr;  //item begin.
-    size_t inum;  //item number.
-    size_t isize; //item size (NOTE: user assigning).
+    int8_t *mptr; //memory block begin.
+    int8_t *mend; //memory block end.
+    int8_t *iptr; //item begin.
+    int8_t *iend; //item end.
+    size_t  isin; //single item size.
 };
 
-void dearray_init (dearray *array);
-void dearray_clear(dearray *array);
+void dearray_init  (dearray *self, size_t isin);
+void dearray_deinit(dearray *self);
 
-void  dearray_add(dearray *array, void *item);
-void  dearray_rm (dearray *array, int idx);
-void *dearray_at (dearray *array, int idx);
+void  dearray_insert(dearray *self, int idx, void *item);
+void  dearray_remove(dearray *self, int idx);
+void  dearray_clear (dearray *self);
+int   dearray_len   (dearray *self);
+void *dearray_at    (dearray *self, int idx);

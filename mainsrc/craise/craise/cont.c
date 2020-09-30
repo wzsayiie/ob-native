@@ -1,5 +1,5 @@
 #include "cont.h"
-#include <string.h>
+#include "pod.h"
 
 static threadlocal int8_t _rangers[RANGER_MAX_NUM][RANGER_MAX_SIZE];
 static threadlocal int _current = 0;

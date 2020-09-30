@@ -1,8 +1,7 @@
 #include "pod.h"
-#include <string.h>
 
-void mzero(void *mem, size_t size) {
-    if (mem && size > 0) {
-        memset(mem, 0, size);
+void memzero(void *ptr, size_t size) {
+    if (ptr && size > 0) {
+        memset(ptr, 0, size);
     }
 }

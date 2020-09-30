@@ -20,13 +20,12 @@ cstr *newcstr32(const char32_t *raw);
 void _delcstr  (cstr *str);
 
 //for bytes process:
-const void *cstr_bytes(cstr *str, sencode enc);
-int cstr_bsize(cstr *str, sencode enc);
+const void *cstr_bytes(cstr *self, sencode enc);
+int         cstr_bsize(cstr *self, sencode enc);
 
 //for characters process:
-char32_t cstr_char(cstr *str, sencode enc, int idx);
-int cstr_clen(cstr *str, sencode env);
+char32_t cstr_char(cstr *self, int idx);
+int      cstr_clen(cstr *self);
 
-int  cstr_len(cstr *str);
-int  cstr_cmp(cstr *str, cstr *tht);
-void cstr_cat(cstr *str, cstr *tht);
+int  cstr_cmp   (cstr *self, cstr *str);
+void cstr_append(cstr *self, cstr *str);

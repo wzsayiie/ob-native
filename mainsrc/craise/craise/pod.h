@@ -1,6 +1,9 @@
 #pragma once
 
 #include "macro.h"
+#include <string.h>
+
+void memzero(void *ptr, size_t size);
 
 defenum(ctype) {
     TYPE_BOOL,
@@ -58,5 +61,3 @@ int64_t asint64(cval val);
 float   asflt  (cval val);
 double  asdbl  (cval val);
 void   *asptr  (cval val);
-
-void mzero(void *mem, size_t size);

@@ -13,6 +13,7 @@
 		CE037A0924F2444C0047FE7E /* UDIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0379FD24F2444C0047FE7E /* UDIViewController.m */; };
 		CE037A0A24F2444C0047FE7E /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = CE037A0224F2444C0047FE7E /* main.c */; };
 		CE0C68622514F08B00E2EF31 /* cobj.c in Sources */ = {isa = PBXBuildFile; fileRef = CE0C68602514F08A00E2EF31 /* cobj.c */; };
+		CE0DE6E82526F4E900C02BE9 /* cval.c in Sources */ = {isa = PBXBuildFile; fileRef = CE0DE6E62526F4E900C02BE9 /* cval.c */; };
 		CE5883942520D7560020A436 /* imap.c in Sources */ = {isa = PBXBuildFile; fileRef = CE5883822520D7550020A436 /* imap.c */; };
 		CE5883952520D7560020A436 /* cont.c in Sources */ = {isa = PBXBuildFile; fileRef = CE5883832520D7550020A436 /* cont.c */; };
 		CE5883962520D7560020A436 /* rbtree.c in Sources */ = {isa = PBXBuildFile; fileRef = CE5883882520D7550020A436 /* rbtree.c */; };
@@ -43,6 +44,8 @@
 		CE037A0224F2444C0047FE7E /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		CE0C68602514F08A00E2EF31 /* cobj.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cobj.c; sourceTree = "<group>"; };
 		CE0C68612514F08A00E2EF31 /* cobj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cobj.h; sourceTree = "<group>"; };
+		CE0DE6E62526F4E900C02BE9 /* cval.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cval.c; sourceTree = "<group>"; };
+		CE0DE6E72526F4E900C02BE9 /* cval.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cval.h; sourceTree = "<group>"; };
 		CE5883822520D7550020A436 /* imap.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = imap.c; sourceTree = "<group>"; };
 		CE5883832520D7550020A436 /* cont.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cont.c; sourceTree = "<group>"; };
 		CE5883842520D7550020A436 /* clist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = clist.h; sourceTree = "<group>"; };
@@ -119,6 +122,8 @@
 				CE0379E924F2444C0047FE7E /* craise.h */,
 				CE5883932520D7560020A436 /* cstr.c */,
 				CE58838C2520D7550020A436 /* cstr.h */,
+				CE0DE6E62526F4E900C02BE9 /* cval.c */,
+				CE0DE6E72526F4E900C02BE9 /* cval.h */,
 				CE58838A2520D7550020A436 /* dearray.c */,
 				CE5883872520D7550020A436 /* dearray.h */,
 				CE5883892520D7550020A436 /* hashmap.c */,
@@ -301,6 +306,7 @@
 				CED576FD24FB763300278C95 /* entry.c in Sources */,
 				CE037A0A24F2444C0047FE7E /* main.c in Sources */,
 				CE58839C2520D7560020A436 /* cstr.c in Sources */,
+				CE0DE6E82526F4E900C02BE9 /* cval.c in Sources */,
 				CE037A0924F2444C0047FE7E /* UDIViewController.m in Sources */,
 				CE9FEBB424F2439B0029E036 /* main.m in Sources */,
 				CEF9F67724FB9B8B0058E8D1 /* io.c in Sources */,

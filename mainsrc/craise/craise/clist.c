@@ -1,5 +1,6 @@
 #include "clist.h"
 #include "dearray.h"
+#include "cval.h"
 
 defstruct(clist) {
     cobj    super;

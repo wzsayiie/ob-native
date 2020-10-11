@@ -4,13 +4,17 @@
 
 defstruct(dearray) {
     int8_t *mptr; //memory block begin.
-    int8_t *mend; //memory block end.
-    int8_t *iptr; //item begin.
-    int8_t *iend; //item end.
-    size_t  isin; //single item size.
+    size_t  itsz; //item size.
+    int     hnum; //the number of the reserved slots at head.
+    int     inum; //the number of the items.
+    int     tnum; //the number of the reserved slots at tail.
 };
 
-void dearray_init  (dearray *self, size_t isin);
+//if N items are stored currently,
+//at most (N * DEARRAY_RESERVE_FACTOR) slots can be reserved additionally.
+static const float DEARRAY_RESERVE_FACTOR = 0.2;
+
+void dearray_init  (dearray *self, size_t itsz);
 void dearray_deinit(dearray *self);
 
 void  dearray_insert(dearray *self, int idx, void *item);

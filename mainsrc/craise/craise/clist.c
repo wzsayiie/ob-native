@@ -9,10 +9,7 @@ defstruct(clist) {
 
 clist *newclist(void) {
     clist *list = newcobj(derives(clist));
-
-    memzero(&list->array, sizeof(dearray));
     dearray_init(&list->array, sizeof(cval));
-
     return list;
 }
 

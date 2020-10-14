@@ -33,12 +33,6 @@
     <ClCompile Include="winmain.c">
       <Filter>program</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\mainsrc\craise\craise\craise.c">
-      <Filter>mainsrc\craise\craise</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\mainsrc\main\main\main.c">
-      <Filter>mainsrc\main\main</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\mainsrc\uidev\uidev\uidev.c">
       <Filter>mainsrc\uidev\uidev</Filter>
     </ClCompile>
@@ -51,47 +45,8 @@
     <ClCompile Include="..\..\mainsrc\uidev\uidev\wnd.c">
       <Filter>mainsrc\uidev\uidev</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\mainsrc\craise\craise\io.c">
-      <Filter>mainsrc\craise\craise</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\mainsrc\craise\craise\macro.c">
-      <Filter>mainsrc\craise\craise</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\mainsrc\craise\craise\cobj.c">
-      <Filter>mainsrc\craise\craise</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\mainsrc\craise\craise\clist.c">
-      <Filter>mainsrc\craise\craise</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\mainsrc\craise\craise\cstr.c">
-      <Filter>mainsrc\craise\craise</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\mainsrc\craise\craise\imap.c">
-      <Filter>mainsrc\craise\craise</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\mainsrc\craise\craise\smap.c">
-      <Filter>mainsrc\craise\craise</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\mainsrc\craise\craise\dearray.c">
-      <Filter>mainsrc\craise\craise</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\mainsrc\craise\craise\hashmap.c">
-      <Filter>mainsrc\craise\craise</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\mainsrc\craise\craise\rbtree.c">
-      <Filter>mainsrc\craise\craise</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\mainsrc\craise\craise\pod.c">
-      <Filter>mainsrc\craise\craise</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\mainsrc\craise\craise\cont.c">
-      <Filter>mainsrc\craise\craise</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\mainsrc\craise\craise\craise.h">
-      <Filter>mainsrc\craise\craise</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\mainsrc\uidev\uidev\uidev.h">
       <Filter>mainsrc\uidev\uidev</Filter>
     </ClInclude>
@@ -103,42 +58,6 @@
     </ClInclude>
     <ClInclude Include="..\..\mainsrc\uidev\uidev\wnd.h">
       <Filter>mainsrc\uidev\uidev</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\mainsrc\craise\craise\io.h">
-      <Filter>mainsrc\craise\craise</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\mainsrc\craise\craise\macro.h">
-      <Filter>mainsrc\craise\craise</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\mainsrc\craise\craise\cobj.h">
-      <Filter>mainsrc\craise\craise</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\mainsrc\craise\craise\clist.h">
-      <Filter>mainsrc\craise\craise</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\mainsrc\craise\craise\cstr.h">
-      <Filter>mainsrc\craise\craise</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\mainsrc\craise\craise\imap.h">
-      <Filter>mainsrc\craise\craise</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\mainsrc\craise\craise\smap.h">
-      <Filter>mainsrc\craise\craise</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\mainsrc\craise\craise\dearray.h">
-      <Filter>mainsrc\craise\craise</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\mainsrc\craise\craise\hashmap.h">
-      <Filter>mainsrc\craise\craise</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\mainsrc\craise\craise\rbtree.h">
-      <Filter>mainsrc\craise\craise</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\mainsrc\craise\craise\pod.h">
-      <Filter>mainsrc\craise\craise</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\mainsrc\craise\craise\cont.h">
-      <Filter>mainsrc\craise\craise</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

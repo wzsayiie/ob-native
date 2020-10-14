@@ -19,20 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\mainsrc\craise\craise\cont.c" />
-    <ClCompile Include="..\..\mainsrc\craise\craise\clist.c" />
-    <ClCompile Include="..\..\mainsrc\craise\craise\cobj.c" />
-    <ClCompile Include="..\..\mainsrc\craise\craise\craise.c" />
-    <ClCompile Include="..\..\mainsrc\craise\craise\cstr.c" />
-    <ClCompile Include="..\..\mainsrc\craise\craise\dearray.c" />
-    <ClCompile Include="..\..\mainsrc\craise\craise\hashmap.c" />
-    <ClCompile Include="..\..\mainsrc\craise\craise\imap.c" />
-    <ClCompile Include="..\..\mainsrc\craise\craise\io.c" />
-    <ClCompile Include="..\..\mainsrc\craise\craise\macro.c" />
-    <ClCompile Include="..\..\mainsrc\craise\craise\pod.c" />
-    <ClCompile Include="..\..\mainsrc\craise\craise\rbtree.c" />
-    <ClCompile Include="..\..\mainsrc\craise\craise\smap.c" />
-    <ClCompile Include="..\..\mainsrc\main\main\main.c" />
     <ClCompile Include="..\..\mainsrc\uidev\uidev\entry.c" />
     <ClCompile Include="..\..\mainsrc\uidev\uidev\uidev.c" />
     <ClCompile Include="..\..\mainsrc\uidev\uidev\wnd.c" />
@@ -40,19 +26,6 @@
     <ClCompile Include="winmain.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\mainsrc\craise\craise\cont.h" />
-    <ClInclude Include="..\..\mainsrc\craise\craise\clist.h" />
-    <ClInclude Include="..\..\mainsrc\craise\craise\cobj.h" />
-    <ClInclude Include="..\..\mainsrc\craise\craise\craise.h" />
-    <ClInclude Include="..\..\mainsrc\craise\craise\cstr.h" />
-    <ClInclude Include="..\..\mainsrc\craise\craise\dearray.h" />
-    <ClInclude Include="..\..\mainsrc\craise\craise\hashmap.h" />
-    <ClInclude Include="..\..\mainsrc\craise\craise\imap.h" />
-    <ClInclude Include="..\..\mainsrc\craise\craise\io.h" />
-    <ClInclude Include="..\..\mainsrc\craise\craise\macro.h" />
-    <ClInclude Include="..\..\mainsrc\craise\craise\pod.h" />
-    <ClInclude Include="..\..\mainsrc\craise\craise\rbtree.h" />
-    <ClInclude Include="..\..\mainsrc\craise\craise\smap.h" />
     <ClInclude Include="..\..\mainsrc\uidev\uidev\entry.h" />
     <ClInclude Include="..\..\mainsrc\uidev\uidev\uidev.h" />
     <ClInclude Include="..\..\mainsrc\uidev\uidev\wnd.h" />

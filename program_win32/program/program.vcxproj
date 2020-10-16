@@ -19,17 +19,16 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\mainsrc\main\main\nmain.cpp" />
     <ClCompile Include="..\..\mainsrc\uidev\uidev\entry.c" />
     <ClCompile Include="..\..\mainsrc\uidev\uidev\uidev.c" />
-    <ClCompile Include="..\..\mainsrc\uidev\uidev\wnd.c" />
-    <ClCompile Include="..\..\mainsrc\uidev\uidev_win32\UDWinMain.c" />
+    <ClCompile Include="..\..\mainsrc\uidev\uidev_win32\NWinMain.c" />
     <ClCompile Include="winmain.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\mainsrc\uidev\uidev\entry.h" />
     <ClInclude Include="..\..\mainsrc\uidev\uidev\uidev.h" />
-    <ClInclude Include="..\..\mainsrc\uidev\uidev\wnd.h" />
-    <ClInclude Include="..\..\mainsrc\uidev\uidev_win32\UDWinMain.h" />
+    <ClInclude Include="..\..\mainsrc\uidev\uidev_win32\NWinMain.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

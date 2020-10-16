@@ -2,4 +2,4 @@
 
 //developers need to implement this function,
 //it is the program entry.
-void appmain(void);
+void NMain(void);

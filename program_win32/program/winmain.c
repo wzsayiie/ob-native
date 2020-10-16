@@ -1,4 +1,4 @@
-﻿#include "UDWinMain.h"
+#include "NWinMain.h"
 
 int APIENTRY wWinMain(
     _In_     HINSTANCE hInst    ,
@@ -6,5 +6,5 @@ int APIENTRY wWinMain(
     _In_     LPWSTR    lpCmdLine,
     _In_     int       nCmdShow )
 {
-    return UDWinMain(hInst, hPrevInst, lpCmdLine, nCmdShow);
+    return NWinMain(hInst, hPrevInst, lpCmdLine, nCmdShow);
 }

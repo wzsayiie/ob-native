@@ -10,14 +10,8 @@
     <Filter Include="mainsrc\uidev">
       <UniqueIdentifier>{8afa564e-da15-4b0b-8176-be04c1c4244a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="mainsrc\craise">
-      <UniqueIdentifier>{03618530-ce47-4ddf-b663-6aec2c6a33f5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="mainsrc\main">
       <UniqueIdentifier>{503fcbd7-ca83-4607-8071-b3e1691c780c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="mainsrc\craise\craise">
-      <UniqueIdentifier>{b62e1265-28d1-4c47-876c-ab56d4970a03}</UniqueIdentifier>
     </Filter>
     <Filter Include="mainsrc\main\main">
       <UniqueIdentifier>{853b48a0-8340-4e2b-8454-e8ef041fcb70}</UniqueIdentifier>
@@ -36,28 +30,25 @@
     <ClCompile Include="..\..\mainsrc\uidev\uidev\uidev.c">
       <Filter>mainsrc\uidev\uidev</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\mainsrc\uidev\uidev_win32\UDWinMain.c">
-      <Filter>mainsrc\uidev\uidev_win32</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\mainsrc\uidev\uidev\entry.c">
       <Filter>mainsrc\uidev\uidev</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\mainsrc\uidev\uidev\wnd.c">
-      <Filter>mainsrc\uidev\uidev</Filter>
+    <ClCompile Include="..\..\mainsrc\main\main\nmain.cpp">
+      <Filter>mainsrc\main\main</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mainsrc\uidev\uidev_win32\NWinMain.c">
+      <Filter>mainsrc\uidev\uidev_win32</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\mainsrc\uidev\uidev\uidev.h">
       <Filter>mainsrc\uidev\uidev</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\mainsrc\uidev\uidev_win32\UDWinMain.h">
-      <Filter>mainsrc\uidev\uidev_win32</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\mainsrc\uidev\uidev\entry.h">
       <Filter>mainsrc\uidev\uidev</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\mainsrc\uidev\uidev\wnd.h">
-      <Filter>mainsrc\uidev\uidev</Filter>
+    <ClInclude Include="..\..\mainsrc\uidev\uidev_win32\NWinMain.h">
+      <Filter>mainsrc\uidev\uidev_win32</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

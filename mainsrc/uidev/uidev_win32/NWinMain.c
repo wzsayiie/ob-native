@@ -1,4 +1,4 @@
-#include "UDWinMain.h"
+#include "NWinMain.h"
 #include <stdio.h>
 #include "uidev.h"
 
@@ -20,7 +20,7 @@ static VOID OpenConsole(VOID)
     SetWindowPos(hWnd, HWND_TOP, 300, 100, 0, 0, SWP_NOSIZE);
 }
 
-static LRESULT CALLBACK MainWndProc(HWND hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam)
+static LRESULT CALLBACK MainWindowProc(HWND hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam)
 {
     switch (nMsg)
     {
@@ -51,18 +51,18 @@ static LRESULT CALLBACK MainWndProc(HWND hWnd, UINT nMsg, WPARAM wParam, LPARAM 
     return 0;
 }
 
-int UDWinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPWSTR lpCmdLine, int nCmdShow)
+int NWinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPWSTR lpCmdLine, int nCmdShow)
 {
     OpenConsole();
 
-    appmain();
+    NMain();
 
     //register main window class.
     LPCWSTR lpszClassName = L"UDMainWindow";
     WNDCLASSW stClass;
 
     stClass.style         = CS_HREDRAW | CS_VREDRAW;
-    stClass.lpfnWndProc   = MainWndProc;
+    stClass.lpfnWndProc   = MainWindowProc;
     stClass.cbClsExtra    = 0;
     stClass.cbWndExtra    = 0;
     stClass.hInstance     = hInst;

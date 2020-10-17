@@ -7,76 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CE037A0324F2444C0047FE7E /* craise.c in Sources */ = {isa = PBXBuildFile; fileRef = CE0379EA24F2444C0047FE7E /* craise.c */; };
 		CE037A0624F2444C0047FE7E /* uidev.c in Sources */ = {isa = PBXBuildFile; fileRef = CE0379F724F2444C0047FE7E /* uidev.c */; };
-		CE037A0824F2444C0047FE7E /* UDIAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0379FC24F2444C0047FE7E /* UDIAppDelegate.m */; };
-		CE037A0924F2444C0047FE7E /* UDIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0379FD24F2444C0047FE7E /* UDIViewController.m */; };
-		CE037A0A24F2444C0047FE7E /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = CE037A0224F2444C0047FE7E /* main.c */; };
-		CE0C68622514F08B00E2EF31 /* cobj.c in Sources */ = {isa = PBXBuildFile; fileRef = CE0C68602514F08A00E2EF31 /* cobj.c */; };
-		CE0DE6E82526F4E900C02BE9 /* cval.c in Sources */ = {isa = PBXBuildFile; fileRef = CE0DE6E62526F4E900C02BE9 /* cval.c */; };
-		CE5883942520D7560020A436 /* imap.c in Sources */ = {isa = PBXBuildFile; fileRef = CE5883822520D7550020A436 /* imap.c */; };
-		CE5883952520D7560020A436 /* cont.c in Sources */ = {isa = PBXBuildFile; fileRef = CE5883832520D7550020A436 /* cont.c */; };
-		CE5883962520D7560020A436 /* rbtree.c in Sources */ = {isa = PBXBuildFile; fileRef = CE5883882520D7550020A436 /* rbtree.c */; };
-		CE5883972520D7560020A436 /* hashmap.c in Sources */ = {isa = PBXBuildFile; fileRef = CE5883892520D7550020A436 /* hashmap.c */; };
-		CE5883982520D7560020A436 /* dearray.c in Sources */ = {isa = PBXBuildFile; fileRef = CE58838A2520D7550020A436 /* dearray.c */; };
-		CE5883992520D7560020A436 /* smap.c in Sources */ = {isa = PBXBuildFile; fileRef = CE58838D2520D7550020A436 /* smap.c */; };
-		CE58839A2520D7560020A436 /* clist.c in Sources */ = {isa = PBXBuildFile; fileRef = CE58838F2520D7560020A436 /* clist.c */; };
-		CE58839B2520D7560020A436 /* pod.c in Sources */ = {isa = PBXBuildFile; fileRef = CE5883912520D7560020A436 /* pod.c */; };
-		CE58839C2520D7560020A436 /* cstr.c in Sources */ = {isa = PBXBuildFile; fileRef = CE5883932520D7560020A436 /* cstr.c */; };
+		CE037A0824F2444C0047FE7E /* NIAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0379FC24F2444C0047FE7E /* NIAppDelegate.m */; };
+		CE037A0924F2444C0047FE7E /* NIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0379FD24F2444C0047FE7E /* NIViewController.m */; };
 		CE9FEBB224F2439B0029E036 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE9FEBAE24F2439B0029E036 /* Assets.xcassets */; };
 		CE9FEBB324F2439B0029E036 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE9FEBAF24F2439B0029E036 /* LaunchScreen.storyboard */; };
 		CE9FEBB424F2439B0029E036 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9FEBB024F2439B0029E036 /* main.m */; };
-		CED576F724FB762000278C95 /* macro.c in Sources */ = {isa = PBXBuildFile; fileRef = CED576F224FB761F00278C95 /* macro.c */; };
-		CED576FC24FB763300278C95 /* wnd.c in Sources */ = {isa = PBXBuildFile; fileRef = CED576F824FB763300278C95 /* wnd.c */; };
 		CED576FD24FB763300278C95 /* entry.c in Sources */ = {isa = PBXBuildFile; fileRef = CED576F924FB763300278C95 /* entry.c */; };
-		CEF9F67724FB9B8B0058E8D1 /* io.c in Sources */ = {isa = PBXBuildFile; fileRef = CEF9F67524FB9B8B0058E8D1 /* io.c */; };
+		CEF4F158253AB4EE0064DDC8 /* nmain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEF4F157253AB4EE0064DDC8 /* nmain.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		CE0379E924F2444C0047FE7E /* craise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = craise.h; sourceTree = "<group>"; };
-		CE0379EA24F2444C0047FE7E /* craise.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = craise.c; sourceTree = "<group>"; };
 		CE0379F624F2444C0047FE7E /* uidev.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uidev.h; sourceTree = "<group>"; };
 		CE0379F724F2444C0047FE7E /* uidev.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = uidev.c; sourceTree = "<group>"; };
-		CE0379FC24F2444C0047FE7E /* UDIAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UDIAppDelegate.m; sourceTree = "<group>"; };
-		CE0379FD24F2444C0047FE7E /* UDIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UDIViewController.m; sourceTree = "<group>"; };
-		CE0379FE24F2444C0047FE7E /* UDIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDIViewController.h; sourceTree = "<group>"; };
-		CE0379FF24F2444C0047FE7E /* UDIAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDIAppDelegate.h; sourceTree = "<group>"; };
-		CE037A0224F2444C0047FE7E /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
-		CE0C68602514F08A00E2EF31 /* cobj.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cobj.c; sourceTree = "<group>"; };
-		CE0C68612514F08A00E2EF31 /* cobj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cobj.h; sourceTree = "<group>"; };
-		CE0DE6E62526F4E900C02BE9 /* cval.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cval.c; sourceTree = "<group>"; };
-		CE0DE6E72526F4E900C02BE9 /* cval.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cval.h; sourceTree = "<group>"; };
-		CE5883822520D7550020A436 /* imap.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = imap.c; sourceTree = "<group>"; };
-		CE5883832520D7550020A436 /* cont.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cont.c; sourceTree = "<group>"; };
-		CE5883842520D7550020A436 /* clist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = clist.h; sourceTree = "<group>"; };
-		CE5883852520D7550020A436 /* smap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = smap.h; sourceTree = "<group>"; };
-		CE5883862520D7550020A436 /* imap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = imap.h; sourceTree = "<group>"; };
-		CE5883872520D7550020A436 /* dearray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dearray.h; sourceTree = "<group>"; };
-		CE5883882520D7550020A436 /* rbtree.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rbtree.c; sourceTree = "<group>"; };
-		CE5883892520D7550020A436 /* hashmap.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = hashmap.c; sourceTree = "<group>"; };
-		CE58838A2520D7550020A436 /* dearray.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dearray.c; sourceTree = "<group>"; };
-		CE58838B2520D7550020A436 /* cont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cont.h; sourceTree = "<group>"; };
-		CE58838C2520D7550020A436 /* cstr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cstr.h; sourceTree = "<group>"; };
-		CE58838D2520D7550020A436 /* smap.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = smap.c; sourceTree = "<group>"; };
-		CE58838E2520D7560020A436 /* hashmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hashmap.h; sourceTree = "<group>"; };
-		CE58838F2520D7560020A436 /* clist.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = clist.c; sourceTree = "<group>"; };
-		CE5883902520D7560020A436 /* rbtree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rbtree.h; sourceTree = "<group>"; };
-		CE5883912520D7560020A436 /* pod.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pod.c; sourceTree = "<group>"; };
-		CE5883922520D7560020A436 /* pod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pod.h; sourceTree = "<group>"; };
-		CE5883932520D7560020A436 /* cstr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cstr.c; sourceTree = "<group>"; };
+		CE0379FC24F2444C0047FE7E /* NIAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIAppDelegate.m; sourceTree = "<group>"; };
+		CE0379FD24F2444C0047FE7E /* NIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIViewController.m; sourceTree = "<group>"; };
+		CE0379FE24F2444C0047FE7E /* NIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIViewController.h; sourceTree = "<group>"; };
+		CE0379FF24F2444C0047FE7E /* NIAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIAppDelegate.h; sourceTree = "<group>"; };
 		CE9FEB9124F243360029E036 /* xnative.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = xnative.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE9FEBAD24F2439B0029E036 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE9FEBAE24F2439B0029E036 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE9FEBAF24F2439B0029E036 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE9FEBB024F2439B0029E036 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		CED576F024FB761F00278C95 /* macro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macro.h; sourceTree = "<group>"; };
-		CED576F224FB761F00278C95 /* macro.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = macro.c; sourceTree = "<group>"; };
-		CED576F824FB763300278C95 /* wnd.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = wnd.c; sourceTree = "<group>"; };
 		CED576F924FB763300278C95 /* entry.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = entry.c; sourceTree = "<group>"; };
-		CED576FA24FB763300278C95 /* wnd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wnd.h; sourceTree = "<group>"; };
 		CED576FB24FB763300278C95 /* entry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = entry.h; sourceTree = "<group>"; };
-		CEF9F67524FB9B8B0058E8D1 /* io.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = io.c; sourceTree = "<group>"; };
-		CEF9F67624FB9B8B0058E8D1 /* io.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = io.h; sourceTree = "<group>"; };
+		CEF4F157253AB4EE0064DDC8 /* nmain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = nmain.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,55 +48,11 @@
 		CE0379E624F2444C0047FE7E /* mainsrc */ = {
 			isa = PBXGroup;
 			children = (
-				CE0379E724F2444C0047FE7E /* craise */,
 				CE037A0024F2444C0047FE7E /* main */,
 				CE0379EB24F2444C0047FE7E /* uidev */,
 			);
 			name = mainsrc;
 			path = ../mainsrc;
-			sourceTree = "<group>";
-		};
-		CE0379E724F2444C0047FE7E /* craise */ = {
-			isa = PBXGroup;
-			children = (
-				CE0379E824F2444C0047FE7E /* craise */,
-			);
-			path = craise;
-			sourceTree = "<group>";
-		};
-		CE0379E824F2444C0047FE7E /* craise */ = {
-			isa = PBXGroup;
-			children = (
-				CE58838F2520D7560020A436 /* clist.c */,
-				CE5883842520D7550020A436 /* clist.h */,
-				CE0C68602514F08A00E2EF31 /* cobj.c */,
-				CE0C68612514F08A00E2EF31 /* cobj.h */,
-				CE5883832520D7550020A436 /* cont.c */,
-				CE58838B2520D7550020A436 /* cont.h */,
-				CE0379EA24F2444C0047FE7E /* craise.c */,
-				CE0379E924F2444C0047FE7E /* craise.h */,
-				CE5883932520D7560020A436 /* cstr.c */,
-				CE58838C2520D7550020A436 /* cstr.h */,
-				CE0DE6E62526F4E900C02BE9 /* cval.c */,
-				CE0DE6E72526F4E900C02BE9 /* cval.h */,
-				CE58838A2520D7550020A436 /* dearray.c */,
-				CE5883872520D7550020A436 /* dearray.h */,
-				CE5883892520D7550020A436 /* hashmap.c */,
-				CE58838E2520D7560020A436 /* hashmap.h */,
-				CE5883822520D7550020A436 /* imap.c */,
-				CE5883862520D7550020A436 /* imap.h */,
-				CEF9F67524FB9B8B0058E8D1 /* io.c */,
-				CEF9F67624FB9B8B0058E8D1 /* io.h */,
-				CED576F224FB761F00278C95 /* macro.c */,
-				CED576F024FB761F00278C95 /* macro.h */,
-				CE5883912520D7560020A436 /* pod.c */,
-				CE5883922520D7560020A436 /* pod.h */,
-				CE5883882520D7550020A436 /* rbtree.c */,
-				CE5883902520D7560020A436 /* rbtree.h */,
-				CE58838D2520D7550020A436 /* smap.c */,
-				CE5883852520D7550020A436 /* smap.h */,
-			);
-			path = craise;
 			sourceTree = "<group>";
 		};
 		CE0379EB24F2444C0047FE7E /* uidev */ = {
@@ -160,8 +71,6 @@
 				CED576FB24FB763300278C95 /* entry.h */,
 				CE0379F724F2444C0047FE7E /* uidev.c */,
 				CE0379F624F2444C0047FE7E /* uidev.h */,
-				CED576F824FB763300278C95 /* wnd.c */,
-				CED576FA24FB763300278C95 /* wnd.h */,
 			);
 			path = uidev;
 			sourceTree = "<group>";
@@ -169,10 +78,10 @@
 		CE0379FB24F2444C0047FE7E /* uidev_ios */ = {
 			isa = PBXGroup;
 			children = (
-				CE0379FF24F2444C0047FE7E /* UDIAppDelegate.h */,
-				CE0379FC24F2444C0047FE7E /* UDIAppDelegate.m */,
-				CE0379FE24F2444C0047FE7E /* UDIViewController.h */,
-				CE0379FD24F2444C0047FE7E /* UDIViewController.m */,
+				CE0379FF24F2444C0047FE7E /* NIAppDelegate.h */,
+				CE0379FC24F2444C0047FE7E /* NIAppDelegate.m */,
+				CE0379FE24F2444C0047FE7E /* NIViewController.h */,
+				CE0379FD24F2444C0047FE7E /* NIViewController.m */,
 			);
 			path = uidev_ios;
 			sourceTree = "<group>";
@@ -188,7 +97,7 @@
 		CE037A0124F2444C0047FE7E /* main */ = {
 			isa = PBXGroup;
 			children = (
-				CE037A0224F2444C0047FE7E /* main.c */,
+				CEF4F157253AB4EE0064DDC8 /* nmain.cpp */,
 			);
 			path = main;
 			sourceTree = "<group>";
@@ -290,27 +199,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE5883952520D7560020A436 /* cont.c in Sources */,
-				CE5883962520D7560020A436 /* rbtree.c in Sources */,
-				CE5883982520D7560020A436 /* dearray.c in Sources */,
-				CED576FC24FB763300278C95 /* wnd.c in Sources */,
-				CE037A0324F2444C0047FE7E /* craise.c in Sources */,
+				CEF4F158253AB4EE0064DDC8 /* nmain.cpp in Sources */,
 				CE037A0624F2444C0047FE7E /* uidev.c in Sources */,
-				CE5883972520D7560020A436 /* hashmap.c in Sources */,
-				CE037A0824F2444C0047FE7E /* UDIAppDelegate.m in Sources */,
-				CE0C68622514F08B00E2EF31 /* cobj.c in Sources */,
-				CE58839A2520D7560020A436 /* clist.c in Sources */,
-				CED576F724FB762000278C95 /* macro.c in Sources */,
-				CE5883992520D7560020A436 /* smap.c in Sources */,
-				CE5883942520D7560020A436 /* imap.c in Sources */,
+				CE037A0824F2444C0047FE7E /* NIAppDelegate.m in Sources */,
 				CED576FD24FB763300278C95 /* entry.c in Sources */,
-				CE037A0A24F2444C0047FE7E /* main.c in Sources */,
-				CE58839C2520D7560020A436 /* cstr.c in Sources */,
-				CE0DE6E82526F4E900C02BE9 /* cval.c in Sources */,
-				CE037A0924F2444C0047FE7E /* UDIViewController.m in Sources */,
+				CE037A0924F2444C0047FE7E /* NIViewController.m in Sources */,
 				CE9FEBB424F2439B0029E036 /* main.m in Sources */,
-				CEF9F67724FB9B8B0058E8D1 /* io.c in Sources */,
-				CE58839B2520D7560020A436 /* pod.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

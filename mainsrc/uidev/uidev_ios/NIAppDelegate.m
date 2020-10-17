@@ -1,19 +1,19 @@
-#import "UDIAppDelegate.h"
-#import "UDIViewController.h"
+#import "NIAppDelegate.h"
+#import "NIViewController.h"
 #import "uidev.h"
 
-@interface UDIAppDelegate ()
+@interface NIAppDelegate ()
 @end
 
-@implementation UDIAppDelegate
+@implementation NIAppDelegate
 
 - (BOOL) /* ====== */ application:(UIApplication *)application
     didFinishLaunchingWithOptions:(NSDictionary<UIApplicationLaunchOptionsKey, id> *)options
 {
-    appmain();
+    NMain();
     
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
-    self.window.rootViewController = [[UDIViewController alloc] init];
+    self.window.rootViewController = [[NIViewController alloc] init];
     [self.window makeKeyAndVisible];
 
     return YES;

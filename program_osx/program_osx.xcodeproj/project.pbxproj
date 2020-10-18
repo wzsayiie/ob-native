@@ -12,6 +12,12 @@
 		CE0B3EFE24F2AF360038E58A /* NMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0B3EE924F2AF360038E58A /* NMViewController.m */; };
 		CE0B3EFF24F2AF360038E58A /* NMWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0B3EEA24F2AF360038E58A /* NMWindowController.m */; };
 		CE84990624FB74380098ABAF /* entry.c in Sources */ = {isa = PBXBuildFile; fileRef = CE84990424FB74380098ABAF /* entry.c */; };
+		CECB6487253AE8C1002B766D /* ndef.c in Sources */ = {isa = PBXBuildFile; fileRef = CECB6479253AE8C1002B766D /* ndef.c */; };
+		CECB6488253AE8C1002B766D /* nmemory.c in Sources */ = {isa = PBXBuildFile; fileRef = CECB647C253AE8C1002B766D /* nmemory.c */; };
+		CECB6489253AE8C1002B766D /* nobject.c in Sources */ = {isa = PBXBuildFile; fileRef = CECB647D253AE8C1002B766D /* nobject.c */; };
+		CECB648B253AE8C1002B766D /* basis.c in Sources */ = {isa = PBXBuildFile; fileRef = CECB6482253AE8C1002B766D /* basis.c */; };
+		CECB648C253AE8C1002B766D /* nstring.c in Sources */ = {isa = PBXBuildFile; fileRef = CECB6486253AE8C1002B766D /* nstring.c */; };
+		CECB6493253B1BC8002B766D /* nio.c in Sources */ = {isa = PBXBuildFile; fileRef = CECB6492253B1BC8002B766D /* nio.c */; };
 		CED80C2624F2ADA30063F3DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CED80C2524F2ADA30063F3DE /* Assets.xcassets */; };
 		CED80C2C24F2ADA30063F3DE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CED80C2B24F2ADA30063F3DE /* main.m */; };
 		CEF4F154253AB4AA0064DDC8 /* nmain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEF4F153253AB4AA0064DDC8 /* nmain.cpp */; };
@@ -28,6 +34,18 @@
 		CE0B3EED24F2AF360038E58A /* NMWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NMWindowController.h; sourceTree = "<group>"; };
 		CE84990424FB74380098ABAF /* entry.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = entry.c; sourceTree = "<group>"; };
 		CE84990524FB74380098ABAF /* entry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = entry.h; sourceTree = "<group>"; };
+		CECB6479253AE8C1002B766D /* ndef.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ndef.c; sourceTree = "<group>"; };
+		CECB647A253AE8C1002B766D /* ndef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ndef.h; sourceTree = "<group>"; };
+		CECB647B253AE8C1002B766D /* nmemory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nmemory.h; sourceTree = "<group>"; };
+		CECB647C253AE8C1002B766D /* nmemory.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = nmemory.c; sourceTree = "<group>"; };
+		CECB647D253AE8C1002B766D /* nobject.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = nobject.c; sourceTree = "<group>"; };
+		CECB647E253AE8C1002B766D /* nstring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nstring.h; sourceTree = "<group>"; };
+		CECB647F253AE8C1002B766D /* nobject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nobject.h; sourceTree = "<group>"; };
+		CECB6481253AE8C1002B766D /* nio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nio.h; sourceTree = "<group>"; };
+		CECB6482253AE8C1002B766D /* basis.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = basis.c; sourceTree = "<group>"; };
+		CECB6484253AE8C1002B766D /* basis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = basis.h; sourceTree = "<group>"; };
+		CECB6486253AE8C1002B766D /* nstring.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = nstring.c; sourceTree = "<group>"; };
+		CECB6492253B1BC8002B766D /* nio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = nio.c; sourceTree = "<group>"; };
 		CED80C1C24F2ADA20063F3DE /* program.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = program.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CED80C2524F2ADA30063F3DE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CED80C2A24F2ADA30063F3DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -50,6 +68,7 @@
 		CE0B3ED524F2AF360038E58A /* mainsrc */ = {
 			isa = PBXGroup;
 			children = (
+				CECB6460253AE16D002B766D /* basis */,
 				CE0B3EF624F2AF360038E58A /* main */,
 				CE0B3EDA24F2AF360038E58A /* uidev */,
 			);
@@ -104,6 +123,33 @@
 				CEF4F153253AB4AA0064DDC8 /* nmain.cpp */,
 			);
 			path = main;
+			sourceTree = "<group>";
+		};
+		CECB6460253AE16D002B766D /* basis */ = {
+			isa = PBXGroup;
+			children = (
+				CECB6461253AE16D002B766D /* basis */,
+			);
+			path = basis;
+			sourceTree = "<group>";
+		};
+		CECB6461253AE16D002B766D /* basis */ = {
+			isa = PBXGroup;
+			children = (
+				CECB6482253AE8C1002B766D /* basis.c */,
+				CECB6484253AE8C1002B766D /* basis.h */,
+				CECB6479253AE8C1002B766D /* ndef.c */,
+				CECB647A253AE8C1002B766D /* ndef.h */,
+				CECB6492253B1BC8002B766D /* nio.c */,
+				CECB6481253AE8C1002B766D /* nio.h */,
+				CECB647C253AE8C1002B766D /* nmemory.c */,
+				CECB647B253AE8C1002B766D /* nmemory.h */,
+				CECB647D253AE8C1002B766D /* nobject.c */,
+				CECB647F253AE8C1002B766D /* nobject.h */,
+				CECB6486253AE8C1002B766D /* nstring.c */,
+				CECB647E253AE8C1002B766D /* nstring.h */,
+			);
+			path = basis;
 			sourceTree = "<group>";
 		};
 		CED80C1324F2ADA20063F3DE = {
@@ -202,11 +248,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CECB6488253AE8C1002B766D /* nmemory.c in Sources */,
 				CE0B3EFD24F2AF360038E58A /* NMAppDelegate.m in Sources */,
+				CECB648C253AE8C1002B766D /* nstring.c in Sources */,
 				CE84990624FB74380098ABAF /* entry.c in Sources */,
 				CE0B3EFC24F2AF360038E58A /* uidev.c in Sources */,
 				CE0B3EFF24F2AF360038E58A /* NMWindowController.m in Sources */,
+				CECB648B253AE8C1002B766D /* basis.c in Sources */,
+				CECB6493253B1BC8002B766D /* nio.c in Sources */,
+				CECB6487253AE8C1002B766D /* ndef.c in Sources */,
 				CEF4F154253AB4AA0064DDC8 /* nmain.cpp in Sources */,
+				CECB6489253AE8C1002B766D /* nobject.c in Sources */,
 				CE0B3EFE24F2AF360038E58A /* NMViewController.m in Sources */,
 				CED80C2C24F2ADA30063F3DE /* main.m in Sources */,
 			);

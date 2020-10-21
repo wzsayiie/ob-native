@@ -55,7 +55,7 @@ int NWinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPWSTR lpCmdLine, int nCmdSho
 {
     OpenConsole();
 
-    NMain();
+    NLaunch();
 
     //register main window class.
     LPCWSTR lpszClassName = L"UDMainWindow";

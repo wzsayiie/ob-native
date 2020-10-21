@@ -4,7 +4,7 @@
 extern "C" {
 #endif
 
-#include "entry.h"
+#include "nlaunch.h"
 
 #ifdef __cplusplus
 }

@@ -47,9 +47,10 @@
 
 #include <stdbool.h> //bool.
 #include <stddef.h>  //NULL.
+#include <stdint.h>  //intptr_t.
 
-//NOTE: clang don't provide "uchar.h".
-#if (N_COMPILER_CLANG || N_COMPILER_GCC) && !__cplusplus
+//NOTE: "charxx_t" are not builtin types for c.
+#if !__cplusplus
     typedef unsigned short char16_t;
     typedef unsigned int   char32_t;
 #endif
@@ -63,5 +64,11 @@
 void NLock  (int hash);
 void NUnlock(int hash);
 
-#define nsynwith(n) for (bool __N = (NLock((int)n), 1); __N; __N = (NUnlock((int)n), 0))
-#define nsyn()      nsynwith(__LINE__)
+#define nsynwith(n)                               \
+/**/    for (bool                                 \
+/**/        __N = (NLock  ((int)(intptr_t)n), 1); \
+/**/        __N;                                  \
+/**/        __N = (NUnlock((int)(intptr_t)n), 0)  \
+/**/    )
+
+#define nsyn() nsynwith(__LINE__)

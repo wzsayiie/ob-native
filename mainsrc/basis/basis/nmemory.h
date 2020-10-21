@@ -2,6 +2,7 @@
 
 void *NAlloc  (int  size);
 void *NRealloc(void *ptr, int size);
+void *NDup    (void *ptr);
 void  NFree   (void *ptr);
 
 int NMemorySize(void *ptr);

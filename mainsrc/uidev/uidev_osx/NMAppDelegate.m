@@ -9,7 +9,7 @@
 @implementation NMAppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification {
-    NMain();
+    NLaunch();
     
     self.windowController = [NMWindowController windowController];
     [self.windowController showWindow:nil];

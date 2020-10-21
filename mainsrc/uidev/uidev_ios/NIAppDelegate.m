@@ -10,7 +10,7 @@
 - (BOOL) /* ====== */ application:(UIApplication *)application
     didFinishLaunchingWithOptions:(NSDictionary<UIApplicationLaunchOptionsKey, id> *)options
 {
-    NMain();
+    NLaunch();
     
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
     self.window.rootViewController = [[NIViewController alloc] init];

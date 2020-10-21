@@ -18,7 +18,7 @@
 #endif
 
 //which os?
-#ifdef __APPLE__
+#if __APPLE__
     #include <TargetConditionals.h>
 #endif
 #if ANDROID

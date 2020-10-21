@@ -10,6 +10,8 @@
 		CE037A0624F2444C0047FE7E /* uidev.c in Sources */ = {isa = PBXBuildFile; fileRef = CE0379F724F2444C0047FE7E /* uidev.c */; };
 		CE037A0824F2444C0047FE7E /* NIAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0379FC24F2444C0047FE7E /* NIAppDelegate.m */; };
 		CE037A0924F2444C0047FE7E /* NIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0379FD24F2444C0047FE7E /* NIViewController.m */; };
+		CE0FE37C254085A40005F381 /* nlaunch.c in Sources */ = {isa = PBXBuildFile; fileRef = CE0FE37A254085A40005F381 /* nlaunch.c */; };
+		CE0FE380254085B30005F381 /* launch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE0FE37E254085B30005F381 /* launch.cpp */; };
 		CE4D5F51253C708A00948ADE /* nstring.c in Sources */ = {isa = PBXBuildFile; fileRef = CE4D5F46253C708A00948ADE /* nstring.c */; };
 		CE4D5F52253C708A00948ADE /* nio.c in Sources */ = {isa = PBXBuildFile; fileRef = CE4D5F47253C708A00948ADE /* nio.c */; };
 		CE4D5F53253C708A00948ADE /* ndef.c in Sources */ = {isa = PBXBuildFile; fileRef = CE4D5F48253C708A00948ADE /* ndef.c */; };
@@ -19,8 +21,6 @@
 		CE9FEBB224F2439B0029E036 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE9FEBAE24F2439B0029E036 /* Assets.xcassets */; };
 		CE9FEBB324F2439B0029E036 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE9FEBAF24F2439B0029E036 /* LaunchScreen.storyboard */; };
 		CE9FEBB424F2439B0029E036 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9FEBB024F2439B0029E036 /* main.m */; };
-		CED576FD24FB763300278C95 /* entry.c in Sources */ = {isa = PBXBuildFile; fileRef = CED576F924FB763300278C95 /* entry.c */; };
-		CEF4F158253AB4EE0064DDC8 /* nmain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEF4F157253AB4EE0064DDC8 /* nmain.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +30,10 @@
 		CE0379FD24F2444C0047FE7E /* NIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIViewController.m; sourceTree = "<group>"; };
 		CE0379FE24F2444C0047FE7E /* NIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIViewController.h; sourceTree = "<group>"; };
 		CE0379FF24F2444C0047FE7E /* NIAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIAppDelegate.h; sourceTree = "<group>"; };
+		CE0FE37A254085A40005F381 /* nlaunch.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = nlaunch.c; sourceTree = "<group>"; };
+		CE0FE37B254085A40005F381 /* nlaunch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nlaunch.h; sourceTree = "<group>"; };
+		CE0FE37E254085B30005F381 /* launch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = launch.cpp; sourceTree = "<group>"; };
+		CE0FE37F254085B30005F381 /* launch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = launch.h; sourceTree = "<group>"; };
 		CE4D5F45253C708A00948ADE /* basis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = basis.h; sourceTree = "<group>"; };
 		CE4D5F46253C708A00948ADE /* nstring.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = nstring.c; sourceTree = "<group>"; };
 		CE4D5F47253C708A00948ADE /* nio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = nio.c; sourceTree = "<group>"; };
@@ -47,9 +51,6 @@
 		CE9FEBAE24F2439B0029E036 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE9FEBAF24F2439B0029E036 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE9FEBB024F2439B0029E036 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		CED576F924FB763300278C95 /* entry.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = entry.c; sourceTree = "<group>"; };
-		CED576FB24FB763300278C95 /* entry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = entry.h; sourceTree = "<group>"; };
-		CEF4F157253AB4EE0064DDC8 /* nmain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = nmain.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,8 +87,8 @@
 		CE0379F524F2444C0047FE7E /* uidev */ = {
 			isa = PBXGroup;
 			children = (
-				CED576F924FB763300278C95 /* entry.c */,
-				CED576FB24FB763300278C95 /* entry.h */,
+				CE0FE37A254085A40005F381 /* nlaunch.c */,
+				CE0FE37B254085A40005F381 /* nlaunch.h */,
 				CE0379F724F2444C0047FE7E /* uidev.c */,
 				CE0379F624F2444C0047FE7E /* uidev.h */,
 			);
@@ -116,7 +117,8 @@
 		CE037A0124F2444C0047FE7E /* main */ = {
 			isa = PBXGroup;
 			children = (
-				CEF4F157253AB4EE0064DDC8 /* nmain.cpp */,
+				CE0FE37E254085B30005F381 /* launch.cpp */,
+				CE0FE37F254085B30005F381 /* launch.h */,
 			);
 			path = main;
 			sourceTree = "<group>";
@@ -245,17 +247,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEF4F158253AB4EE0064DDC8 /* nmain.cpp in Sources */,
 				CE4D5F53253C708A00948ADE /* ndef.c in Sources */,
 				CE037A0624F2444C0047FE7E /* uidev.c in Sources */,
 				CE037A0824F2444C0047FE7E /* NIAppDelegate.m in Sources */,
-				CED576FD24FB763300278C95 /* entry.c in Sources */,
 				CE4D5F52253C708A00948ADE /* nio.c in Sources */,
 				CE4D5F56253C708A00948ADE /* basis.c in Sources */,
 				CE037A0924F2444C0047FE7E /* NIViewController.m in Sources */,
+				CE0FE380254085B30005F381 /* launch.cpp in Sources */,
 				CE4D5F55253C708A00948ADE /* nmemory.c in Sources */,
 				CE4D5F54253C708A00948ADE /* nobject.c in Sources */,
 				CE9FEBB424F2439B0029E036 /* main.m in Sources */,
+				CE0FE37C254085A40005F381 /* nlaunch.c in Sources */,
 				CE4D5F51253C708A00948ADE /* nstring.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

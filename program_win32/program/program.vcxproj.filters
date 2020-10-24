@@ -22,6 +22,12 @@
     <Filter Include="mainsrc\uidev\uidev_win32">
       <UniqueIdentifier>{70fea9ca-1ca6-41ba-a277-729c2569c073}</UniqueIdentifier>
     </Filter>
+    <Filter Include="mainsrc\basis">
+      <UniqueIdentifier>{09083884-6c6f-41a7-af31-d97e901b5c5a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mainsrc\basis\basis">
+      <UniqueIdentifier>{8d4b8970-d315-496c-99e5-9ce0c70cf89e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="winmain.c">
@@ -30,25 +36,70 @@
     <ClCompile Include="..\..\mainsrc\uidev\uidev\uidev.c">
       <Filter>mainsrc\uidev\uidev</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\mainsrc\uidev\uidev\entry.c">
-      <Filter>mainsrc\uidev\uidev</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\mainsrc\main\main\nmain.cpp">
-      <Filter>mainsrc\main\main</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\mainsrc\uidev\uidev_win32\NWinMain.c">
       <Filter>mainsrc\uidev\uidev_win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mainsrc\main\main\launch.cpp">
+      <Filter>mainsrc\main\main</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mainsrc\uidev\uidev\nlaunch.c">
+      <Filter>mainsrc\uidev\uidev</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mainsrc\basis\basis\basis.c">
+      <Filter>mainsrc\basis\basis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mainsrc\basis\basis\ndef.c">
+      <Filter>mainsrc\basis\basis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mainsrc\basis\basis\nio.c">
+      <Filter>mainsrc\basis\basis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mainsrc\basis\basis\nmemory.c">
+      <Filter>mainsrc\basis\basis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mainsrc\basis\basis\nobject.c">
+      <Filter>mainsrc\basis\basis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mainsrc\basis\basis\nstring.c">
+      <Filter>mainsrc\basis\basis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mainsrc\basis\basis\nunicode.c">
+      <Filter>mainsrc\basis\basis</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\mainsrc\uidev\uidev\uidev.h">
       <Filter>mainsrc\uidev\uidev</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\mainsrc\uidev\uidev\entry.h">
-      <Filter>mainsrc\uidev\uidev</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\mainsrc\uidev\uidev_win32\NWinMain.h">
       <Filter>mainsrc\uidev\uidev_win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mainsrc\main\main\launch.h">
+      <Filter>mainsrc\main\main</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mainsrc\uidev\uidev\nlaunch.h">
+      <Filter>mainsrc\uidev\uidev</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mainsrc\basis\basis\basis.h">
+      <Filter>mainsrc\basis\basis</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mainsrc\basis\basis\ndef.h">
+      <Filter>mainsrc\basis\basis</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mainsrc\basis\basis\nio.h">
+      <Filter>mainsrc\basis\basis</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mainsrc\basis\basis\nmemory.h">
+      <Filter>mainsrc\basis\basis</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mainsrc\basis\basis\nobject.h">
+      <Filter>mainsrc\basis\basis</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mainsrc\basis\basis\nstring.h">
+      <Filter>mainsrc\basis\basis</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mainsrc\basis\basis\nunicode.h">
+      <Filter>mainsrc\basis\basis</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

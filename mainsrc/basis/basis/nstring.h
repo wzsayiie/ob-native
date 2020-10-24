@@ -1,13 +1,15 @@
 #pragma once
 
 #include "nobject.h"
+#include "nunicode.h"
 
 nstruct(NString);
 
-NString *NStringCreateU32(const char32_t *raw);
-NString *NStringCreateU16(const char16_t *raw);
-NString *NStringCreateU8 (const char     *raw);
-NString *NStringCreate   (void);
+NString *NStringCreateWithUBytes(NUTFType type, const void *begin, const void *end);
+NString *NStringCreateWithUChars(NUTFType type, const void *chars);
+NString *NStringCreate          (void);
+
+NString *NStringCopy(NString *that);
 
 const char32_t *NStringU32Chars(NString *self);
 const char16_t *NStringU16Chars(NString *self);
@@ -21,8 +23,6 @@ int NStringU8Size (NString *self);
 //return the number of the characters from the string.
 int NStringLength(NString *self);
 
-char32_t NStringCharAt(NString *self, int index);
-
-void NStringAssign (NString *self, NString *that);
+bool NStringIsEmpty(NString *self);
 void NStringAppend (NString *self, NString *that);
 int  NStringCompare(NString *self, NString *that);

@@ -55,8 +55,14 @@
     typedef unsigned int   char32_t;
 #endif
 
-#define nstruct(n) typedef struct n n; struct n
-#define nenum(  n) typedef enum   n n; enum   n
+#if __cplusplus
+    //before c++11, the forward declaration of "enum" is forbidden.
+    #define nstruct(n) struct n
+    #define nenum(  n) enum   n
+#else
+    #define nstruct(n) typedef struct n n; struct n
+    #define nenum(  n) typedef enum   n n; enum   n
+#endif
 
 #define nisizeof(type) ((int)sizeof(type))
 

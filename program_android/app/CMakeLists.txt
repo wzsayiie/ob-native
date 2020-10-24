@@ -5,7 +5,7 @@ set(lib_name main)
 
 list(APPEND inc_path ../../GHEADERS)
 
-list(APPEND src_aims ../../mainsrc/craise/craise/*.c)
+list(APPEND src_aims ../../mainsrc/basis/basis/*.c)
 list(APPEND src_aims ../../mainsrc/main/main/*.cpp)
 list(APPEND src_aims ../../mainsrc/uidev/uidev/*.c)
 list(APPEND src_aims ../../mainsrc/uidev/uidev_android/*.c)

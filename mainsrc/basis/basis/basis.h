@@ -9,6 +9,7 @@ extern "C" {
 #include "nmemory.h"
 #include "nobject.h"
 #include "nstring.h"
+#include "nunicode.h"
 
 #ifdef __cplusplus
 }

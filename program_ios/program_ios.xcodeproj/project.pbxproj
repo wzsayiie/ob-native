@@ -21,6 +21,7 @@
 		CE9FEBB224F2439B0029E036 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE9FEBAE24F2439B0029E036 /* Assets.xcassets */; };
 		CE9FEBB324F2439B0029E036 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE9FEBAF24F2439B0029E036 /* LaunchScreen.storyboard */; };
 		CE9FEBB424F2439B0029E036 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9FEBB024F2439B0029E036 /* main.m */; };
+		CEE8D8332545532300AD308C /* nunicode.c in Sources */ = {isa = PBXBuildFile; fileRef = CEE8D8312545532300AD308C /* nunicode.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,8 @@
 		CE9FEBAE24F2439B0029E036 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE9FEBAF24F2439B0029E036 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE9FEBB024F2439B0029E036 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		CEE8D8312545532300AD308C /* nunicode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = nunicode.c; sourceTree = "<group>"; };
+		CEE8D8322545532300AD308C /* nunicode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nunicode.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +149,8 @@
 				CE4D5F50253C708A00948ADE /* nobject.h */,
 				CE4D5F46253C708A00948ADE /* nstring.c */,
 				CE4D5F4B253C708A00948ADE /* nstring.h */,
+				CEE8D8312545532300AD308C /* nunicode.c */,
+				CEE8D8322545532300AD308C /* nunicode.h */,
 			);
 			path = basis;
 			sourceTree = "<group>";
@@ -254,6 +259,7 @@
 				CE4D5F56253C708A00948ADE /* basis.c in Sources */,
 				CE037A0924F2444C0047FE7E /* NIViewController.m in Sources */,
 				CE0FE380254085B30005F381 /* launch.cpp in Sources */,
+				CEE8D8332545532300AD308C /* nunicode.c in Sources */,
 				CE4D5F55253C708A00948ADE /* nmemory.c in Sources */,
 				CE4D5F54253C708A00948ADE /* nobject.c in Sources */,
 				CE9FEBB424F2439B0029E036 /* main.m in Sources */,

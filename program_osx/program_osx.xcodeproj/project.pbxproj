@@ -21,6 +21,7 @@
 		CECB6493253B1BC8002B766D /* nio.c in Sources */ = {isa = PBXBuildFile; fileRef = CECB6492253B1BC8002B766D /* nio.c */; };
 		CED80C2624F2ADA30063F3DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CED80C2524F2ADA30063F3DE /* Assets.xcassets */; };
 		CED80C2C24F2ADA30063F3DE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CED80C2B24F2ADA30063F3DE /* main.m */; };
+		CEE8D8382545539500AD308C /* nunicode.c in Sources */ = {isa = PBXBuildFile; fileRef = CEE8D8362545539500AD308C /* nunicode.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,8 @@
 		CED80C2A24F2ADA30063F3DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CED80C2B24F2ADA30063F3DE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CED80C2D24F2ADA30063F3DE /* program.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = program.entitlements; sourceTree = "<group>"; };
+		CEE8D8362545539500AD308C /* nunicode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = nunicode.c; sourceTree = "<group>"; };
+		CEE8D8372545539500AD308C /* nunicode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nunicode.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +153,8 @@
 				CECB647F253AE8C1002B766D /* nobject.h */,
 				CECB6486253AE8C1002B766D /* nstring.c */,
 				CECB647E253AE8C1002B766D /* nstring.h */,
+				CEE8D8362545539500AD308C /* nunicode.c */,
+				CEE8D8372545539500AD308C /* nunicode.h */,
 			);
 			path = basis;
 			sourceTree = "<group>";
@@ -252,6 +257,7 @@
 			files = (
 				CECB6488253AE8C1002B766D /* nmemory.c in Sources */,
 				CE0B3EFD24F2AF360038E58A /* NMAppDelegate.m in Sources */,
+				CEE8D8382545539500AD308C /* nunicode.c in Sources */,
 				CECB648C253AE8C1002B766D /* nstring.c in Sources */,
 				CE0B3EFC24F2AF360038E58A /* uidev.c in Sources */,
 				CE0B3EFF24F2AF360038E58A /* NMWindowController.m in Sources */,

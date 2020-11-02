@@ -1,50 +1,50 @@
 #include "nunicode.h"
 
-int NStepU32Byte(const void* begin, const void *end, char32_t *codePoint) {
+int NStepU32Byte(const void* begin, const void *end, char32_t *outChar) {
     return 0;
 }
 
-int NStepU16Byte(const void* begin, const void *end, char32_t *codePoint) {
+int NStepU16Byte(const void* begin, const void *end, char32_t *outChar) {
     return 0;
 }
 
-int NStepU8Byte(const void* begin, const void *end, char32_t *codePoint) {
+int NStepU8Byte(const void* begin, const void *end, char32_t *outChar) {
     return 0;
 }
 
-int NStepU32Char(const void* chars, char32_t *codePoint) {
+int NStepU32Char(const void* chars, char32_t *outChar) {
     return 0;
 }
 
-int NStepU16Char(const void* chars, char32_t *codePoint) {
+int NStepU16Char(const void* chars, char32_t *outChar) {
     return 0;
 }
 
-int NStepU8Char(const void* chars, char32_t *codePoint) {
+int NStepU8Char(const void* chars, char32_t *outChar) {
     return 0;
 }
 
-int NCheckU32Bytes(const void *begin, const void *end, int *maxCharSize) {
+int NCheckU32Bytes(const void *begin, const void *end, int *outLength, int *outMaxCharSize) {
     return 0;
 }
 
-int NCheckU16Bytes(const void *begin, const void *end, int *maxCharSize) {
+int NCheckU16Bytes(const void *begin, const void *end, int *outLength, int *outMaxCharSize) {
     return 0;
 }
 
-int NCheckU8Bytes(const void *begin, const void *end, int *maxCharSize) {
+int NCheckU8Bytes(const void *begin, const void *end, int *outLength, int *outMaxCharSize) {
     return 0;
 }
 
-int NCheckU32Chars(const void *chars, int *maxCharSize) {
+int NCheckU32Chars(const void *chars, int *outLength, int *outMaxCharSize) {
     return 0;
 }
 
-int NCheckU16Chars(const void *chars, int *maxCharSize) {
+int NCheckU16Chars(const void *chars, int *outLength, int *outMaxCharSize) {
     return 0;
 }
 
-int NCheckU8Chars(const void *chars, int *maxCharSize) {
+int NCheckU8Chars(const void *chars, int *outLength, int *outMaxCharSize) {
     return 0;
 }
 

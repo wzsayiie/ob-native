@@ -1,5 +1,6 @@
 #pragma once
 
+#include "niterator.h"
 #include "nobject.h"
 #include "nunicode.h"
 
@@ -22,6 +23,8 @@ int NStringU8Size (NString *self);
 
 //return the number of the characters from the string.
 int NStringLength(NString *self);
+
+NIterator *NStringRange(NString *self);
 
 bool NStringIsEmpty(NString *self);
 void NStringAppend (NString *self, NString *that);

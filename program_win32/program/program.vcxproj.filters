@@ -66,6 +66,9 @@
     <ClCompile Include="..\..\mainsrc\basis\basis\nunicode.c">
       <Filter>mainsrc\basis\basis</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\mainsrc\basis\basis\niterator.c">
+      <Filter>mainsrc\basis\basis</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\mainsrc\uidev\uidev\uidev.h">
@@ -99,6 +102,9 @@
       <Filter>mainsrc\basis\basis</Filter>
     </ClInclude>
     <ClInclude Include="..\..\mainsrc\basis\basis\nunicode.h">
+      <Filter>mainsrc\basis\basis</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mainsrc\basis\basis\niterator.h">
       <Filter>mainsrc\basis\basis</Filter>
     </ClInclude>
   </ItemGroup>

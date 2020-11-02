@@ -8,21 +8,21 @@ nenum(NUTFType) {
     NUTF32 = 3,
 };
 
-int NStepU32Byte(const void* begin, const void *end, char32_t *codePoint);
-int NStepU16Byte(const void* begin, const void *end, char32_t *codePoint);
-int NStepU8Byte (const void* begin, const void *end, char32_t *codePoint);
+int NStepU32Byte(const void* begin, const void *end, char32_t *outChar);
+int NStepU16Byte(const void* begin, const void *end, char32_t *outChar);
+int NStepU8Byte (const void* begin, const void *end, char32_t *outChar);
 
-int NStepU32Char(const void* chars, char32_t *codePoint);
-int NStepU16Char(const void* chars, char32_t *codePoint);
-int NStepU8Char (const void* chars, char32_t *codePoint);
+int NStepU32Char(const void* chars, char32_t *outChar);
+int NStepU16Char(const void* chars, char32_t *outChar);
+int NStepU8Char (const void* chars, char32_t *outChar);
 
-int NCheckU32Bytes(const void *begin, const void *end, int *maxCharSize);
-int NCheckU16Bytes(const void *begin, const void *end, int *maxCharSize);
-int NCheckU8Bytes (const void *begin, const void *end, int *maxCharSize);
+int NCheckU32Bytes(const void *begin, const void *end, int *outLength, int *outMaxCharSize);
+int NCheckU16Bytes(const void *begin, const void *end, int *outLength, int *outMaxCharSize);
+int NCheckU8Bytes (const void *begin, const void *end, int *outLength, int *outMaxCharSize);
 
-int NCheckU32Chars(const void *chars, int *maxCharSize);
-int NCheckU16Chars(const void *chars, int *maxCharSize);
-int NCheckU8Chars (const void *chars, int *maxCharSize);
+int NCheckU32Chars(const void *chars, int *outLength, int *outMaxCharSize);
+int NCheckU16Chars(const void *chars, int *outLength, int *outMaxCharSize);
+int NCheckU8Chars (const void *chars, int *outLength, int *outMaxCharSize);
 
 char32_t *NDupU32FromUBytes(NUTFType type, const void *begin, const void *end);
 char16_t *NDupU16FromUBytes(NUTFType type, const void *begin, const void *end);

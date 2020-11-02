@@ -6,6 +6,7 @@ extern "C" {
 
 #include "ndef.h"
 #include "nio.h"
+#include "niterator.h"
 #include "nmemory.h"
 #include "nobject.h"
 #include "nstring.h"

@@ -24,7 +24,7 @@
     <ClCompile Include="..\..\mainsrc\basis\basis\nio.c" />
     <ClCompile Include="..\..\mainsrc\basis\basis\niterator.c" />
     <ClCompile Include="..\..\mainsrc\basis\basis\nmemory.c" />
-    <ClCompile Include="..\..\mainsrc\basis\basis\nobject.c" />
+    <ClCompile Include="..\..\mainsrc\basis\basis\nrefcounted.c" />
     <ClCompile Include="..\..\mainsrc\basis\basis\nstring.c" />
     <ClCompile Include="..\..\mainsrc\basis\basis\nunicode.c" />
     <ClCompile Include="..\..\mainsrc\main\main\launch.cpp" />
@@ -39,7 +39,7 @@
     <ClInclude Include="..\..\mainsrc\basis\basis\nio.h" />
     <ClInclude Include="..\..\mainsrc\basis\basis\niterator.h" />
     <ClInclude Include="..\..\mainsrc\basis\basis\nmemory.h" />
-    <ClInclude Include="..\..\mainsrc\basis\basis\nobject.h" />
+    <ClInclude Include="..\..\mainsrc\basis\basis\nrefcounted.h" />
     <ClInclude Include="..\..\mainsrc\basis\basis\nstring.h" />
     <ClInclude Include="..\..\mainsrc\basis\basis\nunicode.h" />
     <ClInclude Include="..\..\mainsrc\main\main\launch.h" />

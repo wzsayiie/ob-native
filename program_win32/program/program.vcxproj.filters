@@ -57,9 +57,6 @@
     <ClCompile Include="..\..\mainsrc\basis\basis\nmemory.c">
       <Filter>mainsrc\basis\basis</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\mainsrc\basis\basis\nobject.c">
-      <Filter>mainsrc\basis\basis</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\mainsrc\basis\basis\nstring.c">
       <Filter>mainsrc\basis\basis</Filter>
     </ClCompile>
@@ -67,6 +64,9 @@
       <Filter>mainsrc\basis\basis</Filter>
     </ClCompile>
     <ClCompile Include="..\..\mainsrc\basis\basis\niterator.c">
+      <Filter>mainsrc\basis\basis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mainsrc\basis\basis\nrefcounted.c">
       <Filter>mainsrc\basis\basis</Filter>
     </ClCompile>
   </ItemGroup>
@@ -95,9 +95,6 @@
     <ClInclude Include="..\..\mainsrc\basis\basis\nmemory.h">
       <Filter>mainsrc\basis\basis</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\mainsrc\basis\basis\nobject.h">
-      <Filter>mainsrc\basis\basis</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\mainsrc\basis\basis\nstring.h">
       <Filter>mainsrc\basis\basis</Filter>
     </ClInclude>
@@ -105,6 +102,9 @@
       <Filter>mainsrc\basis\basis</Filter>
     </ClInclude>
     <ClInclude Include="..\..\mainsrc\basis\basis\niterator.h">
+      <Filter>mainsrc\basis\basis</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mainsrc\basis\basis\nrefcounted.h">
       <Filter>mainsrc\basis\basis</Filter>
     </ClInclude>
   </ItemGroup>

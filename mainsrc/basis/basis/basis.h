@@ -8,7 +8,7 @@ extern "C" {
 #include "nio.h"
 #include "niterator.h"
 #include "nmemory.h"
-#include "nobject.h"
+#include "nrefcounted.h"
 #include "nstring.h"
 #include "nunicode.h"
 

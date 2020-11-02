@@ -18,14 +18,14 @@ nstruct(NString) {
     NStringIterator iterator;
 };
 
-static void _NStringDeinit(NString *string) {
+static void _NStringClear(NString *string) {
     NFree(string->u32chars);
     NFree(string->u16chars);
     NFree(string->u8chars );
 }
 
 NString *NStringCreateWithUBytes(NUTFType type, const void *begin, const void *end) {
-    NString *self = NCreate(nisizeof(NString), _NStringDeinit);
+    NString *self = NCreate(nisizeof(NString), _NStringClear);
 
     int maxCharSize = 0;
     switch (type) {
@@ -58,7 +58,7 @@ NString *NStringCreateWithUBytes(NUTFType type, const void *begin, const void *e
 }
 
 NString *NStringCreateWithUChars(NUTFType type, const void *chars) {
-    NString *self = NCreate(nisizeof(NString), _NStringDeinit);
+    NString *self = NCreate(nisizeof(NString), _NStringClear);
 
     int maxCharSize = 0;
     switch (type) {
@@ -91,7 +91,7 @@ NString *NStringCreateWithUChars(NUTFType type, const void *chars) {
 }
 
 NString *NStringCreate(void) {
-    return NCreate(nisizeof(NString), _NStringDeinit);
+    return NCreate(nisizeof(NString), _NStringClear);
 }
 
 NString *NStringCopy(NString *that) {

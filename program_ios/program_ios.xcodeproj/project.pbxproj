@@ -12,10 +12,11 @@
 		CE037A0924F2444C0047FE7E /* NIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0379FD24F2444C0047FE7E /* NIViewController.m */; };
 		CE0FE37C254085A40005F381 /* nlaunch.c in Sources */ = {isa = PBXBuildFile; fileRef = CE0FE37A254085A40005F381 /* nlaunch.c */; };
 		CE0FE380254085B30005F381 /* launch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE0FE37E254085B30005F381 /* launch.cpp */; };
+		CE15E18A25503824000DE8D9 /* niterator.c in Sources */ = {isa = PBXBuildFile; fileRef = CE15E18725503824000DE8D9 /* niterator.c */; };
+		CE15E18B25503824000DE8D9 /* nrefcounted.c in Sources */ = {isa = PBXBuildFile; fileRef = CE15E18925503824000DE8D9 /* nrefcounted.c */; };
 		CE4D5F51253C708A00948ADE /* nstring.c in Sources */ = {isa = PBXBuildFile; fileRef = CE4D5F46253C708A00948ADE /* nstring.c */; };
 		CE4D5F52253C708A00948ADE /* nio.c in Sources */ = {isa = PBXBuildFile; fileRef = CE4D5F47253C708A00948ADE /* nio.c */; };
 		CE4D5F53253C708A00948ADE /* ndef.c in Sources */ = {isa = PBXBuildFile; fileRef = CE4D5F48253C708A00948ADE /* ndef.c */; };
-		CE4D5F54253C708A00948ADE /* nobject.c in Sources */ = {isa = PBXBuildFile; fileRef = CE4D5F49253C708A00948ADE /* nobject.c */; };
 		CE4D5F55253C708A00948ADE /* nmemory.c in Sources */ = {isa = PBXBuildFile; fileRef = CE4D5F4A253C708A00948ADE /* nmemory.c */; };
 		CE4D5F56253C708A00948ADE /* basis.c in Sources */ = {isa = PBXBuildFile; fileRef = CE4D5F4C253C708A00948ADE /* basis.c */; };
 		CE9FEBB224F2439B0029E036 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE9FEBAE24F2439B0029E036 /* Assets.xcassets */; };
@@ -35,18 +36,20 @@
 		CE0FE37B254085A40005F381 /* nlaunch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nlaunch.h; sourceTree = "<group>"; };
 		CE0FE37E254085B30005F381 /* launch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = launch.cpp; sourceTree = "<group>"; };
 		CE0FE37F254085B30005F381 /* launch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = launch.h; sourceTree = "<group>"; };
+		CE15E18625503824000DE8D9 /* niterator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = niterator.h; sourceTree = "<group>"; };
+		CE15E18725503824000DE8D9 /* niterator.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = niterator.c; sourceTree = "<group>"; };
+		CE15E18825503824000DE8D9 /* nrefcounted.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nrefcounted.h; sourceTree = "<group>"; };
+		CE15E18925503824000DE8D9 /* nrefcounted.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = nrefcounted.c; sourceTree = "<group>"; };
 		CE4D5F45253C708A00948ADE /* basis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = basis.h; sourceTree = "<group>"; };
 		CE4D5F46253C708A00948ADE /* nstring.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = nstring.c; sourceTree = "<group>"; };
 		CE4D5F47253C708A00948ADE /* nio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = nio.c; sourceTree = "<group>"; };
 		CE4D5F48253C708A00948ADE /* ndef.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ndef.c; sourceTree = "<group>"; };
-		CE4D5F49253C708A00948ADE /* nobject.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = nobject.c; sourceTree = "<group>"; };
 		CE4D5F4A253C708A00948ADE /* nmemory.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = nmemory.c; sourceTree = "<group>"; };
 		CE4D5F4B253C708A00948ADE /* nstring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nstring.h; sourceTree = "<group>"; };
 		CE4D5F4C253C708A00948ADE /* basis.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = basis.c; sourceTree = "<group>"; };
 		CE4D5F4D253C708A00948ADE /* nio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nio.h; sourceTree = "<group>"; };
 		CE4D5F4E253C708A00948ADE /* ndef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ndef.h; sourceTree = "<group>"; };
 		CE4D5F4F253C708A00948ADE /* nmemory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nmemory.h; sourceTree = "<group>"; };
-		CE4D5F50253C708A00948ADE /* nobject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nobject.h; sourceTree = "<group>"; };
 		CE9FEB9124F243360029E036 /* xnative.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = xnative.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE9FEBAD24F2439B0029E036 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE9FEBAE24F2439B0029E036 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -143,10 +146,12 @@
 				CE4D5F4E253C708A00948ADE /* ndef.h */,
 				CE4D5F47253C708A00948ADE /* nio.c */,
 				CE4D5F4D253C708A00948ADE /* nio.h */,
+				CE15E18725503824000DE8D9 /* niterator.c */,
+				CE15E18625503824000DE8D9 /* niterator.h */,
 				CE4D5F4A253C708A00948ADE /* nmemory.c */,
 				CE4D5F4F253C708A00948ADE /* nmemory.h */,
-				CE4D5F49253C708A00948ADE /* nobject.c */,
-				CE4D5F50253C708A00948ADE /* nobject.h */,
+				CE15E18925503824000DE8D9 /* nrefcounted.c */,
+				CE15E18825503824000DE8D9 /* nrefcounted.h */,
 				CE4D5F46253C708A00948ADE /* nstring.c */,
 				CE4D5F4B253C708A00948ADE /* nstring.h */,
 				CEE8D8312545532300AD308C /* nunicode.c */,
@@ -261,8 +266,9 @@
 				CE0FE380254085B30005F381 /* launch.cpp in Sources */,
 				CEE8D8332545532300AD308C /* nunicode.c in Sources */,
 				CE4D5F55253C708A00948ADE /* nmemory.c in Sources */,
-				CE4D5F54253C708A00948ADE /* nobject.c in Sources */,
+				CE15E18B25503824000DE8D9 /* nrefcounted.c in Sources */,
 				CE9FEBB424F2439B0029E036 /* main.m in Sources */,
+				CE15E18A25503824000DE8D9 /* niterator.c in Sources */,
 				CE0FE37C254085A40005F381 /* nlaunch.c in Sources */,
 				CE4D5F51253C708A00948ADE /* nstring.c in Sources */,
 			);

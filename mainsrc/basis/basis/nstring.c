@@ -225,6 +225,7 @@ int NStringLength(NString *self) {
         } else {
             int length = 0;
             nfor(char32_t, chr, NStringRange(self)) {
+                (void) sizeof(chr); //unused.
                 length += 1;
             }
             self->length = length;
@@ -309,9 +310,9 @@ void NStringAppend(NString *self, NString *that) {
     else if (that->u8chars ) {type = NUTF8 ; _NStringTryMake(self, NUTF8 );}
 
     switch(type) {
-    case NUTF32: _NStringJoin(&self->u32chars, that->u32chars, 4); break;
-    case NUTF16: _NStringJoin(&self->u16chars, that->u16chars, 2); break;
-    case NUTF8 : _NStringJoin(&self->u8chars , that->u8chars , 1); break;
+    case NUTF32: _NStringJoin((void **)&self->u32chars, that->u32chars, 4); break;
+    case NUTF16: _NStringJoin((void **)&self->u16chars, that->u16chars, 2); break;
+    case NUTF8 : _NStringJoin((void **)&self->u8chars , that->u8chars , 1); break;
     default:;
     }
     _NStringOnlyReserve(self, type);

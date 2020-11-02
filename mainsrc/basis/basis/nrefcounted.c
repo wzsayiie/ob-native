@@ -8,7 +8,7 @@ nstruct(NRefCounted) {
     char   block[];
 };
 
-void *NCreate(int bsize, void (*clear)(void *)) {
+void *NCreate(int bsize, void *clear) {
     NRefCounted *ref = NAlloc(nisizeof(NRefCounted) + bsize);
     ref->count = 1;
     ref->clear = clear;

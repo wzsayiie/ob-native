@@ -16,13 +16,11 @@ void *NCreate(int bsize, void *clear) {
 }
 
 void *NRetain(void *block) {
-    if (!block) {
-        return NULL;
-    }
-    
-    NRefCounted *ref = (NRefCounted *)block - 1;
-    nsynwith(ref) {
-        ref->count += 1;
+    if (block) {
+        NRefCounted *ref = (NRefCounted *)block - 1;
+        nsynwith(ref) {
+            ref->count += 1;
+        }
     }
     return block;
 }
@@ -34,9 +32,11 @@ void NRelease(void *block) {
     
     NRefCounted *ref = (NRefCounted *)block - 1;
     nsynwith(ref) {
-        ref->count -= 1;
-        if (ref->count == 0 && ref->clear) {
-            ref->clear(ref->block);
+        if (--(ref->count) <= 0) {
+            if (ref->clear) {
+                ref->clear(ref->block);
+            }
+            NFree(ref);
         }
     }
 }

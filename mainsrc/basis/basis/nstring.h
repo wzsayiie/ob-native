@@ -6,9 +6,9 @@
 
 nstruct(NString);
 
-NString *NStringCreateWithUBytes(NUTFType type, const void *begin, const void *end);
-NString *NStringCreateWithUChars(NUTFType type, const void *chars);
-NString *NStringCreate          (void);
+NString *NStringCreateWithUTFBytes(NUTFType type, const void *begin, const void *end);
+NString *NStringCreateWithUTFChars(NUTFType type, const void *chars);
+NString *NStringCreate            (void);
 
 NString *NStringCopy(NString *that);
 

@@ -12,7 +12,7 @@ static size_t TotalSizeWhenDataSizes(int size) {
     return sizeof(NMemoryBlock) + (size_t)size;
 }
 
-static NMemoryBlock *BlockOfDataPtr(void *ptr) {
+static NMemoryBlock *BlockOfDataPtr(const void *ptr) {
     return (NMemoryBlock *)ptr - 1;
 }
 
@@ -72,7 +72,7 @@ void NFree(void *ptr) {
     }
 }
 
-int NMemorySize(void *ptr) {
+int NMemorySize(const void *ptr) {
     if (ptr) {
         NMemoryBlock *block = BlockOfDataPtr(ptr);
         return block->dataSize;

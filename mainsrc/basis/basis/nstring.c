@@ -24,74 +24,34 @@ static void _NStringClear(NString *string) {
     NFree(string->u8chars );
 }
 
-NString *NStringCreateWithUBytes(NUTFType type, const void *begin, const void *end) {
+NString *NStringCreateWithUTFBytes(NUTFType type, const void *begin, const void *end) {
     NString *self = NCreate(nisizeof(NString), _NStringClear);
 
-    int maxCharSize = 0;
-    switch (type) {
-    case NUTF32:
-        NCheckU32Bytes(begin, end, &self->length, &maxCharSize);
-        self->u32chars = NDupU32FromUBytes(NUTF32, begin, end);
-        break;
-    case NUTF16:
-        NCheckU16Bytes(begin, end, &self->length, &maxCharSize);
-        switch (maxCharSize) {
-        case 4: self->u32chars = NDupU32FromUBytes(NUTF16, begin, end); break;
-        case 2: self->u16chars = NDupU16FromUBytes(NUTF16, begin, end); break;
-        default:;
-        }
-        break;
-    case NUTF8:
-        NCheckU8Bytes(begin, end, &self->length, &maxCharSize);
-        switch (maxCharSize) {
-        case 4: self->u32chars = NDupU32FromUBytes(NUTF8, begin, end); break;
-        case 3: self->u16chars = NDupU16FromUBytes(NUTF8, begin, end); break;
-        case 2: self->u16chars = NDupU16FromUBytes(NUTF8, begin, end); break;
-        case 1: self->u8chars  = NDupU8FromUBytes (NUTF8, begin, end); break;
-        default:;
-        }
-        break;
-    default:;
-    }
+    self->length = -1;
+
+    if /**/ (type == NUTF32) {self->u32chars = NDupU32FromBytes(type, begin, end);}
+    else if (type == NUTF16) {self->u16chars = NDupU16FromBytes(type, begin, end);}
+    else if (type == NUTF8 ) {self->u8chars  = NDupU8FromBytes (type, begin, end);}
 
     return self;
 }
 
-NString *NStringCreateWithUChars(NUTFType type, const void *chars) {
+NString *NStringCreateWithUTFChars(NUTFType type, const void *chars) {
     NString *self = NCreate(nisizeof(NString), _NStringClear);
 
-    int maxCharSize = 0;
-    switch (type) {
-    case NUTF32:
-        NCheckU32Chars(chars, &self->length, &maxCharSize);
-        self->u32chars = NDupU32FromUChars(NUTF32, chars);
-        break;
-    case NUTF16:
-        NCheckU16Chars(chars, &self->length, &maxCharSize);
-        switch (maxCharSize) {
-        case 4: self->u32chars = NDupU32FromUChars(NUTF16, chars); break;
-        case 2: self->u16chars = NDupU16FromUChars(NUTF16, chars); break;
-        default:;
-        }
-        break;
-    case NUTF8:
-        NCheckU8Chars(chars, &self->length, &maxCharSize);
-        switch (maxCharSize) {
-        case 4: self->u32chars = NDupU32FromUChars(NUTF8, chars); break;
-        case 3: self->u16chars = NDupU16FromUChars(NUTF8, chars); break;
-        case 2: self->u16chars = NDupU16FromUChars(NUTF8, chars); break;
-        case 1: self->u8chars  = NDupU8FromUChars (NUTF8, chars); break;
-        default:;
-        }
-        break;
-    default:;
-    }
+    self->length = -1;
+
+    if /**/ (type == NUTF32) {self->u32chars = NDupU32FromChars(type, chars);}
+    else if (type == NUTF16) {self->u16chars = NDupU16FromChars(type, chars);}
+    else if (type == NUTF8 ) {self->u8chars  = NDupU8FromChars (type, chars);}
 
     return self;
 }
 
 NString *NStringCreate(void) {
-    return NCreate(nisizeof(NString), _NStringClear);
+    NString *self = NCreate(nisizeof(NString), _NStringClear);
+    self->length = -1;
+    return self;
 }
 
 NString *NStringCopy(NString *that) {
@@ -102,149 +62,99 @@ NString *NStringCopy(NString *that) {
     NString *self = NStringCreate();
 
     self->length = that->length;
-
     //only copy one format.
-    /**/ if (that->u32chars) {self->u32chars = NDup(that->u32chars);}
+    if /**/ (that->u32chars) {self->u32chars = NDup(that->u32chars);}
     else if (that->u16chars) {self->u16chars = NDup(that->u16chars);}
     else if (that->u8chars ) {self->u8chars  = NDup(that->u8chars );}
 
     return self;
 }
 
-static bool _NStringTryMake(NString *s, NUTFType type) {
+static const void *_NStringTryMake(NString *s, NUTFType type) {
     if (type == NUTF32 && !s->u32chars) {
-        /**/ if (s->u16chars) {s->u32chars = NDupU32FromUChars(NUTF16, s->u16chars);}
-        else if (s->u8chars ) {s->u32chars = NDupU32FromUChars(NUTF8 , s->u8chars );}
+        if /**/ (s->u16chars) {s->u32chars = NDupU32FromChars(NUTF16, s->u16chars);}
+        else if (s->u8chars ) {s->u32chars = NDupU32FromChars(NUTF8 , s->u8chars );}
 
         return s->u32chars;
     }
     if (type == NUTF16 && !s->u16chars) {
-        /**/ if (s->u32chars) {s->u16chars = NDupU16FromUChars(NUTF32, s->u32chars);}
-        else if (s->u8chars ) {s->u16chars = NDupU16FromUChars(NUTF8 , s->u8chars );}
+        if /**/ (s->u32chars) {s->u16chars = NDupU16FromChars(NUTF32, s->u32chars);}
+        else if (s->u8chars ) {s->u16chars = NDupU16FromChars(NUTF8 , s->u8chars );}
 
         return s->u16chars;
     }
     if (type == NUTF8 && !s->u8chars) {
-        /**/ if (s->u32chars) {s->u8chars = NDupU8FromUChars(NUTF32, s->u32chars);}
-        else if (s->u16chars) {s->u8chars = NDupU8FromUChars(NUTF16, s->u16chars);}
+        if /**/ (s->u32chars) {s->u8chars = NDupU8FromChars(NUTF32, s->u32chars);}
+        else if (s->u16chars) {s->u8chars = NDupU8FromChars(NUTF16, s->u16chars);}
 
         return s->u8chars;
     }
-    return false;
+    return NULL;
 }
 
-const char32_t *NStringU32Chars(NString *self) {
-    if (!self) {
-        return NULL;
+const void *_NStringUTFChars(NString *string, NUTFType type, const void *defaults) {
+    if (string) {
+        const void *chars = _NStringTryMake(string, type);
+        return chars ? chars : defaults;
     }
-
-    if (_NStringTryMake(self, NUTF32)) {
-        return self->u32chars;
-    } else {
-        return U"\0";
-    }
+    return defaults;
 }
 
-const char16_t *NStringU16Chars(NString *self) {
-    if (!self) {
-        return NULL;
+const char32_t *NStringU32Chars(NString *s) {return _NStringUTFChars(s, NUTF32, U"" );}
+const char16_t *NStringU16Chars(NString *s) {return _NStringUTFChars(s, NUTF16, u"" );}
+const char     *NStringU8Chars (NString *s) {return _NStringUTFChars(s, NUTF8 , u8"");}
+
+static int _NStringUTFSize(NString *string, NUTFType type) {
+    if (!string) {
+        return 0;
     }
 
-    if (_NStringTryMake(self, NUTF16)) {
-        return self->u16chars;
-    } else {
-        return u"\0";
-    }
-}
+    const void *chars = _NStringTryMake(string, type);
+    if (chars) {
+        int size = NMemorySize(chars);
 
-const char *NStringU8Chars(NString *self) {
-    if (!self) {
-        return NULL;
-    }
+        if (type == NUTF32) {return size - nisizeof(char32_t);}
+        if (type == NUTF16) {return size - nisizeof(char16_t);}
+        if (type == NUTF8 ) {return size - nisizeof(char    );}
 
-    if (_NStringTryMake(self, NUTF8)) {
-        return self->u8chars;
-    } else {
-        return u8"\0";
-    }
-}
-
-static int _NStringUCharsSize(NString *string, NUTFType type) {
-    if (type == NUTF32 && string->u32chars) {
-        int size = NMemorySize(string->u32chars);
-        return size - nisizeof(char32_t);
-    }
-    if (type == NUTF16 && string->u16chars) {
-        int size = NMemorySize(string->u16chars);
-        return size - nisizeof(char16_t);
-    }
-    if (type == NUTF8 && string->u8chars) {
-        int size = NMemorySize(string->u8chars);
-        return size - nisizeof(char);
+        return 0;
     }
     return 0;
 }
 
-int NStringU32Size(NString *self) {
-    if (self) {
-        _NStringTryMake(self, NUTF32);
-        return _NStringUCharsSize(self, NUTF32);
-    } else {
-        return 0;
-    }
-}
-
-int NStringU16Size(NString *self) {
-    if (self) {
-        _NStringTryMake(self, NUTF16);
-        return _NStringUCharsSize(self, NUTF16);
-    } else {
-        return 0;
-    }
-}
-
-int NStringU8Size(NString *self) {
-    if (self) {
-        _NStringTryMake(self, NUTF8);
-        return _NStringUCharsSize(self, NUTF8);
-    } else {
-        return 0;
-    }
-}
+int NStringU32Size(NString *s) {return _NStringUTFSize(s, NUTF32);}
+int NStringU16Size(NString *s) {return _NStringUTFSize(s, NUTF16);}
+int NStringU8Size (NString *s) {return _NStringUTFSize(s, NUTF8 );}
 
 int NStringLength(NString *self) {
     if (!self) {
         return 0;
     }
 
-    if (self->length < 0) {
-        if (self->u32chars) {
-            //firstly try to get the size of "u32chars".
-            int size = _NStringUCharsSize(self, NUTF32);
-            self->length = size / nisizeof(char32_t);
-        } else {
-            int length = 0;
-            nfor(char32_t, chr, NStringRange(self)) {
-                (void) sizeof(chr); //unused.
-                length += 1;
-            }
-            self->length = length;
-        }
+    if (self->length >= 0) {
+        return self->length;
     }
+
+    NUTFCharsStat stat = {0};
+    if /**/ (self->u32chars) {NCheckUTFChars(NUTF32, self->u32chars, &stat);}
+    else if (self->u16chars) {NCheckUTFChars(NUTF16, self->u16chars, &stat);}
+    else if (self->u8chars ) {NCheckUTFChars(NUTF8 , self->u8chars , &stat);}
+
+    self->length = NUTFCharsCount(&stat);
     return self->length;
 }
 
-static bool _NStringNext(NStringIterator *iterator) {
-    int size = iterator->step(iterator->back, &iterator->head);
-    if (size > 0 && iterator->head != U'\0') {
-        iterator->back = (char *)iterator->back + size;
+static bool _NStringNext(NStringIterator *iter) {
+    int size = iter->step(iter->back, &iter->head);
+    if (size > 0) {
+        iter->back = (char *)iter->back + size;
         return true;
     }
     return false;
 }
 
-static void *_NStringGet(NStringIterator *iterator) {
-    return &iterator->head;
+static void *_NStringGet(NStringIterator *iter) {
+    return &iter->head;
 }
 
 NIterator *NStringRange(NString *self) {
@@ -253,13 +163,13 @@ NIterator *NStringRange(NString *self) {
     }
 
     NStringIterator *iter = &self->iterator;
-    NZeroMemory(iter, nisizeof(NStringIterator));
+    NZeroMemory(iter, nisizeof(*iter));
     iter->super.Next = (bool  (*)(NIterator *))_NStringNext;
     iter->super.Get  = (void *(*)(NIterator *))_NStringGet ;
 
-    /**/ if (self->u32chars) {iter->step = NStepU32Char; iter->back = self->u32chars;}
-    else if (self->u16chars) {iter->step = NStepU16Char; iter->back = self->u16chars;}
-    else if (self->u8chars ) {iter->step = NStepU8Char ; iter->back = self->u8chars ;}
+    if /**/ (self->u32chars) {iter->step = NReadFromU32Chars; iter->back = self->u32chars;}
+    else if (self->u16chars) {iter->step = NReadFromU16Chars; iter->back = self->u16chars;}
+    else if (self->u8chars ) {iter->step = NReadFromU8Chars ; iter->back = self->u8chars ;}
 
     return &iter->super;
 }
@@ -279,7 +189,7 @@ static void _NStringJoin(void **head, void *tail, int zeroSize) {
         int headSize = NMemorySize(*head);
         int tailSize = NMemorySize( tail);
 
-        NRealloc(*head, headSize - zeroSize + tailSize);
+        *head = NRealloc(*head, headSize - zeroSize + tailSize);
         NMoveMemory((char *)*head + headSize - zeroSize, tail, tailSize);
 
     } else {
@@ -300,8 +210,7 @@ void NStringAppend(NString *self, NString *that) {
 
     NUTFType type = 0;
 
-    //try not to generate new format.
-    /**/ if (self->u32chars && that->u32chars) {type = NUTF32;}
+    if /**/ (self->u32chars && that->u32chars) {type = NUTF32;}
     else if (self->u16chars && that->u16chars) {type = NUTF16;}
     else if (self->u8chars  && that->u8chars ) {type = NUTF8 ;}
 
@@ -309,12 +218,10 @@ void NStringAppend(NString *self, NString *that) {
     else if (that->u16chars) {type = NUTF16; _NStringTryMake(self, NUTF16);}
     else if (that->u8chars ) {type = NUTF8 ; _NStringTryMake(self, NUTF8 );}
 
-    switch(type) {
-    case NUTF32: _NStringJoin((void **)&self->u32chars, that->u32chars, 4); break;
-    case NUTF16: _NStringJoin((void **)&self->u16chars, that->u16chars, 2); break;
-    case NUTF8 : _NStringJoin((void **)&self->u8chars , that->u8chars , 1); break;
-    default:;
-    }
+    if /**/ (type == NUTF32) {_NStringJoin((void **)&self->u32chars, that->u32chars, 4);}
+    else if (type == NUTF16) {_NStringJoin((void **)&self->u16chars, that->u16chars, 2);}
+    else if (type == NUTF8 ) {_NStringJoin((void **)&self->u8chars , that->u8chars , 1);}
+
     _NStringOnlyReserve(self, type);
     self->length = -1; //invalidate length.
 }

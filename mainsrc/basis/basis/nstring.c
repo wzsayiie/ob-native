@@ -71,22 +71,25 @@ NString *NStringCopy(NString *that) {
 }
 
 static const void *_NStringTryMake(NString *s, NUTFType type) {
-    if (type == NUTF32 && !s->u32chars) {
-        if /**/ (s->u16chars) {s->u32chars = NDupU32FromChars(NUTF16, s->u16chars);}
-        else if (s->u8chars ) {s->u32chars = NDupU32FromChars(NUTF8 , s->u8chars );}
-
+    if (type == NUTF32) {
+        if (!s->u32chars) {
+            if /**/ (s->u16chars) {s->u32chars = NDupU32FromChars(NUTF16, s->u16chars);}
+            else if (s->u8chars ) {s->u32chars = NDupU32FromChars(NUTF8 , s->u8chars );}
+        }
         return s->u32chars;
     }
-    if (type == NUTF16 && !s->u16chars) {
-        if /**/ (s->u32chars) {s->u16chars = NDupU16FromChars(NUTF32, s->u32chars);}
-        else if (s->u8chars ) {s->u16chars = NDupU16FromChars(NUTF8 , s->u8chars );}
-
+    if (type == NUTF16) {
+        if (!s->u16chars) {
+            if /**/ (s->u32chars) {s->u16chars = NDupU16FromChars(NUTF32, s->u32chars);}
+            else if (s->u8chars ) {s->u16chars = NDupU16FromChars(NUTF8 , s->u8chars );}
+        }
         return s->u16chars;
     }
-    if (type == NUTF8 && !s->u8chars) {
-        if /**/ (s->u32chars) {s->u8chars = NDupU8FromChars(NUTF32, s->u32chars);}
-        else if (s->u16chars) {s->u8chars = NDupU8FromChars(NUTF16, s->u16chars);}
-
+    if (type == NUTF8) {
+        if (!s->u8chars) {
+            if /**/ (s->u32chars) {s->u8chars = NDupU8FromChars(NUTF32, s->u32chars);}
+            else if (s->u16chars) {s->u8chars = NDupU8FromChars(NUTF16, s->u16chars);}
+        }
         return s->u8chars;
     }
     return NULL;

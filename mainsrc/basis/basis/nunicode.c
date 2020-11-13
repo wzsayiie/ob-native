@@ -254,7 +254,7 @@ static void *_NDupUTF(NUTFType dstType, NUTFType srcType, bool isBytes, const vo
     }
 
     //copy data.
-    void *buff = NULL;
+    char *buff = NULL;
     int buffSize = 0;
     int usedSize = 0;
 
@@ -271,7 +271,7 @@ static void *_NDupUTF(NUTFType dstType, NUTFType srcType, bool isBytes, const vo
             buffSize += 256; //allocate 256 bytes one time.
             buff = NRealloc(buff, buffSize);
         }
-        usedSize += writer(buff, chr);
+        usedSize += writer(buff + usedSize, chr);
     }
 
     //add '\0' at the end.
@@ -279,7 +279,7 @@ static void *_NDupUTF(NUTFType dstType, NUTFType srcType, bool isBytes, const vo
         buffSize += 4;
         buff = NRealloc(buff, buffSize);
     }
-    usedSize += writer(buff, 0);
+    usedSize += writer(buff + usedSize, 0);
 
     buff = NRealloc(buff, usedSize);
     return buff;

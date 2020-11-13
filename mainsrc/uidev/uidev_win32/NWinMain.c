@@ -16,7 +16,7 @@ static VOID OpenConsole(VOID)
     WCHAR szTitle[MAX_PATH];
     GetConsoleTitleW(szTitle, MAX_PATH);
 
-    HWND hWnd = FindWindow(NULL, szTitle);
+    HWND hWnd = FindWindowW(NULL, szTitle);
     SetWindowPos(hWnd, HWND_TOP, 300, 100, 0, 0, SWP_NOSIZE);
 }
 
@@ -58,8 +58,8 @@ int NWinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPWSTR lpCmdLine, int nCmdSho
     NLaunch();
 
     //register main window class.
-    LPCWSTR lpszClassName = L"UDMainWindow";
-    WNDCLASSW stClass;
+    LPCWSTR lpszClassName = L"NMainWindow";
+    WNDCLASSW stClass = {0};
 
     stClass.style         = CS_HREDRAW | CS_VREDRAW;
     stClass.lpfnWndProc   = MainWindowProc;
@@ -75,7 +75,8 @@ int NWinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPWSTR lpCmdLine, int nCmdSho
     RegisterClassW(&stClass);
 
     //show main window.
-    HWND hWnd = CreateWindowW(
+    HWND hWnd = CreateWindowExW(
+        /* dwExStyle    */ 0,
         /* lpClassName  */ lpszClassName,
         /* lpWindowName */ L"Native",
         /* dwStyle      */ WS_OVERLAPPEDWINDOW,

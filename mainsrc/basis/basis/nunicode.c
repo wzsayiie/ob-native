@@ -27,8 +27,8 @@ int NReadFromU16Bytes(const void* begin, const void *end, char32_t *outChar) {
     //  1st 2 bytes: 1101 10 xx,xxxx xxxx
     //  2nd 2 bytes: 1101 11 xx,xxxx xxxx
     //
-    if (/*  ptr + 1 <= lmt */ 0xd800 <= ptr[0] && ptr[0] <= 0xdbff) {
-        if (ptr + 2 <= lmt && 0xdc00 <= ptr[1] && ptr[1] <= 0xdfff) {
+    if (/*  ptr + 1 <= lmt */ 0xD800 <= ptr[0] && ptr[0] <= 0xDBff) {
+        if (ptr + 2 <= lmt && 0xDC00 <= ptr[1] && ptr[1] <= 0xDFff) {
 
             *outChar = (char32_t)(ptr[0] & 0x03ff);
             *outChar = (char32_t)(ptr[1] & 0x03ff) | (*outChar << 10);
@@ -60,15 +60,15 @@ int NReadFromU8Bytes(const void* begin, const void *end, char32_t *outChar) {
     //utf-8 first byte:
     //
     // 1 byte  occupied,  7 valid bits: 0xxx'xxxx
-    // 2 bytes occupied, 11 valid bits: 110x'xxxx 10xx xxxx ...
+    // 2 bytes occupied, 11 valid bits: 110x'xxxx 10xx xxxx
     // 3 bytes occupied, 16 valid bits: 1110'xxxx 10xx xxxx ...
     // 4 bytes occupied, 21 valid bits: 1111'0xxx 10xx xxxx ...
     //
     int count = 0;
-    if /**/ ((*ptr & 0b10'00'0000) == 0b00'00'0000) { count = 1; *outChar = *ptr & 0b01'11'1111;}
-    else if ((*ptr & 0b11'10'0000) == 0b11'00'0000) { count = 2; *outChar = *ptr & 0b00'01'1111;}
-    else if ((*ptr & 0b11'11'0000) == 0b11'10'0000) { count = 3; *outChar = *ptr & 0b00'00'1111;}
-    else if ((*ptr & 0b11'11'1000) == 0b11'11'0000) { count = 4; *outChar = *ptr & 0b00'00'0111;}
+    if /**/ ((*ptr & 0x80) == 0x00) { count = 1; *outChar = *ptr & 0x7f;}
+    else if ((*ptr & 0xE0) == 0xC0) { count = 2; *outChar = *ptr & 0x1f;}
+    else if ((*ptr & 0xF0) == 0xE0) { count = 3; *outChar = *ptr & 0x0f;}
+    else if ((*ptr & 0xF8) == 0xF0) { count = 4; *outChar = *ptr & 0x07;}
 
     if (count == 0 || ptr + count > lmt) {
         //error happened.
@@ -78,13 +78,13 @@ int NReadFromU8Bytes(const void* begin, const void *end, char32_t *outChar) {
 
     //followed bytes: 10xx'xxxx
     for (const char *it = ptr + 1; it < ptr + count; ++it) {
-        if ((*it & 0b11'00'0000) != 0b10'00'0000) {
+        if ((*it & 0xC0) != 0x80) {
             //error happened.
             *outChar = 0;
             return 0;
         }
         *outChar <<= 6;
-        *outChar |= (*it & 0b01'11'1111);
+        *outChar |= (*it & 0x3f);
     }
 
     return count;
@@ -110,13 +110,13 @@ int NWriteU16(void *dst, char32_t chr) {
     //  1st 2 bytes: 1101 10 xx,xxxx xxxx
     //  2nd 2 bytes: 1101 11 xx,xxxx xxxx
     //
-    if (chr > 0xffFF) {
+    if (chr > 0xFFff) {
 
         //the biggest code-point of unicode is 0x10FFff (the last of 16st plane),
         //when a code-point subtracted from 0x10000, the remaining value will not exceed 20 bit.
         chr -= 0x10000;
-        ptr[0] = ((chr >> 10) & 0x3ff) | 0xd800;
-        ptr[1] = ((chr      ) & 0x3ff) | 0xdc00;
+        ptr[0] = ((chr >> 10) & 0x3ff) | 0xD800;
+        ptr[1] = ((chr      ) & 0x3ff) | 0xDC00;
 
         return 4;
     }
@@ -131,32 +131,32 @@ int NWriteU8(void *dst, char32_t chr) {
     char *ptr = dst;
 
     if (chr <= 0x7f) {
-        //up to 7 bits, occupy 1 byte.
+        //up to 7 bits, occupy 1 byte. 0xxx'xxxx.
         ptr[0] = (char)chr;
 
-        return 1;    
+        return 1;
     }
     if (chr <= 0x7ff) {
-        //up to 11 bits, occupy 2 bytes.
-        ptr[0] = ((chr >> 6) & 0b00'01'1111) | 0b11'00'0000;
-        ptr[1] = ((chr     ) & 0b00'11'1111) | 0b10'00'0000;
+        //up to 11 bits, occupy 2 bytes. 110x'xxxx 10xx xxxx.
+        ptr[0] = ((chr >> 6) & 0x1f) | 0xC0;
+        ptr[1] = ((chr     ) & 0x3f) | 0x80;
 
         return 2;
     }
     if (chr <= 0xFFff) {
-        //up to 16 bit, occupy 3 bytes.
-        ptr[0] = ((chr >> 12) & 0b00'00'1111) | 0b11'10'0000;
-        ptr[1] = ((chr >>  6) & 0b00'11'1111) | 0b10'00'0000;
-        ptr[2] = ((chr      ) & 0b00'11'1111) | 0b10'00'0000;
-        
+        //up to 16 bit, occupy 3 bytes. 1110'xxxx 10xx xxxx ... .
+        ptr[0] = ((chr >> 12) & 0x0f) | 0xE0;
+        ptr[1] = ((chr >>  6) & 0x3f) | 0x80;
+        ptr[2] = ((chr      ) & 0x3f) | 0x80;
+
         return 3;
     }
     if (chr <= 0x10FFff) {
-        //up to 21 bits, occupy 4 bytes.
-        ptr[0] = ((chr >> 18) & 0b00'00'0111) | 0b11'11'0000;
-        ptr[1] = ((chr >> 12) & 0b00'11'1111) | 0b10'00'0000;
-        ptr[2] = ((chr >>  6) & 0b00'11'1111) | 0b10'00'0000;
-        ptr[3] = ((chr      ) & 0b00'11'1111) | 0b10'00'0000;
+        //up to 21 bits, occupy 4 bytes. 1111'0xxx 10xx xxxx ... .
+        ptr[0] = ((chr >> 18) & 0x07) | 0xF0;
+        ptr[1] = ((chr >> 12) & 0x3f) | 0x80;
+        ptr[2] = ((chr >>  6) & 0x3f) | 0x80;
+        ptr[3] = ((chr      ) & 0x3f) | 0x80;
 
         return 4;
     }
@@ -221,10 +221,10 @@ static int _NCheckUTF(NUTFType type, bool isBytes, const void *p1, const void *p
         p1 = (char *)p1 + size;
         totalSize += size;
 
-        if /**/ (chr <= 0x00007f) {stat.bit7  += 1;}
-        else if (chr <= 0x0007ff) {stat.bit11 += 1;}
-        else if (chr <= 0x00FFff) {stat.bit16 += 1;}
-        else if (chr <= 0x10FFff) {stat.bit21 += 1;}
+        if /**/ (chr <= 0x00007F) {stat.bit7  += 1;}
+        else if (chr <= 0x0007FF) {stat.bit11 += 1;}
+        else if (chr <= 0x00ffFF) {stat.bit16 += 1;}
+        else if (chr <= 0x10ffFF) {stat.bit21 += 1;}
     }
 
     if (outStat) {

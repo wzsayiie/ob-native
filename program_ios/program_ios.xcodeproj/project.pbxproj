@@ -22,6 +22,11 @@
 		CE9FEBB224F2439B0029E036 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE9FEBAE24F2439B0029E036 /* Assets.xcassets */; };
 		CE9FEBB324F2439B0029E036 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE9FEBAF24F2439B0029E036 /* LaunchScreen.storyboard */; };
 		CE9FEBB424F2439B0029E036 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9FEBB024F2439B0029E036 /* main.m */; };
+		CEC6DF63256178F600D2E1C7 /* nobject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC6DF57256178F600D2E1C7 /* nobject.cpp */; };
+		CEC6DF64256178F600D2E1C7 /* nref.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC6DF58256178F600D2E1C7 /* nref.cpp */; };
+		CEC6DF65256178F600D2E1C7 /* classes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC6DF5A256178F600D2E1C7 /* classes.cpp */; };
+		CEC6DF702561792900D2E1C7 /* cmeta.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC6DF6C2561792900D2E1C7 /* cmeta.cpp */; };
+		CEC6DF712561792900D2E1C7 /* nfuncs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC6DF6F2561792900D2E1C7 /* nfuncs.cpp */; };
 		CEE8D8332545532300AD308C /* nunicode.c in Sources */ = {isa = PBXBuildFile; fileRef = CEE8D8312545532300AD308C /* nunicode.c */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +60,16 @@
 		CE9FEBAE24F2439B0029E036 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE9FEBAF24F2439B0029E036 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE9FEBB024F2439B0029E036 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		CEC6DF57256178F600D2E1C7 /* nobject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = nobject.cpp; sourceTree = "<group>"; };
+		CEC6DF58256178F600D2E1C7 /* nref.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = nref.cpp; sourceTree = "<group>"; };
+		CEC6DF59256178F600D2E1C7 /* classes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = classes.h; sourceTree = "<group>"; };
+		CEC6DF5A256178F600D2E1C7 /* classes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = classes.cpp; sourceTree = "<group>"; };
+		CEC6DF5B256178F600D2E1C7 /* nref.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nref.h; sourceTree = "<group>"; };
+		CEC6DF5C256178F600D2E1C7 /* nobject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nobject.h; sourceTree = "<group>"; };
+		CEC6DF6C2561792900D2E1C7 /* cmeta.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cmeta.cpp; sourceTree = "<group>"; };
+		CEC6DF6D2561792900D2E1C7 /* cmeta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cmeta.h; sourceTree = "<group>"; };
+		CEC6DF6E2561792900D2E1C7 /* nfuncs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nfuncs.h; sourceTree = "<group>"; };
+		CEC6DF6F2561792900D2E1C7 /* nfuncs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = nfuncs.cpp; sourceTree = "<group>"; };
 		CEE8D8312545532300AD308C /* nunicode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = nunicode.c; sourceTree = "<group>"; };
 		CEE8D8322545532300AD308C /* nunicode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nunicode.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -74,6 +89,8 @@
 			isa = PBXGroup;
 			children = (
 				CE4D5F43253C708A00948ADE /* basis */,
+				CEC6DF55256178F600D2E1C7 /* classes */,
+				CEC6DF5D256178F600D2E1C7 /* cmeta */,
 				CE037A0024F2444C0047FE7E /* main */,
 				CE0379EB24F2444C0047FE7E /* uidev */,
 			);
@@ -188,6 +205,46 @@
 			path = program;
 			sourceTree = "<group>";
 		};
+		CEC6DF55256178F600D2E1C7 /* classes */ = {
+			isa = PBXGroup;
+			children = (
+				CEC6DF56256178F600D2E1C7 /* classes */,
+			);
+			path = classes;
+			sourceTree = "<group>";
+		};
+		CEC6DF56256178F600D2E1C7 /* classes */ = {
+			isa = PBXGroup;
+			children = (
+				CEC6DF5A256178F600D2E1C7 /* classes.cpp */,
+				CEC6DF59256178F600D2E1C7 /* classes.h */,
+				CEC6DF57256178F600D2E1C7 /* nobject.cpp */,
+				CEC6DF5C256178F600D2E1C7 /* nobject.h */,
+				CEC6DF58256178F600D2E1C7 /* nref.cpp */,
+				CEC6DF5B256178F600D2E1C7 /* nref.h */,
+			);
+			path = classes;
+			sourceTree = "<group>";
+		};
+		CEC6DF5D256178F600D2E1C7 /* cmeta */ = {
+			isa = PBXGroup;
+			children = (
+				CEC6DF6B2561792900D2E1C7 /* cmeta */,
+			);
+			path = cmeta;
+			sourceTree = "<group>";
+		};
+		CEC6DF6B2561792900D2E1C7 /* cmeta */ = {
+			isa = PBXGroup;
+			children = (
+				CEC6DF6C2561792900D2E1C7 /* cmeta.cpp */,
+				CEC6DF6D2561792900D2E1C7 /* cmeta.h */,
+				CEC6DF6F2561792900D2E1C7 /* nfuncs.cpp */,
+				CEC6DF6E2561792900D2E1C7 /* nfuncs.h */,
+			);
+			path = cmeta;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -257,14 +314,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEC6DF702561792900D2E1C7 /* cmeta.cpp in Sources */,
+				CEC6DF63256178F600D2E1C7 /* nobject.cpp in Sources */,
 				CE4D5F53253C708A00948ADE /* ndef.c in Sources */,
 				CE037A0624F2444C0047FE7E /* uidev.c in Sources */,
 				CE037A0824F2444C0047FE7E /* NIAppDelegate.m in Sources */,
+				CEC6DF64256178F600D2E1C7 /* nref.cpp in Sources */,
 				CE4D5F52253C708A00948ADE /* nio.c in Sources */,
 				CE4D5F56253C708A00948ADE /* basis.c in Sources */,
+				CEC6DF712561792900D2E1C7 /* nfuncs.cpp in Sources */,
 				CE037A0924F2444C0047FE7E /* NIViewController.m in Sources */,
 				CE0FE380254085B30005F381 /* launch.cpp in Sources */,
 				CEE8D8332545532300AD308C /* nunicode.c in Sources */,
+				CEC6DF65256178F600D2E1C7 /* classes.cpp in Sources */,
 				CE4D5F55253C708A00948ADE /* nmemory.c in Sources */,
 				CE15E18B25503824000DE8D9 /* nrefcounted.c in Sources */,
 				CE9FEBB424F2439B0029E036 /* main.m in Sources */,

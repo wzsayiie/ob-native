@@ -1,11 +1,10 @@
 #include "nrefcounted.h"
-#include "ndef.h"
 #include "nmemory.h"
 
 nstruct(NRefCounted) {
-    int    count;
-    void (*clear)(void *);
-    char   block[];
+    int      count;
+    void   (*clear)(void *);
+    int8_t   block[];
 };
 
 void *NCreate(int bsize, void *clear) {

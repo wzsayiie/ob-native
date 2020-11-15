@@ -49,8 +49,8 @@ int NReadFromU16Bytes(const void* begin, const void *end, char32_t *outChar) {
 }
 
 int NReadFromU8Bytes(const void* begin, const void *end, char32_t *outChar) {
-    const char *ptr = begin;
-    const char *lmt = end;
+    const int8_t *ptr = begin;
+    const int8_t *lmt = end;
 
     if (ptr + 1 > lmt) {
         *outChar = 0;
@@ -77,7 +77,7 @@ int NReadFromU8Bytes(const void* begin, const void *end, char32_t *outChar) {
     }
 
     //followed bytes: 10xx'xxxx
-    for (const char *it = ptr + 1; it < ptr + count; ++it) {
+    for (const int8_t *it = ptr + 1; it < ptr + count; ++it) {
         if ((*it & 0xC0) != 0x80) {
             //error happened.
             *outChar = 0;
@@ -90,9 +90,9 @@ int NReadFromU8Bytes(const void* begin, const void *end, char32_t *outChar) {
     return count;
 }
 
-int NReadFromU32Chars(const void* p, char32_t *c) {int s = NReadFromU32Bytes(p, (char *)p + 4, c); return *c ? s : 0;}
-int NReadFromU16Chars(const void* p, char32_t *c) {int s = NReadFromU16Bytes(p, (char *)p + 4, c); return *c ? s : 0;}
-int NReadFromU8Chars (const void* p, char32_t *c) {int s = NReadFromU8Bytes (p, (char *)p + 4, c); return *c ? s : 0;}
+int NReadFromU32Chars(const void* p, char32_t *c) {int s = NReadFromU32Bytes(p, (int8_t *)p + 4, c); return *c ? s : 0;}
+int NReadFromU16Chars(const void* p, char32_t *c) {int s = NReadFromU16Bytes(p, (int8_t *)p + 4, c); return *c ? s : 0;}
+int NReadFromU8Chars (const void* p, char32_t *c) {int s = NReadFromU8Bytes (p, (int8_t *)p + 4, c); return *c ? s : 0;}
 
 int NWriteU32(void *dst, char32_t chr) {
     char32_t *ptr = dst;
@@ -128,11 +128,11 @@ int NWriteU16(void *dst, char32_t chr) {
 }
 
 int NWriteU8(void *dst, char32_t chr) {
-    char *ptr = dst;
+    int8_t *ptr = dst;
 
     if (chr <= 0x7f) {
         //up to 7 bits, occupy 1 byte. 0xxx'xxxx.
-        ptr[0] = (char)chr;
+        ptr[0] = (int8_t)chr;
 
         return 1;
     }
@@ -218,7 +218,7 @@ static int _NCheckUTF(NUTFType type, bool isBytes, const void *p1, const void *p
             break;
         }
 
-        p1 = (char *)p1 + size;
+        p1 = (int8_t *)p1 + size;
         totalSize += size;
 
         if /**/ (chr <= 0x00007F) {stat.bit7  += 1;}
@@ -254,7 +254,7 @@ static void *_NDupUTF(NUTFType dstType, NUTFType srcType, bool isBytes, const vo
     }
 
     //copy data.
-    char *buff = NULL;
+    int8_t *buff = NULL;
     int buffSize = 0;
     int usedSize = 0;
 
@@ -265,7 +265,7 @@ static void *_NDupUTF(NUTFType dstType, NUTFType srcType, bool isBytes, const vo
             break;
         }
 
-        p1 = (char *)p1 + size;
+        p1 = (int8_t *)p1 + size;
 
         if (usedSize + 4 > buffSize) {
             buffSize += 256; //allocate 256 bytes one time.

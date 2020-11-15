@@ -1,5 +1,4 @@
 #include "nio.h"
-#include "ndef.h"
 #include <stdarg.h>
 
 #if N_OS_ANDROID

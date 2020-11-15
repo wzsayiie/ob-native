@@ -1,6 +1,6 @@
 #pragma once
 
-//which compiler?
+//which compiler:
 #if _MSC_VER
     #define N_COMPILER_CL    1
     #define N_COMPILER_CLANG 0
@@ -17,7 +17,7 @@
     #error "unknown compiler."
 #endif
 
-//which os?
+//which os:
 #if __APPLE__
     #include <TargetConditionals.h>
 #endif
@@ -45,30 +45,45 @@
     #error "unknown os."
 #endif
 
-#include <stdbool.h> //bool.
-#include <stddef.h>  //NULL.
-#include <stdint.h>  //intptr_t.
+//supported types:
+#define nstruct(n) typedef struct n n; struct n
+#define nenum(  n) typedef int      n; enum
 
-//NOTE: "charxx_t" are not builtin types for c.
+nenum(NType) {
+    NTypeBool  = 1,
+    NTypeInt8  = 2,
+    NTypeInt16 = 3,
+    NTypeInt32 = 4,
+    NTypeInt64 = 5,
+    NTypeFlt32 = 6,
+    NTypeFlt64 = 7,
+    NTypePtr   = 8,
+};
+
+#include <stdbool.h>
+#include <stddef.h>
+#include <stdint.h>
+
 #if !__cplusplus
+    //"charxx_t" are not builtin types for c.
     typedef unsigned short char16_t;
     typedef unsigned int   char32_t;
 #endif
 
-#if __cplusplus
-    //before c++11, the forward declaration of "enum" is forbidden.
-    #define nstruct(n) struct n
-    #define nenum(  n) enum   n
-#else
-    #define nstruct(n) typedef struct n n; struct n
-    #define nenum(  n) typedef enum   n n; enum   n
-#endif
-
 #define nisizeof(type) ((int)sizeof(type))
 
-//mutex lock.
-void NLock  (int hash);
-void NUnlock(int hash);
+//used as a flag for generating function meta data:
+#if __cplusplus
+    #define __nfunc(retv, name) extern "C" retv name
+#else
+    #define __nfunc(retv, name) retv name
+#endif
+
+#define nfunc __nfunc
+
+//mutex lock:
+nfunc(void, NLock  )(int hash);
+nfunc(void, NUnlock)(int hash);
 
 #define nsynwith(n)                               \
 /**/    for (bool                                 \

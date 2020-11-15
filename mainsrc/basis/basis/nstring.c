@@ -193,7 +193,7 @@ static void _NStringJoin(void **head, void *tail, int zeroSize) {
         int tailSize = NMemorySize( tail);
 
         *head = NRealloc(*head, headSize - zeroSize + tailSize);
-        NMoveMemory((char *)*head + headSize - zeroSize, tail, tailSize);
+        NMoveMemory((int8_t *)*head + headSize - zeroSize, tail, tailSize);
 
     } else {
         *head = NDup(tail);

@@ -1,10 +1,12 @@
 #pragma once
 
-void *NAlloc  (int size);
-void *NRealloc(void *ptr, int size);
-void *NDup    (const void *ptr);
-void  NFree   (void *ptr);
+#include "ndef.h"
 
-int  NMemorySize(const void *ptr);
-void NZeroMemory(void *ptr, int size);
-void NMoveMemory(void *dst, const void *src, int size);
+nfunc(void *, NAlloc  )(int size);
+nfunc(void *, NRealloc)(void *ptr, int size);
+nfunc(void *, NDup    )(const void *ptr);
+nfunc(void  , NFree   )(void *ptr);
+
+nfunc(int , NMemorySize)(const void *ptr);
+nfunc(void, NZeroMemory)(void *ptr, int size);
+nfunc(void, NMoveMemory)(void *dst, const void *src, int size);

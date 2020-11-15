@@ -1,11 +1,10 @@
 #include "nmemory.h"
-#include "ndef.h"
 #include <stdlib.h>
 #include <string.h>
 
 nstruct(NMemory) {
-    int  dataSize;
-    char data[];
+    int    dataSize;
+    int8_t data[];
 };
 
 static size_t _NMemorySize(int size) {

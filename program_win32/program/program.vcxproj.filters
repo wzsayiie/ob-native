@@ -28,6 +28,18 @@
     <Filter Include="mainsrc\basis\basis">
       <UniqueIdentifier>{8d4b8970-d315-496c-99e5-9ce0c70cf89e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="mainsrc\classes">
+      <UniqueIdentifier>{2fb888be-ca48-484c-ae77-370aaa068c12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mainsrc\classes\classes">
+      <UniqueIdentifier>{84307a82-ae2e-4107-ac65-8c8240c809c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mainsrc\cmeta">
+      <UniqueIdentifier>{7c84dfb8-5b85-4335-b1db-4ffdd65b42d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mainsrc\cmeta\cmeta">
+      <UniqueIdentifier>{dc34b2b3-c370-4db4-82b9-d3b2d78986eb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="winmain.c">
@@ -69,6 +81,21 @@
     <ClCompile Include="..\..\mainsrc\basis\basis\nrefcounted.c">
       <Filter>mainsrc\basis\basis</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\mainsrc\cmeta\cmeta\cmeta.cpp">
+      <Filter>mainsrc\cmeta\cmeta</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mainsrc\cmeta\cmeta\nfuncs.cpp">
+      <Filter>mainsrc\cmeta\cmeta</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mainsrc\classes\classes\classes.cpp">
+      <Filter>mainsrc\classes\classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mainsrc\classes\classes\nobject.cpp">
+      <Filter>mainsrc\classes\classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mainsrc\classes\classes\nref.cpp">
+      <Filter>mainsrc\classes\classes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\mainsrc\uidev\uidev\uidev.h">
@@ -106,6 +133,21 @@
     </ClInclude>
     <ClInclude Include="..\..\mainsrc\basis\basis\nrefcounted.h">
       <Filter>mainsrc\basis\basis</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mainsrc\cmeta\cmeta\cmeta.h">
+      <Filter>mainsrc\cmeta\cmeta</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mainsrc\cmeta\cmeta\nfuncs.h">
+      <Filter>mainsrc\cmeta\cmeta</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mainsrc\classes\classes\classes.h">
+      <Filter>mainsrc\classes\classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mainsrc\classes\classes\nobject.h">
+      <Filter>mainsrc\classes\classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mainsrc\classes\classes\nref.h">
+      <Filter>mainsrc\classes\classes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

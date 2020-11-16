@@ -3,75 +3,72 @@
 #include "basis.h"
 #include "nobject.h"
 
-template<class TYPE> struct NRef {
+template<class T> struct NRef {
     
-    NRef(bool isObject, void *ptr) {
-        _isObject = isObject;
-        _ptr = (TYPE *)ptr;
+    NRef(T *ptr) {
+        _ptr = ptr;
     }
     
-    template<class THAT> NRef(const NRef<THAT> &that) {
-        *this = that;
+    template<class A> NRef(const NRef<A> &that) {
+        _ptr = _Retain<A>(that.Get());
     }
     
-    template<class THAT> NRef<TYPE> operator=(const NRef<THAT> &that) {
-        _Retain();
-        
-        _isObject = that._isObject;
-        _ptr = that._ptr;
-        _Retain();
+    template<class A> NRef<T> operator=(const NRef<A> &that) {
+        _Release(_ptr);
+        _ptr = _Retain<A>(that.Get());
+        return *this;
+    }
+
+    NRef<T> operator=(nullptr_t) {
+        _Release(_ptr);
+        _ptr = NULL;
+        return *this;
     }
     
     ~NRef() {
-        _Release();
+        _Release(_ptr);
     }
     
-    template<class A> bool operator==(const NRef<A> &t) {_ptr == t._ptr;}
-    template<class A> bool operator!=(const NRef<A> &t) {_ptr != t._ptr;}
-    template<class A> bool operator< (const NRef<A> &t) {_ptr <  t._ptr;}
-    template<class A> bool operator<=(const NRef<A> &t) {_ptr <= t._ptr;}
-    template<class A> bool operator> (const NRef<A> &t) {_ptr >  t._ptr;}
-    template<class A> bool operator>=(const NRef<A> &t) {_ptr >= t._ptr;}
+    template<class A> bool operator==(const NRef<A> &a) const {_ptr == a.Get();}
+    template<class A> bool operator!=(const NRef<A> &a) const {_ptr != a.Get();}
+    template<class A> bool operator< (const NRef<A> &a) const {_ptr <  a.Get();}
+    template<class A> bool operator<=(const NRef<A> &a) const {_ptr <= a.Get();}
+    template<class A> bool operator> (const NRef<A> &a) const {_ptr >  a.Get();}
+    template<class A> bool operator>=(const NRef<A> &a) const {_ptr >= a.Get();}
     
-    TYPE *Get() {
+    template<class A> NRef<A> Cast() const {
+        return NRef<A>(_Retain<A>(_ptr));
+    }
+    
+    T *Retain() const {
+        return _Retain<T>(_ptr);
+    }
+
+    T *Get() const {
+        return _ptr;
+    }
+
+    operator T *() const {
         return _ptr;
     }
     
-    TYPE *Discard() {
-        TYPE *value = _ptr;
-        
-        _isObject = false;
-        _ptr = NULL;
-        
-        return value;
-    }
-    
 private:
     
-    void _Retain() {
-        if (!_ptr) {
-            return;
-        }
-        if (_isObject) {
-            _ptr->Retain();
-        } else {
-            NRetain(_ptr);
-        }
-    }
+    template<class A> A *_Retain(NObject *p) {return p ? (A *)p->Retain() : NULL;}
+    template<class A> A *_Retain(void    *p) {return p ? (A *)NRetain(p)  : NULL;}
     
-    void _Release() {
-        if (!_ptr) {
-            return;
-        }
-        if (_isObject) {
-            _ptr->Release();
-        } else {
-            NRelease(_ptr);
-        }
-    }
+    void _Release(NObject *p) {if (p) {p->Release();}}
+    void _Release(void    *p) {if (p) {NRelease(p); }}
     
 private:
-    
-    bool  _isObject;
-    TYPE *_ptr;
+
+    T *_ptr;
 };
+
+struct NRefTransfer {
+    template<class T> NRef<T> operator<<(T *ptr) const {
+        return NRef<T>(ptr);
+    }
+};
+
+#define nauto NRefTransfer()<<

@@ -51,6 +51,7 @@
     <ClInclude Include="..\..\mainsrc\classes\classes\nobject.h" />
     <ClInclude Include="..\..\mainsrc\classes\classes\nref.h" />
     <ClInclude Include="..\..\mainsrc\cmeta\cmeta\cmeta.h" />
+    <ClInclude Include="..\..\mainsrc\cmeta\cmeta\NEXPORT.h" />
     <ClInclude Include="..\..\mainsrc\cmeta\cmeta\nfuncs.h" />
     <ClInclude Include="..\..\mainsrc\main\main\launch.h" />
     <ClInclude Include="..\..\mainsrc\uidev\uidev\nlaunch.h" />

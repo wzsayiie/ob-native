@@ -149,5 +149,8 @@
     <ClInclude Include="..\..\mainsrc\classes\classes\nref.h">
       <Filter>mainsrc\classes\classes</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\mainsrc\cmeta\cmeta\NEXPORT.h">
+      <Filter>mainsrc\cmeta\cmeta</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

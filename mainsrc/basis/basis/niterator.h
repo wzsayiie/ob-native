@@ -7,7 +7,7 @@ nstruct(NIterator) {
     void *(*Get )(NIterator *iterator);
 };
 
-nfunc(NIterator *, NIteratorGetEmpty)(void);
+nfunc(NIterator *, NIteratorGetEmpty, (void));
 
 #define nfor(type, value, iterator) \
 /**/    for (NIterator *__i = iterator                            ; __i           ; __i = 0) \

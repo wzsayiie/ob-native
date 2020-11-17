@@ -50,14 +50,15 @@
 #define nenum(  n) typedef int      n; enum
 
 nenum(NType) {
-    NTypeBool  = 1,
-    NTypeInt8  = 2,
-    NTypeInt16 = 3,
-    NTypeInt32 = 4,
-    NTypeInt64 = 5,
-    NTypeFlt32 = 6,
-    NTypeFlt64 = 7,
-    NTypePtr   = 8,
+    NTypeVoid  = 1,
+    NTypeBool  = 2,
+    NTypeInt8  = 3,
+    NTypeInt16 = 4,
+    NTypeInt32 = 5,
+    NTypeInt64 = 6,
+    NTypeFlt32 = 7,
+    NTypeFlt64 = 8,
+    NTypePtr   = 9,
 };
 
 #include <stdbool.h>
@@ -74,16 +75,18 @@ nenum(NType) {
 
 //used as a flag for generating function meta data:
 #if __cplusplus
-    #define __nfunc(retv, name) extern "C" retv name
+    #define __nfunc(ret, name, params) extern "C" ret name params
 #else
-    #define __nfunc(retv, name) retv name
+    #define __nfunc(ret, name, params) ret name params
 #endif
 
-#define nfunc __nfunc
+#ifndef nfunc
+#define nfunc(ret, name, params) __nfunc(ret, name, params)
+#endif
 
 //mutex lock:
-nfunc(void, NLock  )(int hash);
-nfunc(void, NUnlock)(int hash);
+nfunc(void, NLock  , (int hash));
+nfunc(void, NUnlock, (int hash));
 
 #define nsynwith(n)                               \
 /**/    for (bool                                 \

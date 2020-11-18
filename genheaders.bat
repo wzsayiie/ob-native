@@ -5,7 +5,7 @@
 
 pushd %~dp0
 
-set dst=GHEADERS
+set dst=HEADERS
 
 if exist %dst% (rmdir /q /s %dst%)
 mkdir %dst%

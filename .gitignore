@@ -32,4 +32,4 @@ program_win32/.vs/
 
 # user project local files:
 BUILD/*
-GHEADERS/*
+HEADERS/*

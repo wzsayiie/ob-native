@@ -8,7 +8,7 @@ set -e -u
 cd `dirname $0`
 
 loc=`pwd`
-dst="GHEADERS"
+dst="HEADERS"
 
 function clean() {
     rm -rf $dst

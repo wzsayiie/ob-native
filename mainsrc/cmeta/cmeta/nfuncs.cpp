@@ -19,7 +19,7 @@ static void _NAddFunc(_NFuncInfo *info) {
         return;
     }
 
-    //insertation sort here.
+    //insertion sort here.
     int pos = 0;
     while (pos < _listCount) {
         if (strcmp(_list[pos].name, info->name) > 0) {
@@ -106,7 +106,7 @@ struct _NFuncAdder {
         _NFuncInfo info = {0};
 
         info.name = name;
-        info.address = func;
+        info.address = (void *)func;
         info.returnType = _NPickType<R>::Type;
         SetParamTypes(&info, func);
 

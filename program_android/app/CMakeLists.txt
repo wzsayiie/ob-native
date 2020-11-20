@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.4.1)
 ### configuration begin.
 set(lib_name main)
 
-list(APPEND inc_path ../../GHEADERS)
+list(APPEND inc_path ../../HEADERS)
 
 list(APPEND src_aims ../../mainsrc/basis/basis/*.c)
 list(APPEND src_aims ../../mainsrc/classes/classes/*.cpp)
@@ -15,9 +15,8 @@ list(APPEND src_aims ../../mainsrc/uidev/uidev_android/*.c)
 list(APPEND sys_libs log)
 ### configutation end.
 
-# on windows, the path of header maybe includes "\".
-# by default, the compiler will consisder it nonportable and show warning.
-add_compile_options(-Wno-nonportable-include-path)
+add_compile_options(-Wno-nonportable-include-path) # ignore when header path contains "\".
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 include_directories(${inc_path})
 

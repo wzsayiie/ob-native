@@ -20,11 +20,11 @@ files without suffix name for mac os, and *.bat for windows.
 **header auxiliary tool:**
 
 these scripts traverse headers and create new homonymic headers
-which reference former to *GHEADERS/*.
+which reference former to *HEADERS/*.
 it will avoid developer adding vast header search paths tediously.
 
-* headers
-* headers.bat
+* genheaders
+* genheaders.bat
 
 **program assets:**
 

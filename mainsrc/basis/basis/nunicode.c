@@ -168,21 +168,24 @@ int NUTFBytesSize(NUTFType type, const NUTFCharsStat *s) {
     if (!s) {
         return 0;
     }
-
+    
+    int b7  = (int)s->bit7 ;
+    int b11 = (int)s->bit11;
+    int b16 = (int)s->bit16;
+    int b21 = (int)s->bit21;
+    
     switch (type) {
-    case NUTF32: return (s->bit7) * 4 + (s->bit11) * 4 + (s->bit16) * 4 + (s->bit21) * 4;
-    case NUTF16: return (s->bit7) * 2 + (s->bit11) * 2 + (s->bit16) * 2 + (s->bit21) * 4;
-    case NUTF8 : return (s->bit7) * 1 + (s->bit11) * 2 + (s->bit16) * 3 + (s->bit21) * 4;
+    case NUTF32: return b7 * 4 + b11 * 4 + b16 * 4 + b21 * 4;
+    case NUTF16: return b7 * 2 + b11 * 2 + b16 * 2 + b21 * 4;
+    case NUTF8 : return b7 * 1 + b11 * 2 + b16 * 3 + b21 * 4;
     default    : return 0;
     }
 }
 
-int NUTFCharsCount(const NUTFCharsStat *stat) {
-    if (stat) {
-        return stat->bit7
-        /**/ + stat->bit11
-        /**/ + stat->bit16
-        /**/ + stat->bit21;
+int NUTFCharsCount(const NUTFCharsStat *s) {
+    if (s) {
+        nintptr n = s->bit7 + s->bit11 + s->bit16 + s->bit21;
+        return (int)n;
     }
     return 0;
 }

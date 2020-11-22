@@ -9,5 +9,5 @@ struct NObject {
     virtual void     Release();
 
 private:
-    int _referenceCount;
+    int _count;
 };

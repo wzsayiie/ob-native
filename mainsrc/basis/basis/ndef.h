@@ -17,6 +17,16 @@
     #error "unknown compiler."
 #endif
 
+//how many bits of cpu word:
+//only 64 and 32 bits are supported.
+#if _WIN64 || __LP64__
+    #define N_PTR_64 1
+    #define N_PTR_32 0
+#else
+    #define N_PTR_64 0
+    #define N_PTR_32 1
+#endif
+
 //which os:
 #if __APPLE__
     #include <TargetConditionals.h>
@@ -65,10 +75,20 @@ nenum(NType) {
 #include <stddef.h>
 #include <stdint.h>
 
+#if N_PTR_64
+    typedef int64_t nboolptr;
+    typedef int64_t nintptr;
+    typedef double  nfltptr;
+#else
+    typedef int32_t nboolptr;
+    typedef int32_t nintptr;
+    typedef float   nfltptr;
+#endif
+
 #if !__cplusplus
     //"charxx_t" are not builtin types for c.
-    typedef unsigned short char16_t;
-    typedef unsigned int   char32_t;
+    typedef uint16_t char16_t;
+    typedef uint32_t char32_t;
 #endif
 
 #define nisizeof(type) ((int)sizeof(type))
@@ -88,11 +108,8 @@ nenum(NType) {
 nfunc(void, NLock  , (int hash));
 nfunc(void, NUnlock, (int hash));
 
-#define nsynwith(n)                               \
-/**/    for (bool                                 \
-/**/        __N = (NLock  ((int)(intptr_t)n), 1); \
-/**/        __N;                                  \
-/**/        __N = (NUnlock((int)(intptr_t)n), 0)  \
-/**/    )
+#define nsynwith(n) \
+/**/    for (int __N = (NLock((int)(nintptr)n), 1); __N; __N = (NUnlock((int)(nintptr)n), 0)) \
+/**/    for (int __M = 1; __M; __M = 0)
 
 #define nsyn() nsynwith(__LINE__)

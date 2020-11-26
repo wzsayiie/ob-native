@@ -184,7 +184,7 @@ int NUTFBytesSize(NUTFType type, const NUTFCharsStat *s) {
 
 int NUTFCharsCount(const NUTFCharsStat *s) {
     if (s) {
-        nintptr n = s->bit7 + s->bit11 + s->bit16 + s->bit21;
+        npint n = s->bit7 + s->bit11 + s->bit16 + s->bit21;
         return (int)n;
     }
     return 0;

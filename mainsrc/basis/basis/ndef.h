@@ -76,13 +76,13 @@ nenum(NType) {
 #include <stdint.h>
 
 #if N_PTR_64
-    typedef int64_t nboolptr;
-    typedef int64_t nintptr;
-    typedef double  nfltptr;
+    typedef int64_t npbool;
+    typedef int64_t npint;
+    typedef double  npfloat;
 #else
-    typedef int32_t nboolptr;
-    typedef int32_t nintptr;
-    typedef float   nfltptr;
+    typedef int32_t npbool;
+    typedef int32_t npint;
+    typedef float   npfloat;
 #endif
 
 #if !__cplusplus
@@ -109,7 +109,7 @@ nfunc(void, NLock  , (int hash));
 nfunc(void, NUnlock, (int hash));
 
 #define nsynwith(n) \
-/**/    for (int __N = (NLock((int)(nintptr)n), 1); __N; __N = (NUnlock((int)(nintptr)n), 0)) \
+/**/    for (int __N = (NLock((int)(npint)n), 1); __N; __N = (NUnlock((int)(npint)n), 0)) \
 /**/    for (int __M = 1; __M; __M = 0)
 
 #define nsyn() nsynwith(__LINE__)

@@ -10,46 +10,46 @@ struct _NFuncInfo {
     int   paramTypes[8];
 };
 
-static const int   LIST_CAPACITY       = 256;
-static _NFuncInfo _list[LIST_CAPACITY] = {0};
-static int        _listCount           = 0;
+static const int   LIST_BEGIN     = 1;
+static const int   LIST_END       = 256;
+static _NFuncInfo _list[LIST_END] = {0};
+static int        _listEnd        = 0;
 
 static void _NAddFunc(_NFuncInfo *info) {
-    if (_listCount == LIST_CAPACITY) {
+    if (_listEnd == LIST_END) {
         return;
     }
 
     //insertion sort here.
-    int pos = 0;
-    while (pos < _listCount) {
+    int pos = LIST_BEGIN;
+    while (pos < _listEnd) {
         if (strcmp(_list[pos].name, info->name) > 0) {
             break;
         }
         pos++;
     }
 
-    if (pos < _listCount) {
+    if (pos < _listEnd) {
         void *dst = _list + pos + 1;
         void *src = _list + pos;
-        int   num = _listCount - pos;
+        int   num = _listEnd - pos;
         memmove(dst, src, num * sizeof(_NFuncInfo));
     }
     _list[pos] = *info;
-    _listCount += 1;
+    _listEnd += 1;
 }
 
-extern "C" int NFuncCount() {
-    return _listCount;
-}
+extern "C" int NFuncsIndexBegin() {return LIST_BEGIN;}
+extern "C" int NFuncsIndexEnd  () {return _listEnd  ;}
 
 extern "C" int NFindFunc(const char *name) {
     if (name == NULL || *name == '\0') {
-        return -1;
+        return 0;
     }
 
     //binary search here.
-    int begin = 0;
-    int end = _listCount;
+    int begin = LIST_BEGIN;
+    int end   = _listEnd  ;
 
     while (begin < end) {
         int center = (begin + end) / 2;
@@ -63,16 +63,14 @@ extern "C" int NFindFunc(const char *name) {
             return center;
         }
     }
-    return -1;
+    return 0;
 }
 
 static _NFuncInfo *_Get(int fIndex) {
-    static _NFuncInfo empty = {0};
-
-    if (0 <= fIndex && fIndex < _listCount) {
+    if (LIST_BEGIN <= fIndex && fIndex < _listEnd) {
         return _list + fIndex;
     } else {
-        return &empty;
+        return _list;
     }
 }
 

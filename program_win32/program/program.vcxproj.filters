@@ -78,9 +78,6 @@
     <ClCompile Include="..\..\mainsrc\basis\basis\niterator.c">
       <Filter>mainsrc\basis\basis</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\mainsrc\basis\basis\nrefcounted.c">
-      <Filter>mainsrc\basis\basis</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\mainsrc\cmeta\cmeta\cmeta.cpp">
       <Filter>mainsrc\cmeta\cmeta</Filter>
     </ClCompile>
@@ -95,6 +92,9 @@
     </ClCompile>
     <ClCompile Include="..\..\mainsrc\classes\classes\nref.cpp">
       <Filter>mainsrc\classes\classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mainsrc\basis\basis\nlock.c">
+      <Filter>mainsrc\basis\basis</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -131,9 +131,6 @@
     <ClInclude Include="..\..\mainsrc\basis\basis\niterator.h">
       <Filter>mainsrc\basis\basis</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\mainsrc\basis\basis\nrefcounted.h">
-      <Filter>mainsrc\basis\basis</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\mainsrc\cmeta\cmeta\cmeta.h">
       <Filter>mainsrc\cmeta\cmeta</Filter>
     </ClInclude>
@@ -151,6 +148,9 @@
     </ClInclude>
     <ClInclude Include="..\..\mainsrc\cmeta\cmeta\NEXPORT.h">
       <Filter>mainsrc\cmeta\cmeta</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mainsrc\basis\basis\nlock.h">
+      <Filter>mainsrc\basis\basis</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

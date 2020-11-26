@@ -1,13 +1,13 @@
-#include <cstdint>
 #include <cstring>
+#include "ndef.h"
 
 struct _NFuncInfo {
     const char *name;
 
     void *address;
-    int   returnType;
+    NType returnType;
     int   paramCount;
-    int   paramTypes[8];
+    NType paramTypes[8];
 };
 
 static const int   LIST_BEGIN     = 1;
@@ -87,15 +87,15 @@ extern "C" int NFuncParamType(int fIndex, int pIndex) {
     return 0;
 }
 
-template<class> struct _NPickType          {static const int Type = 9;/* NTypePtr   */};
-template<>      struct _NPickType<void   > {static const int Type = 1;/* NTypeVoid  */};
-template<>      struct _NPickType<bool   > {static const int Type = 2;/* NTypeBool  */};
-template<>      struct _NPickType<int8_t > {static const int Type = 3;/* NTypeInt8  */};
-template<>      struct _NPickType<int16_t> {static const int Type = 4;/* NTypeInt16 */};
-template<>      struct _NPickType<int32_t> {static const int Type = 5;/* NTypeInt32 */};
-template<>      struct _NPickType<int64_t> {static const int Type = 6;/* NTypeInt64 */};
-template<>      struct _NPickType<float  > {static const int Type = 7;/* NTypeFlt32 */};
-template<>      struct _NPickType<double > {static const int Type = 8;/* NTypeFlt64 */};
+template<class> struct _NPickType          {static const NType Type = NTypePtr  ;};
+template<>      struct _NPickType<void   > {static const NType Type = NTypeVoid ;};
+template<>      struct _NPickType<bool   > {static const NType Type = NTypeBool ;};
+template<>      struct _NPickType<int8_t > {static const NType Type = NTypeInt8 ;};
+template<>      struct _NPickType<int16_t> {static const NType Type = NTypeInt16;};
+template<>      struct _NPickType<int32_t> {static const NType Type = NTypeInt32;};
+template<>      struct _NPickType<int64_t> {static const NType Type = NTypeInt64;};
+template<>      struct _NPickType<float  > {static const NType Type = NTypeFlt32;};
+template<>      struct _NPickType<double > {static const NType Type = NTypeFlt64;};
 
 struct _NFuncAdder {
 
@@ -123,5 +123,6 @@ struct _NFuncAdder {
     }
 };
 
+#undef  nfunc
 #define nfunc(r, n, p) __nfunc(r, n, p); static _NFuncAdder __adder_##n(#n, n)
 #include "NEXPORT.h"

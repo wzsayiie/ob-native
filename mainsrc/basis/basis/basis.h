@@ -7,8 +7,8 @@ extern "C" {
 #include "ndef.h"
 #include "nio.h"
 #include "niterator.h"
+#include "nlock.h"
 #include "nmemory.h"
-#include "nrefcounted.h"
 #include "nstring.h"
 #include "nunicode.h"
 

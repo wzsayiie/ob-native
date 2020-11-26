@@ -56,21 +56,6 @@
 #endif
 
 //supported types:
-#define nstruct(n) typedef struct n n; struct n
-#define nenum(  n) typedef int      n; enum
-
-nenum(NType) {
-    NTypeVoid  = 1,
-    NTypeBool  = 2,
-    NTypeInt8  = 3,
-    NTypeInt16 = 4,
-    NTypeInt32 = 5,
-    NTypeInt64 = 6,
-    NTypeFlt32 = 7,
-    NTypeFlt64 = 8,
-    NTypePtr   = 9,
-};
-
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
@@ -91,7 +76,22 @@ nenum(NType) {
     typedef uint32_t char32_t;
 #endif
 
+#define nstruct(n) typedef struct n n; struct n
+#define nenum(  n) typedef int      n; enum
+
 #define nisizeof(type) ((int)sizeof(type))
+
+nenum(NType) {
+    NTypeVoid  = 1,
+    NTypeBool  = 2,
+    NTypeInt8  = 3,
+    NTypeInt16 = 4,
+    NTypeInt32 = 5,
+    NTypeInt64 = 6,
+    NTypeFlt32 = 7,
+    NTypeFlt64 = 8,
+    NTypePtr   = 9,
+};
 
 //used as a flag for generating function meta data:
 #if __cplusplus
@@ -100,16 +100,4 @@ nenum(NType) {
     #define __nfunc(ret, name, params) ret name params
 #endif
 
-#ifndef nfunc
 #define nfunc(ret, name, params) __nfunc(ret, name, params)
-#endif
-
-//mutex lock:
-nfunc(void, NLock  , (int hash));
-nfunc(void, NUnlock, (int hash));
-
-#define nsynwith(n) \
-/**/    for (int __N = (NLock((int)(npint)n), 1); __N; __N = (NUnlock((int)(npint)n), 0)) \
-/**/    for (int __M = 1; __M; __M = 0)
-
-#define nsyn() nsynwith(__LINE__)

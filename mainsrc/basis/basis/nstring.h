@@ -1,7 +1,7 @@
 #pragma once
 
 #include "niterator.h"
-#include "nrefcounted.h"
+#include "nmemory.h"
 #include "nunicode.h"
 
 nstruct(NString);

@@ -1,5 +1,4 @@
 #include "nstring.h"
-#include "nmemory.h"
 
 nstruct(NStringIterator) {
     NIterator super;

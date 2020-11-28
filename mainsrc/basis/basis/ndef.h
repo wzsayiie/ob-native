@@ -18,41 +18,50 @@
 #endif
 
 //how many bits of cpu word:
-//only 64 and 32 bits are supported.
-#if _WIN64 || __LP64__
+#if _WIN64 || (__LP64__ || __ILP64__ || __LLP64__)
     #define N_PTR_64 1
     #define N_PTR_32 0
-#else
+#elif _WIN32 || (__LP32__ || __ILP32__)
     #define N_PTR_64 0
     #define N_PTR_32 1
+#else
+    #error "unknown cpu word."
 #endif
 
-//which os:
+//which of the following os platform:
+//
+// +-------+ +-------------+ +---------+
+// |       | |     mac     | | windows |
+// |android| | +---+ +---+ | | +-----+ |
+// |       | | |ios| |osx| | | |win32| |
+// |       | | +---+ +---+ | | +-----+ |
+// +-------+ +-------------+ +---------+
+//
 #if __APPLE__
     #include <TargetConditionals.h>
 #endif
 #if ANDROID
     #define N_OS_ANDROID 1
     #define N_OS_IOS     0
-    #define N_OS_MACOS   0
-    #define N_OS_WINDOWS 0
+    #define N_OS_OSX     0
+    #define N_OS_WIN32   0
 #elif TARGET_OS_IOS
     #define N_OS_ANDROID 0
     #define N_OS_IOS     1
-    #define N_OS_MACOS   0
-    #define N_OS_WINDOWS 0
+    #define N_OS_OSX     0
+    #define N_OS_WIN32   0
 #elif TARGET_OS_OSX
     #define N_OS_ANDROID 0
     #define N_OS_IOS     0
-    #define N_OS_MACOS   1
-    #define N_OS_WINDOWS 0
+    #define N_OS_OSX     1
+    #define N_OS_WIN32   0
 #elif _WIN32
     #define N_OS_ANDROID 0
     #define N_OS_IOS     0
-    #define N_OS_MACOS   0
-    #define N_OS_WINDOWS 1
+    #define N_OS_OSX     0
+    #define N_OS_WIN32   1
 #else
-    #error "unknown os."
+    #error "unknown os platform."
 #endif
 
 //supported types:
@@ -72,8 +81,8 @@
 
 #if !__cplusplus
     //"charxx_t" are not builtin types for c.
-    typedef uint16_t char16_t;
     typedef uint32_t char32_t;
+    typedef uint16_t char16_t;
 #endif
 
 #define nstruct(n) typedef struct n n; struct n

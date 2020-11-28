@@ -1,13 +1,17 @@
 #include <cstring>
 #include "ndef.h"
 
+#ifndef NFUNC_MAX_ARG_NUM
+#define NFUNC_MAX_ARG_NUM 6
+#endif
+
 struct _NFuncInfo {
     const char *name;
 
     void *address;
-    NType returnType;
-    int   paramCount;
-    NType paramTypes[8];
+    NType retType;
+    int   argCount;
+    NType argTypes[NFUNC_MAX_ARG_NUM];
 };
 
 static const int   LIST_BEGIN     = 1;
@@ -39,8 +43,8 @@ static void _NAddFunc(_NFuncInfo *info) {
     _listEnd += 1;
 }
 
-extern "C" int NFuncsIndexBegin() {return LIST_BEGIN;}
-extern "C" int NFuncsIndexEnd  () {return _listEnd  ;}
+extern "C" int NFuncsBegin() {return LIST_BEGIN;}
+extern "C" int NFuncsEnd  () {return _listEnd  ;}
 
 extern "C" int NFindFunc(const char *name) {
     if (name == NULL || *name == '\0') {
@@ -66,24 +70,28 @@ extern "C" int NFindFunc(const char *name) {
     return 0;
 }
 
-static _NFuncInfo *_Get(int fIndex) {
-    if (LIST_BEGIN <= fIndex && fIndex < _listEnd) {
-        return _list + fIndex;
+static _NFuncInfo *_NFuncGetInfo(int fPos) {
+    if (LIST_BEGIN <= fPos && fPos < _listEnd) {
+        return _list + fPos;
     } else {
         return _list;
     }
 }
 
-extern "C" const char *NFuncName      (int i) {return _Get(i)->name      ;}
-extern "C" void       *NFuncAddress   (int i) {return _Get(i)->address   ;}
-extern "C" int         NFuncReturnType(int i) {return _Get(i)->returnType;}
-extern "C" int         NFuncParamCount(int i) {return _Get(i)->paramCount;}
+extern "C" const char *NFuncName    (int i) {return _NFuncGetInfo(i)->name    ;}
+extern "C" void       *NFuncAddress (int i) {return _NFuncGetInfo(i)->address ;}
+extern "C" int         NFuncRetType (int i) {return _NFuncGetInfo(i)->retType ;}
+extern "C" int         NFuncArgCount(int i) {return _NFuncGetInfo(i)->argCount;}
 
-extern "C" int NFuncParamType(int fIndex, int pIndex) {
-    _NFuncInfo *info = _Get(fIndex);
-    if (0 <= pIndex && pIndex < info->paramCount) {
-        return info->paramTypes[pIndex];
+extern "C" NType NFuncArgType(int fPos, int aPos) {
+    _NFuncInfo *info = _NFuncGetInfo(fPos);
+    if (0 <= aPos && aPos < info->argCount) {
+        return info->argTypes[aPos];
     }
+    return 0;
+}
+
+extern "C" int64_t NCallFunc(int fPos, int argCount, int64_t *args) {
     return 0;
 }
 
@@ -103,23 +111,24 @@ struct _NFuncAdder {
     _NFuncAdder(const char *name, R (*func)(A...)) {
         _NFuncInfo info = {0};
 
-        info.name = name;
+        info.name    = name;
         info.address = (void *)func;
-        info.returnType = _NPickType<R>::Type;
-        SetParamTypes(&info, func);
+        info.retType = _NPickType<R>::Type;
+
+        AppendArgType(&info, func);
 
         _NAddFunc(&info);
     }
 
     template<class R, class A, class... B>
-    void SetParamTypes(_NFuncInfo *info, R (*)(A, B...)) {
-        int index = (info->paramCount)++;
-        info->paramTypes[index] = _NPickType<A>::Type;
-        SetParamTypes(info, (R (*)(B...))NULL);
+    void AppendArgType(_NFuncInfo *info, R (*)(A, B...)) {
+        int pos = (info->argCount)++;
+        info->argTypes[pos] = _NPickType<A>::Type;
+        AppendArgType(info, (R (*)(B...))NULL);
     }
 
     template<class R>
-    void SetParamTypes(_NFuncInfo *info, R (*)()) {
+    void AppendArgType(_NFuncInfo *info, R (*)()) {
     }
 };
 

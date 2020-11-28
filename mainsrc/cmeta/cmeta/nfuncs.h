@@ -2,13 +2,19 @@
 
 #include "basis.h"
 
-nfunc(int, NFuncsIndexBegin, (void));
-nfunc(int, NFuncsIndexEnd  , (void));
+#ifndef NFUNC_MAX_ARG_NUM
+#define NFUNC_MAX_ARG_NUM 6
+#endif
+
+nfunc(int, NFuncsBegin, (void));
+nfunc(int, NFuncsEnd  , (void));
 
 nfunc(int, NFindFunc, (const char *name));
 
-nfunc(const char *, NFuncName      , (int fIndex));
-nfunc(      void *, NFuncAddress   , (int fIndex));
-nfunc(      NType , NFuncReturnType, (int fIndex));
-nfunc(      int   , NFuncParamCount, (int fIndex));
-nfunc(      NType , NFuncParamType , (int fIndex, int pIndex));
+nfunc(const char *, NFuncName    , (int fPos));
+nfunc(void       *, NFuncAddress , (int fPos));
+nfunc(NType       , NFuncRetType , (int fpos));
+nfunc(int         , NFuncArgCount, (int fPos));
+nfunc(NType       , NFuncArgType , (int fPos, int aPos));
+
+nfunc(int64_t, NCallFunc, (int fPos, int argCount, int64_t *args));

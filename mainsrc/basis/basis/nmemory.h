@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ndef.h"
+#include "ntypes.h"
 
 nfunc(void *, NAlloc  , (int size));
 nfunc(void *, NRealloc, (void *ptr, int size));

@@ -1,5 +1,5 @@
 #include <cstring>
-#include "ndef.h"
+#include "ntypes.h"
 
 #ifndef NFUNC_MAX_ARG_NUM
 #define NFUNC_MAX_ARG_NUM 6

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ndef.h"
+#include "ntypes.h"
 
 nfunc(void, NLock  , (int hash));
 nfunc(void, NUnlock, (int hash));

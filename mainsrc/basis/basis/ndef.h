@@ -91,15 +91,20 @@
 #define nisizeof(type) ((int)sizeof(type))
 
 nenum(NType) {
-    NTypeVoid  = 1,
-    NTypeBool  = 2,
-    NTypeInt8  = 3,
-    NTypeInt16 = 4,
-    NTypeInt32 = 5,
-    NTypeInt64 = 6,
-    NTypeFlt32 = 7,
-    NTypeFlt64 = 8,
-    NTypePtr   = 9,
+    NTypeVoid   =  1,
+    NTypeBool   =  2,
+    NTypeInt8   =  3,
+    NTypeInt16  =  4,
+    NTypeInt32  =  5,
+    NTypeInt64  =  6,
+    NTypeUInt8  =  7,
+    NTypeUInt16 =  8,
+    NTypeUInt32 =  9,
+    NTypeUInt64 = 10,
+    NTypeFloat  = 11,
+    NTypeDouble = 12,
+    NTypePtr    = 13,
+    NTypeStruct = 14,
 };
 
 //used as a flag for generating function meta data:

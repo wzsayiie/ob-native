@@ -95,40 +95,86 @@ extern "C" int64_t NCallFunc(int fPos, int argCount, int64_t *args) {
     return 0;
 }
 
-template<class> struct _NPickType          {static const NType Type = NTypePtr  ;};
-template<>      struct _NPickType<void   > {static const NType Type = NTypeVoid ;};
-template<>      struct _NPickType<bool   > {static const NType Type = NTypeBool ;};
-template<>      struct _NPickType<int8_t > {static const NType Type = NTypeInt8 ;};
-template<>      struct _NPickType<int16_t> {static const NType Type = NTypeInt16;};
-template<>      struct _NPickType<int32_t> {static const NType Type = NTypeInt32;};
-template<>      struct _NPickType<int64_t> {static const NType Type = NTypeInt64;};
-template<>      struct _NPickType<float  > {static const NType Type = NTypeFlt32;};
-template<>      struct _NPickType<double > {static const NType Type = NTypeFlt64;};
+template<class T> struct _NTypePicker      {static const NType Type = NTypeStruct;};
+template<class T> struct _NTypePicker<T *> {static const NType Type = NTypePtr   ;};
+
+template<> struct _NTypePicker<void    > {static const NType Type = NTypeVoid  ;};
+template<> struct _NTypePicker<bool    > {static const NType Type = NTypeBool  ;};
+template<> struct _NTypePicker<int8_t  > {static const NType Type = NTypeInt8  ;};
+template<> struct _NTypePicker<int16_t > {static const NType Type = NTypeInt16 ;};
+template<> struct _NTypePicker<int32_t > {static const NType Type = NTypeInt32 ;};
+template<> struct _NTypePicker<int64_t > {static const NType Type = NTypeInt64 ;};
+template<> struct _NTypePicker<uint8_t > {static const NType Type = NTypeUInt8 ;};
+template<> struct _NTypePicker<uint16_t> {static const NType Type = NTypeUInt16;};
+template<> struct _NTypePicker<uint32_t> {static const NType Type = NTypeUInt32;};
+template<> struct _NTypePicker<uint64_t> {static const NType Type = NTypeUInt64;};
+template<> struct _NTypePicker<float   > {static const NType Type = NTypeFloat ;};
+template<> struct _NTypePicker<double  > {static const NType Type = NTypeDouble;};
 
 struct _NFuncAdder {
 
-    template<class R, class... A>
-    _NFuncAdder(const char *name, R (*func)(A...)) {
+    template<class... A> _NFuncAdder(const char *name, void (*func)(A...)) {
+        AddFunc(name, NTypeVoid, func);
+    }
+    
+    template<class R, class... A> _NFuncAdder(const char *name, R (*func)(A...)) {
+        AddFunc(name, _NTypePicker<R>::Type, (void (*)(A...))func);
+    }
+    
+    template<class... A> void AddFunc(const char *name, NType retType, void (*func)(A...)) {
+        
+        bool error = false;
+        int  count = CheckArgs(func, &error);
+        
+        if (error) {
+            //some argument types are unsupported.
+            return;
+        }
+        if (count > NFUNC_MAX_ARG_NUM) {
+            //too many arguments.
+            return;
+        }
+        if (!IsSupportedType(retType)) {
+            //return type is unsupported.
+            return;
+        }
+        
         _NFuncInfo info = {0};
-
-        info.name    = name;
-        info.address = (void *)func;
-        info.retType = _NPickType<R>::Type;
-
-        AppendArgType(&info, func);
-
+        {
+            info.name    = name;
+            info.address = (void *)func;
+            info.retType = retType;
+            AddArgTypes(&info, func);
+        }
         _NAddFunc(&info);
     }
-
-    template<class R, class A, class... B>
-    void AppendArgType(_NFuncInfo *info, R (*)(A, B...)) {
-        int pos = (info->argCount)++;
-        info->argTypes[pos] = _NPickType<A>::Type;
-        AppendArgType(info, (R (*)(B...))NULL);
+    
+    template<class A, class... B> int CheckArgs(void (*)(A, B...), bool *error) {
+        NType type = _NTypePicker<A>::Type;
+        if (!IsSupportedType(type)) {
+            *error = true;
+        }
+        
+        return 1 + CheckArgs((void (*)(B...))NULL, error);
     }
+    
+    int CheckArgs(void (*)(), bool *) {
+        return 0;
+    }
+    
+    template<class A, class... B> void AddArgTypes(_NFuncInfo *info, void (*)(A, B...)) {
+        int pos = (info->argCount)++;
 
-    template<class R>
-    void AppendArgType(_NFuncInfo *info, R (*)()) {
+        info->argTypes[pos] = _NTypePicker<A>::Type;
+        AddArgTypes(info, (void (*)(B...))NULL);
+    }
+    
+    void AddArgTypes(_NFuncInfo *, void (*)()) {
+    }
+    
+    bool IsSupportedType(NType type) {
+        //struct type is unsupported currently.
+        return type != NTypeStruct;
     }
 };
 

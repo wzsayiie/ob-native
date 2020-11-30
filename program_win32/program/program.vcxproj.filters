@@ -60,9 +60,6 @@
     <ClCompile Include="..\..\mainsrc\basis\basis\basis.c">
       <Filter>mainsrc\basis\basis</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\mainsrc\basis\basis\ndef.c">
-      <Filter>mainsrc\basis\basis</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\mainsrc\basis\basis\nio.c">
       <Filter>mainsrc\basis\basis</Filter>
     </ClCompile>
@@ -96,6 +93,12 @@
     <ClCompile Include="..\..\mainsrc\basis\basis\nlock.c">
       <Filter>mainsrc\basis\basis</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\mainsrc\basis\basis\nenviron.c">
+      <Filter>mainsrc\basis\basis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mainsrc\basis\basis\ntypes.c">
+      <Filter>mainsrc\basis\basis</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\mainsrc\uidev\uidev\uidev.h">
@@ -111,9 +114,6 @@
       <Filter>mainsrc\uidev\uidev</Filter>
     </ClInclude>
     <ClInclude Include="..\..\mainsrc\basis\basis\basis.h">
-      <Filter>mainsrc\basis\basis</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\mainsrc\basis\basis\ndef.h">
       <Filter>mainsrc\basis\basis</Filter>
     </ClInclude>
     <ClInclude Include="..\..\mainsrc\basis\basis\nio.h">
@@ -150,6 +150,12 @@
       <Filter>mainsrc\cmeta\cmeta</Filter>
     </ClInclude>
     <ClInclude Include="..\..\mainsrc\basis\basis\nlock.h">
+      <Filter>mainsrc\basis\basis</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mainsrc\basis\basis\nenviron.h">
+      <Filter>mainsrc\basis\basis</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mainsrc\basis\basis\ntypes.h">
       <Filter>mainsrc\basis\basis</Filter>
     </ClInclude>
   </ItemGroup>

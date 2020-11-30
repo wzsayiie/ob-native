@@ -20,12 +20,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\mainsrc\basis\basis\basis.c" />
-    <ClCompile Include="..\..\mainsrc\basis\basis\ndef.c" />
+    <ClCompile Include="..\..\mainsrc\basis\basis\nenviron.c" />
     <ClCompile Include="..\..\mainsrc\basis\basis\nio.c" />
     <ClCompile Include="..\..\mainsrc\basis\basis\niterator.c" />
     <ClCompile Include="..\..\mainsrc\basis\basis\nlock.c" />
     <ClCompile Include="..\..\mainsrc\basis\basis\nmemory.c" />
     <ClCompile Include="..\..\mainsrc\basis\basis\nstring.c" />
+    <ClCompile Include="..\..\mainsrc\basis\basis\ntypes.c" />
     <ClCompile Include="..\..\mainsrc\basis\basis\nunicode.c" />
     <ClCompile Include="..\..\mainsrc\classes\classes\classes.cpp" />
     <ClCompile Include="..\..\mainsrc\classes\classes\nobject.cpp" />
@@ -40,12 +41,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\mainsrc\basis\basis\basis.h" />
-    <ClInclude Include="..\..\mainsrc\basis\basis\ndef.h" />
+    <ClInclude Include="..\..\mainsrc\basis\basis\nenviron.h" />
     <ClInclude Include="..\..\mainsrc\basis\basis\nio.h" />
     <ClInclude Include="..\..\mainsrc\basis\basis\niterator.h" />
     <ClInclude Include="..\..\mainsrc\basis\basis\nlock.h" />
     <ClInclude Include="..\..\mainsrc\basis\basis\nmemory.h" />
     <ClInclude Include="..\..\mainsrc\basis\basis\nstring.h" />
+    <ClInclude Include="..\..\mainsrc\basis\basis\ntypes.h" />
     <ClInclude Include="..\..\mainsrc\basis\basis\nunicode.h" />
     <ClInclude Include="..\..\mainsrc\classes\classes\classes.h" />
     <ClInclude Include="..\..\mainsrc\classes\classes\nobject.h" />

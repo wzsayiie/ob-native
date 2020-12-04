@@ -1,4 +1,5 @@
 #include "nio.h"
+#include "nenviron.h"
 #include <stdarg.h>
 
 #if N_OS_ANDROID

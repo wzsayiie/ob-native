@@ -43,11 +43,21 @@ nenum(NType) {
     NTypeStruct = 14,
 };
 
-//used as a flag for generating function meta data:
+nstruct(NValue) {
+    union {
+        int64_t intValue;
+        double  fltValue;
+        void   *ptrValue;
+    };
+};
+
 #if __cplusplus
-    #define __nfunc(ret, name, params) extern "C" ret name params
+    #define nclink extern "C"
+    #define __nfunc(ret, name, params) nclink ret name params
 #else
+    #define nclink
     #define __nfunc(ret, name, params) ret name params
 #endif
 
+//the flag for generating function meta data.
 #define nfunc(ret, name, params) __nfunc(ret, name, params)

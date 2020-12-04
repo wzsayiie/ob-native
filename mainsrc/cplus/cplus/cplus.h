@@ -4,5 +4,5 @@
     #error "there are c++ headers."
 #endif
 
-#include "nobject.h"
 #include "nref.h"
+#include "nwidget.h"

@@ -1,21 +1,21 @@
-#include "nobject.h"
+#include "nwidget.h"
 #include "basis.h"
 
-NObject::NObject() {
+NWidget::NWidget() {
     _count = 1;
 }
 
-NObject::~NObject() {
+NWidget::~NWidget() {
 }
 
-NObject *NObject::Retain() {
+NWidget *NWidget::Retain() {
     nsynwith(this) {
         _count += 1;
     }
     return this;
 }
 
-void NObject::Release() {
+void NWidget::Release() {
     nsynwith(this) {
         if (--_count <= 0) {
             delete this;

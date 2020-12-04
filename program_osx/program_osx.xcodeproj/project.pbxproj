@@ -15,13 +15,15 @@
 		CE0FE389254085FC0005F381 /* nlaunch.c in Sources */ = {isa = PBXBuildFile; fileRef = CE0FE387254085FC0005F381 /* nlaunch.c */; };
 		CE15E18325503806000DE8D9 /* niterator.c in Sources */ = {isa = PBXBuildFile; fileRef = CE15E18025503806000DE8D9 /* niterator.c */; };
 		CE8C3C06257231A400260633 /* nlock.c in Sources */ = {isa = PBXBuildFile; fileRef = CE8C3C04257231A400260633 /* nlock.c */; };
+		CEA9E295257A6C3C004A6FC0 /* narray.c in Sources */ = {isa = PBXBuildFile; fileRef = CEA9E291257A6C3C004A6FC0 /* narray.c */; };
+		CEA9E296257A6C3C004A6FC0 /* ntable.c in Sources */ = {isa = PBXBuildFile; fileRef = CEA9E294257A6C3C004A6FC0 /* ntable.c */; };
+		CEA9E2A0257A6C61004A6FC0 /* cplus.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA9E29B257A6C60004A6FC0 /* cplus.cpp */; };
+		CEA9E2A1257A6C61004A6FC0 /* nref.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA9E29C257A6C60004A6FC0 /* nref.cpp */; };
+		CEA9E2A2257A6C61004A6FC0 /* nwidget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA9E29E257A6C61004A6FC0 /* nwidget.cpp */; };
 		CEABAA032573CBD2008A385A /* nenviron.c in Sources */ = {isa = PBXBuildFile; fileRef = CEABAA002573CBD2008A385A /* nenviron.c */; };
 		CEABAA042573CBD2008A385A /* ntypes.c in Sources */ = {isa = PBXBuildFile; fileRef = CEABAA022573CBD2008A385A /* ntypes.c */; };
 		CEC6DF4D256107DB00D2E1C7 /* cmeta.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC6DF41256107DB00D2E1C7 /* cmeta.cpp */; };
 		CEC6DF4E256107DB00D2E1C7 /* nfuncs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC6DF44256107DB00D2E1C7 /* nfuncs.cpp */; };
-		CEC6DF4F256107DB00D2E1C7 /* nobject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC6DF47256107DB00D2E1C7 /* nobject.cpp */; };
-		CEC6DF50256107DB00D2E1C7 /* nref.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC6DF48256107DB00D2E1C7 /* nref.cpp */; };
-		CEC6DF51256107DB00D2E1C7 /* classes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC6DF4A256107DB00D2E1C7 /* classes.cpp */; };
 		CECB6488253AE8C1002B766D /* nmemory.c in Sources */ = {isa = PBXBuildFile; fileRef = CECB647C253AE8C1002B766D /* nmemory.c */; };
 		CECB648B253AE8C1002B766D /* basis.c in Sources */ = {isa = PBXBuildFile; fileRef = CECB6482253AE8C1002B766D /* basis.c */; };
 		CECB648C253AE8C1002B766D /* nstring.c in Sources */ = {isa = PBXBuildFile; fileRef = CECB6486253AE8C1002B766D /* nstring.c */; };
@@ -48,6 +50,16 @@
 		CE15E18025503806000DE8D9 /* niterator.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = niterator.c; sourceTree = "<group>"; };
 		CE8C3C04257231A400260633 /* nlock.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = nlock.c; sourceTree = "<group>"; };
 		CE8C3C05257231A400260633 /* nlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nlock.h; sourceTree = "<group>"; };
+		CEA9E291257A6C3C004A6FC0 /* narray.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = narray.c; sourceTree = "<group>"; };
+		CEA9E292257A6C3C004A6FC0 /* ntable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ntable.h; sourceTree = "<group>"; };
+		CEA9E293257A6C3C004A6FC0 /* narray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = narray.h; sourceTree = "<group>"; };
+		CEA9E294257A6C3C004A6FC0 /* ntable.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ntable.c; sourceTree = "<group>"; };
+		CEA9E29A257A6C60004A6FC0 /* cplus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cplus.h; sourceTree = "<group>"; };
+		CEA9E29B257A6C60004A6FC0 /* cplus.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cplus.cpp; sourceTree = "<group>"; };
+		CEA9E29C257A6C60004A6FC0 /* nref.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = nref.cpp; sourceTree = "<group>"; };
+		CEA9E29D257A6C61004A6FC0 /* nwidget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nwidget.h; sourceTree = "<group>"; };
+		CEA9E29E257A6C61004A6FC0 /* nwidget.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = nwidget.cpp; sourceTree = "<group>"; };
+		CEA9E29F257A6C61004A6FC0 /* nref.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nref.h; sourceTree = "<group>"; };
 		CEABA9FF2573CBD2008A385A /* ntypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ntypes.h; sourceTree = "<group>"; };
 		CEABAA002573CBD2008A385A /* nenviron.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = nenviron.c; sourceTree = "<group>"; };
 		CEABAA012573CBD2008A385A /* nenviron.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nenviron.h; sourceTree = "<group>"; };
@@ -57,12 +69,6 @@
 		CEC6DF42256107DB00D2E1C7 /* cmeta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cmeta.h; sourceTree = "<group>"; };
 		CEC6DF43256107DB00D2E1C7 /* nfuncs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nfuncs.h; sourceTree = "<group>"; };
 		CEC6DF44256107DB00D2E1C7 /* nfuncs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = nfuncs.cpp; sourceTree = "<group>"; };
-		CEC6DF47256107DB00D2E1C7 /* nobject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = nobject.cpp; sourceTree = "<group>"; };
-		CEC6DF48256107DB00D2E1C7 /* nref.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = nref.cpp; sourceTree = "<group>"; };
-		CEC6DF49256107DB00D2E1C7 /* classes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = classes.h; sourceTree = "<group>"; };
-		CEC6DF4A256107DB00D2E1C7 /* classes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = classes.cpp; sourceTree = "<group>"; };
-		CEC6DF4B256107DB00D2E1C7 /* nref.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nref.h; sourceTree = "<group>"; };
-		CEC6DF4C256107DB00D2E1C7 /* nobject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nobject.h; sourceTree = "<group>"; };
 		CECB647B253AE8C1002B766D /* nmemory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nmemory.h; sourceTree = "<group>"; };
 		CECB647C253AE8C1002B766D /* nmemory.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = nmemory.c; sourceTree = "<group>"; };
 		CECB647E253AE8C1002B766D /* nstring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nstring.h; sourceTree = "<group>"; };
@@ -95,8 +101,8 @@
 			isa = PBXGroup;
 			children = (
 				CECB6460253AE16D002B766D /* basis */,
-				CEC6DF45256107DB00D2E1C7 /* classes */,
 				CEC6DF3F256107DB00D2E1C7 /* cmeta */,
+				CEA9E298257A6C60004A6FC0 /* cplus */,
 				CE0B3EF624F2AF360038E58A /* main */,
 				CE0B3EDA24F2AF360038E58A /* uidev */,
 			);
@@ -154,6 +160,27 @@
 			path = main;
 			sourceTree = "<group>";
 		};
+		CEA9E298257A6C60004A6FC0 /* cplus */ = {
+			isa = PBXGroup;
+			children = (
+				CEA9E299257A6C60004A6FC0 /* cplus */,
+			);
+			path = cplus;
+			sourceTree = "<group>";
+		};
+		CEA9E299257A6C60004A6FC0 /* cplus */ = {
+			isa = PBXGroup;
+			children = (
+				CEA9E29B257A6C60004A6FC0 /* cplus.cpp */,
+				CEA9E29A257A6C60004A6FC0 /* cplus.h */,
+				CEA9E29C257A6C60004A6FC0 /* nref.cpp */,
+				CEA9E29F257A6C61004A6FC0 /* nref.h */,
+				CEA9E29E257A6C61004A6FC0 /* nwidget.cpp */,
+				CEA9E29D257A6C61004A6FC0 /* nwidget.h */,
+			);
+			path = cplus;
+			sourceTree = "<group>";
+		};
 		CEC6DF3F256107DB00D2E1C7 /* cmeta */ = {
 			isa = PBXGroup;
 			children = (
@@ -174,27 +201,6 @@
 			path = cmeta;
 			sourceTree = "<group>";
 		};
-		CEC6DF45256107DB00D2E1C7 /* classes */ = {
-			isa = PBXGroup;
-			children = (
-				CEC6DF46256107DB00D2E1C7 /* classes */,
-			);
-			path = classes;
-			sourceTree = "<group>";
-		};
-		CEC6DF46256107DB00D2E1C7 /* classes */ = {
-			isa = PBXGroup;
-			children = (
-				CEC6DF4A256107DB00D2E1C7 /* classes.cpp */,
-				CEC6DF49256107DB00D2E1C7 /* classes.h */,
-				CEC6DF47256107DB00D2E1C7 /* nobject.cpp */,
-				CEC6DF4C256107DB00D2E1C7 /* nobject.h */,
-				CEC6DF48256107DB00D2E1C7 /* nref.cpp */,
-				CEC6DF4B256107DB00D2E1C7 /* nref.h */,
-			);
-			path = classes;
-			sourceTree = "<group>";
-		};
 		CECB6460253AE16D002B766D /* basis */ = {
 			isa = PBXGroup;
 			children = (
@@ -208,6 +214,8 @@
 			children = (
 				CECB6482253AE8C1002B766D /* basis.c */,
 				CECB6484253AE8C1002B766D /* basis.h */,
+				CEA9E291257A6C3C004A6FC0 /* narray.c */,
+				CEA9E293257A6C3C004A6FC0 /* narray.h */,
 				CEABAA002573CBD2008A385A /* nenviron.c */,
 				CEABAA012573CBD2008A385A /* nenviron.h */,
 				CECB6492253B1BC8002B766D /* nio.c */,
@@ -220,6 +228,8 @@
 				CECB647B253AE8C1002B766D /* nmemory.h */,
 				CECB6486253AE8C1002B766D /* nstring.c */,
 				CECB647E253AE8C1002B766D /* nstring.h */,
+				CEA9E294257A6C3C004A6FC0 /* ntable.c */,
+				CEA9E292257A6C3C004A6FC0 /* ntable.h */,
 				CEABAA022573CBD2008A385A /* ntypes.c */,
 				CEABA9FF2573CBD2008A385A /* ntypes.h */,
 				CEE8D8362545539500AD308C /* nunicode.c */,
@@ -325,6 +335,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CECB6488253AE8C1002B766D /* nmemory.c in Sources */,
+				CEA9E2A2257A6C61004A6FC0 /* nwidget.cpp in Sources */,
 				CE0B3EFD24F2AF360038E58A /* NMAppDelegate.m in Sources */,
 				CE15E18325503806000DE8D9 /* niterator.c in Sources */,
 				CEE8D8382545539500AD308C /* nunicode.c in Sources */,
@@ -333,16 +344,17 @@
 				CECB648C253AE8C1002B766D /* nstring.c in Sources */,
 				CE8C3C06257231A400260633 /* nlock.c in Sources */,
 				CE0B3EFC24F2AF360038E58A /* uidev.c in Sources */,
+				CEA9E295257A6C3C004A6FC0 /* narray.c in Sources */,
+				CEA9E2A1257A6C61004A6FC0 /* nref.cpp in Sources */,
 				CE0B3EFF24F2AF360038E58A /* NMWindowController.m in Sources */,
+				CEA9E296257A6C3C004A6FC0 /* ntable.c in Sources */,
 				CEABAA032573CBD2008A385A /* nenviron.c in Sources */,
-				CEC6DF4F256107DB00D2E1C7 /* nobject.cpp in Sources */,
 				CEABAA042573CBD2008A385A /* ntypes.c in Sources */,
 				CECB648B253AE8C1002B766D /* basis.c in Sources */,
 				CE0FE389254085FC0005F381 /* nlaunch.c in Sources */,
 				CE0FE385254085F20005F381 /* launch.cpp in Sources */,
-				CEC6DF50256107DB00D2E1C7 /* nref.cpp in Sources */,
-				CEC6DF51256107DB00D2E1C7 /* classes.cpp in Sources */,
 				CECB6493253B1BC8002B766D /* nio.c in Sources */,
+				CEA9E2A0257A6C61004A6FC0 /* cplus.cpp in Sources */,
 				CE0B3EFE24F2AF360038E58A /* NMViewController.m in Sources */,
 				CED80C2C24F2ADA30063F3DE /* main.m in Sources */,
 			);

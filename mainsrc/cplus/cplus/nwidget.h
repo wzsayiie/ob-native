@@ -9,5 +9,5 @@ struct NWidget {
     virtual void     Release();
 
 private:
-    int _count;
+    int mCount;
 };

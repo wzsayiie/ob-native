@@ -2,7 +2,7 @@
 #include "basis.h"
 
 NWidget::NWidget() {
-    _count = 1;
+    mCount = 1;
 }
 
 NWidget::~NWidget() {
@@ -10,14 +10,14 @@ NWidget::~NWidget() {
 
 NWidget *NWidget::Retain() {
     nsynwith(this) {
-        _count += 1;
+        mCount += 1;
     }
     return this;
 }
 
 void NWidget::Release() {
     nsynwith(this) {
-        if (--_count <= 0) {
+        if (--mCount <= 0) {
             delete this;
         }
     }

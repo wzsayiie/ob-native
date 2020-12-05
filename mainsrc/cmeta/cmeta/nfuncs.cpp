@@ -10,54 +10,55 @@ struct _NFuncInfo {
 
     void *address;
     NType retType;
+    bool  retRetained;
     int   argCount;
     NType argTypes[NFUNC_MAX_ARG_NUM];
 };
 
-static const int   LIST_BEGIN     = 1;
-static const int   LIST_END       = 256;
-static _NFuncInfo _list[LIST_END] = {0};
-static int        _listEnd        = 0;
+static const int  LIST_BEGIN      = 1;
+static const int  LIST_END        = 256;
+static _NFuncInfo gList[LIST_END] = {0};
+static int        gListEnd        = 0;
 
 static void _NAddFunc(_NFuncInfo *info) {
-    if (_listEnd == LIST_END) {
+    if (gListEnd == LIST_END) {
         return;
     }
 
     //insertion sort here.
     int pos = LIST_BEGIN;
-    while (pos < _listEnd) {
-        if (strcmp(_list[pos].name, info->name) > 0) {
+    while (pos < gListEnd) {
+        if (strcmp(gList[pos].name, info->name) > 0) {
             break;
         }
         pos++;
     }
 
-    if (pos < _listEnd) {
-        void *dst = _list + pos + 1;
-        void *src = _list + pos;
-        int   num = _listEnd - pos;
+    if (pos < gListEnd) {
+        void *dst = gList + pos + 1;
+        void *src = gList + pos;
+        int   num = gListEnd - pos;
         memmove(dst, src, num * sizeof(_NFuncInfo));
     }
-    _list[pos] = *info;
-    _listEnd += 1;
+    gList[pos] = *info;
+    gListEnd += 1;
 }
 
-extern "C" int NFuncsBegin() {return LIST_BEGIN;}
-extern "C" int NFuncsEnd  () {return _listEnd  ;}
+nclink int NFuncsBegin() {return LIST_BEGIN;}
+nclink int NFuncsEnd  () {return gListEnd  ;}
 
-extern "C" int NFindFunc(const char *name) {
+nclink int NFindFunc(const char *name) {
     if (name == NULL || *name == '\0') {
         return 0;
     }
 
     //binary search here.
     int begin = LIST_BEGIN;
-    int end   = _listEnd  ;
+    int end   = gListEnd  ;
 
     while (begin < end) {
         int center = (begin + end) / 2;
-        int result = strcmp(name, _list[center].name);
+        int result = strcmp(name, gList[center].name);
 
         if (result > 0) {
             begin = center + 1;
@@ -71,19 +72,20 @@ extern "C" int NFindFunc(const char *name) {
 }
 
 static _NFuncInfo *_NFuncGetInfo(int fPos) {
-    if (LIST_BEGIN <= fPos && fPos < _listEnd) {
-        return _list + fPos;
+    if (LIST_BEGIN <= fPos && fPos < gListEnd) {
+        return gList + fPos;
     } else {
-        return _list;
+        return gList;
     }
 }
 
-extern "C" const char *NFuncName    (int i) {return _NFuncGetInfo(i)->name    ;}
-extern "C" void       *NFuncAddress (int i) {return _NFuncGetInfo(i)->address ;}
-extern "C" int         NFuncRetType (int i) {return _NFuncGetInfo(i)->retType ;}
-extern "C" int         NFuncArgCount(int i) {return _NFuncGetInfo(i)->argCount;}
+nclink const char *NFuncName       (int i) {return _NFuncGetInfo(i)->name       ;}
+nclink void       *NFuncAddress    (int i) {return _NFuncGetInfo(i)->address    ;}
+nclink int         NFuncRetType    (int i) {return _NFuncGetInfo(i)->retType    ;}
+nclink bool        NFuncRetRetained(int i) {return _NFuncGetInfo(i)->retRetained;}
+nclink int         NFuncArgCount   (int i) {return _NFuncGetInfo(i)->argCount   ;}
 
-extern "C" NType NFuncArgType(int fPos, int aPos) {
+nclink NType NFuncArgType(int fPos, int aPos) {
     _NFuncInfo *info = _NFuncGetInfo(fPos);
     if (0 <= aPos && aPos < info->argCount) {
         return info->argTypes[aPos];
@@ -91,8 +93,20 @@ extern "C" NType NFuncArgType(int fPos, int aPos) {
     return 0;
 }
 
-extern "C" int64_t NCallFunc(int fPos, int argCount, int64_t *args) {
+nclink int64_t NCallFunc(int fPos, int argCount, NValue *args) {
     return 0;
+}
+
+static bool _NFuncRetRetained(NType retType, const char *name) {
+    if (retType != NTypePtr) {
+        return false;
+    }
+
+    if (strstr(name, "Create")) {return true;}
+    if (strstr(name, "Copy"  )) {return true;}
+    if (strstr(name, "Retain")) {return true;}
+
+    return false;
 }
 
 template<class T> struct _NTypePicker      {static const NType Type = NTypeStruct;};
@@ -141,9 +155,11 @@ struct _NFuncAdder {
         
         _NFuncInfo info = {0};
         {
-            info.name    = name;
-            info.address = (void *)func;
-            info.retType = retType;
+            info.name        = name;
+            info.address     = (void *)func;
+            info.retType     = retType;
+            info.retRetained = _NFuncRetRetained(retType, name);
+
             AddArgTypes(&info, func);
         }
         _NAddFunc(&info);

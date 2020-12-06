@@ -42,7 +42,6 @@
 		CE0B3EEB24F2AF360038E58A /* NOSXViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NOSXViewController.h; sourceTree = "<group>"; };
 		CE0B3EEC24F2AF360038E58A /* NOSXAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NOSXAppDelegate.h; sourceTree = "<group>"; };
 		CE0B3EED24F2AF360038E58A /* NOSXWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NOSXWindowController.h; sourceTree = "<group>"; };
-		CE0FE383254085F20005F381 /* launch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = launch.h; sourceTree = "<group>"; };
 		CE0FE384254085F20005F381 /* launch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = launch.cpp; sourceTree = "<group>"; };
 		CE0FE387254085FC0005F381 /* nlaunch.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = nlaunch.c; sourceTree = "<group>"; };
 		CE0FE388254085FC0005F381 /* nlaunch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nlaunch.h; sourceTree = "<group>"; };
@@ -155,7 +154,6 @@
 			isa = PBXGroup;
 			children = (
 				CE0FE384254085F20005F381 /* launch.cpp */,
-				CE0FE383254085F20005F381 /* launch.h */,
 			);
 			path = main;
 			sourceTree = "<group>";

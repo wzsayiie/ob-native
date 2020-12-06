@@ -43,7 +43,6 @@
 		CE0FE37A254085A40005F381 /* nlaunch.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = nlaunch.c; sourceTree = "<group>"; };
 		CE0FE37B254085A40005F381 /* nlaunch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nlaunch.h; sourceTree = "<group>"; };
 		CE0FE37E254085B30005F381 /* launch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = launch.cpp; sourceTree = "<group>"; };
-		CE0FE37F254085B30005F381 /* launch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = launch.h; sourceTree = "<group>"; };
 		CE15E18625503824000DE8D9 /* niterator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = niterator.h; sourceTree = "<group>"; };
 		CE15E18725503824000DE8D9 /* niterator.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = niterator.c; sourceTree = "<group>"; };
 		CE4D5F45253C708A00948ADE /* basis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = basis.h; sourceTree = "<group>"; };
@@ -151,7 +150,6 @@
 			isa = PBXGroup;
 			children = (
 				CE0FE37E254085B30005F381 /* launch.cpp */,
-				CE0FE37F254085B30005F381 /* launch.h */,
 			);
 			path = main;
 			sourceTree = "<group>";

@@ -26,6 +26,12 @@
 
 #define nisizeof(type) ((int)sizeof(type))
 
+#if N_COMPILER_CL
+    #define nthreadlocal __declspec(thread)
+#else
+    #define nthreadlocal _Thread_local
+#endif
+
 nenum(NType) {
     NTypeVoid   =  1,
     NTypeBool   =  2,

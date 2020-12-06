@@ -1,17 +1,17 @@
-#import "NMAppDelegate.h"
-#import "NMWindowController.h"
+#import "NOSXAppDelegate.h"
+#import "NOSXWindowController.h"
 #import "uidev.h"
 
-@interface NMAppDelegate ()
-@property (nonatomic) NMWindowController *windowController;
+@interface NOSXAppDelegate ()
+@property (nonatomic) NOSXWindowController *windowController;
 @end
 
-@implementation NMAppDelegate
+@implementation NOSXAppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification {
     NLaunch();
     
-    self.windowController = [NMWindowController windowController];
+    self.windowController = [NOSXWindowController windowController];
     [self.windowController showWindow:nil];
 }
 

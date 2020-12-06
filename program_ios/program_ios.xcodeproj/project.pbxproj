@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		CE037A0624F2444C0047FE7E /* uidev.c in Sources */ = {isa = PBXBuildFile; fileRef = CE0379F724F2444C0047FE7E /* uidev.c */; };
-		CE037A0824F2444C0047FE7E /* NIAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0379FC24F2444C0047FE7E /* NIAppDelegate.m */; };
-		CE037A0924F2444C0047FE7E /* NIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0379FD24F2444C0047FE7E /* NIViewController.m */; };
+		CE037A0824F2444C0047FE7E /* NIOSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0379FC24F2444C0047FE7E /* NIOSAppDelegate.m */; };
+		CE037A0924F2444C0047FE7E /* NIOSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0379FD24F2444C0047FE7E /* NIOSViewController.m */; };
 		CE0FE37C254085A40005F381 /* nlaunch.c in Sources */ = {isa = PBXBuildFile; fileRef = CE0FE37A254085A40005F381 /* nlaunch.c */; };
 		CE0FE380254085B30005F381 /* launch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE0FE37E254085B30005F381 /* launch.cpp */; };
 		CE15E18A25503824000DE8D9 /* niterator.c in Sources */ = {isa = PBXBuildFile; fileRef = CE15E18725503824000DE8D9 /* niterator.c */; };
@@ -36,10 +36,10 @@
 /* Begin PBXFileReference section */
 		CE0379F624F2444C0047FE7E /* uidev.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uidev.h; sourceTree = "<group>"; };
 		CE0379F724F2444C0047FE7E /* uidev.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = uidev.c; sourceTree = "<group>"; };
-		CE0379FC24F2444C0047FE7E /* NIAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIAppDelegate.m; sourceTree = "<group>"; };
-		CE0379FD24F2444C0047FE7E /* NIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIViewController.m; sourceTree = "<group>"; };
-		CE0379FE24F2444C0047FE7E /* NIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIViewController.h; sourceTree = "<group>"; };
-		CE0379FF24F2444C0047FE7E /* NIAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIAppDelegate.h; sourceTree = "<group>"; };
+		CE0379FC24F2444C0047FE7E /* NIOSAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIOSAppDelegate.m; sourceTree = "<group>"; };
+		CE0379FD24F2444C0047FE7E /* NIOSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIOSViewController.m; sourceTree = "<group>"; };
+		CE0379FE24F2444C0047FE7E /* NIOSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIOSViewController.h; sourceTree = "<group>"; };
+		CE0379FF24F2444C0047FE7E /* NIOSAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIOSAppDelegate.h; sourceTree = "<group>"; };
 		CE0FE37A254085A40005F381 /* nlaunch.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = nlaunch.c; sourceTree = "<group>"; };
 		CE0FE37B254085A40005F381 /* nlaunch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nlaunch.h; sourceTree = "<group>"; };
 		CE0FE37E254085B30005F381 /* launch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = launch.cpp; sourceTree = "<group>"; };
@@ -131,10 +131,10 @@
 		CE0379FB24F2444C0047FE7E /* uidev_ios */ = {
 			isa = PBXGroup;
 			children = (
-				CE0379FF24F2444C0047FE7E /* NIAppDelegate.h */,
-				CE0379FC24F2444C0047FE7E /* NIAppDelegate.m */,
-				CE0379FE24F2444C0047FE7E /* NIViewController.h */,
-				CE0379FD24F2444C0047FE7E /* NIViewController.m */,
+				CE0379FF24F2444C0047FE7E /* NIOSAppDelegate.h */,
+				CE0379FC24F2444C0047FE7E /* NIOSAppDelegate.m */,
+				CE0379FE24F2444C0047FE7E /* NIOSViewController.h */,
+				CE0379FD24F2444C0047FE7E /* NIOSViewController.m */,
 			);
 			path = uidev_ios;
 			sourceTree = "<group>";
@@ -333,12 +333,12 @@
 			files = (
 				CEC6DF702561792900D2E1C7 /* cmeta.cpp in Sources */,
 				CE037A0624F2444C0047FE7E /* uidev.c in Sources */,
-				CE037A0824F2444C0047FE7E /* NIAppDelegate.m in Sources */,
+				CE037A0824F2444C0047FE7E /* NIOSAppDelegate.m in Sources */,
 				CE4D5F52253C708A00948ADE /* nio.c in Sources */,
 				CE4D5F56253C708A00948ADE /* basis.c in Sources */,
 				CE8C3C0B257231E900260633 /* nlock.c in Sources */,
 				CEC6DF712561792900D2E1C7 /* nfuncs.cpp in Sources */,
-				CE037A0924F2444C0047FE7E /* NIViewController.m in Sources */,
+				CE037A0924F2444C0047FE7E /* NIOSViewController.m in Sources */,
 				CEABA9FC2573CA1E008A385A /* nenviron.c in Sources */,
 				CEA9E2A9257A6C80004A6FC0 /* narray.c in Sources */,
 				CEA9E2A8257A6C80004A6FC0 /* ntable.c in Sources */,

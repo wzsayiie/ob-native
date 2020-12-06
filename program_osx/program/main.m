@@ -2,7 +2,7 @@
 
 int main(int argc, const char *argv[]) {
     
-    Class clazz = NSClassFromString(@"NMAppDelegate");
+    Class clazz = NSClassFromString(@"NOSXAppDelegate");
     id<NSApplicationDelegate> delegate = [[clazz alloc] init];
     
     //NOTE: the "delegate" is weak.

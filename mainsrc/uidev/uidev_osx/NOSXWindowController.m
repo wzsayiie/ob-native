@@ -1,12 +1,12 @@
-#import "NMWindowController.h"
-#import "NMViewController.h"
+#import "NOSXWindowController.h"
+#import "NOSXViewController.h"
 
-@interface NMWindowController () <NSWindowDelegate>
+@interface NOSXWindowController () <NSWindowDelegate>
 @end
 
-@implementation NMWindowController
+@implementation NOSXWindowController
 
-+ (NMWindowController *)windowController {
++ (NOSXWindowController *)windowController {
     //onyl assign the origin, the size will be taken care of by contentView.
     NSRect rect = NSMakeRect(100, 500, 0, 0);
     
@@ -19,8 +19,8 @@
     NSBackingStoreType backing = NSBackingStoreBuffered;
     
     NSWindow *window = [[NSWindow alloc] initWithContentRect:rect styleMask:style backing:backing defer:NO];
-    NMWindowController *controller = [[NMWindowController alloc] initWithWindow:window];
-    window.contentViewController = [[NMViewController alloc] init];
+    NOSXWindowController *controller = [[NOSXWindowController alloc] initWithWindow:window];
+    window.contentViewController = [[NOSXViewController alloc] init];
     window.delegate = controller;
     
     return controller;

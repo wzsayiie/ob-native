@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		CE0B3EFC24F2AF360038E58A /* uidev.c in Sources */ = {isa = PBXBuildFile; fileRef = CE0B3EE624F2AF360038E58A /* uidev.c */; };
-		CE0B3EFD24F2AF360038E58A /* NMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0B3EE824F2AF360038E58A /* NMAppDelegate.m */; };
-		CE0B3EFE24F2AF360038E58A /* NMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0B3EE924F2AF360038E58A /* NMViewController.m */; };
-		CE0B3EFF24F2AF360038E58A /* NMWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0B3EEA24F2AF360038E58A /* NMWindowController.m */; };
+		CE0B3EFD24F2AF360038E58A /* NOSXAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0B3EE824F2AF360038E58A /* NOSXAppDelegate.m */; };
+		CE0B3EFE24F2AF360038E58A /* NOSXViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0B3EE924F2AF360038E58A /* NOSXViewController.m */; };
+		CE0B3EFF24F2AF360038E58A /* NOSXWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0B3EEA24F2AF360038E58A /* NOSXWindowController.m */; };
 		CE0FE385254085F20005F381 /* launch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE0FE384254085F20005F381 /* launch.cpp */; };
 		CE0FE389254085FC0005F381 /* nlaunch.c in Sources */ = {isa = PBXBuildFile; fileRef = CE0FE387254085FC0005F381 /* nlaunch.c */; };
 		CE15E18325503806000DE8D9 /* niterator.c in Sources */ = {isa = PBXBuildFile; fileRef = CE15E18025503806000DE8D9 /* niterator.c */; };
@@ -36,12 +36,12 @@
 /* Begin PBXFileReference section */
 		CE0B3EE524F2AF360038E58A /* uidev.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uidev.h; sourceTree = "<group>"; };
 		CE0B3EE624F2AF360038E58A /* uidev.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = uidev.c; sourceTree = "<group>"; };
-		CE0B3EE824F2AF360038E58A /* NMAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMAppDelegate.m; sourceTree = "<group>"; };
-		CE0B3EE924F2AF360038E58A /* NMViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMViewController.m; sourceTree = "<group>"; };
-		CE0B3EEA24F2AF360038E58A /* NMWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMWindowController.m; sourceTree = "<group>"; };
-		CE0B3EEB24F2AF360038E58A /* NMViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NMViewController.h; sourceTree = "<group>"; };
-		CE0B3EEC24F2AF360038E58A /* NMAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NMAppDelegate.h; sourceTree = "<group>"; };
-		CE0B3EED24F2AF360038E58A /* NMWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NMWindowController.h; sourceTree = "<group>"; };
+		CE0B3EE824F2AF360038E58A /* NOSXAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NOSXAppDelegate.m; sourceTree = "<group>"; };
+		CE0B3EE924F2AF360038E58A /* NOSXViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NOSXViewController.m; sourceTree = "<group>"; };
+		CE0B3EEA24F2AF360038E58A /* NOSXWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NOSXWindowController.m; sourceTree = "<group>"; };
+		CE0B3EEB24F2AF360038E58A /* NOSXViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NOSXViewController.h; sourceTree = "<group>"; };
+		CE0B3EEC24F2AF360038E58A /* NOSXAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NOSXAppDelegate.h; sourceTree = "<group>"; };
+		CE0B3EED24F2AF360038E58A /* NOSXWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NOSXWindowController.h; sourceTree = "<group>"; };
 		CE0FE383254085F20005F381 /* launch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = launch.h; sourceTree = "<group>"; };
 		CE0FE384254085F20005F381 /* launch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = launch.cpp; sourceTree = "<group>"; };
 		CE0FE387254085FC0005F381 /* nlaunch.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = nlaunch.c; sourceTree = "<group>"; };
@@ -133,12 +133,12 @@
 		CE0B3EE724F2AF360038E58A /* uidev_osx */ = {
 			isa = PBXGroup;
 			children = (
-				CE0B3EEC24F2AF360038E58A /* NMAppDelegate.h */,
-				CE0B3EE824F2AF360038E58A /* NMAppDelegate.m */,
-				CE0B3EEB24F2AF360038E58A /* NMViewController.h */,
-				CE0B3EE924F2AF360038E58A /* NMViewController.m */,
-				CE0B3EED24F2AF360038E58A /* NMWindowController.h */,
-				CE0B3EEA24F2AF360038E58A /* NMWindowController.m */,
+				CE0B3EEC24F2AF360038E58A /* NOSXAppDelegate.h */,
+				CE0B3EE824F2AF360038E58A /* NOSXAppDelegate.m */,
+				CE0B3EEB24F2AF360038E58A /* NOSXViewController.h */,
+				CE0B3EE924F2AF360038E58A /* NOSXViewController.m */,
+				CE0B3EED24F2AF360038E58A /* NOSXWindowController.h */,
+				CE0B3EEA24F2AF360038E58A /* NOSXWindowController.m */,
 			);
 			path = uidev_osx;
 			sourceTree = "<group>";
@@ -336,7 +336,7 @@
 			files = (
 				CECB6488253AE8C1002B766D /* nmemory.c in Sources */,
 				CEA9E2A2257A6C61004A6FC0 /* nwidget.cpp in Sources */,
-				CE0B3EFD24F2AF360038E58A /* NMAppDelegate.m in Sources */,
+				CE0B3EFD24F2AF360038E58A /* NOSXAppDelegate.m in Sources */,
 				CE15E18325503806000DE8D9 /* niterator.c in Sources */,
 				CEE8D8382545539500AD308C /* nunicode.c in Sources */,
 				CEC6DF4E256107DB00D2E1C7 /* nfuncs.cpp in Sources */,
@@ -346,7 +346,7 @@
 				CE0B3EFC24F2AF360038E58A /* uidev.c in Sources */,
 				CEA9E295257A6C3C004A6FC0 /* narray.c in Sources */,
 				CEA9E2A1257A6C61004A6FC0 /* nref.cpp in Sources */,
-				CE0B3EFF24F2AF360038E58A /* NMWindowController.m in Sources */,
+				CE0B3EFF24F2AF360038E58A /* NOSXWindowController.m in Sources */,
 				CEA9E296257A6C3C004A6FC0 /* ntable.c in Sources */,
 				CEABAA032573CBD2008A385A /* nenviron.c in Sources */,
 				CEABAA042573CBD2008A385A /* ntypes.c in Sources */,
@@ -355,7 +355,7 @@
 				CE0FE385254085F20005F381 /* launch.cpp in Sources */,
 				CECB6493253B1BC8002B766D /* nio.c in Sources */,
 				CEA9E2A0257A6C61004A6FC0 /* cplus.cpp in Sources */,
-				CE0B3EFE24F2AF360038E58A /* NMViewController.m in Sources */,
+				CE0B3EFE24F2AF360038E58A /* NOSXViewController.m in Sources */,
 				CED80C2C24F2ADA30063F3DE /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

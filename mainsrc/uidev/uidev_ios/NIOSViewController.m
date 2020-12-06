@@ -1,9 +1,9 @@
-#import "NIViewController.h"
+#import "NIOSViewController.h"
 
-@interface NIViewController ()
+@interface NIOSViewController ()
 @end
 
-@implementation NIViewController
+@implementation NIOSViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

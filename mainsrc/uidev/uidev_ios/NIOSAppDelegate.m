@@ -1,11 +1,11 @@
-#import "NIAppDelegate.h"
-#import "NIViewController.h"
+#import "NIOSAppDelegate.h"
+#import "NIOSViewController.h"
 #import "uidev.h"
 
-@interface NIAppDelegate ()
+@interface NIOSAppDelegate ()
 @end
 
-@implementation NIAppDelegate
+@implementation NIOSAppDelegate
 
 - (BOOL) /* ====== */ application:(UIApplication *)application
     didFinishLaunchingWithOptions:(NSDictionary<UIApplicationLaunchOptionsKey, id> *)options
@@ -13,7 +13,7 @@
     NLaunch();
     
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
-    self.window.rootViewController = [[NIViewController alloc] init];
+    self.window.rootViewController = [[NIOSViewController alloc] init];
     [self.window makeKeyAndVisible];
 
     return YES;

@@ -1,9 +1,9 @@
-#import "NMViewController.h"
+#import "NOSXViewController.h"
 
-@interface NMViewController ()
+@interface NOSXViewController ()
 @end
 
-@implementation NMViewController
+@implementation NOSXViewController
 
 - (void)loadView {
     //NOTE: don't call [super loadView], that will try to unarchive a nib.

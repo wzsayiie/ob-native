@@ -113,9 +113,6 @@
     <ClInclude Include="..\..\mainsrc\uidev\uidev_win32\NWinMain.h">
       <Filter>mainsrc\uidev\uidev_win32</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\mainsrc\main\main\launch.h">
-      <Filter>mainsrc\main\main</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\mainsrc\uidev\uidev\nlaunch.h">
       <Filter>mainsrc\uidev\uidev</Filter>
     </ClInclude>

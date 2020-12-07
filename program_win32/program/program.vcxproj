@@ -59,7 +59,6 @@
     <ClInclude Include="..\..\mainsrc\cplus\cplus\cplus.h" />
     <ClInclude Include="..\..\mainsrc\cplus\cplus\nref.h" />
     <ClInclude Include="..\..\mainsrc\cplus\cplus\nwidget.h" />
-    <ClInclude Include="..\..\mainsrc\main\main\launch.h" />
     <ClInclude Include="..\..\mainsrc\uidev\uidev\nlaunch.h" />
     <ClInclude Include="..\..\mainsrc\uidev\uidev\uidev.h" />
     <ClInclude Include="..\..\mainsrc\uidev\uidev_win32\NWinMain.h" />

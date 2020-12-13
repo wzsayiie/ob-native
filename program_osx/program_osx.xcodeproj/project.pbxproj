@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CE0B3EFC24F2AF360038E58A /* uidev.c in Sources */ = {isa = PBXBuildFile; fileRef = CE0B3EE624F2AF360038E58A /* uidev.c */; };
 		CE0B3EFD24F2AF360038E58A /* NOSXAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0B3EE824F2AF360038E58A /* NOSXAppDelegate.m */; };
 		CE0B3EFE24F2AF360038E58A /* NOSXViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0B3EE924F2AF360038E58A /* NOSXViewController.m */; };
 		CE0B3EFF24F2AF360038E58A /* NOSXWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0B3EEA24F2AF360038E58A /* NOSXWindowController.m */; };
@@ -17,7 +16,6 @@
 		CE8C3C06257231A400260633 /* nlock.c in Sources */ = {isa = PBXBuildFile; fileRef = CE8C3C04257231A400260633 /* nlock.c */; };
 		CEA9E295257A6C3C004A6FC0 /* narray.c in Sources */ = {isa = PBXBuildFile; fileRef = CEA9E291257A6C3C004A6FC0 /* narray.c */; };
 		CEA9E296257A6C3C004A6FC0 /* ntable.c in Sources */ = {isa = PBXBuildFile; fileRef = CEA9E294257A6C3C004A6FC0 /* ntable.c */; };
-		CEA9E2A0257A6C61004A6FC0 /* cplus.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA9E29B257A6C60004A6FC0 /* cplus.cpp */; };
 		CEA9E2A1257A6C61004A6FC0 /* nref.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA9E29C257A6C60004A6FC0 /* nref.cpp */; };
 		CEA9E2A2257A6C61004A6FC0 /* nwidget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA9E29E257A6C61004A6FC0 /* nwidget.cpp */; };
 		CEABAA032573CBD2008A385A /* nenviron.c in Sources */ = {isa = PBXBuildFile; fileRef = CEABAA002573CBD2008A385A /* nenviron.c */; };
@@ -25,10 +23,8 @@
 		CEB041402585106600648AA7 /* nnumber.c in Sources */ = {isa = PBXBuildFile; fileRef = CEB0413C2585106600648AA7 /* nnumber.c */; };
 		CEB041412585106600648AA7 /* naction.c in Sources */ = {isa = PBXBuildFile; fileRef = CEB0413D2585106600648AA7 /* naction.c */; };
 		CEB0414625852AF300648AA7 /* ndata.c in Sources */ = {isa = PBXBuildFile; fileRef = CEB0414425852AF300648AA7 /* ndata.c */; };
-		CEC6DF4D256107DB00D2E1C7 /* cmeta.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC6DF41256107DB00D2E1C7 /* cmeta.cpp */; };
 		CEC6DF4E256107DB00D2E1C7 /* nfuncs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC6DF44256107DB00D2E1C7 /* nfuncs.cpp */; };
 		CECB6488253AE8C1002B766D /* nmemory.c in Sources */ = {isa = PBXBuildFile; fileRef = CECB647C253AE8C1002B766D /* nmemory.c */; };
-		CECB648B253AE8C1002B766D /* basis.c in Sources */ = {isa = PBXBuildFile; fileRef = CECB6482253AE8C1002B766D /* basis.c */; };
 		CECB648C253AE8C1002B766D /* nstring.c in Sources */ = {isa = PBXBuildFile; fileRef = CECB6486253AE8C1002B766D /* nstring.c */; };
 		CECB6493253B1BC8002B766D /* nio.c in Sources */ = {isa = PBXBuildFile; fileRef = CECB6492253B1BC8002B766D /* nio.c */; };
 		CED80C2624F2ADA30063F3DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CED80C2524F2ADA30063F3DE /* Assets.xcassets */; };
@@ -38,7 +34,6 @@
 
 /* Begin PBXFileReference section */
 		CE0B3EE524F2AF360038E58A /* uidev.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uidev.h; sourceTree = "<group>"; };
-		CE0B3EE624F2AF360038E58A /* uidev.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = uidev.c; sourceTree = "<group>"; };
 		CE0B3EE824F2AF360038E58A /* NOSXAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NOSXAppDelegate.m; sourceTree = "<group>"; };
 		CE0B3EE924F2AF360038E58A /* NOSXViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NOSXViewController.m; sourceTree = "<group>"; };
 		CE0B3EEA24F2AF360038E58A /* NOSXWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NOSXWindowController.m; sourceTree = "<group>"; };
@@ -57,7 +52,6 @@
 		CEA9E293257A6C3C004A6FC0 /* narray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = narray.h; sourceTree = "<group>"; };
 		CEA9E294257A6C3C004A6FC0 /* ntable.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ntable.c; sourceTree = "<group>"; };
 		CEA9E29A257A6C60004A6FC0 /* cplus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cplus.h; sourceTree = "<group>"; };
-		CEA9E29B257A6C60004A6FC0 /* cplus.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cplus.cpp; sourceTree = "<group>"; };
 		CEA9E29C257A6C60004A6FC0 /* nref.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = nref.cpp; sourceTree = "<group>"; };
 		CEA9E29D257A6C61004A6FC0 /* nwidget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nwidget.h; sourceTree = "<group>"; };
 		CEA9E29E257A6C61004A6FC0 /* nwidget.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = nwidget.cpp; sourceTree = "<group>"; };
@@ -73,7 +67,6 @@
 		CEB0413F2585106600648AA7 /* nnumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nnumber.h; sourceTree = "<group>"; };
 		CEB0414425852AF300648AA7 /* ndata.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ndata.c; sourceTree = "<group>"; };
 		CEB0414525852AF300648AA7 /* ndata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ndata.h; sourceTree = "<group>"; };
-		CEC6DF41256107DB00D2E1C7 /* cmeta.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cmeta.cpp; sourceTree = "<group>"; };
 		CEC6DF42256107DB00D2E1C7 /* cmeta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cmeta.h; sourceTree = "<group>"; };
 		CEC6DF43256107DB00D2E1C7 /* nfuncs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nfuncs.h; sourceTree = "<group>"; };
 		CEC6DF44256107DB00D2E1C7 /* nfuncs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = nfuncs.cpp; sourceTree = "<group>"; };
@@ -81,7 +74,6 @@
 		CECB647C253AE8C1002B766D /* nmemory.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = nmemory.c; sourceTree = "<group>"; };
 		CECB647E253AE8C1002B766D /* nstring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nstring.h; sourceTree = "<group>"; };
 		CECB6481253AE8C1002B766D /* nio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nio.h; sourceTree = "<group>"; };
-		CECB6482253AE8C1002B766D /* basis.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = basis.c; sourceTree = "<group>"; };
 		CECB6484253AE8C1002B766D /* basis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = basis.h; sourceTree = "<group>"; };
 		CECB6486253AE8C1002B766D /* nstring.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = nstring.c; sourceTree = "<group>"; };
 		CECB6492253B1BC8002B766D /* nio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = nio.c; sourceTree = "<group>"; };
@@ -132,7 +124,6 @@
 			children = (
 				CE0FE387254085FC0005F381 /* nlaunch.c */,
 				CE0FE388254085FC0005F381 /* nlaunch.h */,
-				CE0B3EE624F2AF360038E58A /* uidev.c */,
 				CE0B3EE524F2AF360038E58A /* uidev.h */,
 			);
 			path = uidev;
@@ -178,7 +169,6 @@
 		CEA9E299257A6C60004A6FC0 /* cplus */ = {
 			isa = PBXGroup;
 			children = (
-				CEA9E29B257A6C60004A6FC0 /* cplus.cpp */,
 				CEA9E29A257A6C60004A6FC0 /* cplus.h */,
 				CEA9E29C257A6C60004A6FC0 /* nref.cpp */,
 				CEA9E29F257A6C61004A6FC0 /* nref.h */,
@@ -199,7 +189,6 @@
 		CEC6DF40256107DB00D2E1C7 /* cmeta */ = {
 			isa = PBXGroup;
 			children = (
-				CEC6DF41256107DB00D2E1C7 /* cmeta.cpp */,
 				CEC6DF42256107DB00D2E1C7 /* cmeta.h */,
 				CEABAA072573CDC1008A385A /* NEXPORT.h */,
 				CEC6DF44256107DB00D2E1C7 /* nfuncs.cpp */,
@@ -219,7 +208,6 @@
 		CECB6461253AE16D002B766D /* basis */ = {
 			isa = PBXGroup;
 			children = (
-				CECB6482253AE8C1002B766D /* basis.c */,
 				CECB6484253AE8C1002B766D /* basis.h */,
 				CEB0413D2585106600648AA7 /* naction.c */,
 				CEB0413E2585106600648AA7 /* naction.h */,
@@ -353,11 +341,9 @@
 				CE15E18325503806000DE8D9 /* niterator.c in Sources */,
 				CEE8D8382545539500AD308C /* nunicode.c in Sources */,
 				CEC6DF4E256107DB00D2E1C7 /* nfuncs.cpp in Sources */,
-				CEC6DF4D256107DB00D2E1C7 /* cmeta.cpp in Sources */,
 				CECB648C253AE8C1002B766D /* nstring.c in Sources */,
 				CE8C3C06257231A400260633 /* nlock.c in Sources */,
 				CEB041402585106600648AA7 /* nnumber.c in Sources */,
-				CE0B3EFC24F2AF360038E58A /* uidev.c in Sources */,
 				CEA9E295257A6C3C004A6FC0 /* narray.c in Sources */,
 				CEB0414625852AF300648AA7 /* ndata.c in Sources */,
 				CEA9E2A1257A6C61004A6FC0 /* nref.cpp in Sources */,
@@ -366,11 +352,9 @@
 				CEB041412585106600648AA7 /* naction.c in Sources */,
 				CEABAA032573CBD2008A385A /* nenviron.c in Sources */,
 				CEABAA042573CBD2008A385A /* ntypes.c in Sources */,
-				CECB648B253AE8C1002B766D /* basis.c in Sources */,
 				CE0FE389254085FC0005F381 /* nlaunch.c in Sources */,
 				CE0FE385254085F20005F381 /* launch.cpp in Sources */,
 				CECB6493253B1BC8002B766D /* nio.c in Sources */,
-				CEA9E2A0257A6C61004A6FC0 /* cplus.cpp in Sources */,
 				CE0B3EFE24F2AF360038E58A /* NOSXViewController.m in Sources */,
 				CED80C2C24F2ADA30063F3DE /* main.m in Sources */,
 			);

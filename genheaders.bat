@@ -12,7 +12,7 @@ mkdir %dst%
 
 set err=0
 
-set src="mainsrc"
+set src="appsrc"
 call :gen
 if not %err% == 0 (goto end)
 

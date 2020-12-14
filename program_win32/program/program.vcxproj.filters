@@ -4,40 +4,40 @@
     <Filter Include="program">
       <UniqueIdentifier>{b223fba0-c347-4dc1-9f70-06307d4bfbbf}</UniqueIdentifier>
     </Filter>
-    <Filter Include="mainsrc">
+    <Filter Include="appsrc">
       <UniqueIdentifier>{6f905a0e-a1c2-4427-a8f7-12a5ae1ce70c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="mainsrc\uidev">
+    <Filter Include="appsrc\uidev">
       <UniqueIdentifier>{8afa564e-da15-4b0b-8176-be04c1c4244a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="mainsrc\main">
-      <UniqueIdentifier>{503fcbd7-ca83-4607-8071-b3e1691c780c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="mainsrc\main\main">
-      <UniqueIdentifier>{853b48a0-8340-4e2b-8454-e8ef041fcb70}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="mainsrc\uidev\uidev">
+    <Filter Include="appsrc\uidev\uidev">
       <UniqueIdentifier>{cfa72af9-1e0d-49ee-8086-d91119e860c6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="mainsrc\uidev\uidev_win32">
+    <Filter Include="appsrc\uidev\uidev_win32">
       <UniqueIdentifier>{70fea9ca-1ca6-41ba-a277-729c2569c073}</UniqueIdentifier>
     </Filter>
-    <Filter Include="mainsrc\basis">
+    <Filter Include="appsrc\main">
+      <UniqueIdentifier>{503fcbd7-ca83-4607-8071-b3e1691c780c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="appsrc\main\main">
+      <UniqueIdentifier>{853b48a0-8340-4e2b-8454-e8ef041fcb70}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="appsrc\basis">
       <UniqueIdentifier>{09083884-6c6f-41a7-af31-d97e901b5c5a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="mainsrc\basis\basis">
+    <Filter Include="appsrc\basis\basis">
       <UniqueIdentifier>{8d4b8970-d315-496c-99e5-9ce0c70cf89e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="mainsrc\cmeta">
+    <Filter Include="appsrc\cmeta">
       <UniqueIdentifier>{7c84dfb8-5b85-4335-b1db-4ffdd65b42d0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="mainsrc\cmeta\cmeta">
+    <Filter Include="appsrc\cmeta\cmeta">
       <UniqueIdentifier>{dc34b2b3-c370-4db4-82b9-d3b2d78986eb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="mainsrc\cplus">
+    <Filter Include="appsrc\cplus">
       <UniqueIdentifier>{af63d8e8-741f-41fe-92c0-abcd255252a4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="mainsrc\cplus\cplus">
+    <Filter Include="appsrc\cplus\cplus">
       <UniqueIdentifier>{38befe4a-aa22-4195-9b76-ef14b52be627}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -45,127 +45,133 @@
     <ClCompile Include="winmain.c">
       <Filter>program</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\mainsrc\uidev\uidev\uidev.c">
-      <Filter>mainsrc\uidev\uidev</Filter>
+    <ClCompile Include="..\..\appsrc\basis\basis\naction.c">
+      <Filter>appsrc\basis\basis</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\mainsrc\uidev\uidev_win32\NWinMain.c">
-      <Filter>mainsrc\uidev\uidev_win32</Filter>
+    <ClCompile Include="..\..\appsrc\basis\basis\narray.c">
+      <Filter>appsrc\basis\basis</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\mainsrc\main\main\launch.cpp">
-      <Filter>mainsrc\main\main</Filter>
+    <ClCompile Include="..\..\appsrc\basis\basis\ndata.c">
+      <Filter>appsrc\basis\basis</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\mainsrc\uidev\uidev\nlaunch.c">
-      <Filter>mainsrc\uidev\uidev</Filter>
+    <ClCompile Include="..\..\appsrc\basis\basis\nenviron.c">
+      <Filter>appsrc\basis\basis</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\mainsrc\basis\basis\basis.c">
-      <Filter>mainsrc\basis\basis</Filter>
+    <ClCompile Include="..\..\appsrc\basis\basis\nio.c">
+      <Filter>appsrc\basis\basis</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\mainsrc\basis\basis\nio.c">
-      <Filter>mainsrc\basis\basis</Filter>
+    <ClCompile Include="..\..\appsrc\basis\basis\niterator.c">
+      <Filter>appsrc\basis\basis</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\mainsrc\basis\basis\nmemory.c">
-      <Filter>mainsrc\basis\basis</Filter>
+    <ClCompile Include="..\..\appsrc\basis\basis\nlock.c">
+      <Filter>appsrc\basis\basis</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\mainsrc\basis\basis\nstring.c">
-      <Filter>mainsrc\basis\basis</Filter>
+    <ClCompile Include="..\..\appsrc\basis\basis\nmemory.c">
+      <Filter>appsrc\basis\basis</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\mainsrc\basis\basis\nunicode.c">
-      <Filter>mainsrc\basis\basis</Filter>
+    <ClCompile Include="..\..\appsrc\basis\basis\nnumber.c">
+      <Filter>appsrc\basis\basis</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\mainsrc\basis\basis\niterator.c">
-      <Filter>mainsrc\basis\basis</Filter>
+    <ClCompile Include="..\..\appsrc\basis\basis\nstring.c">
+      <Filter>appsrc\basis\basis</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\mainsrc\cmeta\cmeta\cmeta.cpp">
-      <Filter>mainsrc\cmeta\cmeta</Filter>
+    <ClCompile Include="..\..\appsrc\basis\basis\ntable.c">
+      <Filter>appsrc\basis\basis</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\mainsrc\cmeta\cmeta\nfuncs.cpp">
-      <Filter>mainsrc\cmeta\cmeta</Filter>
+    <ClCompile Include="..\..\appsrc\basis\basis\ntypes.c">
+      <Filter>appsrc\basis\basis</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\mainsrc\basis\basis\nlock.c">
-      <Filter>mainsrc\basis\basis</Filter>
+    <ClCompile Include="..\..\appsrc\basis\basis\nunicode.c">
+      <Filter>appsrc\basis\basis</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\mainsrc\basis\basis\nenviron.c">
-      <Filter>mainsrc\basis\basis</Filter>
+    <ClCompile Include="..\..\appsrc\cmeta\cmeta\nfuncs.cpp">
+      <Filter>appsrc\cmeta\cmeta</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\mainsrc\basis\basis\ntypes.c">
-      <Filter>mainsrc\basis\basis</Filter>
+    <ClCompile Include="..\..\appsrc\cplus\cplus\nref.cpp">
+      <Filter>appsrc\cplus\cplus</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\mainsrc\basis\basis\narray.c">
-      <Filter>mainsrc\basis\basis</Filter>
+    <ClCompile Include="..\..\appsrc\cplus\cplus\nwidget.cpp">
+      <Filter>appsrc\cplus\cplus</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\mainsrc\basis\basis\ntable.c">
-      <Filter>mainsrc\basis\basis</Filter>
+    <ClCompile Include="..\..\appsrc\main\main\launch.cpp">
+      <Filter>appsrc\main\main</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\mainsrc\cplus\cplus\cplus.cpp">
-      <Filter>mainsrc\cplus\cplus</Filter>
+    <ClCompile Include="..\..\appsrc\uidev\uidev\nlaunch.c">
+      <Filter>appsrc\uidev\uidev</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\mainsrc\cplus\cplus\nref.cpp">
-      <Filter>mainsrc\cplus\cplus</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\mainsrc\cplus\cplus\nwidget.cpp">
-      <Filter>mainsrc\cplus\cplus</Filter>
+    <ClCompile Include="..\..\appsrc\uidev\uidev_win32\NWinMain.c">
+      <Filter>appsrc\uidev\uidev_win32</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\mainsrc\uidev\uidev\uidev.h">
-      <Filter>mainsrc\uidev\uidev</Filter>
+    <ClInclude Include="..\..\appsrc\basis\basis\basis.h">
+      <Filter>appsrc\basis\basis</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\mainsrc\uidev\uidev_win32\NWinMain.h">
-      <Filter>mainsrc\uidev\uidev_win32</Filter>
+    <ClInclude Include="..\..\appsrc\basis\basis\naction.h">
+      <Filter>appsrc\basis\basis</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\mainsrc\uidev\uidev\nlaunch.h">
-      <Filter>mainsrc\uidev\uidev</Filter>
+    <ClInclude Include="..\..\appsrc\basis\basis\narray.h">
+      <Filter>appsrc\basis\basis</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\mainsrc\basis\basis\basis.h">
-      <Filter>mainsrc\basis\basis</Filter>
+    <ClInclude Include="..\..\appsrc\basis\basis\ndata.h">
+      <Filter>appsrc\basis\basis</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\mainsrc\basis\basis\nio.h">
-      <Filter>mainsrc\basis\basis</Filter>
+    <ClInclude Include="..\..\appsrc\basis\basis\nenviron.h">
+      <Filter>appsrc\basis\basis</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\mainsrc\basis\basis\nmemory.h">
-      <Filter>mainsrc\basis\basis</Filter>
+    <ClInclude Include="..\..\appsrc\basis\basis\nio.h">
+      <Filter>appsrc\basis\basis</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\mainsrc\basis\basis\nstring.h">
-      <Filter>mainsrc\basis\basis</Filter>
+    <ClInclude Include="..\..\appsrc\basis\basis\niterator.h">
+      <Filter>appsrc\basis\basis</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\mainsrc\basis\basis\nunicode.h">
-      <Filter>mainsrc\basis\basis</Filter>
+    <ClInclude Include="..\..\appsrc\basis\basis\nlock.h">
+      <Filter>appsrc\basis\basis</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\mainsrc\basis\basis\niterator.h">
-      <Filter>mainsrc\basis\basis</Filter>
+    <ClInclude Include="..\..\appsrc\basis\basis\nmemory.h">
+      <Filter>appsrc\basis\basis</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\mainsrc\cmeta\cmeta\cmeta.h">
-      <Filter>mainsrc\cmeta\cmeta</Filter>
+    <ClInclude Include="..\..\appsrc\basis\basis\nnumber.h">
+      <Filter>appsrc\basis\basis</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\mainsrc\cmeta\cmeta\nfuncs.h">
-      <Filter>mainsrc\cmeta\cmeta</Filter>
+    <ClInclude Include="..\..\appsrc\basis\basis\nstring.h">
+      <Filter>appsrc\basis\basis</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\mainsrc\cmeta\cmeta\NEXPORT.h">
-      <Filter>mainsrc\cmeta\cmeta</Filter>
+    <ClInclude Include="..\..\appsrc\basis\basis\ntable.h">
+      <Filter>appsrc\basis\basis</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\mainsrc\basis\basis\nlock.h">
-      <Filter>mainsrc\basis\basis</Filter>
+    <ClInclude Include="..\..\appsrc\basis\basis\ntypes.h">
+      <Filter>appsrc\basis\basis</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\mainsrc\basis\basis\nenviron.h">
-      <Filter>mainsrc\basis\basis</Filter>
+    <ClInclude Include="..\..\appsrc\basis\basis\nunicode.h">
+      <Filter>appsrc\basis\basis</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\mainsrc\basis\basis\ntypes.h">
-      <Filter>mainsrc\basis\basis</Filter>
+    <ClInclude Include="..\..\appsrc\cmeta\cmeta\cmeta.h">
+      <Filter>appsrc\cmeta\cmeta</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\mainsrc\basis\basis\narray.h">
-      <Filter>mainsrc\basis\basis</Filter>
+    <ClInclude Include="..\..\appsrc\cmeta\cmeta\NEXPORT.h">
+      <Filter>appsrc\cmeta\cmeta</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\mainsrc\basis\basis\ntable.h">
-      <Filter>mainsrc\basis\basis</Filter>
+    <ClInclude Include="..\..\appsrc\cmeta\cmeta\nfuncs.h">
+      <Filter>appsrc\cmeta\cmeta</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\mainsrc\cplus\cplus\cplus.h">
-      <Filter>mainsrc\cplus\cplus</Filter>
+    <ClInclude Include="..\..\appsrc\cplus\cplus\cplus.h">
+      <Filter>appsrc\cplus\cplus</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\mainsrc\cplus\cplus\nref.h">
-      <Filter>mainsrc\cplus\cplus</Filter>
+    <ClInclude Include="..\..\appsrc\cplus\cplus\nref.h">
+      <Filter>appsrc\cplus\cplus</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\mainsrc\cplus\cplus\nwidget.h">
-      <Filter>mainsrc\cplus\cplus</Filter>
+    <ClInclude Include="..\..\appsrc\cplus\cplus\nwidget.h">
+      <Filter>appsrc\cplus\cplus</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\appsrc\uidev\uidev\nlaunch.h">
+      <Filter>appsrc\uidev\uidev</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\appsrc\uidev\uidev\uidev.h">
+      <Filter>appsrc\uidev\uidev</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\appsrc\uidev\uidev_win32\NWinMain.h">
+      <Filter>appsrc\uidev\uidev_win32</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

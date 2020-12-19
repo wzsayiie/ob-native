@@ -1,9 +1,7 @@
 #include <cstring>
 #include "ntypes.h"
 
-#ifndef NFUNC_MAX_ARG_NUM
-#define NFUNC_MAX_ARG_NUM 6
-#endif
+#define NFUNC_MAX_ARG_NUM 4
 
 struct _NFuncInfo {
     const char *name;
@@ -93,8 +91,78 @@ nclink NType NFuncArgType(int fPos, int aPos) {
     return 0;
 }
 
+template<class R> struct _NPtrExecutor {
+    template<class... A> static int64_t Exec(void *func, A... a) {
+        R ret[8] = {0};
+        *ret = ((R (*)(A...))func)(a...);
+        return *(int64_t *)ret;
+    }
+};
+template<> struct _NPtrExecutor<void> {
+    template<class... A> static int64_t Exec(void *func, A... a) {
+        ((void (*)(A...))func)(a...);
+        return 0;
+    }
+};
+
+template<class R, int N> struct _NFuncCaller {
+    template<class... A> static int64_t Call(_NFuncInfo *info, NValue *argv, A... a) {
+        if (N == info->argCount) {
+            return _NPtrExecutor<R>::Exec(info->address, a...);
+        }
+
+        NValue v = argv[N];
+        switch (info->argTypes[N]) {
+            //NOTE: only use "npint", "int64_t", "float" and "double" 4 types, to prevent code bloat.
+            case NTypeBool  : return _NFuncCaller<R, N + 1>::Call(info, argv, a..., (npint  )NBoolValue(v));
+            case NTypeInt8  : return _NFuncCaller<R, N + 1>::Call(info, argv, a..., (npint  )NIntValue (v));
+            case NTypeInt16 : return _NFuncCaller<R, N + 1>::Call(info, argv, a..., (npint  )NIntValue (v));
+            case NTypeInt32 : return _NFuncCaller<R, N + 1>::Call(info, argv, a..., (npint  )NIntValue (v));
+            case NTypeInt64 : return _NFuncCaller<R, N + 1>::Call(info, argv, a..., (int64_t)NIntValue (v));
+            case NTypeUInt8 : return _NFuncCaller<R, N + 1>::Call(info, argv, a..., (npint  )NUIntValue(v));
+            case NTypeUInt16: return _NFuncCaller<R, N + 1>::Call(info, argv, a..., (npint  )NUIntValue(v));
+            case NTypeUInt32: return _NFuncCaller<R, N + 1>::Call(info, argv, a..., (npint  )NUIntValue(v));
+            case NTypeUInt64: return _NFuncCaller<R, N + 1>::Call(info, argv, a..., (int64_t)NUIntValue(v));
+            case NTypeFloat : return _NFuncCaller<R, N + 1>::Call(info, argv, a..., (float  )NDblValue (v));
+            case NTypeDouble: return _NFuncCaller<R, N + 1>::Call(info, argv, a..., (double )NDblValue (v));
+            case NTypePtr   : return _NFuncCaller<R, N + 1>::Call(info, argv, a..., (npint  )NPtrValue (v));
+            default/*error*/: return 0;
+        }
+    }
+};
+template<class R> struct _NFuncCaller<R, NFUNC_MAX_ARG_NUM> {
+    template<class... A> static int64_t Call(_NFuncInfo *info, NValue *argv, A... a) {
+        return _NPtrExecutor<R>::Exec(info->address, a...);
+    }
+};
+
 nclink int64_t NCallFunc(int fPos, int argc, NValue *argv) {
-    return 0;
+    if (!(LIST_BEGIN <= fPos && fPos < gListEnd)) {
+        return 0;
+    }
+
+    _NFuncInfo *info = gList + fPos;
+    if (argc < info->argCount) {
+        return 0;
+    }
+
+    switch (info->retType) {
+        //NOTE: only use "void", "npint", "int64_t", "float" and "double" 5 types, to prevent code bloat.
+        case NTypeVoid  : return _NFuncCaller<void   , 0>::Call(info, argv);
+        case NTypeBool  : return _NFuncCaller<npint  , 0>::Call(info, argv);
+        case NTypeInt8  : return _NFuncCaller<npint  , 0>::Call(info, argv);
+        case NTypeInt16 : return _NFuncCaller<npint  , 0>::Call(info, argv);
+        case NTypeInt32 : return _NFuncCaller<npint  , 0>::Call(info, argv);
+        case NTypeInt64 : return _NFuncCaller<int64_t, 0>::Call(info, argv);
+        case NTypeUInt8 : return _NFuncCaller<npint  , 0>::Call(info, argv);
+        case NTypeUInt16: return _NFuncCaller<npint  , 0>::Call(info, argv);
+        case NTypeUInt32: return _NFuncCaller<npint  , 0>::Call(info, argv);
+        case NTypeUInt64: return _NFuncCaller<int64_t, 0>::Call(info, argv);
+        case NTypeFloat : return _NFuncCaller<float  , 0>::Call(info, argv);
+        case NTypeDouble: return _NFuncCaller<double , 0>::Call(info, argv);
+        case NTypePtr   : return _NFuncCaller<npint  , 0>::Call(info, argv);
+        default/*error*/: return 0;
+    }
 }
 
 static bool _NFuncRetRetained(NType retType, const char *name) {

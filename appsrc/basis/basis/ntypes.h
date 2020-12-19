@@ -6,13 +6,15 @@
 #include <stdint.h>
 
 #if N_PTR_64
-    typedef int64_t npbool;
-    typedef int64_t npint;
-    typedef double  npfloat;
+    typedef int64_t  npbool;
+    typedef int64_t  npint ;
+    typedef uint64_t npuint;
+    typedef double   npflt ;
 #else
-    typedef int32_t npbool;
-    typedef int32_t npint;
-    typedef float   npfloat;
+    typedef int32_t  npbool;
+    typedef int32_t  npint ;
+    typedef uint32_t npuint;
+    typedef float    npflt ;
 #endif
 
 #if !__cplusplus

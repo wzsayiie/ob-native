@@ -1,10 +1,10 @@
 #include "narray.h"
 
 nstruct(__NArray) {
-    int     type  ;
-    NValue *items ;
-    int     volume;
-    int     count ;
+    int    type  ;
+    NWord *items ;
+    int    volume;
+    int    count ;
 };
 
 static const int MAX_RESERVE_ITEM_NUM = 64;
@@ -20,7 +20,7 @@ static void __NArrayTryStretch(__NArray *array, int least) {
     if (volume % EVERY_ALLOC_ITEM_NUM > 0) {
         volume = (volume / EVERY_ALLOC_ITEM_NUM + 1) * EVERY_ALLOC_ITEM_NUM;
     }
-    array->items  = NRealloc(array->items, volume * nisizeof(NValue));
+    array->items  = NRealloc(array->items, volume * nisizeof(NWord));
     array->volume = volume;
 }
 
@@ -33,7 +33,7 @@ static void __NArrayTryShrink(__NArray *array) {
     int volume = array->count + EVERY_ALLOC_ITEM_NUM;
     volume -= volume % EVERY_ALLOC_ITEM_NUM;
 
-    array->items  = NRealloc(array->items, volume * nisizeof(NValue));
+    array->items  = NRealloc(array->items, volume * nisizeof(NWord));
     array->volume = volume;
 }
 
@@ -43,10 +43,10 @@ static bool __IsObjectArray(__NArray *array) {
 
 static void __NArrayClear(__NArray *array) {
     if (__IsObjectArray(array)) {
-        NValue *ptr = array->items;
-        NValue *end = array->items + array->count;
+        NWord *ptr = array->items;
+        NWord *end = array->items + array->count;
         for (; ptr < end; ++ptr) {
-            NRelease(ptr->ptrValue);
+            NRelease(ptr->ptrWord);
         }
     }
     NFree(array->items);
@@ -65,14 +65,14 @@ __NArray *__NArrayCopy(__NArray *that) {
 
     __NArray *copy = __NArrayCreate(that->type);
     __NArrayTryStretch(copy, that->count);
-    NMoveMemory(copy->items, that->items, that->count * nisizeof(NValue));
+    NMoveMemory(copy->items, that->items, that->count * nisizeof(NWord));
     copy->count = that->count;
 
     if (__IsObjectArray(copy)) {
-        NValue *ptr = copy->items;
-        NValue *end = copy->items + copy->count;
+        NWord *ptr = copy->items;
+        NWord *end = copy->items + copy->count;
         for (; ptr < end; ++ptr) {
-            NRetain(ptr->ptrValue);
+            NRetain(ptr->ptrWord);
         }
     }
 
@@ -86,7 +86,7 @@ int __NArrayCount(__NArray *self) {
     return 0;
 }
 
-void __NArrayPush(__NArray *self, NValue item) {
+void __NArrayPush(__NArray *self, NWord item) {
     if (!self) {
         return;
     }
@@ -94,11 +94,11 @@ void __NArrayPush(__NArray *self, NValue item) {
     __NArrayTryStretch(self, 1);
     self->count += 1;
 
-    NValue *last = self->items + self->count - 1;
+    NWord *last = self->items + self->count - 1;
     if (__IsObjectArray(self)) {
-        last->ptrValue = NRetain(item.ptrValue);
+        last->ptrWord = NRetain(item.ptrWord);
     } else {
-        last->intValue = item.intValue;
+        last->intWord = item.intWord;
     }
 }
 
@@ -111,8 +111,8 @@ void __NArrayPop(__NArray *self) {
     }
 
     if (__IsObjectArray(self)) {
-        NValue last = self->items[self->count - 1];
-        NRelease(last.ptrValue);
+        NWord last = self->items[self->count - 1];
+        NRelease(last.ptrWord);
     }
 
     self->count -= 1;
@@ -127,10 +127,10 @@ static void __NArrayMoveItems(__NArray *array, int pos, int offset) {
     void *dst = array->items + pos + offset;
     int   len = array->count - pos;
 
-    NMoveMemory(dst, src, len * nisizeof(NValue));
+    NMoveMemory(dst, src, len * nisizeof(NWord));
 }
 
-void __NArrayInsert(__NArray *self, int pos, NValue item) {
+void __NArrayInsert(__NArray *self, int pos, NWord item) {
     if (!self) {
         return;
     }
@@ -142,11 +142,11 @@ void __NArrayInsert(__NArray *self, int pos, NValue item) {
     __NArrayMoveItems(self, pos, 1);
     self->count += 1;
 
-    NValue *slot = self->items + pos;
+    NWord *slot = self->items + pos;
     if (__IsObjectArray(self)) {
-        slot->ptrValue = NRetain(item.ptrValue);
+        slot->ptrWord = NRetain(item.ptrWord);
     } else {
-        slot->intValue = item.intValue;
+        slot->intWord = item.intWord;
     }
 }
 
@@ -159,7 +159,7 @@ void __NArrayRemove(__NArray *self, int pos) {
     }
 
     if (__IsObjectArray(self)) {
-        NRelease(self->items[pos].ptrValue);
+        NRelease(self->items[pos].ptrWord);
     }
 
     __NArrayMoveItems(self, pos + 1, -1);
@@ -167,7 +167,7 @@ void __NArrayRemove(__NArray *self, int pos) {
     __NArrayTryShrink(self);
 }
 
-void __NArraySet(__NArray *self, int pos, NValue item) {
+void __NArraySet(__NArray *self, int pos, NWord item) {
     if (!self) {
         return;
     }
@@ -175,23 +175,23 @@ void __NArraySet(__NArray *self, int pos, NValue item) {
         return;
     }
 
-    NValue *slot = self->items + pos;
+    NWord *slot = self->items + pos;
     if (__IsObjectArray(self)) {
-        NRelease(slot->ptrValue);
-        slot->ptrValue = NRetain(item.ptrValue);
+        NRelease(slot->ptrWord);
+        slot->ptrWord = NRetain(item.ptrWord);
     } else {
-        slot->intValue = item.intValue;
+        slot->intWord = item.intWord;
     }
 }
 
-NValue __NArrayGet(__NArray *self, int pos) {
+NWord __NArrayGet(__NArray *self, int pos) {
     if (self) {
         if (__NArrayReadablePos(self, pos)) {
             return self->items[pos];
         }
     }
-    NValue value = {0};
-    return value;
+    NWord word = {0};
+    return word;
 }
 
 #define GEN_ARRAY(ARRAY, TYPE, ITEM, MEMBER)                    \
@@ -206,30 +206,30 @@ NValue __NArrayGet(__NArray *self, int pos) {
 /**/        return __NArrayCount((__NArray *)array);            \
 /**/    }                                                       \
 /**/    void ARRAY##Push(ARRAY *array, ITEM item) {             \
-/**/        NValue value;                                       \
-/**/        value.MEMBER = item;                                \
-/**/        __NArrayPush((__NArray *)array, value);             \
+/**/        NWord word;                                         \
+/**/        word.MEMBER = item;                                 \
+/**/        __NArrayPush((__NArray *)array, word);              \
 /**/    }                                                       \
 /**/    void ARRAY##Pop(ARRAY *array) {                         \
 /**/        __NArrayPop((__NArray *)array);                     \
 /**/    }                                                       \
 /**/    void ARRAY##Insert(ARRAY *array, int pos, ITEM item) {  \
-/**/        NValue value;                                       \
-/**/        value.MEMBER = item;                                \
-/**/        __NArrayInsert((__NArray *)array, pos, value);      \
+/**/        NWord word;                                         \
+/**/        word.MEMBER = item;                                 \
+/**/        __NArrayInsert((__NArray *)array, pos, word);       \
 /**/    }                                                       \
 /**/    void ARRAY##Remove(ARRAY *array, int pos) {             \
 /**/        __NArrayRemove((__NArray *)array, pos);             \
 /**/    }                                                       \
 /**/    void ARRAY##Set(ARRAY *array, int pos, ITEM item) {     \
-/**/        NValue value;                                       \
-/**/        value.MEMBER = item;                                \
-/**/        __NArraySet((__NArray *)array, pos, value);         \
+/**/        NWord word;                                         \
+/**/        word.MEMBER = item;                                 \
+/**/        __NArraySet((__NArray *)array, pos, word);          \
 /**/    }                                                       \
 /**/    ITEM ARRAY##Get(ARRAY *array, int pos) {                \
 /**/        return __NArrayGet((__NArray *)array, pos).MEMBER;  \
 /**/    }
 
-GEN_ARRAY(NArray   , __NArrayItemTypeObject, NObject *, ptrValue)
-GEN_ARRAY(NIntArray, __NArrayItemTypePOD   , int64_t  , intValue)
-GEN_ARRAY(NFltArray, __NArrayItemTypePOD   , double   , fltValue)
+GEN_ARRAY(NArray   , __NArrayItemTypeObject, NObject *, ptrWord)
+GEN_ARRAY(NIntArray, __NArrayItemTypePOD   , int64_t  , intWord)
+GEN_ARRAY(NDblArray, __NArrayItemTypePOD   , double   , dblWord)

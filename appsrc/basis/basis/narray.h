@@ -13,12 +13,12 @@ nstruct(__NArray);
 nclink __NArray *__NArrayCreate(__NArrayItemType type);
 nclink __NArray *__NArrayCopy  (__NArray *that);
 nclink int       __NArrayCount (__NArray *self);
-nclink void      __NArrayPush  (__NArray *self, NValue item);
+nclink void      __NArrayPush  (__NArray *self, NWord item);
 nclink void      __NArrayPop   (__NArray *self);
-nclink void      __NArrayInsert(__NArray *self, int pos, NValue item);
+nclink void      __NArrayInsert(__NArray *self, int pos, NWord item);
 nclink void      __NArrayRemove(__NArray *self, int pos);
-nclink void      __NArraySet   (__NArray *self, int pos, NValue item);
-nclink NValue    __NArrayGet   (__NArray *self, int pos);
+nclink void      __NArraySet   (__NArray *self, int pos, NWord item);
+nclink NWord     __NArrayGet   (__NArray *self, int pos);
 
 nstruct(NArray);
 
@@ -44,14 +44,14 @@ nfunc(void       , NIntArrayRemove, (NIntArray *self, int pos));
 nfunc(void       , NIntArraySet   , (NIntArray *self, int pos, int64_t item));
 nfunc(int64_t    , NIntArrayGet   , (NIntArray *self, int pos));
 
-nstruct(NFltArray);
+nstruct(NDblArray);
 
-nfunc(NFltArray *, NFltArrayCreate, (void));
-nfunc(NFltArray *, NFltArrayCopy  , (NFltArray *that));
-nfunc(int        , NFltArrayCount , (NFltArray *self));
-nfunc(void       , NFltArrayPush  , (NFltArray *self, double item));
-nfunc(void       , NFltArrayPop   , (NFltArray *self));
-nfunc(void       , NFltArrayInsert, (NFltArray *self, int pos, double item));
-nfunc(void       , NFltArrayRemove, (NFltArray *self, int pos));
-nfunc(void       , NFltArraySet   , (NFltArray *self, int pos, double item));
-nfunc(double     , NFltArrayGet   , (NFltArray *self, int pos));
+nfunc(NDblArray *, NDblArrayCreate, (void));
+nfunc(NDblArray *, NDblArrayCopy  , (NDblArray *that));
+nfunc(int        , NDblArrayCount , (NDblArray *self));
+nfunc(void       , NDblArrayPush  , (NDblArray *self, double item));
+nfunc(void       , NDblArrayPop   , (NDblArray *self));
+nfunc(void       , NDblArrayInsert, (NDblArray *self, int pos, double item));
+nfunc(void       , NDblArrayRemove, (NDblArray *self, int pos));
+nfunc(void       , NDblArraySet   , (NDblArray *self, int pos, double item));
+nfunc(double     , NDblArrayGet   , (NDblArray *self, int pos));

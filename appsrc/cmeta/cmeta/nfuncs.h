@@ -18,4 +18,4 @@ nfunc(bool  , NFuncRetRetained, (int fPos));
 nfunc(int   , NFuncArgCount   , (int fPos));
 nfunc(NType , NFuncArgType    , (int fPos, int aPos));
 
-nfunc(int64_t, NCallFunc, (int fPos, int argCount, NValue *args));
+nfunc(int64_t, NCallFunc, (int fPos, int argc, NValue *argv));

@@ -16,8 +16,8 @@ nstruct(__NTable);
 
 nclink __NTable *__NTableCreate(__NTableKeyType keyType, __NTableValueType valueType);
 nclink __NTable *__NTableCopy  (__NTable *that);
-nclink void      __NTableSet   (__NTable *self, NValue key, NValue value);
-nclink NValue    __NTableGet   (__NTable *self, NValue key);
+nclink void      __NTableSet   (__NTable *self, NWord key, NWord value);
+nclink NWord     __NTableGet   (__NTable *self, NWord key);
 nclink int       __NTableCount (__NTable *self);
 
 // nstruct(NTable);
@@ -36,13 +36,13 @@ nclink int       __NTableCount (__NTable *self);
 // nfunc(int64_t    , NIntTableGet   , (NIntTable *self, NString *key));
 // nfunc(int        , NIntTableCount , (NIntTable *self));
 
-// nstruct(NFltTable);
+// nstruct(NDblTable);
 
-// nfunc(NFltTable *, NFltTableCreate, (void));
-// nfunc(NFltTable *, NFltTableCopy  , (NFltTable *that));
-// nfunc(void       , NFltTableSet   , (NFltTable *self, NString *key, double value));
-// nfunc(double     , NFltTableGet   , (NFltTable *self, NString *key));
-// nfunc(int        , NFltTableCount , (NFltTable *self));
+// nfunc(NDblTable *, NDblTableCreate, (void));
+// nfunc(NDblTable *, NDblTableCopy  , (NDblTable *that));
+// nfunc(void       , NDblTableSet   , (NDblTable *self, NString *key, double value));
+// nfunc(double     , NDblTableGet   , (NDblTable *self, NString *key));
+// nfunc(int        , NDblTableCount , (NDblTable *self));
 
 // nstruct(NSparse);
 
@@ -60,10 +60,10 @@ nclink int       __NTableCount (__NTable *self);
 // nfunc(int64_t     , NIntSparseGet   , (NIntSparse *self, int64_t key));
 // nfunc(int         , NIntSparseCount , (NIntSparse *self));
 
-// nstruct(NFltSparse);
+// nstruct(NDblSparse);
 
-// nfunc(NFltSparse *, NFltSparseCreate, (void));
-// nfunc(NFltSparse *, NFltSparseCopy  , (NFltSparse *that));
-// nfunc(void        , NFltSparseSet   , (NFltSparse *self, int64_t key, double value));
-// nfunc(double      , NFltSparseGet   , (NFltSparse *self, int64_t key));
-// nfunc(int         , NFltSparseCount , (NFltSparse *self));
+// nfunc(NDblSparse *, NDblSparseCreate, (void));
+// nfunc(NDblSparse *, NDblSparseCopy  , (NDblSparse *that));
+// nfunc(void        , NDblSparseSet   , (NDblSparse *self, int64_t key, double value));
+// nfunc(double      , NDblSparseGet   , (NDblSparse *self, int64_t key));
+// nfunc(int         , NDblSparseCount , (NDblSparse *self));

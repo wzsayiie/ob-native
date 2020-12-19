@@ -49,21 +49,45 @@ nenum(NType) {
     NTypeStruct = 14,
 };
 
+nstruct(NWord) {
+    union {
+        bool     boolWord;
+        int64_t  intWord ;
+        uint64_t uintWord;
+        double   dblWord ;
+        void    *ptrWord ;
+    };
+};
+
 nstruct(NValue) {
     union {
-        int64_t intValue;
-        double  fltValue;
-        void   *ptrValue;
+        bool     boolValue;
+        int64_t  intValue ;
+        uint64_t uintValue;
+        double   dblValue ;
+        void    *ptrValue ;
     };
+    NType type;
 };
 
 #if __cplusplus
     #define nclink extern "C"
-    #define __nfunc(ret, name, params) nclink ret name params
 #else
     #define nclink
-    #define __nfunc(ret, name, params) ret name params
 #endif
 
+nclink NValue NMakeBoolValue(bool     value);
+nclink NValue NMakeIntValue (int64_t  value);
+nclink NValue NMakeUIntValue(uint64_t value);
+nclink NValue NMakeDblValue (double   value);
+nclink NValue NMakePtrValue (void    *value);
+
+nclink bool     NBoolValue(NValue value);
+nclink int64_t  NIntValue (NValue value);
+nclink uint64_t NUIntValue(NValue value);
+nclink double   NDblValue (NValue value);
+nclink void    *NPtrValue (NValue value);
+
 //the flag for generating function meta data.
-#define nfunc(ret, name, params) __nfunc(ret, name, params)
+#define __nfunc(ret, name, params) nclink  ret  name  params
+#define   nfunc(ret, name, params) __nfunc(ret, name, params)

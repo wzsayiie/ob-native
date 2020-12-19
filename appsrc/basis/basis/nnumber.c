@@ -2,27 +2,29 @@
 
 nstruct(NNumber) {
     NValue value;
-    NType  type ;
 };
 
 NNumber *NNumberCreateWithBool(bool value) {
     NNumber *self = NNumberCreate();
-    self->value.intValue = value;
-    self->type = NTypeInt64;
+    self->value = NMakeBoolValue(value);
     return self;
 }
 
 NNumber *NNumberCreateWithInt(int64_t value) {
     NNumber *self = NNumberCreate();
-    self->value.intValue = value;
-    self->type = NTypeInt64;
+    self->value = NMakeIntValue(value);
     return self;
 }
 
-NNumber *NNumberCreateWithFlt(double value) {
+NNumber *NNumberCreateWithUInt(uint64_t value) {
     NNumber *self = NNumberCreate();
-    self->value.fltValue = value;
-    self->type = NTypeDouble;
+    self->value = NMakeUIntValue(value);
+    return self;
+}
+
+NNumber *NNumberCreateWithDbl(double value) {
+    NNumber *self = NNumberCreate();
+    self->value = NMakeDblValue(value);
     return self;
 }
 
@@ -34,7 +36,6 @@ NNumber *NNumberCopy(NNumber *that) {
     if (that) {
         NNumber *copy = NNumberCreate();
         copy->value = that->value;
-        copy->type = that->type;
         return copy;
     }
     return NULL;
@@ -42,38 +43,38 @@ NNumber *NNumberCopy(NNumber *that) {
 
 void NNumberSetBool(NNumber *self, bool value) {
     if (self) {
-        self->value.intValue = value;
-        self->type = NTypeInt64;
+        self->value = NMakeBoolValue(value);
     }
 }
 
 void NNumberSetInt(NNumber *self, int64_t value) {
     if (self) {
-        self->value.intValue = value;
-        self->type = NTypeInt64;
+        self->value = NMakeIntValue(value);
     }
 }
 
-void NNumberSetFlt(NNumber *self, double value) {
+void NNumberSetUInt(NNumber *self, uint64_t value) {
     if (self) {
-        self->value.fltValue = value;
-        self->type = NTypeDouble;
+        self->value = NMakeUIntValue(value);
+    }
+}
+
+void NNumberSetDbl(NNumber *self, double value) {
+    if (self) {
+        self->value = NMakeDblValue(value);
     }
 }
 
 bool NNumberGetBool(NNumber *self) {
-    return (bool)NNumberGetInt64(self);
+    if (self) {
+        return NBoolValue(self->value);
+    }
+    return false;
 }
 
 int64_t NNumberGetInt64(NNumber *self) {
-    if (!self) {
-        return 0;
-    }
-    
-    switch (self->type) {
-        case NTypeInt64 :return /* ... */self->value.intValue;
-        case NTypeDouble:return (int64_t)self->value.fltValue;
-        default:;
+    if (self) {
+        return NIntValue(self->value);
     }
     return 0;
 }
@@ -82,17 +83,22 @@ int NNumberGetInt(NNumber *self) {
     return (int)NNumberGetInt64(self);
 }
 
+uint64_t NNumberGetUInt64(NNumber *self) {
+    if (self) {
+        return NUIntValue(self->value);
+    }
+    return false;
+}
+
+unsigned NNumberGetUInt(NNumber *self) {
+    return (unsigned)NNumberGetUInt64(self);
+}
+
 double NNumberGetDouble(NNumber *self) {
-    if (!self) {
-        return 0;
+    if (self) {
+        return NDblValue(self->value);
     }
-    
-    switch (self->type) {
-        case NTypeInt64 :return (double)self->value.intValue;
-        case NTypeDouble:return /* .. */self->value.fltValue;
-        default:;
-    }
-    return 0;
+    return false;
 }
 
 float NNumberGetFloat(NNumber *self) {

@@ -93,7 +93,7 @@ nclink NType NFuncArgType(int fPos, int aPos) {
     return 0;
 }
 
-nclink int64_t NCallFunc(int fPos, int argCount, NValue *args) {
+nclink int64_t NCallFunc(int fPos, int argc, NValue *argv) {
     return 0;
 }
 

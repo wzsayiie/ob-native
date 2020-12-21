@@ -80,11 +80,11 @@ nstruct(NWord) {
 
 nstruct(NValue) {
     union {
-        bool     boolValue;
-        int64_t  intValue ;
-        uint64_t uintValue;
-        double   dblValue ;
-        void    *ptrValue ;
+        bool     asBool  ;
+        int64_t  asInt64 ;
+        uint64_t asUInt64;
+        double   asDouble;
+        void    *asPtr   ;
     };
     NType type;
 };
@@ -95,17 +95,25 @@ nstruct(NValue) {
     #define nclink
 #endif
 
-nclink NValue NMakeBoolValue(bool     value);
-nclink NValue NMakeIntValue (int64_t  value);
-nclink NValue NMakeUIntValue(uint64_t value);
-nclink NValue NMakeDblValue (double   value);
-nclink NValue NMakePtrValue (void    *value);
+nclink NValue NMakeBoolValue  (bool     value);
+nclink NValue NMakeInt64Value (int64_t  value);
+nclink NValue NMakeUInt64Value(uint64_t value);
+nclink NValue NMakeDoubleValue(double   value);
+nclink NValue NMakePtrValue   (void    *value);
+nclink NValue NMakeIntValue   (int      value);
+nclink NValue NMakeUIntValue  (unsigned value);
+nclink NValue NMakeFloatValue (float    value);
 
-nclink bool     NBoolValue(NValue value);
-nclink int64_t  NIntValue (NValue value);
-nclink uint64_t NUIntValue(NValue value);
-nclink double   NDblValue (NValue value);
-nclink void    *NPtrValue (NValue value);
+nclink bool NValueCastable(NValue value, NType type);
+
+nclink bool     NBoolValue  (NValue value);
+nclink int64_t  NInt64Value (NValue value);
+nclink uint64_t NUInt64Value(NValue value);
+nclink double   NDoubleValue(NValue value);
+nclink void    *NPtrValue   (NValue value);
+nclink int      NIntValue   (NValue value);
+nclink unsigned NUIntValue  (NValue value);
+nclink float    NFloatValue (NValue value);
 
 //the flag for generating function meta data.
 #define __nfunc(ret, name, params) nclink  ret  name  params

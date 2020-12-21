@@ -46,7 +46,7 @@ static void __NArrayClear(__NArray *array) {
         NWord *cur = array->items;
         NWord *end = array->items + array->count;
         for (; cur < end; ++cur) {
-            NRelease(cur->ptr);
+            NRelease(cur->asPtr);
         }
     }
     NFree(array->items);
@@ -72,7 +72,7 @@ __NArray *__NArrayCopy(__NArray *that) {
         NWord *cur = copy->items;
         NWord *end = copy->items + copy->count;
         for (; cur < end; ++cur) {
-            NRetain(cur->ptr);
+            NRetain(cur->asPtr);
         }
     }
 
@@ -96,7 +96,7 @@ void __NArrayPush(__NArray *self, NWord item) {
 
     NWord *last = self->items + self->count - 1;
     if (__IsObjectArray(self)) {
-        last->ptr = NRetain(item.ptr);
+        last->asPtr = NRetain(item.asPtr);
     } else {
         *last = item;
     }
@@ -112,7 +112,7 @@ void __NArrayPop(__NArray *self) {
 
     if (__IsObjectArray(self)) {
         NWord last = self->items[self->count - 1];
-        NRelease(last.ptr);
+        NRelease(last.asPtr);
     }
 
     self->count -= 1;
@@ -144,7 +144,7 @@ void __NArrayInsert(__NArray *self, int pos, NWord item) {
 
     NWord *slot = self->items + pos;
     if (__IsObjectArray(self)) {
-        slot->ptr = NRetain(item.ptr);
+        slot->asPtr = NRetain(item.asPtr);
     } else {
         *slot = item;
     }
@@ -159,7 +159,7 @@ void __NArrayRemove(__NArray *self, int pos) {
     }
 
     if (__IsObjectArray(self)) {
-        NRelease(self->items[pos].ptr);
+        NRelease(self->items[pos].asPtr);
     }
 
     __NArrayMoveItems(self, pos + 1, -1);
@@ -177,8 +177,8 @@ void __NArraySet(__NArray *self, int pos, NWord item) {
 
     NWord *slot = self->items + pos;
     if (__IsObjectArray(self)) {
-        NRelease(slot->ptr);
-        slot->ptr = NRetain(item.ptr);
+        NRelease(slot->asPtr);
+        slot->asPtr = NRetain(item.asPtr);
     } else {
         *slot = item;
     }
@@ -230,6 +230,6 @@ NWord __NArrayGet(__NArray *self, int pos) {
 /**/        return __NArrayGet((__NArray *)array, pos).MEMBER;  \
 /**/    }
 
-GEN_ARRAY(NArray   , __NArrayItemTypeObject, NObject *, ptr  )
-GEN_ARRAY(NIntArray, __NArrayItemTypePOD   , int64_t  , int64)
-GEN_ARRAY(NDblArray, __NArrayItemTypePOD   , double   , dbl  )
+GEN_ARRAY(NArray   , __NArrayItemTypeObject, NObject *, asPtr   )
+GEN_ARRAY(NIntArray, __NArrayItemTypePOD   , int64_t  , asInt64 )
+GEN_ARRAY(NDblArray, __NArrayItemTypePOD   , double   , asDouble)

@@ -61,20 +61,20 @@ nenum(NType) {
 
 nstruct(NWord) {
     union {
-        bool      boolean ;
-        int8_t    int8    ;
-        int16_t   int16   ;
-        int32_t   int32   ;
-        int64_t   int64   ;
-        int       integer ;
-        uint8_t   uint8   ;
-        uint16_t  uint16  ;
-        uint32_t  uint32  ;
-        uint64_t  uint64  ;
-        unsigned  uinteger;
-        float     flt     ;
-        double    dbl     ;
-        void     *ptr     ;
+        bool      asBool  ;
+        int8_t    asInt8  ;
+        int16_t   asInt16 ;
+        int32_t   asInt32 ;
+        int64_t   asInt64 ;
+        int       asInt   ;
+        uint8_t   asUInt8 ;
+        uint16_t  asUInt16;
+        uint32_t  asUInt32;
+        uint64_t  asUInt64;
+        unsigned  asUInt  ;
+        float     asFloat ;
+        double    asDouble;
+        void     *asPtr   ;
     };
 };
 

@@ -49,15 +49,32 @@ nenum(NType) {
     NTypeDouble = 12,
     NTypePtr    = 13,
     NTypeStruct = 14,
+
+  #if N_PTR_64
+    NTypeInt  = NTypeInt64 ,
+    NTypeUInt = NTypeUInt64,
+  #else
+    NTypeInt  = NTypeInt32 ,
+    NTypeUInt = NTypeUInt32,
+  #endif
 };
 
 nstruct(NWord) {
     union {
-        bool     boolWord;
-        int64_t  intWord ;
-        uint64_t uintWord;
-        double   dblWord ;
-        void    *ptrWord ;
+        bool      boolean ;
+        int8_t    int8    ;
+        int16_t   int16   ;
+        int32_t   int32   ;
+        int64_t   int64   ;
+        int       integer ;
+        uint8_t   uint8   ;
+        uint16_t  uint16  ;
+        uint32_t  uint32  ;
+        uint64_t  uint64  ;
+        unsigned  uinteger;
+        float     flt     ;
+        double    dbl     ;
+        void     *ptr     ;
     };
 };
 

@@ -78,9 +78,6 @@
     <ClCompile Include="..\..\appsrc\basis\basis\ntable.c">
       <Filter>appsrc\basis\basis</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\appsrc\basis\basis\ntypes.c">
-      <Filter>appsrc\basis\basis</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\appsrc\basis\basis\nunicode.c">
       <Filter>appsrc\basis\basis</Filter>
     </ClCompile>
@@ -101,6 +98,9 @@
     </ClCompile>
     <ClCompile Include="..\..\appsrc\uidev\uidev_win32\NWinMain.c">
       <Filter>appsrc\uidev\uidev_win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\appsrc\basis\basis\npod.c">
+      <Filter>appsrc\basis\basis</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -140,9 +140,6 @@
     <ClInclude Include="..\..\appsrc\basis\basis\ntable.h">
       <Filter>appsrc\basis\basis</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\appsrc\basis\basis\ntypes.h">
-      <Filter>appsrc\basis\basis</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\appsrc\basis\basis\nunicode.h">
       <Filter>appsrc\basis\basis</Filter>
     </ClInclude>
@@ -172,6 +169,9 @@
     </ClInclude>
     <ClInclude Include="..\..\appsrc\uidev\uidev_win32\NWinMain.h">
       <Filter>appsrc\uidev\uidev_win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\appsrc\basis\basis\npod.h">
+      <Filter>appsrc\basis\basis</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

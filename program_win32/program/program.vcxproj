@@ -30,7 +30,7 @@
     <ClCompile Include="..\..\appsrc\basis\basis\nnumber.c" />
     <ClCompile Include="..\..\appsrc\basis\basis\nstring.c" />
     <ClCompile Include="..\..\appsrc\basis\basis\ntable.c" />
-    <ClCompile Include="..\..\appsrc\basis\basis\ntypes.c" />
+    <ClCompile Include="..\..\appsrc\basis\basis\npod.c" />
     <ClCompile Include="..\..\appsrc\basis\basis\nunicode.c" />
     <ClCompile Include="..\..\appsrc\cmeta\cmeta\nfuncs.cpp" />
     <ClCompile Include="..\..\appsrc\cplus\cplus\nref.cpp" />
@@ -53,7 +53,7 @@
     <ClInclude Include="..\..\appsrc\basis\basis\nnumber.h" />
     <ClInclude Include="..\..\appsrc\basis\basis\nstring.h" />
     <ClInclude Include="..\..\appsrc\basis\basis\ntable.h" />
-    <ClInclude Include="..\..\appsrc\basis\basis\ntypes.h" />
+    <ClInclude Include="..\..\appsrc\basis\basis\npod.h" />
     <ClInclude Include="..\..\appsrc\basis\basis\nunicode.h" />
     <ClInclude Include="..\..\appsrc\cmeta\cmeta\cmeta.h" />
     <ClInclude Include="..\..\appsrc\cmeta\cmeta\NEXPORT.h" />

@@ -14,4 +14,13 @@ nfunc(bool  , NFuncRetRetained, (int fPos));
 nfunc(int   , NFuncArgCount   , (int fPos));
 nfunc(NType , NFuncArgType    , (int fPos, int aPos));
 
-nfunc(int64_t, NCallFunc, (int fPos, int argc, NType *types, int64_t *words));
+//the memory layout of "__NWord" is same with "NWord" 's.
+#ifndef __NWord
+#define __NWord int64_t
+#endif
+
+#ifndef NFUNC_MAX_ARG_NUM
+#define NFUNC_MAX_ARG_NUM 4
+#endif
+
+nfunc(__NWord, NCallFunc, (int fPos, int argc, NType *types, __NWord *words));

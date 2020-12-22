@@ -2,6 +2,7 @@
 #include "nenviron.h"
 
 #define NFUNC_MAX_ARG_NUM 4
+#define __NWord int64_t
 
 struct _NFuncInfo {
     const char *name;
@@ -92,20 +93,20 @@ nclink NType NFuncArgType(int fPos, int aPos) {
 }
 
 template<class R> struct _NPtrExecutor {
-    template<class... A> static int64_t Exec(void *func, A... a) {
+    template<class... A> static __NWord Exec(void *func, A... a) {
         R ret[8] = {0};
         *ret = ((R (*)(A...))func)(a...);
-        return *(int64_t *)ret;
+        return *(__NWord *)ret;
     }
 };
 template<> struct _NPtrExecutor<void> {
-    template<class... A> static int64_t Exec(void *func, A... a) {
+    template<class... A> static __NWord Exec(void *func, A... a) {
         ((void (*)(A...))func)(a...);
         return 0;
     }
 };
 
-template<class T> T _V(NType srcType, int64_t word) {
+template<class T> T _V(NType srcType, __NWord word) {
     switch (srcType) {
         case NTypeBool  : return (T) *(bool     *)&word;
         case NTypeInt8  : return (T) *(int8_t   *)&word;
@@ -123,7 +124,7 @@ template<class T> T _V(NType srcType, int64_t word) {
     }
 }
 
-template<> void *_V<void *>(NType srcType, int64_t word) {
+template<> void *_V<void *>(NType srcType, __NWord word) {
     if (srcType == NTypePtr) {
         return *(void **)&word;
     } else {
@@ -132,14 +133,14 @@ template<> void *_V<void *>(NType srcType, int64_t word) {
 }
 
 template<class R, int N> struct _NFuncCaller {
-    template<class... A> static int64_t Call(_NFuncInfo *info, NType *ts, int64_t *ws, A... a) {
+    template<class... A> static __NWord Call(_NFuncInfo *info, NType *ts, __NWord *ws, A... a) {
         if (N == info->argCount) {
             return _NPtrExecutor<R>::Exec(info->address, a...);
         }
 
         NType   d = info->argTypes[N];
         NType   s = ts[N];
-        int64_t w = ws[N];
+        __NWord w = ws[N];
 
         switch (d) {
             //NOTE: only use "npint", "int64_t", "float" and "double" 4 types, to prevent code bloat.
@@ -160,12 +161,12 @@ template<class R, int N> struct _NFuncCaller {
     }
 };
 template<class R> struct _NFuncCaller<R, NFUNC_MAX_ARG_NUM> {
-    template<class... A> static int64_t Call(_NFuncInfo *info, NType *ts, int64_t *ws, A... a) {
+    template<class... A> static __NWord Call(_NFuncInfo *info, NType *ts, __NWord *ws, A... a) {
         return _NPtrExecutor<R>::Exec(info->address, a...);
     }
 };
 
-nclink int64_t NCallFunc(int fPos, int argc, NType *types, int64_t *words) {
+nclink __NWord NCallFunc(int fPos, int argc, NType *types, __NWord *words) {
     if (!(LIST_BEGIN <= fPos && fPos < gListEnd)) {
         return 0;
     }

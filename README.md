@@ -6,6 +6,13 @@ which means this is a experimental project.
 
 ## directory structure
 
+**program assets:**
+
+the cross-platform source and resource.
+
+* appsrc/
+* appres/
+
 **build scripts:**
 
 for building program and placing them to *BUILD/*.
@@ -25,13 +32,6 @@ it will avoid developer adding vast header search paths tediously.
 
 * genheaders
 * genheaders.bat
-
-**program assets:**
-
-the cross-platform source and resource.
-
-* mainsrc/
-* mainres/
 
 **project files:**
 

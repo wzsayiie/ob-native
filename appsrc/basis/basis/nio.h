@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ntypes.h"
+#include "nenviron.h"
 
 nclink void NPrintF(const char *format, ...);
 

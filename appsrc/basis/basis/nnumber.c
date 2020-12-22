@@ -1,4 +1,5 @@
 #include "nnumber.h"
+#include "ntypes.h"
 
 nstruct(NNumber) {
     NValue value;

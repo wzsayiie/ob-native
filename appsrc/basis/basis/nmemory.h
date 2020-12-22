@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ntypes.h"
+#include "nenviron.h"
 
 nfunc(void *, NAlloc  , (int size));
 nfunc(void *, NRealloc, (void *ptr, int size));

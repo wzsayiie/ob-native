@@ -2,6 +2,7 @@
 
 #include "niterator.h"
 #include "nmemory.h"
+#include "ntypes.h"
 
 nenum(__NArrayItemType) {
     __NArrayItemTypeObject = 1,

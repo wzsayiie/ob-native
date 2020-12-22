@@ -1,6 +1,7 @@
 #pragma once
 
 #include "nstring.h"
+#include "ntypes.h"
 
 nenum(__NTableKeyType) {
     __NTableKeyTypeString = 1,

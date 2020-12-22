@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ntypes.h"
+#include "nenviron.h"
 
 nfunc(int, NReadFromU32Bytes, (const void *nonnull_begin, const void *end, char32_t *nonnull_outChar));
 nfunc(int, NReadFromU16Bytes, (const void *nonnull_begin, const void *end, char32_t *nonnull_outChar));

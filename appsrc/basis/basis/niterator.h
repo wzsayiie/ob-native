@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ntypes.h"
+#include "nenviron.h"
 
 nstruct(NIterator) {
     bool  (*Next)(NIterator *iterator);

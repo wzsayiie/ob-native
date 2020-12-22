@@ -9,7 +9,7 @@
 #include "nlock.h"
 #include "nmemory.h"
 #include "nnumber.h"
+#include "npod.h"
 #include "nstring.h"
 #include "ntable.h"
-#include "ntypes.h"
 #include "nunicode.h"

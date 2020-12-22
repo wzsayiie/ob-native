@@ -105,8 +105,13 @@ nenum(NType) {
     NTypePtr    = 13,
     NTypeStruct = 14,
 
+  #if __ILP64__
+    NTypeInt  = NTypeInt64 ,
+    NTypeUInt = NTypeUInt64,
+  #else
     NTypeInt  = NTypeInt32 ,
     NTypeUInt = NTypeUInt32,
+  #endif
 };
 
 //type modifiers:

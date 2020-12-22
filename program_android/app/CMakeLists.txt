@@ -10,7 +10,6 @@ list(APPEND src_aims ../../appsrc/cmeta/cmeta/*.cpp)
 list(APPEND src_aims ../../appsrc/cplus/cplus/*.cpp)
 list(APPEND src_aims ../../appsrc/main/main/*.cpp)
 list(APPEND src_aims ../../appsrc/uidev/uidev/*.c)
-list(APPEND src_aims ../../appsrc/uidev/uidev_android/*.c)
 list(APPEND src_aims ../../appsrc/xbind/xbind_android/*.c)
 
 list(APPEND sys_libs log)

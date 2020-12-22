@@ -3,13 +3,15 @@ package src.shared.uidev;
 import android.app.Activity;
 import android.os.Bundle;
 
+import src.shared.xbind.NFunc;
+
 public class NActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        handleCreate();
-    }
 
-    private static native void handleCreate();
+        NFunc launch = new NFunc("NLaunch");
+        launch.callVoid();
+    }
 }

@@ -1,5 +1,6 @@
 #include "nio.h"
 #include <stdarg.h>
+#include <stdio.h>
 
 #if N_OS_ANDROID
     #include <android/log.h>

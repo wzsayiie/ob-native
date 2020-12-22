@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE65298D25922ACD00F37BA6 /* npod.c in Sources */ = {isa = PBXBuildFile; fileRef = CE65298A25922A9900F37BA6 /* npod.c */; };
 		CED2DD7A25879D0E00810596 /* nref.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CED2DD2925879D0D00810596 /* nref.cpp */; };
 		CED2DD7B25879D0E00810596 /* nwidget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CED2DD2B25879D0D00810596 /* nwidget.cpp */; };
 		CED2DD7E25879D0E00810596 /* nlaunch.c in Sources */ = {isa = PBXBuildFile; fileRef = CED2DD3925879D0D00810596 /* nlaunch.c */; };
@@ -24,7 +25,6 @@
 		CED2DD8F25879D0E00810596 /* nmemory.c in Sources */ = {isa = PBXBuildFile; fileRef = CED2DD6625879D0E00810596 /* nmemory.c */; };
 		CED2DD9025879D0E00810596 /* naction.c in Sources */ = {isa = PBXBuildFile; fileRef = CED2DD6A25879D0E00810596 /* naction.c */; };
 		CED2DD9125879D0E00810596 /* nenviron.c in Sources */ = {isa = PBXBuildFile; fileRef = CED2DD6B25879D0E00810596 /* nenviron.c */; };
-		CED2DD9225879D0E00810596 /* ntypes.c in Sources */ = {isa = PBXBuildFile; fileRef = CED2DD6C25879D0E00810596 /* ntypes.c */; };
 		CED2DD9325879D0E00810596 /* ndata.c in Sources */ = {isa = PBXBuildFile; fileRef = CED2DD7025879D0E00810596 /* ndata.c */; };
 		CED2DD9425879D0E00810596 /* nlock.c in Sources */ = {isa = PBXBuildFile; fileRef = CED2DD7225879D0E00810596 /* nlock.c */; };
 		CED2DD9525879D0E00810596 /* nfuncs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CED2DD7925879D0E00810596 /* nfuncs.cpp */; };
@@ -33,6 +33,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CE65298A25922A9900F37BA6 /* npod.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = npod.c; sourceTree = "<group>"; };
+		CE65298B25922A9900F37BA6 /* npod.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = npod.h; sourceTree = "<group>"; };
 		CED2DD2825879D0D00810596 /* cplus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cplus.h; sourceTree = "<group>"; };
 		CED2DD2925879D0D00810596 /* nref.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = nref.cpp; sourceTree = "<group>"; };
 		CED2DD2A25879D0D00810596 /* nwidget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nwidget.h; sourceTree = "<group>"; };
@@ -59,7 +61,6 @@
 		CED2DD6125879D0D00810596 /* ndata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ndata.h; sourceTree = "<group>"; };
 		CED2DD6225879D0D00810596 /* nio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = nio.c; sourceTree = "<group>"; };
 		CED2DD6325879D0D00810596 /* narray.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = narray.c; sourceTree = "<group>"; };
-		CED2DD6425879D0D00810596 /* ntypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ntypes.h; sourceTree = "<group>"; };
 		CED2DD6525879D0E00810596 /* nunicode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = nunicode.c; sourceTree = "<group>"; };
 		CED2DD6625879D0E00810596 /* nmemory.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = nmemory.c; sourceTree = "<group>"; };
 		CED2DD6725879D0E00810596 /* niterator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = niterator.h; sourceTree = "<group>"; };
@@ -67,7 +68,6 @@
 		CED2DD6925879D0E00810596 /* nstring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nstring.h; sourceTree = "<group>"; };
 		CED2DD6A25879D0E00810596 /* naction.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = naction.c; sourceTree = "<group>"; };
 		CED2DD6B25879D0E00810596 /* nenviron.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = nenviron.c; sourceTree = "<group>"; };
-		CED2DD6C25879D0E00810596 /* ntypes.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ntypes.c; sourceTree = "<group>"; };
 		CED2DD6D25879D0E00810596 /* nunicode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nunicode.h; sourceTree = "<group>"; };
 		CED2DD6E25879D0E00810596 /* nio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nio.h; sourceTree = "<group>"; };
 		CED2DD6F25879D0E00810596 /* narray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = narray.h; sourceTree = "<group>"; };
@@ -208,12 +208,12 @@
 				CED2DD7325879D0E00810596 /* nmemory.h */,
 				CED2DD5925879D0D00810596 /* nnumber.c */,
 				CED2DD6825879D0E00810596 /* nnumber.h */,
+				CE65298A25922A9900F37BA6 /* npod.c */,
+				CE65298B25922A9900F37BA6 /* npod.h */,
 				CED2DD5E25879D0D00810596 /* nstring.c */,
 				CED2DD6925879D0E00810596 /* nstring.h */,
 				CED2DD5F25879D0D00810596 /* ntable.c */,
 				CED2DD7125879D0E00810596 /* ntable.h */,
-				CED2DD6C25879D0E00810596 /* ntypes.c */,
-				CED2DD6425879D0D00810596 /* ntypes.h */,
 				CED2DD6525879D0E00810596 /* nunicode.c */,
 				CED2DD6D25879D0E00810596 /* nunicode.h */,
 			);
@@ -335,6 +335,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE65298D25922ACD00F37BA6 /* npod.c in Sources */,
 				CED2DD8C25879D0E00810596 /* nio.c in Sources */,
 				CED2DD8825879D0E00810596 /* nnumber.c in Sources */,
 				CED2DD8025879D0E00810596 /* NOSXAppDelegate.m in Sources */,
@@ -350,7 +351,6 @@
 				CED2DD8A25879D0E00810596 /* nstring.c in Sources */,
 				CED2DD9425879D0E00810596 /* nlock.c in Sources */,
 				CED2DD7E25879D0E00810596 /* nlaunch.c in Sources */,
-				CED2DD9225879D0E00810596 /* ntypes.c in Sources */,
 				CED80C2C24F2ADA30063F3DE /* main.m in Sources */,
 				CED2DD9325879D0E00810596 /* ndata.c in Sources */,
 				CED2DD8F25879D0E00810596 /* nmemory.c in Sources */,

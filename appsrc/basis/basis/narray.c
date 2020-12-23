@@ -1,6 +1,6 @@
 #include "narray.h"
 
-nstruct(__NArray) {
+nclass(__NArray) {
     int    type  ;
     NWord *items ;
     int    volume;

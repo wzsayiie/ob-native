@@ -1,6 +1,6 @@
 #include "ndata.h"
 
-nstruct(NData) {
+nclass(NData) {
     void *bytes;
 };
 

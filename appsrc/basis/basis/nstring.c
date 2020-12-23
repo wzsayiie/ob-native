@@ -8,7 +8,7 @@ nstruct(NStringIterator) {
     void    *back;
 };
 
-nstruct(NString) {
+nclass(NString) {
     int       length  ;
     char32_t *u32chars;
     char16_t *u16chars;

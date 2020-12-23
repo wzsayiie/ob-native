@@ -13,7 +13,7 @@ nenum(__NTableValueType) {
     __NTableValueTypePOD    = 2,
 };
 
-nstruct(__NTable);
+nclass(__NTable);
 
 nclink __NTable *__NTableCreate(__NTableKeyType keyType, __NTableValueType valueType);
 nclink __NTable *__NTableCopy  (__NTable *that);
@@ -21,7 +21,7 @@ nclink void      __NTableSet   (__NTable *self, NWord key, NWord value);
 nclink NWord     __NTableGet   (__NTable *self, NWord key);
 nclink int       __NTableCount (__NTable *self);
 
-// nstruct(NTable);
+// nclass(NTable);
 
 // nfunc(NTable  *, NTableCreate, (void));
 // nfunc(NTable  *, NTableCopy  , (NTable *that));
@@ -29,7 +29,7 @@ nclink int       __NTableCount (__NTable *self);
 // nfunc(NObject *, NTableGet   , (NTable *self, NString *key));
 // nfunc(int      , NTableCount , (NTable *self));
 
-// nstruct(NIntTable);
+// nclass(NIntTable);
 
 // nfunc(NIntTable *, NIntTableCreate, (void));
 // nfunc(NIntTable *, NIntTableCopy  , (NIntTable *that));
@@ -37,7 +37,7 @@ nclink int       __NTableCount (__NTable *self);
 // nfunc(int64_t    , NIntTableGet   , (NIntTable *self, NString *key));
 // nfunc(int        , NIntTableCount , (NIntTable *self));
 
-// nstruct(NDblTable);
+// nclass(NDblTable);
 
 // nfunc(NDblTable *, NDblTableCreate, (void));
 // nfunc(NDblTable *, NDblTableCopy  , (NDblTable *that));
@@ -45,7 +45,7 @@ nclink int       __NTableCount (__NTable *self);
 // nfunc(double     , NDblTableGet   , (NDblTable *self, NString *key));
 // nfunc(int        , NDblTableCount , (NDblTable *self));
 
-// nstruct(NSparse);
+// nclass(NSparse);
 
 // nfunc(NSparse *, NSparseCreate, (void));
 // nfunc(NSparse *, NSparseCopy  , (NSparse *that));
@@ -53,7 +53,7 @@ nclink int       __NTableCount (__NTable *self);
 // nfunc(NObject *, NSparseGet   , (NSparse *self, int64_t key));
 // nfunc(int      , NSparseCount , (NSparse *self));
 
-// nstruct(NIntSparse);
+// nclass(NIntSparse);
 
 // nfunc(NIntSparse *, NIntSparseCreate, (void));
 // nfunc(NIntSparse *, NIntSparseCopy  , (NIntSparse *that));
@@ -61,7 +61,7 @@ nclink int       __NTableCount (__NTable *self);
 // nfunc(int64_t     , NIntSparseGet   , (NIntSparse *self, int64_t key));
 // nfunc(int         , NIntSparseCount , (NIntSparse *self));
 
-// nstruct(NDblSparse);
+// nclass(NDblSparse);
 
 // nfunc(NDblSparse *, NDblSparseCreate, (void));
 // nfunc(NDblSparse *, NDblSparseCopy  , (NDblSparse *that));

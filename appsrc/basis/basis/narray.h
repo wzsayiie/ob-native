@@ -9,7 +9,7 @@ nenum(__NArrayItemType) {
     __NArrayItemTypePOD    = 2,
 };
 
-nstruct(__NArray);
+nclass(__NArray);
 
 nclink __NArray *__NArrayCreate(__NArrayItemType type);
 nclink __NArray *__NArrayCopy  (__NArray *that);
@@ -21,7 +21,7 @@ nclink void      __NArrayRemove(__NArray *self, int pos);
 nclink void      __NArraySet   (__NArray *self, int pos, NWord item);
 nclink NWord     __NArrayGet   (__NArray *self, int pos);
 
-nstruct(NArray);
+nclass(NArray);
 
 nfunc(NArray  *, NArrayCreate, (void));
 nfunc(NArray  *, NArrayCopy  , (NArray *that));
@@ -33,7 +33,7 @@ nfunc(void     , NArrayRemove, (NArray *self, int pos));
 nfunc(void     , NArraySet   , (NArray *self, int pos, NObject *item));
 nfunc(NObject *, NArrayGet   , (NArray *self, int pos));
 
-nstruct(NIntArray);
+nclass(NIntArray);
 
 nfunc(NIntArray *, NIntArrayCreate, (void));
 nfunc(NIntArray *, NIntArrayCopy  , (NIntArray *that));
@@ -45,7 +45,7 @@ nfunc(void       , NIntArrayRemove, (NIntArray *self, int pos));
 nfunc(void       , NIntArraySet   , (NIntArray *self, int pos, int64_t item));
 nfunc(int64_t    , NIntArrayGet   , (NIntArray *self, int pos));
 
-nstruct(NDblArray);
+nclass(NDblArray);
 
 nfunc(NDblArray *, NDblArrayCreate, (void));
 nfunc(NDblArray *, NDblArrayCopy  , (NDblArray *that));

@@ -130,8 +130,11 @@ nenum(NType) {
 #endif
 
 //the flags for generating meta data:
-#define __nstruct(name) typedef struct name name; struct name
-#define   nstruct(name) __nstruct(name)
+#define __nclass(name) typedef struct name name; struct name
+#define   nclass(name) __nclass(name)
 
 #define __nfunc(ret, name, params) nclink  ret  name  params
 #define   nfunc(ret, name, params) __nfunc(ret, name, params)
+
+#define __nstruct(name) typedef struct name name; struct name
+#define   nstruct(name) __nstruct(name)

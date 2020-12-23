@@ -38,7 +38,7 @@ android {
     sourceSets {
         main {
             java.srcDirs += "../../appsrc/uidev/uidev_android/java"
-            java.srcDirs += "../../appsrc/xbind/xbind_android/java"
+            java.srcDirs += "../../appsrc/osbind/osbind_android/java"
         }
     }
 }

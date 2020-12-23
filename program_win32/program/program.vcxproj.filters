@@ -16,12 +16,6 @@
     <Filter Include="appsrc\uidev\uidev_win32">
       <UniqueIdentifier>{70fea9ca-1ca6-41ba-a277-729c2569c073}</UniqueIdentifier>
     </Filter>
-    <Filter Include="appsrc\main">
-      <UniqueIdentifier>{503fcbd7-ca83-4607-8071-b3e1691c780c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="appsrc\main\main">
-      <UniqueIdentifier>{853b48a0-8340-4e2b-8454-e8ef041fcb70}</UniqueIdentifier>
-    </Filter>
     <Filter Include="appsrc\basis">
       <UniqueIdentifier>{09083884-6c6f-41a7-af31-d97e901b5c5a}</UniqueIdentifier>
     </Filter>
@@ -39,6 +33,18 @@
     </Filter>
     <Filter Include="appsrc\cplus\cplus">
       <UniqueIdentifier>{38befe4a-aa22-4195-9b76-ef14b52be627}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="appsrc\cmain">
+      <UniqueIdentifier>{503fcbd7-ca83-4607-8071-b3e1691c780c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="appsrc\cmain\cmain">
+      <UniqueIdentifier>{853b48a0-8340-4e2b-8454-e8ef041fcb70}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="appsrc\osbind">
+      <UniqueIdentifier>{62391290-1aa0-4748-8506-24a484fecb0b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="appsrc\osbind\osbind">
+      <UniqueIdentifier>{e7dc82ea-1985-4714-95d3-64791fd973da}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -90,9 +96,6 @@
     <ClCompile Include="..\..\appsrc\cplus\cplus\nwidget.cpp">
       <Filter>appsrc\cplus\cplus</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\appsrc\main\main\launch.cpp">
-      <Filter>appsrc\main\main</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\appsrc\uidev\uidev\nlaunch.c">
       <Filter>appsrc\uidev\uidev</Filter>
     </ClCompile>
@@ -101,6 +104,12 @@
     </ClCompile>
     <ClCompile Include="..\..\appsrc\basis\basis\npod.c">
       <Filter>appsrc\basis\basis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\appsrc\cmain\cmain\launch.cpp">
+      <Filter>appsrc\cmain\cmain</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\appsrc\osbind\osbind\nbind.c">
+      <Filter>appsrc\osbind\osbind</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -172,6 +181,12 @@
     </ClInclude>
     <ClInclude Include="..\..\appsrc\basis\basis\npod.h">
       <Filter>appsrc\basis\basis</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\appsrc\osbind\osbind\nbind.h">
+      <Filter>appsrc\osbind\osbind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\appsrc\osbind\osbind\osbind.h">
+      <Filter>appsrc\osbind\osbind</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

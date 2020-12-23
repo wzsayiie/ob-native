@@ -3,7 +3,7 @@ package src.shared.uidev;
 import android.app.Activity;
 import android.os.Bundle;
 
-import src.shared.xbind.NFunc;
+import src.shared.osbind.NFunc;
 
 public class NActivity extends Activity {
 

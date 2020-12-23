@@ -2,7 +2,7 @@
 #include "basis.h"
 
 JNIEXPORT jlong JNICALL
-Java_src_shared_xbind_NPtr_createString(JNIEnv *env, jclass cls,
+Java_src_shared_osbind_NPtr_createString(JNIEnv *env, jclass cls,
     jstring string)
 {
     NString *object = NULL;
@@ -15,7 +15,7 @@ Java_src_shared_xbind_NPtr_createString(JNIEnv *env, jclass cls,
 }
 
 JNIEXPORT jstring JNICALL
-Java_src_shared_xbind_NPtr_stringFromPtr(JNIEnv *env, jclass cls,
+Java_src_shared_osbind_NPtr_stringFromPtr(JNIEnv *env, jclass cls,
     jlong ptr)
 {
     if (!ptr) {
@@ -33,7 +33,7 @@ Java_src_shared_xbind_NPtr_stringFromPtr(JNIEnv *env, jclass cls,
 }
 
 JNIEXPORT jstring JNICALL
-Java_src_shared_xbind_NPtr_charsFromPtr(JNIEnv *env, jclass cls,
+Java_src_shared_osbind_NPtr_charsFromPtr(JNIEnv *env, jclass cls,
     jlong ptr)
 {
     if (ptr) {
@@ -44,7 +44,7 @@ Java_src_shared_xbind_NPtr_charsFromPtr(JNIEnv *env, jclass cls,
 }
 
 JNIEXPORT void JNICALL
-Java_src_shared_xbind_NPtr_releasePtr(JNIEnv *env, jclass cls,
+Java_src_shared_osbind_NPtr_releasePtr(JNIEnv *env, jclass cls,
     jlong ptr)
 {
     void *object = NPtrWord(ptr);

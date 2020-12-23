@@ -32,10 +32,11 @@
     <ClCompile Include="..\..\appsrc\basis\basis\ntable.c" />
     <ClCompile Include="..\..\appsrc\basis\basis\npod.c" />
     <ClCompile Include="..\..\appsrc\basis\basis\nunicode.c" />
+    <ClCompile Include="..\..\appsrc\cmain\cmain\launch.cpp" />
     <ClCompile Include="..\..\appsrc\cmeta\cmeta\nfuncs.cpp" />
     <ClCompile Include="..\..\appsrc\cplus\cplus\nref.cpp" />
     <ClCompile Include="..\..\appsrc\cplus\cplus\nwidget.cpp" />
-    <ClCompile Include="..\..\appsrc\main\main\launch.cpp" />
+    <ClCompile Include="..\..\appsrc\osbind\osbind\nbind.c" />
     <ClCompile Include="..\..\appsrc\uidev\uidev\nlaunch.c" />
     <ClCompile Include="..\..\appsrc\uidev\uidev_win32\NWinMain.c" />
     <ClCompile Include="winmain.c" />
@@ -61,6 +62,8 @@
     <ClInclude Include="..\..\appsrc\cplus\cplus\cplus.h" />
     <ClInclude Include="..\..\appsrc\cplus\cplus\nref.h" />
     <ClInclude Include="..\..\appsrc\cplus\cplus\nwidget.h" />
+    <ClInclude Include="..\..\appsrc\osbind\osbind\nbind.h" />
+    <ClInclude Include="..\..\appsrc\osbind\osbind\osbind.h" />
     <ClInclude Include="..\..\appsrc\uidev\uidev\nlaunch.h" />
     <ClInclude Include="..\..\appsrc\uidev\uidev\uidev.h" />
     <ClInclude Include="..\..\appsrc\uidev\uidev_win32\NWinMain.h" />

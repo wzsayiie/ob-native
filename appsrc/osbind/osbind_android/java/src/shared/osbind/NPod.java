@@ -1,4 +1,4 @@
-package src.shared.xbind;
+package src.shared.osbind;
 
 public class NPod {
 

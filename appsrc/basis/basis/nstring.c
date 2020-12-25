@@ -1,20 +1,10 @@
 #include "nstring.h"
 
-nstruct(NStringIterator) {
-    NIterator super;
-
-    int    (*step)(const void *, char32_t *);
-    char32_t head;
-    void    *back;
-};
-
 nclass(NString) {
     int       length  ;
     char32_t *u32chars;
     char16_t *u16chars;
     char     *u8chars ;
-
-    NStringIterator iterator;
 };
 
 static void _NStringClear(NString *string) {
@@ -146,34 +136,41 @@ int NStringLength(NString *self) {
     return self->length;
 }
 
-static bool _NStringNext(NStringIterator *iter) {
-    int size = iter->step(iter->back, &iter->head);
+nstruct(_NStringIterator) {
+    NIterator super;
+
+    int (*step)(const void *, char32_t *);
+    char32_t current;
+    void *remaining;
+};
+
+static bool _NStringIteratorNext(_NStringIterator *it) {
+    int size = it->step(it->remaining, &it->current);
     if (size > 0) {
-        iter->back = (char *)iter->back + size;
+        it->remaining = (uint8_t *)it->remaining + size;
         return true;
     }
     return false;
 }
 
-static void *_NStringGet(NStringIterator *iter) {
-    return &iter->head;
+static void *_NStringIteratorGet(_NStringIterator *it) {
+    return &it->current;
 }
 
 NIterator *NStringRange(NString *self) {
     if (NStringIsEmpty(self)) {
-        return NIteratorGetEmpty();
+        return NStoreIterator(NULL, 0);
     }
 
-    NStringIterator *iter = &self->iterator;
-    NZeroMemory(iter, nisizeof(*iter));
-    iter->super.Next = (bool  (*)(NIterator *))_NStringNext;
-    iter->super.Get  = (void *(*)(NIterator *))_NStringGet ;
+    _NStringIterator it = {0};
+    it.super.next = (NIteratorNextFunc)_NStringIteratorNext;
+    it.super.get  = (NIteratorGetFunc )_NStringIteratorGet ;
 
-    if /**/ (self->u32chars) {iter->step = NReadFromU32Chars; iter->back = self->u32chars;}
-    else if (self->u16chars) {iter->step = NReadFromU16Chars; iter->back = self->u16chars;}
-    else if (self->u8chars ) {iter->step = NReadFromU8Chars ; iter->back = self->u8chars ;}
+    if /**/ (self->u32chars) {it.step = NReadFromU32Chars; it.remaining = self->u32chars;}
+    else if (self->u16chars) {it.step = NReadFromU16Chars; it.remaining = self->u16chars;}
+    else if (self->u8chars ) {it.step = NReadFromU8Chars ; it.remaining = self->u8chars ;}
 
-    return &iter->super;
+    return NStoreIterator(&it, sizeof(it));
 }
 
 bool NStringIsEmpty(NString *self) {
@@ -233,12 +230,12 @@ int NStringCompare(NString *self, NString *that) {
     NIterator *thatIter = NStringRange(that);
 
     while (true) {
-        bool selfValid = selfIter->Next(selfIter);
-        bool thatValid = thatIter->Next(thatIter);
+        bool selfValid = selfIter->next(selfIter);
+        bool thatValid = thatIter->next(thatIter);
 
         if (selfValid && thatValid) {
-            char32_t selfChar = *(char32_t *)selfIter->Get(selfIter);
-            char32_t thatChar = *(char32_t *)thatIter->Get(thatIter);
+            char32_t selfChar = *(char32_t *)selfIter->get(selfIter);
+            char32_t thatChar = *(char32_t *)thatIter->get(thatIter);
 
             if (selfChar > thatChar) {return  1;}
             if (selfChar < thatChar) {return -1;}

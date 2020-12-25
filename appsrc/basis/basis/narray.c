@@ -85,6 +85,35 @@ int __NArrayCount(__NArray *self) {
     return 0;
 }
 
+nstruct(__NArrayIterator) {
+    NIterator super;
+    __NArray *array;
+    int cursor;
+};
+
+static bool __NArrayIteratorNext(__NArrayIterator *it) {
+    return it->cursor < it->array->count;
+}
+
+static void *__NArrayIteratorGet(__NArrayIterator *it) {
+    return it->array->items + (it->cursor)++;
+}
+
+NIterator *__NArrayRange(__NArray *self) {
+    if (!self) {
+        return NStoreIterator(NULL, 0);
+    }
+
+    __NArrayIterator it = {0};
+
+    it.super.next = (NIteratorNextFunc)__NArrayIteratorNext;
+    it.super.get  = (NIteratorGetFunc )__NArrayIteratorGet ;
+    it.array  = self;
+    it.cursor = 0;
+
+    return NStoreIterator(&it, nisizeof(it));
+}
+
 void __NArrayPush(__NArray *self, NWord item) {
     if (!self) {
         return;
@@ -203,6 +232,9 @@ NWord __NArrayGet(__NArray *self, int pos) {
 /**/    }                                                       \
 /**/    int ARRAY##Count(ARRAY *array) {                        \
 /**/        return __NArrayCount((__NArray *)array);            \
+/**/    }                                                       \
+/**/    NIterator *ARRAY##Range(ARRAY *array) {                 \
+/**/        return __NArrayRange((__NArray *)array);            \
 /**/    }                                                       \
 /**/    void ARRAY##Push(ARRAY *array, ITEM item) {             \
 /**/        NWord word;                                         \

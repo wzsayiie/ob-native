@@ -46,6 +46,21 @@
     <Filter Include="appsrc\osbind\osbind">
       <UniqueIdentifier>{e7dc82ea-1985-4714-95d3-64791fd973da}</UniqueIdentifier>
     </Filter>
+    <Filter Include="appsrc\osplat">
+      <UniqueIdentifier>{c938c8ab-f92a-4267-8f38-50f4db3c43e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="appsrc\osplat\osplat">
+      <UniqueIdentifier>{f2f4beae-358f-4511-bfce-7d38760f0e79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="appsrc\osplat\osplat_win32">
+      <UniqueIdentifier>{caef4ee5-0377-4a84-924d-4122a6423279}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="appsrc\net">
+      <UniqueIdentifier>{6f69fff5-b6e9-4740-8bb4-358d8a12072a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="appsrc\net\net">
+      <UniqueIdentifier>{43b500e6-db19-4569-ad59-f13d33f4a3d0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="winmain.c">
@@ -108,8 +123,35 @@
     <ClCompile Include="..\..\appsrc\cmain\cmain\launch.cpp">
       <Filter>appsrc\cmain\cmain</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\appsrc\osbind\osbind\nbind.c">
+    <ClCompile Include="..\..\appsrc\osbind\osbind\osbind.c">
       <Filter>appsrc\osbind\osbind</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\appsrc\osplat\osplat\osplat.c">
+      <Filter>appsrc\osplat\osplat</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\appsrc\osplat\osplat_win32\nbundle_win32.c">
+      <Filter>appsrc\osplat\osplat_win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\appsrc\osplat\osplat_win32\nfile_win32.c">
+      <Filter>appsrc\osplat\osplat_win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\appsrc\osplat\osplat_win32\nrunloop_win32.c">
+      <Filter>appsrc\osplat\osplat_win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\appsrc\osplat\osplat_win32\nthread_win32.c">
+      <Filter>appsrc\osplat\osplat_win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\appsrc\net\net\nhttp.c">
+      <Filter>appsrc\net\net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\appsrc\net\net\nsocket.c">
+      <Filter>appsrc\net\net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\appsrc\net\net\nsocketposix.c">
+      <Filter>appsrc\net\net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\appsrc\net\net\nsocketwin32.c">
+      <Filter>appsrc\net\net</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -182,11 +224,32 @@
     <ClInclude Include="..\..\appsrc\basis\basis\npod.h">
       <Filter>appsrc\basis\basis</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\appsrc\osbind\osbind\nbind.h">
-      <Filter>appsrc\osbind\osbind</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\appsrc\osbind\osbind\osbind.h">
       <Filter>appsrc\osbind\osbind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\appsrc\osplat\osplat\nbundle.h">
+      <Filter>appsrc\osplat\osplat</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\appsrc\osplat\osplat\nfiles.h">
+      <Filter>appsrc\osplat\osplat</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\appsrc\osplat\osplat\nrunloop.h">
+      <Filter>appsrc\osplat\osplat</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\appsrc\osplat\osplat\nthread.h">
+      <Filter>appsrc\osplat\osplat</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\appsrc\osplat\osplat\osplat.h">
+      <Filter>appsrc\osplat\osplat</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\appsrc\net\net\net.h">
+      <Filter>appsrc\net\net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\appsrc\net\net\nhttp.h">
+      <Filter>appsrc\net\net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\appsrc\net\net\nsocket.h">
+      <Filter>appsrc\net\net</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

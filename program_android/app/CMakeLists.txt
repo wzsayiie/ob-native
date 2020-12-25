@@ -6,13 +6,16 @@ set(lib_name main)
 list(APPEND inc_path ../../HEADERS)
 
 list(APPEND src_aims ../../appsrc/basis/basis/*.c)
-list(APPEND src_aims ../../appsrc/uidev/uidev/*.c)
+list(APPEND src_aims ../../appsrc/cmain/*.cpp)
+list(APPEND src_aims ../../appsrc/cmeta/*.cpp)
+list(APPEND src_aims ../../appsrc/cplus/*.cpp)
+list(APPEND src_aims ../../appsrc/net/net/*.c)
 list(APPEND src_aims ../../appsrc/osbind/osbind/*.c)
 list(APPEND src_aims ../../appsrc/osbind/osbind_android/*.c)
-
-list(APPEND src_aims ../../appsrc/cmain/cmain/*.cpp)
-list(APPEND src_aims ../../appsrc/cmeta/cmeta/*.cpp)
-list(APPEND src_aims ../../appsrc/cplus/cplus/*.cpp)
+list(APPEND src_aims ../../appsrc/osplat/osplat/*.c)
+list(APPEND src_aims ../../appsrc/osplat/osplat_android/*.c)
+list(APPEND src_aims ../../appsrc/uidev/uidev/*.c)
+list(APPEND src_aims ../../appsrc/uidev/uidev_android/*.c)
 
 list(APPEND sys_libs log)
 ### configutation end.

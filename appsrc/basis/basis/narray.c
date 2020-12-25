@@ -1,40 +1,39 @@
 #include "narray.h"
 
 nclass(__NArray) {
-    int    type  ;
-    NWord *items ;
-    int    volume;
-    int    count ;
+    int    type ;
+    NWord *items;
+    int    count;
 };
 
 static const int MAX_RESERVE_ITEM_NUM = 64;
 static const int EVERY_ALLOC_ITEM_NUM = 16;
 
 static void __NArrayTryStretch(__NArray *array, int least) {
-    int vacancy = array->volume - array->count;
+    int capacity = NMemorySize(array->items) / nisizeof(NWord);
+    int vacancy = capacity - array->count;
     if (vacancy >= least) {
         return;
     }
 
-    int volume = array->count + least;
-    if (volume % EVERY_ALLOC_ITEM_NUM > 0) {
-        volume = (volume / EVERY_ALLOC_ITEM_NUM + 1) * EVERY_ALLOC_ITEM_NUM;
+    int newCapacity = array->count + least;
+    if (newCapacity % EVERY_ALLOC_ITEM_NUM > 0) {
+        newCapacity = (newCapacity / EVERY_ALLOC_ITEM_NUM + 1) * EVERY_ALLOC_ITEM_NUM;
     }
-    array->items  = NRealloc(array->items, volume * nisizeof(NWord));
-    array->volume = volume;
+    array->items = NRealloc(array->items, newCapacity * nisizeof(NWord));
 }
 
 static void __NArrayTryShrink(__NArray *array) {
-    int vacancy = array->volume - array->count;
+    int capacity = NMemorySize(array->items) / nisizeof(NWord);
+    int vacancy = capacity - array->count;
     if (vacancy <= MAX_RESERVE_ITEM_NUM) {
         return;
     }
 
-    int volume = array->count + EVERY_ALLOC_ITEM_NUM;
-    volume -= volume % EVERY_ALLOC_ITEM_NUM;
+    int newCapacity = array->count + EVERY_ALLOC_ITEM_NUM;
+    newCapacity -= newCapacity % EVERY_ALLOC_ITEM_NUM;
 
-    array->items  = NRealloc(array->items, volume * nisizeof(NWord));
-    array->volume = volume;
+    array->items = NRealloc(array->items, newCapacity * nisizeof(NWord));
 }
 
 static bool __IsObjectArray(__NArray *array) {
@@ -232,4 +231,4 @@ NWord __NArrayGet(__NArray *self, int pos) {
 
 GEN_ARRAY(NArray   , __NArrayItemTypeObject, NObject *, asPtr   )
 GEN_ARRAY(NIntArray, __NArrayItemTypePOD   , int64_t  , asInt64 )
-GEN_ARRAY(NDblArray, __NArrayItemTypePOD   , double   , asDouble)
+GEN_ARRAY(NFltArray, __NArrayItemTypePOD   , double   , asDouble)

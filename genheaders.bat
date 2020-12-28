@@ -16,6 +16,10 @@ set src="appsrc"
 call :gen
 if not %err% == 0 (goto end)
 
+set src="sharedsrc"
+call :gen
+if not %err% == 0 (goto end)
+
 goto end
 
 :gen

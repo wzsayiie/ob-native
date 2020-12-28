@@ -2,8 +2,10 @@
 
 #include "nenviron.h"
 
-typedef bool  (*NIteratorNextFunc)(struct NIterator *iterator);
-typedef void *(*NIteratorGetFunc )(struct NIterator *iterator);
+nstruct(NIterator);
+
+typedef bool  (*NIteratorNextFunc)(NIterator *iterator);
+typedef void *(*NIteratorGetFunc )(NIterator *iterator);
 
 nstruct(NIterator) {
     NIteratorNextFunc next;

@@ -8,21 +8,25 @@ which means this is a experimental project.
 
 **program assets:**
 
-the cross-platform source and resource.
+the cross-platform codes and resources.
+the *appxx* directories are used to contain user codes and resources,
+and the *sharedxx* are shared libraries.
 
-* appsrc/
-* appres/
+- appsrc/
+- appres/
+- sharedsrc/
+- sharedres/
 
 **build scripts:**
 
 for building program and placing them to *BUILD/*.
 files without suffix name for mac os, and *.bat for windows.
 
-* build_android
-* build_android.bat
-* build_ios
-* build_osx
-* build_win32.bat
+- build_android
+- build_android.bat
+- build_ios
+- build_osx
+- build_win32.bat
 
 **header auxiliary tool:**
 
@@ -30,15 +34,15 @@ these scripts traverse headers and create new homonymic headers
 which reference former to *HEADERS/*.
 it will avoid developer adding vast header search paths tediously.
 
-* genheaders
-* genheaders.bat
+- genheaders
+- genheaders.bat
 
 **project files:**
 
 these are projects managed by *android studio*, *xcode* or *visual studio*
 for different os platform.
 
-* program_android/
-* program_ios/
-* program_osx/
-* program_win32/
+- program_android/
+- program_ios/
+- program_osx/
+- program_win32/

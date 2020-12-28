@@ -7,5 +7,5 @@
 #endif
 
 #if N_OS_IOS || N_OS_OSX
-    #include "nbind_nmac.h"
+    #include "nbind_mac.h"
 #endif

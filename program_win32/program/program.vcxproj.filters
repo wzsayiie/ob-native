@@ -4,252 +4,255 @@
     <Filter Include="program">
       <UniqueIdentifier>{b223fba0-c347-4dc1-9f70-06307d4bfbbf}</UniqueIdentifier>
     </Filter>
-    <Filter Include="appsrc">
+    <Filter Include="sharedsrc">
       <UniqueIdentifier>{6f905a0e-a1c2-4427-a8f7-12a5ae1ce70c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="appsrc\uidev">
+    <Filter Include="sharedsrc\uidev">
       <UniqueIdentifier>{8afa564e-da15-4b0b-8176-be04c1c4244a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="appsrc\uidev\uidev">
+    <Filter Include="sharedsrc\uidev\uidev">
       <UniqueIdentifier>{cfa72af9-1e0d-49ee-8086-d91119e860c6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="appsrc\uidev\uidev_win32">
+    <Filter Include="sharedsrc\uidev\uidev_win32">
       <UniqueIdentifier>{70fea9ca-1ca6-41ba-a277-729c2569c073}</UniqueIdentifier>
     </Filter>
-    <Filter Include="appsrc\basis">
+    <Filter Include="sharedsrc\basis">
       <UniqueIdentifier>{09083884-6c6f-41a7-af31-d97e901b5c5a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="appsrc\basis\basis">
+    <Filter Include="sharedsrc\basis\basis">
       <UniqueIdentifier>{8d4b8970-d315-496c-99e5-9ce0c70cf89e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="appsrc\cmeta">
+    <Filter Include="sharedsrc\cmeta">
       <UniqueIdentifier>{7c84dfb8-5b85-4335-b1db-4ffdd65b42d0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="appsrc\cmeta\cmeta">
+    <Filter Include="sharedsrc\cmeta\cmeta">
       <UniqueIdentifier>{dc34b2b3-c370-4db4-82b9-d3b2d78986eb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="appsrc\cplus">
+    <Filter Include="sharedsrc\cplus">
       <UniqueIdentifier>{af63d8e8-741f-41fe-92c0-abcd255252a4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="appsrc\cplus\cplus">
+    <Filter Include="sharedsrc\cplus\cplus">
       <UniqueIdentifier>{38befe4a-aa22-4195-9b76-ef14b52be627}</UniqueIdentifier>
     </Filter>
-    <Filter Include="appsrc\cmain">
-      <UniqueIdentifier>{503fcbd7-ca83-4607-8071-b3e1691c780c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="appsrc\cmain\cmain">
-      <UniqueIdentifier>{853b48a0-8340-4e2b-8454-e8ef041fcb70}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="appsrc\osbind">
+    <Filter Include="sharedsrc\osbind">
       <UniqueIdentifier>{62391290-1aa0-4748-8506-24a484fecb0b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="appsrc\osbind\osbind">
+    <Filter Include="sharedsrc\osbind\osbind">
       <UniqueIdentifier>{e7dc82ea-1985-4714-95d3-64791fd973da}</UniqueIdentifier>
     </Filter>
-    <Filter Include="appsrc\osplat">
+    <Filter Include="sharedsrc\osplat">
       <UniqueIdentifier>{c938c8ab-f92a-4267-8f38-50f4db3c43e0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="appsrc\osplat\osplat">
+    <Filter Include="sharedsrc\osplat\osplat">
       <UniqueIdentifier>{f2f4beae-358f-4511-bfce-7d38760f0e79}</UniqueIdentifier>
     </Filter>
-    <Filter Include="appsrc\osplat\osplat_win32">
+    <Filter Include="sharedsrc\osplat\osplat_win32">
       <UniqueIdentifier>{caef4ee5-0377-4a84-924d-4122a6423279}</UniqueIdentifier>
     </Filter>
-    <Filter Include="appsrc\net">
+    <Filter Include="sharedsrc\net">
       <UniqueIdentifier>{6f69fff5-b6e9-4740-8bb4-358d8a12072a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="appsrc\net\net">
+    <Filter Include="sharedsrc\net\net">
       <UniqueIdentifier>{43b500e6-db19-4569-ad59-f13d33f4a3d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="appsrc">
+      <UniqueIdentifier>{8ca6ebbb-e70b-4824-b31c-c5ac20499a9d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="appsrc\cmain">
+      <UniqueIdentifier>{61daa57e-f613-4316-bf38-a8c1bd1f6854}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="appsrc\cmain\cmain">
+      <UniqueIdentifier>{109f2e0d-b336-4a44-9739-e279ad698c05}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="winmain.c">
       <Filter>program</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\appsrc\basis\basis\naction.c">
-      <Filter>appsrc\basis\basis</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\appsrc\basis\basis\narray.c">
-      <Filter>appsrc\basis\basis</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\appsrc\basis\basis\ndata.c">
-      <Filter>appsrc\basis\basis</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\appsrc\basis\basis\nenviron.c">
-      <Filter>appsrc\basis\basis</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\appsrc\basis\basis\nio.c">
-      <Filter>appsrc\basis\basis</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\appsrc\basis\basis\niterator.c">
-      <Filter>appsrc\basis\basis</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\appsrc\basis\basis\nlock.c">
-      <Filter>appsrc\basis\basis</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\appsrc\basis\basis\nmemory.c">
-      <Filter>appsrc\basis\basis</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\appsrc\basis\basis\nnumber.c">
-      <Filter>appsrc\basis\basis</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\appsrc\basis\basis\nstring.c">
-      <Filter>appsrc\basis\basis</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\appsrc\basis\basis\ntable.c">
-      <Filter>appsrc\basis\basis</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\appsrc\basis\basis\nunicode.c">
-      <Filter>appsrc\basis\basis</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\appsrc\cmeta\cmeta\nfuncs.cpp">
-      <Filter>appsrc\cmeta\cmeta</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\appsrc\cplus\cplus\nref.cpp">
-      <Filter>appsrc\cplus\cplus</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\appsrc\cplus\cplus\nwidget.cpp">
-      <Filter>appsrc\cplus\cplus</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\appsrc\uidev\uidev\nlaunch.c">
-      <Filter>appsrc\uidev\uidev</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\appsrc\uidev\uidev_win32\NWinMain.c">
-      <Filter>appsrc\uidev\uidev_win32</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\appsrc\basis\basis\npod.c">
-      <Filter>appsrc\basis\basis</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\appsrc\cmain\cmain\launch.cpp">
       <Filter>appsrc\cmain\cmain</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\appsrc\osbind\osbind\osbind.c">
-      <Filter>appsrc\osbind\osbind</Filter>
+    <ClCompile Include="..\..\sharedsrc\basis\basis\naction.c">
+      <Filter>sharedsrc\basis\basis</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\appsrc\osplat\osplat\osplat.c">
-      <Filter>appsrc\osplat\osplat</Filter>
+    <ClCompile Include="..\..\sharedsrc\basis\basis\narray.c">
+      <Filter>sharedsrc\basis\basis</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\appsrc\osplat\osplat_win32\nbundle_win32.c">
-      <Filter>appsrc\osplat\osplat_win32</Filter>
+    <ClCompile Include="..\..\sharedsrc\basis\basis\ndata.c">
+      <Filter>sharedsrc\basis\basis</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\appsrc\osplat\osplat_win32\nfile_win32.c">
-      <Filter>appsrc\osplat\osplat_win32</Filter>
+    <ClCompile Include="..\..\sharedsrc\basis\basis\nenviron.c">
+      <Filter>sharedsrc\basis\basis</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\appsrc\osplat\osplat_win32\nrunloop_win32.c">
-      <Filter>appsrc\osplat\osplat_win32</Filter>
+    <ClCompile Include="..\..\sharedsrc\basis\basis\nio.c">
+      <Filter>sharedsrc\basis\basis</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\appsrc\osplat\osplat_win32\nthread_win32.c">
-      <Filter>appsrc\osplat\osplat_win32</Filter>
+    <ClCompile Include="..\..\sharedsrc\basis\basis\niterator.c">
+      <Filter>sharedsrc\basis\basis</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\appsrc\net\net\nhttp.c">
-      <Filter>appsrc\net\net</Filter>
+    <ClCompile Include="..\..\sharedsrc\basis\basis\nlock.c">
+      <Filter>sharedsrc\basis\basis</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\appsrc\net\net\nsocket.c">
-      <Filter>appsrc\net\net</Filter>
+    <ClCompile Include="..\..\sharedsrc\basis\basis\nmemory.c">
+      <Filter>sharedsrc\basis\basis</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\appsrc\net\net\nsocketposix.c">
-      <Filter>appsrc\net\net</Filter>
+    <ClCompile Include="..\..\sharedsrc\basis\basis\nnumber.c">
+      <Filter>sharedsrc\basis\basis</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\appsrc\net\net\nsocketwin32.c">
-      <Filter>appsrc\net\net</Filter>
+    <ClCompile Include="..\..\sharedsrc\basis\basis\npod.c">
+      <Filter>sharedsrc\basis\basis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharedsrc\basis\basis\nstring.c">
+      <Filter>sharedsrc\basis\basis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharedsrc\basis\basis\ntable.c">
+      <Filter>sharedsrc\basis\basis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharedsrc\basis\basis\nunicode.c">
+      <Filter>sharedsrc\basis\basis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharedsrc\cmeta\cmeta\nfuncs.cpp">
+      <Filter>sharedsrc\cmeta\cmeta</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharedsrc\cplus\cplus\nref.cpp">
+      <Filter>sharedsrc\cplus\cplus</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharedsrc\cplus\cplus\nwidget.cpp">
+      <Filter>sharedsrc\cplus\cplus</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharedsrc\net\net\nhttp.c">
+      <Filter>sharedsrc\net\net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharedsrc\net\net\nsocket.c">
+      <Filter>sharedsrc\net\net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharedsrc\net\net\nsocketposix.c">
+      <Filter>sharedsrc\net\net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharedsrc\net\net\nsocketwin32.c">
+      <Filter>sharedsrc\net\net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharedsrc\osbind\osbind\osbind.c">
+      <Filter>sharedsrc\osbind\osbind</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharedsrc\osplat\osplat\osplat.c">
+      <Filter>sharedsrc\osplat\osplat</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharedsrc\osplat\osplat_win32\nbundle_win32.c">
+      <Filter>sharedsrc\osplat\osplat_win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharedsrc\osplat\osplat_win32\nfile_win32.c">
+      <Filter>sharedsrc\osplat\osplat_win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharedsrc\osplat\osplat_win32\nrunloop_win32.c">
+      <Filter>sharedsrc\osplat\osplat_win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharedsrc\osplat\osplat_win32\nthread_win32.c">
+      <Filter>sharedsrc\osplat\osplat_win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharedsrc\uidev\uidev\nlaunch.c">
+      <Filter>sharedsrc\uidev\uidev</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharedsrc\uidev\uidev_win32\NWinMain.c">
+      <Filter>sharedsrc\uidev\uidev_win32</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\appsrc\basis\basis\basis.h">
-      <Filter>appsrc\basis\basis</Filter>
+    <ClInclude Include="..\..\sharedsrc\basis\basis\basis.h">
+      <Filter>sharedsrc\basis\basis</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\appsrc\basis\basis\naction.h">
-      <Filter>appsrc\basis\basis</Filter>
+    <ClInclude Include="..\..\sharedsrc\basis\basis\naction.h">
+      <Filter>sharedsrc\basis\basis</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\appsrc\basis\basis\narray.h">
-      <Filter>appsrc\basis\basis</Filter>
+    <ClInclude Include="..\..\sharedsrc\basis\basis\narray.h">
+      <Filter>sharedsrc\basis\basis</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\appsrc\basis\basis\ndata.h">
-      <Filter>appsrc\basis\basis</Filter>
+    <ClInclude Include="..\..\sharedsrc\basis\basis\ndata.h">
+      <Filter>sharedsrc\basis\basis</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\appsrc\basis\basis\nenviron.h">
-      <Filter>appsrc\basis\basis</Filter>
+    <ClInclude Include="..\..\sharedsrc\basis\basis\nenviron.h">
+      <Filter>sharedsrc\basis\basis</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\appsrc\basis\basis\nio.h">
-      <Filter>appsrc\basis\basis</Filter>
+    <ClInclude Include="..\..\sharedsrc\basis\basis\nio.h">
+      <Filter>sharedsrc\basis\basis</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\appsrc\basis\basis\niterator.h">
-      <Filter>appsrc\basis\basis</Filter>
+    <ClInclude Include="..\..\sharedsrc\basis\basis\niterator.h">
+      <Filter>sharedsrc\basis\basis</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\appsrc\basis\basis\nlock.h">
-      <Filter>appsrc\basis\basis</Filter>
+    <ClInclude Include="..\..\sharedsrc\basis\basis\nlock.h">
+      <Filter>sharedsrc\basis\basis</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\appsrc\basis\basis\nmemory.h">
-      <Filter>appsrc\basis\basis</Filter>
+    <ClInclude Include="..\..\sharedsrc\basis\basis\nmemory.h">
+      <Filter>sharedsrc\basis\basis</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\appsrc\basis\basis\nnumber.h">
-      <Filter>appsrc\basis\basis</Filter>
+    <ClInclude Include="..\..\sharedsrc\basis\basis\nnumber.h">
+      <Filter>sharedsrc\basis\basis</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\appsrc\basis\basis\nstring.h">
-      <Filter>appsrc\basis\basis</Filter>
+    <ClInclude Include="..\..\sharedsrc\basis\basis\npod.h">
+      <Filter>sharedsrc\basis\basis</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\appsrc\basis\basis\ntable.h">
-      <Filter>appsrc\basis\basis</Filter>
+    <ClInclude Include="..\..\sharedsrc\basis\basis\nstring.h">
+      <Filter>sharedsrc\basis\basis</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\appsrc\basis\basis\nunicode.h">
-      <Filter>appsrc\basis\basis</Filter>
+    <ClInclude Include="..\..\sharedsrc\basis\basis\ntable.h">
+      <Filter>sharedsrc\basis\basis</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\appsrc\cmeta\cmeta\cmeta.h">
-      <Filter>appsrc\cmeta\cmeta</Filter>
+    <ClInclude Include="..\..\sharedsrc\basis\basis\nunicode.h">
+      <Filter>sharedsrc\basis\basis</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\appsrc\cmeta\cmeta\NEXPORT.h">
-      <Filter>appsrc\cmeta\cmeta</Filter>
+    <ClInclude Include="..\..\sharedsrc\cmeta\cmeta\cmeta.h">
+      <Filter>sharedsrc\cmeta\cmeta</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\appsrc\cmeta\cmeta\nfuncs.h">
-      <Filter>appsrc\cmeta\cmeta</Filter>
+    <ClInclude Include="..\..\sharedsrc\cmeta\cmeta\NEXPORT.h">
+      <Filter>sharedsrc\cmeta\cmeta</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\appsrc\cplus\cplus\cplus.h">
-      <Filter>appsrc\cplus\cplus</Filter>
+    <ClInclude Include="..\..\sharedsrc\cmeta\cmeta\nfuncs.h">
+      <Filter>sharedsrc\cmeta\cmeta</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\appsrc\cplus\cplus\nref.h">
-      <Filter>appsrc\cplus\cplus</Filter>
+    <ClInclude Include="..\..\sharedsrc\cplus\cplus\cplus.h">
+      <Filter>sharedsrc\cplus\cplus</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\appsrc\cplus\cplus\nwidget.h">
-      <Filter>appsrc\cplus\cplus</Filter>
+    <ClInclude Include="..\..\sharedsrc\cplus\cplus\nref.h">
+      <Filter>sharedsrc\cplus\cplus</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\appsrc\uidev\uidev\nlaunch.h">
-      <Filter>appsrc\uidev\uidev</Filter>
+    <ClInclude Include="..\..\sharedsrc\cplus\cplus\nwidget.h">
+      <Filter>sharedsrc\cplus\cplus</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\appsrc\uidev\uidev\uidev.h">
-      <Filter>appsrc\uidev\uidev</Filter>
+    <ClInclude Include="..\..\sharedsrc\net\net\net.h">
+      <Filter>sharedsrc\net\net</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\appsrc\uidev\uidev_win32\NWinMain.h">
-      <Filter>appsrc\uidev\uidev_win32</Filter>
+    <ClInclude Include="..\..\sharedsrc\net\net\nhttp.h">
+      <Filter>sharedsrc\net\net</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\appsrc\basis\basis\npod.h">
-      <Filter>appsrc\basis\basis</Filter>
+    <ClInclude Include="..\..\sharedsrc\net\net\nsocket.h">
+      <Filter>sharedsrc\net\net</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\appsrc\osbind\osbind\osbind.h">
-      <Filter>appsrc\osbind\osbind</Filter>
+    <ClInclude Include="..\..\sharedsrc\osbind\osbind\osbind.h">
+      <Filter>sharedsrc\osbind\osbind</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\appsrc\osplat\osplat\nbundle.h">
-      <Filter>appsrc\osplat\osplat</Filter>
+    <ClInclude Include="..\..\sharedsrc\osplat\osplat\nbundle.h">
+      <Filter>sharedsrc\osplat\osplat</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\appsrc\osplat\osplat\nfiles.h">
-      <Filter>appsrc\osplat\osplat</Filter>
+    <ClInclude Include="..\..\sharedsrc\osplat\osplat\nfiles.h">
+      <Filter>sharedsrc\osplat\osplat</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\appsrc\osplat\osplat\nrunloop.h">
-      <Filter>appsrc\osplat\osplat</Filter>
+    <ClInclude Include="..\..\sharedsrc\osplat\osplat\nrunloop.h">
+      <Filter>sharedsrc\osplat\osplat</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\appsrc\osplat\osplat\nthread.h">
-      <Filter>appsrc\osplat\osplat</Filter>
+    <ClInclude Include="..\..\sharedsrc\osplat\osplat\nthread.h">
+      <Filter>sharedsrc\osplat\osplat</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\appsrc\osplat\osplat\osplat.h">
-      <Filter>appsrc\osplat\osplat</Filter>
+    <ClInclude Include="..\..\sharedsrc\osplat\osplat\osplat.h">
+      <Filter>sharedsrc\osplat\osplat</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\appsrc\net\net\net.h">
-      <Filter>appsrc\net\net</Filter>
+    <ClInclude Include="..\..\sharedsrc\uidev\uidev\nlaunch.h">
+      <Filter>sharedsrc\uidev\uidev</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\appsrc\net\net\nhttp.h">
-      <Filter>appsrc\net\net</Filter>
+    <ClInclude Include="..\..\sharedsrc\uidev\uidev\uidev.h">
+      <Filter>sharedsrc\uidev\uidev</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\appsrc\net\net\nsocket.h">
-      <Filter>appsrc\net\net</Filter>
+    <ClInclude Include="..\..\sharedsrc\uidev\uidev_win32\NWinMain.h">
+      <Filter>sharedsrc\uidev\uidev_win32</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

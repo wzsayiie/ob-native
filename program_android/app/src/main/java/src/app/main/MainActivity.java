@@ -1,4 +1,4 @@
-package src.program.main;
+package src.app.main;
 
 import src.shared.uidev.NActivity;
 

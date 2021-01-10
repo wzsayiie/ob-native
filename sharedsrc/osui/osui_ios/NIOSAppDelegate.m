@@ -1,6 +1,6 @@
 #import "NIOSAppDelegate.h"
 #import "NIOSViewController.h"
-#import "uidev.h"
+#import "osui.h"
 
 @interface NIOSAppDelegate ()
 @end

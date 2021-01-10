@@ -1,4 +1,7 @@
 #include "basis.h"
 #include "cmeta.h"
 #include "cplus.h"
-#include "uidev.h"
+#include "net.h"
+#include "osbind.h"
+#include "osplat.h"
+#include "osui.h"

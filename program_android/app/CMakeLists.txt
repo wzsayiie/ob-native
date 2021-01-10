@@ -14,8 +14,8 @@ list(APPEND src_aims ../../sharedsrc/osbind/osbind/*.c)
 list(APPEND src_aims ../../sharedsrc/osbind/osbind_android/*.c)
 list(APPEND src_aims ../../sharedsrc/osplat/osplat/*.c)
 list(APPEND src_aims ../../sharedsrc/osplat/osplat_android/*.c)
-list(APPEND src_aims ../../sharedsrc/uidev/uidev/*.c)
-list(APPEND src_aims ../../sharedsrc/uidev/uidev_android/*.c)
+list(APPEND src_aims ../../sharedsrc/osui/osui/*.c)
+list(APPEND src_aims ../../sharedsrc/osui/osui_android/*.c)
 
 list(APPEND sys_libs log)
 ### configutation end.

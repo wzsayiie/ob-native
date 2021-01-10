@@ -38,16 +38,15 @@
     <ClCompile Include="..\..\sharedsrc\cplus\cplus\nwidget.cpp" />
     <ClCompile Include="..\..\sharedsrc\net\net\nhttp.c" />
     <ClCompile Include="..\..\sharedsrc\net\net\nsocket.c" />
-    <ClCompile Include="..\..\sharedsrc\net\net\nsocketposix.c" />
-    <ClCompile Include="..\..\sharedsrc\net\net\nsocketwin32.c" />
-    <ClCompile Include="..\..\sharedsrc\osbind\osbind\osbind.c" />
+    <ClCompile Include="..\..\sharedsrc\net\net\nsocket_posix.c" />
+    <ClCompile Include="..\..\sharedsrc\net\net\nsocket_win32.c" />
     <ClCompile Include="..\..\sharedsrc\osplat\osplat\osplat.c" />
-    <ClCompile Include="..\..\sharedsrc\osplat\osplat_win32\nbundle_win32.c" />
-    <ClCompile Include="..\..\sharedsrc\osplat\osplat_win32\nfile_win32.c" />
-    <ClCompile Include="..\..\sharedsrc\osplat\osplat_win32\nrunloop_win32.c" />
-    <ClCompile Include="..\..\sharedsrc\osplat\osplat_win32\nthread_win32.c" />
-    <ClCompile Include="..\..\sharedsrc\uidev\uidev\nlaunch.c" />
-    <ClCompile Include="..\..\sharedsrc\uidev\uidev_win32\NWinMain.c" />
+    <ClCompile Include="..\..\sharedsrc\osplat\osplat_win32\NWin32Bundle.c" />
+    <ClCompile Include="..\..\sharedsrc\osplat\osplat_win32\NWin32Files.c" />
+    <ClCompile Include="..\..\sharedsrc\osplat\osplat_win32\NWin32Runloop.c" />
+    <ClCompile Include="..\..\sharedsrc\osplat\osplat_win32\NWin32Thread.c" />
+    <ClCompile Include="..\..\sharedsrc\osui\osui\nlaunch.c" />
+    <ClCompile Include="..\..\sharedsrc\osui\osui_win32\NWinMain.c" />
     <ClCompile Include="winmain.c" />
   </ItemGroup>
   <ItemGroup>
@@ -74,15 +73,14 @@
     <ClInclude Include="..\..\sharedsrc\net\net\net.h" />
     <ClInclude Include="..\..\sharedsrc\net\net\nhttp.h" />
     <ClInclude Include="..\..\sharedsrc\net\net\nsocket.h" />
-    <ClInclude Include="..\..\sharedsrc\osbind\osbind\osbind.h" />
     <ClInclude Include="..\..\sharedsrc\osplat\osplat\nbundle.h" />
     <ClInclude Include="..\..\sharedsrc\osplat\osplat\nfiles.h" />
     <ClInclude Include="..\..\sharedsrc\osplat\osplat\nrunloop.h" />
     <ClInclude Include="..\..\sharedsrc\osplat\osplat\nthread.h" />
     <ClInclude Include="..\..\sharedsrc\osplat\osplat\osplat.h" />
-    <ClInclude Include="..\..\sharedsrc\uidev\uidev\nlaunch.h" />
-    <ClInclude Include="..\..\sharedsrc\uidev\uidev\uidev.h" />
-    <ClInclude Include="..\..\sharedsrc\uidev\uidev_win32\NWinMain.h" />
+    <ClInclude Include="..\..\sharedsrc\osui\osui\nlaunch.h" />
+    <ClInclude Include="..\..\sharedsrc\osui\osui\osui.h" />
+    <ClInclude Include="..\..\sharedsrc\osui\osui_win32\NWinMain.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

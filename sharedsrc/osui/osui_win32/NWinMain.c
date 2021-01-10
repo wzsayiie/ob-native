@@ -1,6 +1,6 @@
 #include "NWinMain.h"
 #include <stdio.h>
-#include "uidev.h"
+#include "osui.h"
 
 static VOID OpenConsole(VOID)
 {

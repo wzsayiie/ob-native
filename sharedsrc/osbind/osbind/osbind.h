@@ -3,9 +3,9 @@
 #include "basis.h"
 
 #if N_OS_ANDROID
-    #include "nbind_android.h"
+    #include "njnibind.h"
 #endif
 
 #if N_OS_IOS || N_OS_OSX
-    #include "nbind_mac.h"
+    #include "NOBJCBind.h"
 #endif

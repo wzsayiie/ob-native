@@ -1,6 +1,6 @@
 #import "NOSXAppDelegate.h"
 #import "NOSXWindowController.h"
-#import "uidev.h"
+#import "osui.h"
 
 @interface NOSXAppDelegate ()
 @property (nonatomic) NOSXWindowController *windowController;

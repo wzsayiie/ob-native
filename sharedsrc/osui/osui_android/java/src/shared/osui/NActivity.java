@@ -1,4 +1,4 @@
-package src.shared.uidev;
+package src.shared.osui;
 
 import android.app.Activity;
 import android.os.Bundle;

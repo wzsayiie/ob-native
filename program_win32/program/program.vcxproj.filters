@@ -7,15 +7,6 @@
     <Filter Include="sharedsrc">
       <UniqueIdentifier>{6f905a0e-a1c2-4427-a8f7-12a5ae1ce70c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="sharedsrc\uidev">
-      <UniqueIdentifier>{8afa564e-da15-4b0b-8176-be04c1c4244a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="sharedsrc\uidev\uidev">
-      <UniqueIdentifier>{cfa72af9-1e0d-49ee-8086-d91119e860c6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="sharedsrc\uidev\uidev_win32">
-      <UniqueIdentifier>{70fea9ca-1ca6-41ba-a277-729c2569c073}</UniqueIdentifier>
-    </Filter>
     <Filter Include="sharedsrc\basis">
       <UniqueIdentifier>{09083884-6c6f-41a7-af31-d97e901b5c5a}</UniqueIdentifier>
     </Filter>
@@ -33,12 +24,6 @@
     </Filter>
     <Filter Include="sharedsrc\cplus\cplus">
       <UniqueIdentifier>{38befe4a-aa22-4195-9b76-ef14b52be627}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="sharedsrc\osbind">
-      <UniqueIdentifier>{62391290-1aa0-4748-8506-24a484fecb0b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="sharedsrc\osbind\osbind">
-      <UniqueIdentifier>{e7dc82ea-1985-4714-95d3-64791fd973da}</UniqueIdentifier>
     </Filter>
     <Filter Include="sharedsrc\osplat">
       <UniqueIdentifier>{c938c8ab-f92a-4267-8f38-50f4db3c43e0}</UniqueIdentifier>
@@ -63,6 +48,15 @@
     </Filter>
     <Filter Include="appsrc\cmain\cmain">
       <UniqueIdentifier>{109f2e0d-b336-4a44-9739-e279ad698c05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sharedsrc\osui">
+      <UniqueIdentifier>{8afa564e-da15-4b0b-8176-be04c1c4244a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sharedsrc\osui\osui">
+      <UniqueIdentifier>{cfa72af9-1e0d-49ee-8086-d91119e860c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sharedsrc\osui\osui_win32">
+      <UniqueIdentifier>{70fea9ca-1ca6-41ba-a277-729c2569c073}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -126,35 +120,32 @@
     <ClCompile Include="..\..\sharedsrc\net\net\nsocket.c">
       <Filter>sharedsrc\net\net</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sharedsrc\net\net\nsocketposix.c">
+    <ClCompile Include="..\..\sharedsrc\osui\osui\nlaunch.c">
+      <Filter>sharedsrc\osui\osui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharedsrc\osui\osui_win32\NWinMain.c">
+      <Filter>sharedsrc\osui\osui_win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharedsrc\net\net\nsocket_posix.c">
       <Filter>sharedsrc\net\net</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sharedsrc\net\net\nsocketwin32.c">
+    <ClCompile Include="..\..\sharedsrc\net\net\nsocket_win32.c">
       <Filter>sharedsrc\net\net</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sharedsrc\osbind\osbind\osbind.c">
-      <Filter>sharedsrc\osbind\osbind</Filter>
+    <ClCompile Include="..\..\sharedsrc\osplat\osplat_win32\NWin32Bundle.c">
+      <Filter>sharedsrc\osplat\osplat_win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharedsrc\osplat\osplat_win32\NWin32Files.c">
+      <Filter>sharedsrc\osplat\osplat_win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharedsrc\osplat\osplat_win32\NWin32Runloop.c">
+      <Filter>sharedsrc\osplat\osplat_win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharedsrc\osplat\osplat_win32\NWin32Thread.c">
+      <Filter>sharedsrc\osplat\osplat_win32</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sharedsrc\osplat\osplat\osplat.c">
       <Filter>sharedsrc\osplat\osplat</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sharedsrc\osplat\osplat_win32\nbundle_win32.c">
-      <Filter>sharedsrc\osplat\osplat_win32</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sharedsrc\osplat\osplat_win32\nfile_win32.c">
-      <Filter>sharedsrc\osplat\osplat_win32</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sharedsrc\osplat\osplat_win32\nrunloop_win32.c">
-      <Filter>sharedsrc\osplat\osplat_win32</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sharedsrc\osplat\osplat_win32\nthread_win32.c">
-      <Filter>sharedsrc\osplat\osplat_win32</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sharedsrc\uidev\uidev\nlaunch.c">
-      <Filter>sharedsrc\uidev\uidev</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sharedsrc\uidev\uidev_win32\NWinMain.c">
-      <Filter>sharedsrc\uidev\uidev_win32</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -227,9 +218,6 @@
     <ClInclude Include="..\..\sharedsrc\net\net\nsocket.h">
       <Filter>sharedsrc\net\net</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\sharedsrc\osbind\osbind\osbind.h">
-      <Filter>sharedsrc\osbind\osbind</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\sharedsrc\osplat\osplat\nbundle.h">
       <Filter>sharedsrc\osplat\osplat</Filter>
     </ClInclude>
@@ -245,14 +233,14 @@
     <ClInclude Include="..\..\sharedsrc\osplat\osplat\osplat.h">
       <Filter>sharedsrc\osplat\osplat</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\sharedsrc\uidev\uidev\nlaunch.h">
-      <Filter>sharedsrc\uidev\uidev</Filter>
+    <ClInclude Include="..\..\sharedsrc\osui\osui\nlaunch.h">
+      <Filter>sharedsrc\osui\osui</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\sharedsrc\uidev\uidev\uidev.h">
-      <Filter>sharedsrc\uidev\uidev</Filter>
+    <ClInclude Include="..\..\sharedsrc\osui\osui\osui.h">
+      <Filter>sharedsrc\osui\osui</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\sharedsrc\uidev\uidev_win32\NWinMain.h">
-      <Filter>sharedsrc\uidev\uidev_win32</Filter>
+    <ClInclude Include="..\..\sharedsrc\osui\osui_win32\NWinMain.h">
+      <Filter>sharedsrc\osui\osui_win32</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

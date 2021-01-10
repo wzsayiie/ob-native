@@ -1,6 +1,6 @@
 package src.app.main;
 
-import src.shared.uidev.NActivity;
+import src.shared.osui.NActivity;
 
 public class MainActivity extends NActivity {
     static {

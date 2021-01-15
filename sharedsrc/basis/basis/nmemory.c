@@ -63,11 +63,13 @@ void *NDup(const void *ptr) {
     NMemory *memory = _NMemoryPtr(ptr);
     size_t   mmSize = _NMemorySize(memory->dataSize);
 
-    void *dup = calloc(1, mmSize);
+    NMemory *dup = calloc(1, mmSize);
     if (dup) {
         memcpy(dup, memory, mmSize);
+        return dup->data;
+    } else {
+        return NULL;
     }
-    return dup;
 }
 
 void NFree(void *ptr) {

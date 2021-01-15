@@ -2,19 +2,116 @@
 #include <ShlObj.h>
 #include <Windows.h>
 
+static void _NGetProgramName(WCHAR *outName)
+{
+    //wcscpy(outName, L"custom_program_name");
+    //return;
+
+    WCHAR path[MAX_PATH] = L"\0";
+    GetModuleFileNameW(NULL, path, MAX_PATH);
+
+    WCHAR *name = wcsrchr(path, L'\\') + 1;
+    WCHAR *end  = wcsrchr(path, L'.');
+
+    size_t len = end - name;
+    if (len > 0)
+    {
+        wcsncpy(outName, name, len);
+        outName[len] = L'\0';
+    }
+    else
+    {
+        outName[0] = L'\0';
+    }
+}
+
+static void _NConcatenatePath(WCHAR *buffer, const WCHAR *item)
+{
+    if (!item || *item == L'\0')
+    {
+        return;
+    }
+
+    if (*buffer)
+    {
+        WCHAR back = buffer[wcslen(buffer) - 1];
+        if ( back != L'\\' &&  back != L'/'
+         && *item != L'\\' && *item != L'/')
+        {
+            wcscat(buffer, L"\\");
+        }
+        wcscat(buffer, item);
+    }
+    else
+    {
+        wcscpy(buffer, item);
+    }
+}
+
+static NString *_NCreateUserDirectory(const WCHAR *parent, const WCHAR *sub)
+{
+    WCHAR name[MAX_PATH] = L"\0";
+    _NGetProgramName(name);
+
+    WCHAR buffer[MAX_PATH] = L"\0";
+    _NConcatenatePath(buffer, parent);
+    _NConcatenatePath(buffer, name);
+    _NConcatenatePath(buffer, sub);
+
+    NString *path = NStringCreateWithUTFChars(NUTF16, buffer);
+    if (!NPathExists(path, NULL))
+    {
+        NMakeDirectory(path, true);
+    }
+    return path;
+}
+
 NString *NCopyDocumentPath(void)
 {
-    return NULL;
+    static NString *path = NULL;
+    nsyn()
+    {
+        if (!path)
+        {
+            WCHAR directory[MAX_PATH] = L"\0";
+            SHGetFolderPathW(NULL, CSIDL_PERSONAL, NULL, 0, directory);
+
+            path = _NCreateUserDirectory(directory, NULL);
+        }
+    }
+    return NStringCopy(path);
 }
 
 NString *NCopyCachesPath(void)
 {
-    return NULL;
+    static NString *path = NULL;
+    nsyn()
+    {
+        if (!path)
+        {
+            WCHAR directory[MAX_PATH] = L"\0";
+            GetTempPathW(MAX_PATH, directory);
+
+            path = _NCreateUserDirectory(directory, L"caches");
+        }
+    }
+    return NStringCopy(path);
 }
 
 NString *NCopyTemporaryPath(void)
 {
-    return NULL;
+    static NString *path = NULL;
+    nsyn()
+    {
+        if (!path)
+        {
+            WCHAR directory[MAX_PATH] = L"\0";
+            GetTempPathW(MAX_PATH, directory);
+
+            path = _NCreateUserDirectory(directory, L"temporary");
+        }
+    }
+    return NStringCopy(path);
 }
 
 bool NMakeDirectory(NString *path, bool intermediate)
@@ -32,13 +129,9 @@ bool NMakeDirectory(NString *path, bool intermediate)
         //SHCreateDirectory() isn't support relative path.
         if (size >= 2 * sizeof(WCHAR) && chars[1] != L':')
         {
-            WCHAR *allChars = NAlloc(MAX_PATH * sizeof(WCHAR) + size);
+            WCHAR *allChars = NAlloc(MAX_PATH * sizeof(WCHAR) + sizeof(WCHAR) + size);
             GetCurrentDirectoryW(MAX_PATH, allChars);
-            if (chars[0] != L'\\' && chars[0] != '/')
-            {
-                wcscat(allChars, L"\\");
-            }
-            wcscat(allChars, chars);
+            _NConcatenatePath(allChars, chars);
 
             int error = SHCreateDirectoryExW(NULL, allChars, NULL);
             NFree(allChars);
@@ -68,22 +161,14 @@ NArray *NCopySubitems(NString *path, bool *success)
 
     //construct the pattern string "xx\xx\*".
     LPCWSTR chars = NStringU16Chars(path);
-    int     size  = NStringU16Size(path);
-    WCHAR   last  = *(WCHAR *)((uint8_t *)chars + size - sizeof(WCHAR));
+    int size = NStringU16Size(path);
 
     WCHAR *target = NAlloc(size + 3 * sizeof(WCHAR));
-    NMoveMemory(target, chars, size);
-    if (last != L'\\' && last != L'/')
-    {
-        NMoveMemory((uint8_t *)target + size, L"\\*", 2 * sizeof(WCHAR));
-    }
-    else
-    {
-        NMoveMemory((uint8_t *)target + size, L"*", sizeof(WCHAR));
-    }
+    wcscpy(target, chars);
+    _NConcatenatePath(target, L"*");
 
     //traverse the subitems.
-    WIN32_FIND_DATAW data;
+    WIN32_FIND_DATAW data = {0};
     HANDLE state = FindFirstFileW(target, &data);
     if (state == INVALID_HANDLE_VALUE)
     {

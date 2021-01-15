@@ -69,15 +69,12 @@ static NString *_NCreateUserDirectory(const WCHAR *parent, const WCHAR *sub)
 NString *NCopyDocumentPath(void)
 {
     static NString *path = NULL;
-    nsyn()
+    nsynonce()
     {
-        if (!path)
-        {
-            WCHAR directory[MAX_PATH] = L"\0";
-            SHGetFolderPathW(NULL, CSIDL_PERSONAL, NULL, 0, directory);
+        WCHAR directory[MAX_PATH] = L"\0";
+        SHGetFolderPathW(NULL, CSIDL_PERSONAL, NULL, 0, directory);
 
-            path = _NCreateUserDirectory(directory, NULL);
-        }
+        path = _NCreateUserDirectory(directory, NULL);
     }
     return NStringCopy(path);
 }
@@ -85,15 +82,12 @@ NString *NCopyDocumentPath(void)
 NString *NCopyCachesPath(void)
 {
     static NString *path = NULL;
-    nsyn()
+    nsynonce()
     {
-        if (!path)
-        {
-            WCHAR directory[MAX_PATH] = L"\0";
-            GetTempPathW(MAX_PATH, directory);
+        WCHAR directory[MAX_PATH] = L"\0";
+        GetTempPathW(MAX_PATH, directory);
 
-            path = _NCreateUserDirectory(directory, L"caches");
-        }
+        path = _NCreateUserDirectory(directory, L"caches");
     }
     return NStringCopy(path);
 }
@@ -101,15 +95,12 @@ NString *NCopyCachesPath(void)
 NString *NCopyTemporaryPath(void)
 {
     static NString *path = NULL;
-    nsyn()
+    nsynonce()
     {
-        if (!path)
-        {
-            WCHAR directory[MAX_PATH] = L"\0";
-            GetTempPathW(MAX_PATH, directory);
+        WCHAR directory[MAX_PATH] = L"\0";
+        GetTempPathW(MAX_PATH, directory);
 
-            path = _NCreateUserDirectory(directory, L"temporary");
-        }
+        path = _NCreateUserDirectory(directory, L"temporary");
     }
     return NStringCopy(path);
 }

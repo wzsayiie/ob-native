@@ -9,4 +9,10 @@ nfunc(void, NUnlock, (int hash));
 /**/    for (int __N = (NLock((int)(npint)n), 1); __N; __N = (NUnlock((int)(npint)n), 0)) \
 /**/    for (int __M = 1; __M; __M = 0)
 
+#define nsynonce()          \
+/**/    static int __T = 0; \
+/**/    nsynwith(&__T)      \
+/**/        if (__T == 0)   \
+/**/            if (++__T)
+
 #define nsyn() nsynwith(__LINE__)

@@ -1,1 +1,2 @@
-#include "nbundle.h"
+#import "nbundle.h"
+#import <Foundation/Foundation.h>

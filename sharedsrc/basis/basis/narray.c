@@ -129,8 +129,8 @@ static bool NWordArrayIteratorNext(NWordArrayIterator *iterator) {
 }
 
 static void *NWordArrayIteratorGet(NWordArrayIterator *iterator) {
-    uint8_t *begin = iterator->array->items;
-    int      every = iterator->array->conf.itemSize;
+    uint8_t  *begin = iterator->array->items;
+    ptrdiff_t every = iterator->array->conf.itemSize;
 
     return begin + every * (iterator->ready)++;
 }

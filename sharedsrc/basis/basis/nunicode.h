@@ -21,10 +21,10 @@ nenum(NUTFType) {
 };
 
 nstruct(NUTFCharsStat) {
-    npint bit7 ; //the count of characters occupying up to 7 bits.
-    npint bit11; //ditto.
-    npint bit16;
-    npint bit21;
+    int bit7 ; //the count of characters occupying up to 7 bits.
+    int bit11; //ditto.
+    int bit16;
+    int bit21;
 };
 
 nfunc(int, NUTFBytesSize , (NUTFType type, const NUTFCharsStat *stat));

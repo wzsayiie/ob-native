@@ -144,18 +144,18 @@ template<class R, int N> struct _NFuncCaller {
 
         switch (d) {
             //NOTE: only use "npint", "int64_t", "float" and "double" 4 types, to prevent code bloat.
-            case NTypeBool  : return _NFuncCaller<R, N + 1>::Call(info, ts, ws, a..., (npint  )_V<bool    >(s, w));
-            case NTypeInt8  : return _NFuncCaller<R, N + 1>::Call(info, ts, ws, a..., (npint  )_V<int8_t  >(s, w));
-            case NTypeInt16 : return _NFuncCaller<R, N + 1>::Call(info, ts, ws, a..., (npint  )_V<int16_t >(s, w));
-            case NTypeInt32 : return _NFuncCaller<R, N + 1>::Call(info, ts, ws, a..., (npint  )_V<int32_t >(s, w));
-            case NTypeInt64 : return _NFuncCaller<R, N + 1>::Call(info, ts, ws, a..., (int64_t)_V<int64_t >(s, w));
-            case NTypeUInt8 : return _NFuncCaller<R, N + 1>::Call(info, ts, ws, a..., (npint  )_V<uint8_t >(s, w));
-            case NTypeUInt16: return _NFuncCaller<R, N + 1>::Call(info, ts, ws, a..., (npint  )_V<uint16_t>(s, w));
-            case NTypeUInt32: return _NFuncCaller<R, N + 1>::Call(info, ts, ws, a..., (npint  )_V<uint32_t>(s, w));
-            case NTypeUInt64: return _NFuncCaller<R, N + 1>::Call(info, ts, ws, a..., (int64_t)_V<uint64_t>(s, w));
-            case NTypeFloat : return _NFuncCaller<R, N + 1>::Call(info, ts, ws, a..., (float  )_V<float   >(s, w));
-            case NTypeDouble: return _NFuncCaller<R, N + 1>::Call(info, ts, ws, a..., (double )_V<double  >(s, w));
-            case NTypePtr   : return _NFuncCaller<R, N + 1>::Call(info, ts, ws, a..., (npint  )_V<void *  >(s, w));
+            case NTypeBool  : return _NFuncCaller<R, N + 1>::Call(info, ts, ws, a..., (intptr_t)_V<bool    >(s, w));
+            case NTypeInt8  : return _NFuncCaller<R, N + 1>::Call(info, ts, ws, a..., (intptr_t)_V<int8_t  >(s, w));
+            case NTypeInt16 : return _NFuncCaller<R, N + 1>::Call(info, ts, ws, a..., (intptr_t)_V<int16_t >(s, w));
+            case NTypeInt32 : return _NFuncCaller<R, N + 1>::Call(info, ts, ws, a..., (intptr_t)_V<int32_t >(s, w));
+            case NTypeInt64 : return _NFuncCaller<R, N + 1>::Call(info, ts, ws, a..., (int64_t )_V<int64_t >(s, w));
+            case NTypeUInt8 : return _NFuncCaller<R, N + 1>::Call(info, ts, ws, a..., (intptr_t)_V<uint8_t >(s, w));
+            case NTypeUInt16: return _NFuncCaller<R, N + 1>::Call(info, ts, ws, a..., (intptr_t)_V<uint16_t>(s, w));
+            case NTypeUInt32: return _NFuncCaller<R, N + 1>::Call(info, ts, ws, a..., (intptr_t)_V<uint32_t>(s, w));
+            case NTypeUInt64: return _NFuncCaller<R, N + 1>::Call(info, ts, ws, a..., (int64_t )_V<uint64_t>(s, w));
+            case NTypeFloat : return _NFuncCaller<R, N + 1>::Call(info, ts, ws, a..., (float   )_V<float   >(s, w));
+            case NTypeDouble: return _NFuncCaller<R, N + 1>::Call(info, ts, ws, a..., (double  )_V<double  >(s, w));
+            case NTypePtr   : return _NFuncCaller<R, N + 1>::Call(info, ts, ws, a..., (intptr_t)_V<void *  >(s, w));
             default/*error*/: return 0;
         }
     }
@@ -178,19 +178,19 @@ nclink __NWord NCallFunc(int fPos, int argc, NType *types, __NWord *words) {
 
     switch (info->retType) {
         //NOTE: only use "void", "npint", "int64_t", "float" and "double" 5 types, to prevent code bloat.
-        case NTypeVoid  : return _NFuncCaller<void   , 0>::Call(info, types, words);
-        case NTypeBool  : return _NFuncCaller<npint  , 0>::Call(info, types, words);
-        case NTypeInt8  : return _NFuncCaller<npint  , 0>::Call(info, types, words);
-        case NTypeInt16 : return _NFuncCaller<npint  , 0>::Call(info, types, words);
-        case NTypeInt32 : return _NFuncCaller<npint  , 0>::Call(info, types, words);
-        case NTypeInt64 : return _NFuncCaller<int64_t, 0>::Call(info, types, words);
-        case NTypeUInt8 : return _NFuncCaller<npint  , 0>::Call(info, types, words);
-        case NTypeUInt16: return _NFuncCaller<npint  , 0>::Call(info, types, words);
-        case NTypeUInt32: return _NFuncCaller<npint  , 0>::Call(info, types, words);
-        case NTypeUInt64: return _NFuncCaller<int64_t, 0>::Call(info, types, words);
-        case NTypeFloat : return _NFuncCaller<float  , 0>::Call(info, types, words);
-        case NTypeDouble: return _NFuncCaller<double , 0>::Call(info, types, words);
-        case NTypePtr   : return _NFuncCaller<npint  , 0>::Call(info, types, words);
+        case NTypeVoid  : return _NFuncCaller<void    , 0>::Call(info, types, words);
+        case NTypeBool  : return _NFuncCaller<intptr_t, 0>::Call(info, types, words);
+        case NTypeInt8  : return _NFuncCaller<intptr_t, 0>::Call(info, types, words);
+        case NTypeInt16 : return _NFuncCaller<intptr_t, 0>::Call(info, types, words);
+        case NTypeInt32 : return _NFuncCaller<intptr_t, 0>::Call(info, types, words);
+        case NTypeInt64 : return _NFuncCaller<int64_t , 0>::Call(info, types, words);
+        case NTypeUInt8 : return _NFuncCaller<intptr_t, 0>::Call(info, types, words);
+        case NTypeUInt16: return _NFuncCaller<intptr_t, 0>::Call(info, types, words);
+        case NTypeUInt32: return _NFuncCaller<intptr_t, 0>::Call(info, types, words);
+        case NTypeUInt64: return _NFuncCaller<int64_t , 0>::Call(info, types, words);
+        case NTypeFloat : return _NFuncCaller<float   , 0>::Call(info, types, words);
+        case NTypeDouble: return _NFuncCaller<double  , 0>::Call(info, types, words);
+        case NTypePtr   : return _NFuncCaller<intptr_t, 0>::Call(info, types, words);
         default/*error*/: return 0;
     }
 }

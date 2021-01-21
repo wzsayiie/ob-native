@@ -78,18 +78,6 @@
     typedef uint16_t char16_t;
 #endif
 
-#if N_PTR_64
-    typedef int64_t  npbool;
-    typedef int64_t  npint ;
-    typedef uint64_t npuint;
-    typedef double   npflt ;
-#else
-    typedef int32_t  npbool;
-    typedef int32_t  npint ;
-    typedef uint32_t npuint;
-    typedef float    npflt ;
-#endif
-
 #define nenum(name) typedef int name; enum
 
 nenum(NType) {

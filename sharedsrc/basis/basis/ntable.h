@@ -3,68 +3,47 @@
 #include "nstring.h"
 #include "npod.h"
 
-nenum(__NTableKeyType) {
-    __NTableKeyTypeString = 1,
-    __NTableKeyTypeInt    = 2,
+nstruct(NWordTableConf) {
+    int(*keyCompare)(NWord a, NWord b);
+    bool keyRetain;
+    int  keySize;
+
+    bool valueRetain;
+    int  valueSize;
 };
 
-nenum(__NTableValueType) {
-    __NTableValueTypeObject = 1,
-    __NTableValueTypePOD    = 2,
-};
+nclass(NWordTable);
 
-nclass(__NTable);
+nclink NWordTable *NWordTableCreate(NWordTableConf *conf);
+nclink NWordTable *NWordTableCopy  (NWordTable *that);
+nclink void        NWordTableSet   (NWordTable *self, NWord key, NWord value);
+nclink NWord       NWordTableGet   (NWordTable *self, NWord key);
+nclink int         NWordTableCount (NWordTable *self);
+nclink NIterator  *NWordTableKeys  (NWordTable *self);
 
-nclink __NTable *__NTableCreate(__NTableKeyType keyType, __NTableValueType valueType);
-nclink __NTable *__NTableCopy  (__NTable *that);
-nclink void      __NTableSet   (__NTable *self, NWord key, NWord value);
-nclink NWord     __NTableGet   (__NTable *self, NWord key);
-nclink int       __NTableCount (__NTable *self);
+nclass(NTable);
 
-// nclass(NTable);
+nfunc(NTable    *, NTableCreate, (void));
+nfunc(NTable    *, NTableCopy  , (NTable *that));
+nfunc(void       , NTableSet   , (NTable *self, NObject *key, NObject *value));
+nfunc(NObject   *, NTableGet   , (NTable *self, NObject *key));
+nfunc(int        , NTableCount , (NTable *self));
+nfunc(NIterator *, NTableKeys  , (NTable *self));
 
-// nfunc(NTable  *, NTableCreate, (void));
-// nfunc(NTable  *, NTableCopy  , (NTable *that));
-// nfunc(void     , NTableSet   , (NTable *self, NString *key, NObject *value));
-// nfunc(NObject *, NTableGet   , (NTable *self, NString *key));
-// nfunc(int      , NTableCount , (NTable *self));
+nclass(NStrTable);
 
-// nclass(NIntTable);
+nfunc(NStrTable *, NStrTableCreate, (void));
+nfunc(NStrTable *, NStrTableCopy  , (NStrTable *that));
+nfunc(void       , NStrTableSet   , (NStrTable *self, NString *key, NObject *value));
+nfunc(NObject   *, NStrTableGet   , (NStrTable *self, NString *key));
+nfunc(int        , NStrTableCount , (NStrTable *self));
+nfunc(NIterator *, NStrTableKeys  , (NStrTable *self));
 
-// nfunc(NIntTable *, NIntTableCreate, (void));
-// nfunc(NIntTable *, NIntTableCopy  , (NIntTable *that));
-// nfunc(void       , NIntTableSet   , (NIntTable *self, NString *key, int64_t value));
-// nfunc(int64_t    , NIntTableGet   , (NIntTable *self, NString *key));
-// nfunc(int        , NIntTableCount , (NIntTable *self));
+nclass(NIntTable);
 
-// nclass(NDblTable);
-
-// nfunc(NDblTable *, NDblTableCreate, (void));
-// nfunc(NDblTable *, NDblTableCopy  , (NDblTable *that));
-// nfunc(void       , NDblTableSet   , (NDblTable *self, NString *key, double value));
-// nfunc(double     , NDblTableGet   , (NDblTable *self, NString *key));
-// nfunc(int        , NDblTableCount , (NDblTable *self));
-
-// nclass(NSparse);
-
-// nfunc(NSparse *, NSparseCreate, (void));
-// nfunc(NSparse *, NSparseCopy  , (NSparse *that));
-// nfunc(void     , NSparseSet   , (NSparse *self, int64_t key, NObject *value));
-// nfunc(NObject *, NSparseGet   , (NSparse *self, int64_t key));
-// nfunc(int      , NSparseCount , (NSparse *self));
-
-// nclass(NIntSparse);
-
-// nfunc(NIntSparse *, NIntSparseCreate, (void));
-// nfunc(NIntSparse *, NIntSparseCopy  , (NIntSparse *that));
-// nfunc(void        , NIntSparseSet   , (NIntSparse *self, int64_t key, int64_t value));
-// nfunc(int64_t     , NIntSparseGet   , (NIntSparse *self, int64_t key));
-// nfunc(int         , NIntSparseCount , (NIntSparse *self));
-
-// nclass(NDblSparse);
-
-// nfunc(NDblSparse *, NDblSparseCreate, (void));
-// nfunc(NDblSparse *, NDblSparseCopy  , (NDblSparse *that));
-// nfunc(void        , NDblSparseSet   , (NDblSparse *self, int64_t key, double value));
-// nfunc(double      , NDblSparseGet   , (NDblSparse *self, int64_t key));
-// nfunc(int         , NDblSparseCount , (NDblSparse *self));
+nfunc(NIntTable *, NIntTableCreate, (void));
+nfunc(NIntTable *, NIntTableCopy  , (NIntTable *that));
+nfunc(void       , NIntTableSet   , (NIntTable *self, int64_t key, NObject *value));
+nfunc(NObject   *, NIntTableGet   , (NIntTable *self, int64_t key));
+nfunc(int        , NIntTableCount , (NIntTable *self));
+nfunc(NIterator *, NIntTableKeys  , (NIntTable *self));

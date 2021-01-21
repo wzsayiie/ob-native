@@ -1,136 +1,166 @@
 #include "narray.h"
 
-nclass(__NArray) {
-    int    type ;
-    NWord *items;
-    int    count;
+nclass(NWordArray) {
+    NWordArrayConf conf;
+    void *items;
+    int count;
 };
 
 static const int MAX_RESERVE_ITEM_NUM = 64;
 static const int EVERY_ALLOC_ITEM_NUM = 16;
 
-static void __NArrayTryStretch(__NArray *array, int least) {
-    int capacity = NMemorySize(array->items) / nisizeof(NWord);
-    int vacancy = capacity - array->count;
-    if (vacancy >= least) {
+static void _NWordArrayStretch(NWordArray *array, int least) {
+    int single   = array->conf.itemSize;
+    int capacity = NMemorySize(array->items) / single;
+    int vacancy  = capacity - array->count;
+
+    if (vacancy < least) {
+        int enough = array->count + least;
+        if (enough % EVERY_ALLOC_ITEM_NUM > 0) {
+            enough = (enough / EVERY_ALLOC_ITEM_NUM + 1) * EVERY_ALLOC_ITEM_NUM;
+        }
+        array->items = NRealloc(array->items, enough * single);
+    }
+}
+
+static void _NWordArrayShrink(NWordArray *array) {
+    int single   = array->conf.itemSize;
+    int capacity = NMemorySize(array->items) / single;
+    int vacancy  = capacity - array->count;
+
+    if (vacancy > MAX_RESERVE_ITEM_NUM) {
+        int enough = array->count + EVERY_ALLOC_ITEM_NUM;
+        enough -= enough % EVERY_ALLOC_ITEM_NUM;
+        array->items = NRealloc(array->items, enough * single);
+    }
+}
+
+static void *_NWordArrayLocate(NWordArray *array, int index) {
+    int offset = array->conf.itemSize * index;
+    return (uint8_t *)array->items + offset;
+}
+
+static NWord _NWordArrayRead(NWordArray *array, int index) {
+    NWord item = {0};
+    void *ptr  = _NWordArrayLocate(array, index);
+    NMoveMemory(&item, ptr, array->conf.itemSize);
+    return item;
+}
+
+static void _NWordArrayWrite(NWordArray *array, int index, NWord item) {
+    if (array->conf.itemRetain) {
+        NRetain(item.asPtr);
+    }
+
+    void *ptr = _NWordArrayLocate(array, index);
+    NMoveMemory(ptr, &item, array->conf.itemSize);
+}
+
+static void _NWordArrayErase(NWordArray *array, int index) {
+    if (!array->conf.itemRetain) {
         return;
     }
 
-    int newCapacity = array->count + least;
-    if (newCapacity % EVERY_ALLOC_ITEM_NUM > 0) {
-        newCapacity = (newCapacity / EVERY_ALLOC_ITEM_NUM + 1) * EVERY_ALLOC_ITEM_NUM;
-    }
-    array->items = NRealloc(array->items, newCapacity * nisizeof(NWord));
+    NWord item = {0};
+    void *ptr  = _NWordArrayLocate(array, index);
+    NMoveMemory(&item, ptr, array->conf.itemSize);
+    NRelease(item.asPtr);
 }
 
-static void __NArrayTryShrink(__NArray *array) {
-    int capacity = NMemorySize(array->items) / nisizeof(NWord);
-    int vacancy = capacity - array->count;
-    if (vacancy <= MAX_RESERVE_ITEM_NUM) {
-        return;
-    }
+static void _NWordArrayMove(NWordArray *array, int index, int offset) {
+    void *src = _NWordArrayLocate(array, index);
+    void *dst = _NWordArrayLocate(array, index + offset);
+    int   len = array->count - index;
 
-    int newCapacity = array->count + EVERY_ALLOC_ITEM_NUM;
-    newCapacity -= newCapacity % EVERY_ALLOC_ITEM_NUM;
-
-    array->items = NRealloc(array->items, newCapacity * nisizeof(NWord));
+    NMoveMemory(dst, src, len * array->conf.itemSize);
 }
 
-static bool __IsObjectArray(__NArray *array) {
-    return array->type == __NArrayItemTypeObject;
-}
-
-static void __NArrayClear(__NArray *array) {
-    if (__IsObjectArray(array)) {
-        NWord *cur = array->items;
-        NWord *end = array->items + array->count;
-        for (; cur < end; ++cur) {
-            NRelease(cur->asPtr);
+static void _NWordArrayClear(NWordArray *array) {
+    if (array->conf.itemRetain) {
+        for (int n = 0; n < (array->count); ++n) {
+            NWord item = _NWordArrayRead(array, n);
+            NRelease(item.asPtr);
         }
     }
     NFree(array->items);
 }
 
-__NArray *__NArrayCreate(__NArrayItemType type) {
-    __NArray *self = NCreate(nisizeof(__NArray), __NArrayClear);
-    self->type = type;
+NWordArray *NWordArrayCreate(NWordArrayConf *conf) {
+    NWordArray *self = NCreate(nisizeof(NWordArray), _NWordArrayClear);
+    self->conf = *conf;
     return self;
 }
 
-__NArray *__NArrayCopy(__NArray *that) {
+NWordArray *NWordArrayCopy(NWordArray *that) {
     if (!that) {
         return NULL;
     }
 
-    __NArray *copy = __NArrayCreate(that->type);
-    __NArrayTryStretch(copy, that->count);
-    NMoveMemory(copy->items, that->items, that->count * nisizeof(NWord));
-    copy->count = that->count;
+    NWordArray *self = NWordArrayCreate(&that->conf);
+    _NWordArrayStretch(self, that->count);
+    NMoveMemory(self->items, that->items, that->count * that->conf.itemSize);
+    self->count = that->count;
 
-    if (__IsObjectArray(copy)) {
-        NWord *cur = copy->items;
-        NWord *end = copy->items + copy->count;
-        for (; cur < end; ++cur) {
-            NRetain(cur->asPtr);
+    if (self->conf.itemRetain) {
+        for (int n = 0; n < (self->count); ++n) {
+            NWord item = _NWordArrayRead(self, n);
+            NRetain(item.asPtr);
         }
     }
 
-    return copy;
+    return self;
 }
 
-int __NArrayCount(__NArray *self) {
+int NWordArrayCount(NWordArray *self) {
     if (self) {
         return self->count;
     }
     return 0;
 }
 
-nstruct(__NArrayIterator) {
-    NIterator super;
-    __NArray *array;
-    int cursor;
+nstruct(NWordArrayIterator) {
+    NIterator   super;
+    NWordArray *array;
+    int         ready;
 };
 
-static bool __NArrayIteratorNext(__NArrayIterator *it) {
-    return it->cursor < it->array->count;
+static bool NWordArrayIteratorNext(NWordArrayIterator *iterator) {
+    return (iterator->ready) < (iterator->array->count);
 }
 
-static void *__NArrayIteratorGet(__NArrayIterator *it) {
-    return it->array->items + (it->cursor)++;
+static void *NWordArrayIteratorGet(NWordArrayIterator *iterator) {
+    uint8_t *begin = iterator->array->items;
+    int      every = iterator->array->conf.itemSize;
+
+    return begin + every * (iterator->ready)++;
 }
 
-NIterator *__NArrayRange(__NArray *self) {
+NIterator *NWordArrayItems(NWordArray *self) {
     if (!self) {
         return NStoreIterator(NULL, 0);
     }
 
-    __NArrayIterator it = {0};
+    NWordArrayIterator iterator = {0};
 
-    it.super.next = (NIteratorNextFunc)__NArrayIteratorNext;
-    it.super.get  = (NIteratorGetFunc )__NArrayIteratorGet ;
-    it.array  = self;
-    it.cursor = 0;
+    iterator.super.next = (NIteratorNextFunc)NWordArrayIteratorNext;
+    iterator.super.get  = (NIteratorGetFunc )NWordArrayIteratorGet ;
+    iterator.array = self;
+    iterator.ready = 0;
 
-    return NStoreIterator(&it, nisizeof(it));
+    return NStoreIterator(&iterator, nisizeof(iterator));
 }
 
-void __NArrayPush(__NArray *self, NWord item) {
+void NWordArrayPush(NWordArray *self, NWord item) {
     if (!self) {
         return;
     }
 
-    __NArrayTryStretch(self, 1);
+    _NWordArrayStretch(self, 1);
+    _NWordArrayWrite(self, self->count, item);
     self->count += 1;
-
-    NWord *last = self->items + self->count - 1;
-    if (__IsObjectArray(self)) {
-        last->asPtr = NRetain(item.asPtr);
-    } else {
-        *last = item;
-    }
 }
 
-void __NArrayPop(__NArray *self) {
+void NWordArrayPop(NWordArray *self) {
     if (!self) {
         return;
     }
@@ -138,129 +168,104 @@ void __NArrayPop(__NArray *self) {
         return;
     }
 
-    if (__IsObjectArray(self)) {
-        NWord last = self->items[self->count - 1];
-        NRelease(last.asPtr);
-    }
-
     self->count -= 1;
-    __NArrayTryShrink(self);
+    _NWordArrayErase(self, self->count);
+    _NWordArrayShrink(self);
 }
 
-static bool __NArrayReadablePos(__NArray *a, int p) {return 0 <= p && p <  a->count;}
-static bool __NArrayWritablePos(__NArray *a, int p) {return 0 <= p && p <= a->count;}
-
-static void __NArrayMoveItems(__NArray *array, int pos, int offset) {
-    void *src = array->items + pos;
-    void *dst = array->items + pos + offset;
-    int   len = array->count - pos;
-
-    NMoveMemory(dst, src, len * nisizeof(NWord));
-}
-
-void __NArrayInsert(__NArray *self, int pos, NWord item) {
+void NWordArrayInsert(NWordArray *self, int index, NWord item) {
     if (!self) {
         return;
     }
-    if (!__NArrayWritablePos(self, pos)) {
+    if (index < 0 || (self->count) < index /* legal when index == count */) {
         return;
     }
 
-    __NArrayTryStretch(self, 1);
-    __NArrayMoveItems(self, pos, 1);
+    _NWordArrayStretch(self, 1);
+
+    _NWordArrayMove(self, index, 1);
+    _NWordArrayWrite(self, index, item);
     self->count += 1;
-
-    NWord *slot = self->items + pos;
-    if (__IsObjectArray(self)) {
-        slot->asPtr = NRetain(item.asPtr);
-    } else {
-        *slot = item;
-    }
 }
 
-void __NArrayRemove(__NArray *self, int pos) {
+void NWordArrayRemove(NWordArray *self, int index) {
     if (!self) {
         return;
     }
-    if (!__NArrayReadablePos(self, pos)) {
+    if (index < 0 || (self->count) <= index) {
         return;
     }
 
-    if (__IsObjectArray(self)) {
-        NRelease(self->items[pos].asPtr);
-    }
-
-    __NArrayMoveItems(self, pos + 1, -1);
+    _NWordArrayErase(self, index);
+    _NWordArrayMove(self, index + 1, -1);
     self->count -= 1;
-    __NArrayTryShrink(self);
+
+    _NWordArrayShrink(self);
 }
 
-void __NArraySet(__NArray *self, int pos, NWord item) {
-    if (!self) {
-        return;
-    }
-    if (!__NArrayReadablePos(self, pos)) {
-        return;
-    }
-
-    NWord *slot = self->items + pos;
-    if (__IsObjectArray(self)) {
-        NRelease(slot->asPtr);
-        slot->asPtr = NRetain(item.asPtr);
-    } else {
-        *slot = item;
-    }
-}
-
-NWord __NArrayGet(__NArray *self, int pos) {
+void NWordArraySet(NWordArray *self, int index, NWord item) {
     if (self) {
-        if (__NArrayReadablePos(self, pos)) {
-            return self->items[pos];
+        if (0 <= index && index < (self->count)) {
+            _NWordArrayErase(self, index);
+            _NWordArrayWrite(self, index, item);
+        }
+    }
+}
+
+NWord NWordArrayGet(NWordArray *self, int index) {
+    if (self) {
+        if (0 <= index && index < (self->count)) {
+            return _NWordArrayRead(self, index);
         }
     }
     NWord word = {0};
     return word;
 }
 
-#define GEN_ARRAY(ARRAY, TYPE, ITEM, MEMBER)                    \
-/**/                                                            \
-/**/    ARRAY *ARRAY##Create(void) {                            \
-/**/        return (ARRAY *)__NArrayCreate(TYPE);               \
-/**/    }                                                       \
-/**/    ARRAY *ARRAY##Copy(ARRAY *array) {                      \
-/**/        return (ARRAY *)__NArrayCopy((__NArray *)array);    \
-/**/    }                                                       \
-/**/    int ARRAY##Count(ARRAY *array) {                        \
-/**/        return __NArrayCount((__NArray *)array);            \
-/**/    }                                                       \
-/**/    NIterator *ARRAY##Range(ARRAY *array) {                 \
-/**/        return __NArrayRange((__NArray *)array);            \
-/**/    }                                                       \
-/**/    void ARRAY##Push(ARRAY *array, ITEM item) {             \
-/**/        NWord word;                                         \
-/**/        word.MEMBER = item;                                 \
-/**/        __NArrayPush((__NArray *)array, word);              \
-/**/    }                                                       \
-/**/    void ARRAY##Pop(ARRAY *array) {                         \
-/**/        __NArrayPop((__NArray *)array);                     \
-/**/    }                                                       \
-/**/    void ARRAY##Insert(ARRAY *array, int pos, ITEM item) {  \
-/**/        NWord word;                                         \
-/**/        word.MEMBER = item;                                 \
-/**/        __NArrayInsert((__NArray *)array, pos, word);       \
-/**/    }                                                       \
-/**/    void ARRAY##Remove(ARRAY *array, int pos) {             \
-/**/        __NArrayRemove((__NArray *)array, pos);             \
-/**/    }                                                       \
-/**/    void ARRAY##Set(ARRAY *array, int pos, ITEM item) {     \
-/**/        NWord word;                                         \
-/**/        word.MEMBER = item;                                 \
-/**/        __NArraySet((__NArray *)array, pos, word);          \
-/**/    }                                                       \
-/**/    ITEM ARRAY##Get(ARRAY *array, int pos) {                \
-/**/        return __NArrayGet((__NArray *)array, pos).MEMBER;  \
+#define GEN_ARRAY(ARRAY, I_TYPE, I_RETAIN, MEMBER)                  \
+/**/                                                                \
+/**/    ARRAY *ARRAY##Create(void) {                                \
+/**/        NWordArrayConf conf = {0};                              \
+/**/                                                                \
+/**/        conf.itemRetain = I_RETAIN;                             \
+/**/        conf.itemSize = nisizeof(I_TYPE);                       \
+/**/                                                                \
+/**/        return (ARRAY *)NWordArrayCreate(&conf);                \
+/**/    }                                                           \
+/**/    ARRAY *ARRAY##Copy(ARRAY *array) {                          \
+/**/        return (ARRAY *)NWordArrayCopy((NWordArray *)array);    \
+/**/    }                                                           \
+/**/    int ARRAY##Count(ARRAY *array) {                            \
+/**/        return NWordArrayCount((NWordArray *)array);            \
+/**/    }                                                           \
+/**/    NIterator *ARRAY##Items(ARRAY *array) {                     \
+/**/        return NWordArrayItems((NWordArray *)array);            \
+/**/    }                                                           \
+/**/    void ARRAY##Push(ARRAY *array, I_TYPE item) {               \
+/**/        NWord word = {0};                                       \
+/**/        word.MEMBER = item;                                     \
+/**/        NWordArrayPush((NWordArray *)array, word);              \
+/**/    }                                                           \
+/**/    void ARRAY##Pop(ARRAY *array) {                             \
+/**/        NWordArrayPop((NWordArray *)array);                     \
+/**/    }                                                           \
+/**/    void ARRAY##Insert(ARRAY *array, int index, I_TYPE item) {  \
+/**/        NWord word = {0};                                       \
+/**/        word.MEMBER = item;                                     \
+/**/        NWordArrayInsert((NWordArray *)array, index, word);     \
+/**/    }                                                           \
+/**/    void ARRAY##Remove(ARRAY *array, int index) {               \
+/**/        NWordArrayRemove((NWordArray *)array, index);           \
+/**/    }                                                           \
+/**/    void ARRAY##Set(ARRAY *array, int index, I_TYPE item) {     \
+/**/        NWord word = {0};                                       \
+/**/        word.MEMBER = item;                                     \
+/**/        NWordArraySet((NWordArray *)array, index, word);        \
+/**/    }                                                           \
+/**/    I_TYPE ARRAY##Get(ARRAY *array, int index) {                \
+/**/        return NWordArrayGet((NWordArray *)array, index).MEMBER;\
 /**/    }
 
-GEN_ARRAY(NArray   , __NArrayItemTypeObject, NObject *, asPtr   )
-GEN_ARRAY(NIntArray, __NArrayItemTypePOD   , int64_t  , asInt64 )
-GEN_ARRAY(NFltArray, __NArrayItemTypePOD   , double   , asDouble)
+GEN_ARRAY(NArray   , NObject *, true , asPtr   )
+GEN_ARRAY(NIntArray, int64_t  , false, asInt64 )
+GEN_ARRAY(NFltArray, double   , false, asDouble)

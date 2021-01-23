@@ -16,35 +16,35 @@ struct _NFuncInfo {
 
 static const int  LIST_BEGIN      = 1;
 static const int  LIST_END        = 256;
-static _NFuncInfo gList[LIST_END] = {0};
-static int        gListEnd        = 0;
+static _NFuncInfo sList[LIST_END] = {0};
+static int        sListEnd        = 0;
 
 static void _NAddFunc(_NFuncInfo *info) {
-    if (gListEnd == LIST_END) {
+    if (sListEnd == LIST_END) {
         return;
     }
 
     //insertion sort here.
     int pos = LIST_BEGIN;
-    while (pos < gListEnd) {
-        if (strcmp(gList[pos].name, info->name) > 0) {
+    while (pos < sListEnd) {
+        if (strcmp(sList[pos].name, info->name) > 0) {
             break;
         }
         pos++;
     }
 
-    if (pos < gListEnd) {
-        void *dst = gList + pos + 1;
-        void *src = gList + pos;
-        int   num = gListEnd - pos;
+    if (pos < sListEnd) {
+        void *dst = sList + pos + 1;
+        void *src = sList + pos;
+        int   num = sListEnd - pos;
         memmove(dst, src, num * sizeof(_NFuncInfo));
     }
-    gList[pos] = *info;
-    gListEnd += 1;
+    sList[pos] = *info;
+    sListEnd += 1;
 }
 
 nclink int NFuncsBegin() {return LIST_BEGIN;}
-nclink int NFuncsEnd  () {return gListEnd  ;}
+nclink int NFuncsEnd  () {return sListEnd  ;}
 
 nclink int NFindFunc(const char *name) {
     if (name == NULL || *name == '\0') {
@@ -53,11 +53,11 @@ nclink int NFindFunc(const char *name) {
 
     //binary search here.
     int begin = LIST_BEGIN;
-    int end   = gListEnd  ;
+    int end   = sListEnd  ;
 
     while (begin < end) {
         int center = (begin + end) / 2;
-        int result = strcmp(name, gList[center].name);
+        int result = strcmp(name, sList[center].name);
 
         if (result > 0) {
             begin = center + 1;
@@ -71,10 +71,10 @@ nclink int NFindFunc(const char *name) {
 }
 
 static _NFuncInfo *_NFuncGetInfo(int fPos) {
-    if (LIST_BEGIN <= fPos && fPos < gListEnd) {
-        return gList + fPos;
+    if (LIST_BEGIN <= fPos && fPos < sListEnd) {
+        return sList + fPos;
     } else {
-        return gList;
+        return sList;
     }
 }
 
@@ -167,11 +167,11 @@ template<class R> struct _NFuncCaller<R, NFUNC_MAX_ARG_NUM> {
 };
 
 nclink __NWord NCallFunc(int fPos, int argc, NType *types, __NWord *words) {
-    if (!(LIST_BEGIN <= fPos && fPos < gListEnd)) {
+    if (!(LIST_BEGIN <= fPos && fPos < sListEnd)) {
         return 0;
     }
 
-    _NFuncInfo *info = gList + fPos;
+    _NFuncInfo *info = sList + fPos;
     if (argc < info->argCount) {
         return 0;
     }
@@ -207,21 +207,21 @@ static bool _NFuncRetRetained(NType retType, const char *name) {
     return false;
 }
 
-template<class T> struct _NTypePicker      {static const NType Type = NTypeStruct;};
-template<class T> struct _NTypePicker<T *> {static const NType Type = NTypePtr   ;};
+template<class T> struct _NTypePicker      {static const NType TYPE = NTypeStruct;};
+template<class T> struct _NTypePicker<T *> {static const NType TYPE = NTypePtr   ;};
 
-template<> struct _NTypePicker<void    > {static const NType Type = NTypeVoid  ;};
-template<> struct _NTypePicker<bool    > {static const NType Type = NTypeBool  ;};
-template<> struct _NTypePicker<int8_t  > {static const NType Type = NTypeInt8  ;};
-template<> struct _NTypePicker<int16_t > {static const NType Type = NTypeInt16 ;};
-template<> struct _NTypePicker<int32_t > {static const NType Type = NTypeInt32 ;};
-template<> struct _NTypePicker<int64_t > {static const NType Type = NTypeInt64 ;};
-template<> struct _NTypePicker<uint8_t > {static const NType Type = NTypeUInt8 ;};
-template<> struct _NTypePicker<uint16_t> {static const NType Type = NTypeUInt16;};
-template<> struct _NTypePicker<uint32_t> {static const NType Type = NTypeUInt32;};
-template<> struct _NTypePicker<uint64_t> {static const NType Type = NTypeUInt64;};
-template<> struct _NTypePicker<float   > {static const NType Type = NTypeFloat ;};
-template<> struct _NTypePicker<double  > {static const NType Type = NTypeDouble;};
+template<> struct _NTypePicker<void    > {static const NType TYPE = NTypeVoid  ;};
+template<> struct _NTypePicker<bool    > {static const NType TYPE = NTypeBool  ;};
+template<> struct _NTypePicker<int8_t  > {static const NType TYPE = NTypeInt8  ;};
+template<> struct _NTypePicker<int16_t > {static const NType TYPE = NTypeInt16 ;};
+template<> struct _NTypePicker<int32_t > {static const NType TYPE = NTypeInt32 ;};
+template<> struct _NTypePicker<int64_t > {static const NType TYPE = NTypeInt64 ;};
+template<> struct _NTypePicker<uint8_t > {static const NType TYPE = NTypeUInt8 ;};
+template<> struct _NTypePicker<uint16_t> {static const NType TYPE = NTypeUInt16;};
+template<> struct _NTypePicker<uint32_t> {static const NType TYPE = NTypeUInt32;};
+template<> struct _NTypePicker<uint64_t> {static const NType TYPE = NTypeUInt64;};
+template<> struct _NTypePicker<float   > {static const NType TYPE = NTypeFloat ;};
+template<> struct _NTypePicker<double  > {static const NType TYPE = NTypeDouble;};
 
 struct _NFuncAdder {
 
@@ -230,7 +230,7 @@ struct _NFuncAdder {
     }
     
     template<class R, class... A> _NFuncAdder(const char *name, R (*func)(A...)) {
-        AddFunc(name, _NTypePicker<R>::Type, (void (*)(A...))func);
+        AddFunc(name, _NTypePicker<R>::TYPE, (void (*)(A...))func);
     }
     
     template<class... A> void AddFunc(const char *name, NType retType, void (*func)(A...)) {
@@ -264,7 +264,7 @@ struct _NFuncAdder {
     }
     
     template<class A, class... B> int CheckArgs(void (*)(A, B...), bool *error) {
-        NType type = _NTypePicker<A>::Type;
+        NType type = _NTypePicker<A>::TYPE;
         if (!IsSupportedType(type)) {
             *error = true;
         }
@@ -279,7 +279,7 @@ struct _NFuncAdder {
     template<class A, class... B> void AddArgTypes(_NFuncInfo *info, void (*)(A, B...)) {
         int pos = (info->argCount)++;
 
-        info->argTypes[pos] = _NTypePicker<A>::Type;
+        info->argTypes[pos] = _NTypePicker<A>::TYPE;
         AddArgTypes(info, (void (*)(B...))NULL);
     }
     

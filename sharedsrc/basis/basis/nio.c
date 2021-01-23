@@ -13,28 +13,28 @@
 #define SUMM_BUF_SIZE 4096
 #define EACH_BUF_SIZE 1024
 
-static nthreadlocal char gBufBegin[SUMM_BUF_SIZE];
-#define gBufEnd (gBufBegin + SUMM_BUF_SIZE)
+static nthreadlocal char sBufBegin[SUMM_BUF_SIZE];
+#define sBufEnd (sBufBegin + SUMM_BUF_SIZE)
 
-static nthreadlocal char *gPrint  = NULL;
-static nthreadlocal char *gInsert = NULL;
+static nthreadlocal char *sPrint  = NULL;
+static nthreadlocal char *sInsert = NULL;
 
 void NPrintF(const char *format, ...) {
-    if (gPrint == NULL) {
-        gPrint  = gBufBegin;
-        gInsert = gBufBegin;
+    if (sPrint == NULL) {
+        sPrint  = sBufBegin;
+        sInsert = sBufBegin;
     }
     
     //formatting arguments for string.
     va_list args;
     va_start(args, format);
-    int count = vsnprintf(gInsert, gBufEnd - gInsert, format, args);
+    int count = vsnprintf(sInsert, sBufEnd - sInsert, format, args);
     va_end(args);
     
     //print line by line.
-    char *begin = gPrint;
-    char *endln = gInsert;
-    for (; endln < gInsert + count; ++endln) {
+    char *begin = sPrint;
+    char *endln = sInsert;
+    for (; endln < sInsert + count; ++endln) {
         if (*endln != '\n') {
             continue;
         }
@@ -44,17 +44,17 @@ void NPrintF(const char *format, ...) {
         begin = endln + 1;
     }
     
-    gPrint  = begin;
-    gInsert = endln;
+    sPrint  = begin;
+    sInsert = endln;
     
     //if reserve buffer is insufficient, print cached string.
-    if (gInsert + EACH_BUF_SIZE >= gBufEnd) {
-        if (*gPrint) {
-            NPutS(gPrint);
+    if (sInsert + EACH_BUF_SIZE >= sBufEnd) {
+        if (*sPrint) {
+            NPutS(sPrint);
         }
         
-        gPrint  = gBufBegin;
-        gInsert = gBufBegin;
+        sPrint  = sBufBegin;
+        sInsert = sBufBegin;
     }
 }
 
@@ -65,10 +65,10 @@ void NPutS(const char *string) {
 }
 
 void NFlush(void) {
-    if (gPrint && *gPrint) {
-        NPutS(gPrint);
+    if (sPrint && *sPrint) {
+        NPutS(sPrint);
     }
     
-    gPrint  = gBufBegin;
-    gInsert = gBufBegin;
+    sPrint  = sBufBegin;
+    sInsert = sBufBegin;
 }

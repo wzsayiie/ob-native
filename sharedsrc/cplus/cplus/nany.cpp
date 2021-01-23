@@ -1,21 +1,21 @@
-#include "nwidget.h"
+#include "nany.h"
 #include "basis.h"
 
-NWidget::NWidget() {
+NAny::NAny() {
     mCount = 1;
 }
 
-NWidget::~NWidget() {
+NAny::~NAny() {
 }
 
-NWidget *NWidget::Retain() {
+NAny *NAny::Retain() {
     nsynwith(this) {
         mCount += 1;
     }
     return this;
 }
 
-void NWidget::Release() {
+void NAny::Release() {
     nsynwith(this) {
         if (--mCount <= 0) {
             delete this;

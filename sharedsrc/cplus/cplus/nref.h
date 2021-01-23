@@ -1,7 +1,7 @@
 #pragma once
 
 #include "basis.h"
-#include "nwidget.h"
+#include "nany.h"
 
 template<class T> struct NRef {
 
@@ -57,10 +57,10 @@ template<class T> struct NRef {
 
 private:
 
-    template<class A> A *_Retain(NWidget *p) {return p ? (A *)p->Retain() : NULL;}
+    template<class A> A *_Retain(NAny    *p) {return p ? (A *)p->Retain() : NULL;}
     template<class A> A *_Retain(NObject *p) {return p ? (A *)NRetain(p)  : NULL;}
 
-    void _Release(NWidget *p) {if (p) {p->Release();}}
+    void _Release(NAny    *p) {if (p) {p->Release();}}
     void _Release(NObject *p) {if (p) {NRelease(p); }}
 
 private:

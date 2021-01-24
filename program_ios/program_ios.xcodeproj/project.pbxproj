@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE2837E925BDA6260048201A /* nany.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE2837E325BDA5180048201A /* nany.cpp */; };
 		CE8C4DB825AB482A00435755 /* launch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE8C4DB725AB482A00435755 /* launch.cpp */; };
 		CE8C4E3725AB483E00435755 /* nsocket_posix.c in Sources */ = {isa = PBXBuildFile; fileRef = CE8C4DBD25AB483E00435755 /* nsocket_posix.c */; };
 		CE8C4E3825AB483E00435755 /* nsocket.c in Sources */ = {isa = PBXBuildFile; fileRef = CE8C4DC025AB483E00435755 /* nsocket.c */; };
@@ -18,7 +19,6 @@
 		CE8C4E4A25AB483E00435755 /* NIOSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8C4DF025AB483E00435755 /* NIOSViewController.m */; };
 		CE8C4E4B25AB483E00435755 /* NIOSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8C4DF125AB483E00435755 /* NIOSAppDelegate.m */; };
 		CE8C4E4C25AB483E00435755 /* nref.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE8C4DF725AB483E00435755 /* nref.cpp */; };
-		CE8C4E4D25AB483E00435755 /* nwidget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE8C4DF925AB483E00435755 /* nwidget.cpp */; };
 		CE8C4E4E25AB483E00435755 /* NMacBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8C4DFD25AB483E00435755 /* NMacBundle.m */; };
 		CE8C4E4F25AB483E00435755 /* NMacThread.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8C4DFE25AB483E00435755 /* NMacThread.m */; };
 		CE8C4E5025AB483E00435755 /* NMacRunloop.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8C4DFF25AB483E00435755 /* NMacRunloop.m */; };
@@ -44,6 +44,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CE2837E325BDA5180048201A /* nany.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = nany.cpp; sourceTree = "<group>"; };
+		CE2837E425BDA5180048201A /* nany.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = nany.h; sourceTree = "<group>"; };
 		CE8C4DB725AB482A00435755 /* launch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = launch.cpp; sourceTree = "<group>"; };
 		CE8C4DBD25AB483E00435755 /* nsocket_posix.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = nsocket_posix.c; sourceTree = "<group>"; };
 		CE8C4DBE25AB483E00435755 /* nhttp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nhttp.h; sourceTree = "<group>"; };
@@ -65,8 +67,6 @@
 		CE8C4DF325AB483E00435755 /* NIOSAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIOSAppDelegate.h; sourceTree = "<group>"; };
 		CE8C4DF625AB483E00435755 /* cplus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cplus.h; sourceTree = "<group>"; };
 		CE8C4DF725AB483E00435755 /* nref.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = nref.cpp; sourceTree = "<group>"; };
-		CE8C4DF825AB483E00435755 /* nwidget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nwidget.h; sourceTree = "<group>"; };
-		CE8C4DF925AB483E00435755 /* nwidget.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = nwidget.cpp; sourceTree = "<group>"; };
 		CE8C4DFA25AB483E00435755 /* nref.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nref.h; sourceTree = "<group>"; };
 		CE8C4DFD25AB483E00435755 /* NMacBundle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMacBundle.m; sourceTree = "<group>"; };
 		CE8C4DFE25AB483E00435755 /* NMacThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMacThread.m; sourceTree = "<group>"; };
@@ -249,10 +249,10 @@
 			isa = PBXGroup;
 			children = (
 				CE8C4DF625AB483E00435755 /* cplus.h */,
+				CE2837E325BDA5180048201A /* nany.cpp */,
+				CE2837E425BDA5180048201A /* nany.h */,
 				CE8C4DF725AB483E00435755 /* nref.cpp */,
 				CE8C4DFA25AB483E00435755 /* nref.h */,
-				CE8C4DF925AB483E00435755 /* nwidget.cpp */,
-				CE8C4DF825AB483E00435755 /* nwidget.h */,
 			);
 			path = cplus;
 			sourceTree = "<group>";
@@ -458,6 +458,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE2837E925BDA6260048201A /* nany.cpp in Sources */,
 				CE8C4E4325AB483E00435755 /* NOBJCBind.c in Sources */,
 				CE8C4DB825AB482A00435755 /* launch.cpp in Sources */,
 				CE8C4E3825AB483E00435755 /* nsocket.c in Sources */,
@@ -473,7 +474,6 @@
 				CE8C4E6225AB483E00435755 /* nmemory.c in Sources */,
 				CE8C4E3A25AB483E00435755 /* nsocket_win32.c in Sources */,
 				CE8C4E5E25AB483E00435755 /* ntable.c in Sources */,
-				CE8C4E4D25AB483E00435755 /* nwidget.cpp in Sources */,
 				CE8C4E4225AB483E00435755 /* osbind.c in Sources */,
 				CE8C4E6525AB483E00435755 /* nenviron.c in Sources */,
 				CE9FEBB424F2439B0029E036 /* main.m in Sources */,

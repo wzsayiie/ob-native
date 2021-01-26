@@ -2,15 +2,15 @@
 
 #include "nenviron.h"
 
-nstruct(NIterator);
+typedef struct NIterator NIterator;
 
 typedef bool  (*NIteratorNextFunc)(NIterator *iterator);
 typedef void *(*NIteratorGetFunc )(NIterator *iterator);
 
-nstruct(NIterator) {
+nstruct(NIterator, {
     NIteratorNextFunc next;
     NIteratorGetFunc  get ;
-};
+});
 
 nfunc(NIterator *, NStoreIterator, (void *iterator, int size));
 

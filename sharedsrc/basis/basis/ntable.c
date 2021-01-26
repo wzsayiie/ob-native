@@ -1,8 +1,8 @@
 #include "ntable.h"
 
-nclass(NWordTable, NObject) {
+nclass(NWordTable, NObject, {
     NWordTableConf conf;
-};
+});
 
 NWordTable *NWordTableCreate(NWordTableConf *conf) {
     return NULL;

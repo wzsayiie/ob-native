@@ -3,14 +3,14 @@
 #include "nstring.h"
 #include "npod.h"
 
-nstruct(NWordTableConf) {
+nstruct(NWordTableConf, {
     int(*keyCompare)(NWord a, NWord b);
     bool keyRetain;
     int  keySize;
 
     bool valueRetain;
     int  valueSize;
-};
+});
 
 nclass(NWordTable, NObject);
 

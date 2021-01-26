@@ -1,11 +1,11 @@
 #include "naction.h"
 #include <stdarg.h>
 
-nclass(NAction, NObject) {
+nclass(NAction, NObject, {
     void    *func;
     NObject *data;
     int      argc;
-};
+});
 
 static void _NActionClear(NAction *action) {
     NRelease(action->data);

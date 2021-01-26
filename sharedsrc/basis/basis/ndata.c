@@ -1,8 +1,8 @@
 #include "ndata.h"
 
-nclass(NData, NObject) {
+nclass(NData, NObject, {
     void *bytes;
-};
+});
 
 static void _NDataClear(NData *data) {
     NFree(data->bytes);

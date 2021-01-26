@@ -4,10 +4,10 @@
 #include "nmemory.h"
 #include "npod.h"
 
-nstruct(NWordArrayConf) {
+nstruct(NWordArrayConf, {
     bool itemRetain;
     int  itemSize;
-};
+});
 
 nclass(NWordArray, NObject);
 

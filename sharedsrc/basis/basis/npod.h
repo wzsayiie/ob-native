@@ -2,7 +2,7 @@
 
 #include "nenviron.h"
 
-nstruct(NWord) {
+nstruct(NWord, {
     union {
         bool      asBool  ;
         int8_t    asInt8  ;
@@ -19,7 +19,7 @@ nstruct(NWord) {
         double    asDouble;
         void     *asPtr   ;
     };
-};
+});
 
 nfunc(int64_t, NMakeBoolWord  , (bool     value));
 nfunc(int64_t, NMakeInt8Word  , (int8_t   value));
@@ -51,7 +51,7 @@ nfunc(float   , NFloatWord , (int64_t value));
 nfunc(double  , NDoubleWord, (int64_t value));
 nfunc(void *  , NPtrWord   , (int64_t value));
 
-nstruct(NValue) {
+nstruct(NValue, {
     NType type;
     union {
         bool     asBool  ;
@@ -60,7 +60,7 @@ nstruct(NValue) {
         double   asDouble;
         void    *asPtr   ;
     };
-};
+});
 
 nclink NValue NMakeBoolValue  (bool     value);
 nclink NValue NMakeInt64Value (int64_t  value);

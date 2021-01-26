@@ -1,9 +1,9 @@
 #include "nnumber.h"
 #include "npod.h"
 
-nclass(NNumber, NObject) {
+nclass(NNumber, NObject, {
     NValue value;
-};
+});
 
 NNumber *NNumberCreateWithBool  (bool     v) {NNumber *s = NNumberCreate(); s->value = NMakeBoolValue  (v); return s;}
 NNumber *NNumberCreateWithInt64 (int64_t  v) {NNumber *s = NNumberCreate(); s->value = NMakeInt64Value (v); return s;}

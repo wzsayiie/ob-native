@@ -3,10 +3,10 @@
 #include <stdlib.h>
 #include <string.h>
 
-nstruct(NMemory) {
+nstruct(NMemory, {
     int    dataSize;
     int8_t data[];
-};
+});
 
 static size_t _NMemorySize(int size) {
     return sizeof(NMemory) + (size_t)size;
@@ -99,11 +99,11 @@ void NMoveMemory(void *dst, const void *src, int size) {
     }
 }
 
-nstruct(NObjectCarrier) {
+nstruct(NObjectCarrier, {
     int count;
     void (*clear)(void *);
     int8_t object[];
-};
+});
 
 NObject *NCreate(int length, void *clear) {
     NObjectCarrier *carrier = NAlloc(nisizeof(NObjectCarrier) + length);

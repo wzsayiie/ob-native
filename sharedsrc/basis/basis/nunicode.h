@@ -20,12 +20,12 @@ nenum(NUTFType) {
     NUTF32 = 3,
 };
 
-nstruct(NUTFCharsStat) {
+nstruct(NUTFCharsStat, {
     int bit7 ; //the count of characters occupying up to 7 bits.
     int bit11; //ditto.
     int bit16;
     int bit21;
-};
+});
 
 nfunc(int, NUTFBytesSize , (NUTFType type, const NUTFCharsStat *stat));
 nfunc(int, NUTFCharsCount, (const NUTFCharsStat *stat));

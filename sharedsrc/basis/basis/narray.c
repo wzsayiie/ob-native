@@ -1,10 +1,10 @@
 #include "narray.h"
 
-nclass(NWordArray, NObject) {
+nclass(NWordArray, NObject, {
     NWordArrayConf conf;
     void *items;
     int count;
-};
+});
 
 static const int MAX_RESERVE_ITEM_NUM = 64;
 static const int EVERY_ALLOC_ITEM_NUM = 16;
@@ -118,11 +118,11 @@ int NWordArrayCount(NWordArray *self) {
     return 0;
 }
 
-nstruct(NWordArrayIterator) {
+nstruct(NWordArrayIterator, {
     NIterator   super;
     NWordArray *array;
     int         ready;
-};
+});
 
 static bool NWordArrayIteratorNext(NWordArrayIterator *iterator) {
     return (iterator->ready) < (iterator->array->count);

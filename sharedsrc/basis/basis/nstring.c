@@ -1,11 +1,11 @@
 #include "nstring.h"
 
-nclass(NString, NObject) {
+nclass(NString, NObject, {
     int       length  ;
     char32_t *u32chars;
     char16_t *u16chars;
     char     *u8chars ;
-};
+});
 
 static void _NStringClear(NString *string) {
     NFree(string->u32chars);
@@ -136,13 +136,13 @@ int NStringLength(NString *self) {
     return self->length;
 }
 
-nstruct(_NStringIterator) {
+nstruct(_NStringIterator, {
     NIterator super;
 
     int (*step)(const void *, char32_t *);
     char32_t current;
     void *remaining;
-};
+});
 
 static bool _NStringIteratorNext(_NStringIterator *it) {
     int size = it->step(it->remaining, &it->current);

@@ -34,6 +34,7 @@
     <ClCompile Include="..\..\sharedsrc\basis\basis\ntable.c" />
     <ClCompile Include="..\..\sharedsrc\basis\basis\nunicode.c" />
     <ClCompile Include="..\..\sharedsrc\cmeta\cmeta\nfuncs.cpp" />
+    <ClCompile Include="..\..\sharedsrc\cmeta\cmeta\nstructs.cpp" />
     <ClCompile Include="..\..\sharedsrc\cplus\cplus\nany.cpp" />
     <ClCompile Include="..\..\sharedsrc\cplus\cplus\nref.cpp" />
     <ClCompile Include="..\..\sharedsrc\net\net\nhttp.c" />
@@ -67,6 +68,7 @@
     <ClInclude Include="..\..\sharedsrc\cmeta\cmeta\cmeta.h" />
     <ClInclude Include="..\..\sharedsrc\cmeta\cmeta\NEXPORT.h" />
     <ClInclude Include="..\..\sharedsrc\cmeta\cmeta\nfuncs.h" />
+    <ClInclude Include="..\..\sharedsrc\cmeta\cmeta\nstructs.h" />
     <ClInclude Include="..\..\sharedsrc\cplus\cplus\cplus.h" />
     <ClInclude Include="..\..\sharedsrc\cplus\cplus\nany.h" />
     <ClInclude Include="..\..\sharedsrc\cplus\cplus\nref.h" />

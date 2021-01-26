@@ -147,6 +147,9 @@
     <ClCompile Include="..\..\sharedsrc\cplus\cplus\nany.cpp">
       <Filter>sharedsrc\cplus\cplus</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\sharedsrc\cmeta\cmeta\nstructs.cpp">
+      <Filter>sharedsrc\cmeta\cmeta</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\sharedsrc\basis\basis\basis.h">
@@ -241,6 +244,9 @@
     </ClInclude>
     <ClInclude Include="..\..\sharedsrc\cplus\cplus\nany.h">
       <Filter>sharedsrc\cplus\cplus</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sharedsrc\cmeta\cmeta\nstructs.h">
+      <Filter>sharedsrc\cmeta\cmeta</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

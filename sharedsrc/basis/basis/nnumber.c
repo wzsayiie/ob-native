@@ -1,7 +1,7 @@
 #include "nnumber.h"
 #include "npod.h"
 
-nclass(NNumber) {
+nclass(NNumber, NObject) {
     NValue value;
 };
 

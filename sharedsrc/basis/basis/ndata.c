@@ -1,6 +1,6 @@
 #include "ndata.h"
 
-nclass(NData) {
+nclass(NData, NObject) {
     void *bytes;
 };
 

@@ -2,7 +2,7 @@
 
 #include "nmemory.h"
 
-nclass(NData);
+nclass(NData, NObject);
 
 nfunc(NData *, NDataCreateWithBytes, (const void *bytes, int size));
 nfunc(NData *, NDataCreateWithSize , (int size));

@@ -1,6 +1,6 @@
 #include "ntable.h"
 
-nclass(NWordTable) {
+nclass(NWordTable, NObject) {
     NWordTableConf conf;
 };
 

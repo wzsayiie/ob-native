@@ -1,6 +1,6 @@
 #include "narray.h"
 
-nclass(NWordArray) {
+nclass(NWordArray, NObject) {
     NWordArrayConf conf;
     void *items;
     int count;

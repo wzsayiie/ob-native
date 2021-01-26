@@ -1,6 +1,6 @@
 #include "nstring.h"
 
-nclass(NString) {
+nclass(NString, NObject) {
     int       length  ;
     char32_t *u32chars;
     char16_t *u16chars;

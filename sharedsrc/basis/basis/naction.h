@@ -7,7 +7,7 @@ typedef void (*NActionFunc2)(NObject *data, NObject *a, NObject *b);
 typedef void (*NActionFunc1)(NObject *data, NObject *a);
 typedef void (*NActionFunc )(NObject *data);
 
-nclass(NAction);
+nclass(NAction, NObject);
 
 nfunc(NAction *, NActionCreateWithFunc3, (NActionFunc3 func, NObject *data));
 nfunc(NAction *, NActionCreateWithFunc2, (NActionFunc2 func, NObject *data));

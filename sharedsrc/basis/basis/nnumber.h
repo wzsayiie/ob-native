@@ -2,7 +2,7 @@
 
 #include "nmemory.h"
 
-nclass(NNumber);
+nclass(NNumber, NObject);
 
 nfunc(NNumber *, NNumberCreateWithBool  , (bool     value));
 nfunc(NNumber *, NNumberCreateWithInt64 , (int64_t  value));

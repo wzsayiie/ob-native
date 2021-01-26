@@ -9,7 +9,7 @@ nstruct(NWordArrayConf) {
     int  itemSize;
 };
 
-nclass(NWordArray);
+nclass(NWordArray, NObject);
 
 nclink NWordArray *NWordArrayCreate(NWordArrayConf *conf);
 nclink NWordArray *NWordArrayCopy  (NWordArray *that);
@@ -22,7 +22,7 @@ nclink void        NWordArrayRemove(NWordArray *self, int index);
 nclink void        NWordArraySet   (NWordArray *self, int index, NWord item);
 nclink NWord       NWordArrayGet   (NWordArray *self, int index);
 
-nclass(NArray);
+nclass(NArray, NWordArray);
 
 nfunc(NArray    *, NArrayCreate, (void));
 nfunc(NArray    *, NArrayCopy  , (NArray *that));
@@ -35,7 +35,7 @@ nfunc(void       , NArrayRemove, (NArray *self, int index));
 nfunc(void       , NArraySet   , (NArray *self, int index, NObject *item));
 nfunc(NObject   *, NArrayGet   , (NArray *self, int index));
 
-nclass(NIntArray);
+nclass(NIntArray, NWordArray);
 
 nfunc(NIntArray *, NIntArrayCreate, (void));
 nfunc(NIntArray *, NIntArrayCopy  , (NIntArray *that));
@@ -48,7 +48,7 @@ nfunc(void       , NIntArrayRemove, (NIntArray *self, int index));
 nfunc(void       , NIntArraySet   , (NIntArray *self, int index, int64_t item));
 nfunc(int64_t    , NIntArrayGet   , (NIntArray *self, int index));
 
-nclass(NFltArray);
+nclass(NFltArray, NWordArray);
 
 nfunc(NFltArray *, NFltArrayCreate, (void));
 nfunc(NFltArray *, NFltArrayCopy  , (NFltArray *that));

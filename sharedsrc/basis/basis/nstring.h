@@ -4,7 +4,7 @@
 #include "nmemory.h"
 #include "nunicode.h"
 
-nclass(NString);
+nclass(NString, NObject);
 
 nfunc(NString *, NStringCreateWithUTFBytes, (NUTFType type, const void *begin, const void *end));
 nfunc(NString *, NStringCreateWithUTFChars, (NUTFType type, const void *chars));

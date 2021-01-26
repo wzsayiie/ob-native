@@ -1,7 +1,7 @@
 #include "naction.h"
 #include <stdarg.h>
 
-nclass(NAction) {
+nclass(NAction, NObject) {
     void    *func;
     NObject *data;
     int      argc;

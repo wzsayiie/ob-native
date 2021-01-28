@@ -1,6 +1,6 @@
 #pragma once
 
-#include "basis.h"
+#include "nenviron.h"
 
 nfunc(int, NStructsBegin, (void));
 nfunc(int, NStructsEnd  , (void));

@@ -1,26 +1,22 @@
 #pragma once
 
-#include "basis.h"
+#include "nenviron.h"
 
 nfunc(int, NFuncsBegin, (void));
 nfunc(int, NFuncsEnd  , (void));
 nfunc(int, NFindFunc  , (const char *name));
 
-nfunc(const char *, NFuncName, (int fPos));
+nfunc(const char *, NFuncName, (int fIndex));
 
-nfunc(void *, NFuncAddress    , (int fPos));
-nfunc(NType , NFuncRetType    , (int fpos));
-nfunc(bool  , NFuncRetRetained, (int fPos));
-nfunc(int   , NFuncArgCount   , (int fPos));
-nfunc(NType , NFuncArgType    , (int fPos, int aPos));
+nfunc(void *, NFuncAddress    , (int fIndex));
+nfunc(NType , NFuncRetType    , (int fIndex));
+nfunc(bool  , NFuncRetRetained, (int fIndex));
+nfunc(int   , NFuncArgCount   , (int fIndex));
+nfunc(NType , NFuncArgType    , (int fIndex, int aIndex));
 
 //the memory layout of "__NWord" is same with "NWord" 's.
 #ifndef __NWord
 #define __NWord int64_t
 #endif
 
-#ifndef NFUNC_MAX_ARG_NUM
-#define NFUNC_MAX_ARG_NUM 4
-#endif
-
-nfunc(__NWord, NCallFunc, (int fPos, int argc, NType *types, __NWord *words));
+nfunc(__NWord, NCallFunc, (int fIndex, int argc, NType *types, __NWord *words));

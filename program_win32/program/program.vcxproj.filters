@@ -150,6 +150,9 @@
     <ClCompile Include="..\..\sharedsrc\cmeta\cmeta\nstructs.cpp">
       <Filter>sharedsrc\cmeta\cmeta</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\sharedsrc\cmeta\cmeta\ncastable.c">
+      <Filter>sharedsrc\cmeta\cmeta</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\sharedsrc\basis\basis\basis.h">
@@ -246,6 +249,9 @@
       <Filter>sharedsrc\cplus\cplus</Filter>
     </ClInclude>
     <ClInclude Include="..\..\sharedsrc\cmeta\cmeta\nstructs.h">
+      <Filter>sharedsrc\cmeta\cmeta</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sharedsrc\cmeta\cmeta\ncastable.h">
       <Filter>sharedsrc\cmeta\cmeta</Filter>
     </ClInclude>
   </ItemGroup>

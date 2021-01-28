@@ -1,6 +1,6 @@
 #pragma once
 
-//which compiler:
+//which compiler.
 #if _MSC_VER
     #define N_COMPILER_CL    1
     #define N_COMPILER_CLANG 0
@@ -17,7 +17,7 @@
     #error "unknown compiler."
 #endif
 
-//how many bits of cpu word:
+//how many bits of cpu word.
 #if _WIN64 || (__LP64__ || __ILP64__ || __LLP64__)
     #define N_PTR_64 1
     #define N_PTR_32 0
@@ -28,7 +28,7 @@
     #error "unknown cpu word."
 #endif
 
-//which of the following os platform:
+//which of the following os platform.
 //
 // +---------------------------+ +---------+
 // |           posix           | |         |
@@ -68,6 +68,7 @@
 #endif
 
 //types supported:
+
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
@@ -81,31 +82,55 @@
 #define nenum(name) typedef int name; enum
 
 nenum(NType) {
-    NTypeVoid   =  1,
-    NTypeBool   =  2,
-    NTypeInt8   =  3,
-    NTypeInt16  =  4,
-    NTypeInt32  =  5,
-    NTypeInt64  =  6,
-    NTypeUInt8  =  7,
-    NTypeUInt16 =  8,
-    NTypeUInt32 =  9,
-    NTypeUInt64 = 10,
-    NTypeFloat  = 11,
-    NTypeDouble = 12,
-    NTypePtr    = 13,
-    NTypeStruct = 14,
+
+    NTypeStruct = 1, //unknown struct.
+    NTypePtr    = 2, //unknown ptr.
+
+    NTypeVoid   =  3,
+    NTypeBool   =  4,
+    NTypeChar   =  5,
+    NTypeInt8   =  6,
+    NTypeInt16  =  7,
+    NTypeInt32  =  8,
+    NTypeInt64  =  9,
+    NTypeUInt8  = 10,
+    NTypeUInt16 = 11,
+    NTypeUInt32 = 12,
+    NTypeUInt64 = 13,
+    NTypeFloat  = 14,
+    NTypeDouble = 15,
+
+    NTypeVoidPtr   = 16,
+    NTypeBoolPtr   = 17,
+    NTypeCharPtr   = 18,
+    NTypeInt8Ptr   = 19,
+    NTypeInt16Ptr  = 20,
+    NTypeInt32Ptr  = 21,
+    NTypeInt64Ptr  = 22,
+    NTypeUInt8Ptr  = 23,
+    NTypeUInt16Ptr = 24,
+    NTypeUInt32Ptr = 25,
+    NTypeUInt64Ptr = 26,
+    NTypeFloatPtr  = 27,
+    NTypeDoublePtr = 28,
+
+    __NTypeCustom = 29,
 
   #if __ILP64__
-    NTypeInt  = NTypeInt64 ,
-    NTypeUInt = NTypeUInt64,
+    NTypeInt     = NTypeInt64    ,
+    NTypeUInt    = NTypeUInt64   ,
+    NTypeIntPtr  = NTypeInt64Ptr ,
+    NTypeUIntPtr = NTypeUInt64Ptr,
   #else
-    NTypeInt  = NTypeInt32 ,
-    NTypeUInt = NTypeUInt32,
+    NTypeInt     = NTypeInt32    ,
+    NTypeUInt    = NTypeUInt32   ,
+    NTypeIntPtr  = NTypeInt32Ptr ,
+    NTypeUIntPtr = NTypeUInt32Ptr,
   #endif
 };
 
 //type modifiers:
+
 #define nisizeof(type) ((int)sizeof(type))
 
 #if N_COMPILER_CL
@@ -121,6 +146,7 @@ nenum(NType) {
 #endif
 
 //the flags for generating meta data:
+
 #define __nstruct(name, ...) typedef struct name name; struct name __VA_ARGS__
 #define   nstruct(name, ...) __nstruct(name, __VA_ARGS__)
 

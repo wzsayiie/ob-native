@@ -9,10 +9,11 @@ struct _NStructInfo {
 };
 
 //the number of slots allocated each time.
-static const int EACH_ALLOC_NUM = 32;
+static const int EACH_ALLOC_NUM = 64;
 
-//the index "0" is reserved. the valid items start from "1".
-static const int LIST_BEGIN = 1;
+//the indexes at front are reserved.
+static const int LIST_BEGIN = __NTypeCustom;
+static_assert(LIST_BEGIN < EACH_ALLOC_NUM, "");
 
 static _NStructInfo *sList = NULL;
 static int sEnd = 0;

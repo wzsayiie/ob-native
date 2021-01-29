@@ -12,7 +12,7 @@ struct _NStructInfo {
 static const int EACH_ALLOC_NUM = 64;
 
 //the indexes at front are reserved.
-static const int LIST_BEGIN = __NTypeCustom;
+static const int LIST_BEGIN = NTypeCustomPtr;
 static_assert(LIST_BEGIN < EACH_ALLOC_NUM, "");
 
 static _NStructInfo *sList = NULL;
@@ -152,8 +152,8 @@ struct _NStructAdder {
 
 #define __add_struct(n, z, s) static _NStructAdder __adder_##n(#n, z, s)
 
-#undef nstruct
-#undef nclass
+#undef  nstruct
+#undef  nclass
 #define nstruct(n,    ...) __nstruct(n,    __VA_ARGS__); __add_struct(n, NULL, nisizeof(n))
 #define nclass( n, s, ...) __nclass (n, s, __VA_ARGS__); __add_struct(n, #s  , 0)
 

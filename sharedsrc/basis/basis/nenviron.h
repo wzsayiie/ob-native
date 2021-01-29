@@ -114,7 +114,7 @@ nenum(NType) {
     NTypeFloatPtr  = 27,
     NTypeDoublePtr = 28,
 
-    __NTypeCustom = 29,
+    NTypeCustomPtr = 29,
 
   #if __ILP64__
     NTypeInt     = NTypeInt64    ,

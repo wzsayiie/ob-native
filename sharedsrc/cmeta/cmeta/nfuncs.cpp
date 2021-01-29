@@ -1,7 +1,7 @@
 #include <cstdlib>
 #include <cstring>
-#include "ncastable.h"
 #include "nstructs.h"
+#include "ntypecheck.h"
 
 //the maximum number of arguments that can be supported.
 #define MAX_ARG_NUM 4
@@ -244,7 +244,7 @@ nclink __NWord NCallFunc(int fIndex, int argc, NType *types, __NWord *words) {
     for (int n = 0; n < info->argCount; ++n) {
         NType srcType = types[n];
         NType dstType = info->argTypes[n];
-        if (!NCastable(srcType, dstType)) {
+        if (!NSafeCastable(srcType, dstType)) {
             return 0;
         }
     }
@@ -299,6 +299,9 @@ template<class T> struct _NTrait<T **> {
 
 SPECIAL_TRAIT(void    , "void"  , NTypeVoid  );
 SPECIAL_TRAIT(bool    , "bool"  , NTypeBool  );
+SPECIAL_TRAIT(char    , "char8" , NTypeChar8 );
+SPECIAL_TRAIT(char16_t, "char16", NTypeChar16);
+SPECIAL_TRAIT(char32_t, "char32", NTypeChar32);
 SPECIAL_TRAIT(int8_t  , "int8"  , NTypeInt8  );
 SPECIAL_TRAIT(int16_t , "int16" , NTypeInt16 );
 SPECIAL_TRAIT(int32_t , "int32" , NTypeInt32 );
@@ -312,6 +315,9 @@ SPECIAL_TRAIT(double  , "double", NTypeDouble);
 
 SPECIAL_TRAIT(void     *, "voidptr"  , NTypeVoidPtr  );
 SPECIAL_TRAIT(bool     *, "boolptr"  , NTypeBoolPtr  );
+SPECIAL_TRAIT(char     *, "char8ptr" , NTypeChar8Ptr );
+SPECIAL_TRAIT(char16_t *, "char16ptr", NTypeChar16Ptr);
+SPECIAL_TRAIT(char32_t *, "char32ptr", NTypeChar32Ptr);
 SPECIAL_TRAIT(int8_t   *, "int8ptr"  , NTypeInt8Ptr  );
 SPECIAL_TRAIT(int16_t  *, "int16ptr" , NTypeInt16Ptr );
 SPECIAL_TRAIT(int32_t  *, "int32ptr" , NTypeInt32Ptr );

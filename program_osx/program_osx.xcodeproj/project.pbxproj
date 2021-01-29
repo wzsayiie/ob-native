@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		CE2837EB25BDA6440048201A /* nany.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE2837E625BDA52D0048201A /* nany.cpp */; };
+		CE3857DC25C44FA700E5640A /* nstructs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE3857D825C44F8700E5640A /* nstructs.cpp */; };
+		CE3857DD25C44FA700E5640A /* ntypecheck.c in Sources */ = {isa = PBXBuildFile; fileRef = CE3857DB25C44F8700E5640A /* ntypecheck.c */; };
 		CE8C4E7625AB494600435755 /* launch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE8C4E7525AB494600435755 /* launch.cpp */; };
 		CE8C4EF525AB495900435755 /* nsocket_posix.c in Sources */ = {isa = PBXBuildFile; fileRef = CE8C4E7B25AB495800435755 /* nsocket_posix.c */; };
 		CE8C4EF625AB495900435755 /* nsocket.c in Sources */ = {isa = PBXBuildFile; fileRef = CE8C4E7E25AB495800435755 /* nsocket.c */; };
@@ -46,6 +48,10 @@
 /* Begin PBXFileReference section */
 		CE2837E525BDA52D0048201A /* nany.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = nany.h; sourceTree = "<group>"; };
 		CE2837E625BDA52D0048201A /* nany.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = nany.cpp; sourceTree = "<group>"; };
+		CE3857D825C44F8700E5640A /* nstructs.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = nstructs.cpp; sourceTree = "<group>"; };
+		CE3857D925C44F8700E5640A /* nstructs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = nstructs.h; sourceTree = "<group>"; };
+		CE3857DA25C44F8700E5640A /* ntypecheck.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ntypecheck.h; sourceTree = "<group>"; };
+		CE3857DB25C44F8700E5640A /* ntypecheck.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ntypecheck.c; sourceTree = "<group>"; };
 		CE8C4E7525AB494600435755 /* launch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = launch.cpp; sourceTree = "<group>"; };
 		CE8C4E7B25AB495800435755 /* nsocket_posix.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = nsocket_posix.c; sourceTree = "<group>"; };
 		CE8C4E7C25AB495800435755 /* nhttp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nhttp.h; sourceTree = "<group>"; };
@@ -351,6 +357,10 @@
 				CE8C4EF225AB495900435755 /* NEXPORT.h */,
 				CE8C4EF425AB495900435755 /* nfuncs.cpp */,
 				CE8C4EF325AB495900435755 /* nfuncs.h */,
+				CE3857D825C44F8700E5640A /* nstructs.cpp */,
+				CE3857D925C44F8700E5640A /* nstructs.h */,
+				CE3857DB25C44F8700E5640A /* ntypecheck.c */,
+				CE3857DA25C44F8700E5640A /* ntypecheck.h */,
 			);
 			path = cmeta;
 			sourceTree = "<group>";
@@ -461,6 +471,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE3857DC25C44FA700E5640A /* nstructs.cpp in Sources */,
+				CE3857DD25C44FA700E5640A /* ntypecheck.c in Sources */,
 				CE2837EB25BDA6440048201A /* nany.cpp in Sources */,
 				CE8C4F0125AB495900435755 /* NOBJCBind.c in Sources */,
 				CE8C4F0725AB495900435755 /* NOSXWindowController.m in Sources */,

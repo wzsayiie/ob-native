@@ -1,4 +1,4 @@
-#include "nfiles.h"
+﻿#include "nfiles.h"
 #include <ShlObj.h>
 #include <Windows.h>
 

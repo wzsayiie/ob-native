@@ -1,4 +1,4 @@
-#include "nthread.h"
+﻿#include "nthread.h"
 #include <Windows.h>
 
 static DWORD WINAPI _NThreadProcedure(LPVOID data)

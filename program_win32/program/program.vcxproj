@@ -33,7 +33,7 @@
     <ClCompile Include="..\..\sharedsrc\basis\basis\nstring.c" />
     <ClCompile Include="..\..\sharedsrc\basis\basis\ntable.c" />
     <ClCompile Include="..\..\sharedsrc\basis\basis\nunicode.c" />
-    <ClCompile Include="..\..\sharedsrc\cmeta\cmeta\ntypecheck.c" />
+    <ClCompile Include="..\..\sharedsrc\cmeta\cmeta\ntypecheck.cpp" />
     <ClCompile Include="..\..\sharedsrc\cmeta\cmeta\nfuncs.cpp" />
     <ClCompile Include="..\..\sharedsrc\cmeta\cmeta\nstructs.cpp" />
     <ClCompile Include="..\..\sharedsrc\cplus\cplus\nany.cpp" />

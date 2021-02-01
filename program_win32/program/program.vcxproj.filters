@@ -150,7 +150,7 @@
     <ClCompile Include="..\..\sharedsrc\cmeta\cmeta\nstructs.cpp">
       <Filter>sharedsrc\cmeta\cmeta</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sharedsrc\cmeta\cmeta\ntypecheck.c">
+    <ClCompile Include="..\..\sharedsrc\cmeta\cmeta\ntypecheck.cpp">
       <Filter>sharedsrc\cmeta\cmeta</Filter>
     </ClCompile>
   </ItemGroup>

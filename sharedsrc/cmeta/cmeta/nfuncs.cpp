@@ -279,15 +279,15 @@ nclink __NWord NCallFunc(int fIndex, int argc, NType *types, __NWord *words) {
 }
 
 template<class T> struct _NTrait {
-    static constexpr const char *const NAME = "Struct";
+    static constexpr const char *const NAME = "struct";
     static const NType TYPE = NTypeStruct;
 };
 template<class T> struct _NTrait<T *> {
-    static constexpr const char *const NAME = "Ptr";
+    static constexpr const char *const NAME = "ptr";
     static const NType TYPE = NTypePtr;
 };
 template<class T> struct _NTrait<T **> {
-    static constexpr const char *const NAME = "Ptr";
+    static constexpr const char *const NAME = "ptr";
     static const NType TYPE = NTypePtr;
 };
 
@@ -328,6 +328,22 @@ SPECIAL_TRAIT(uint32_t *, "uint32ptr", NTypeUInt32Ptr);
 SPECIAL_TRAIT(uint64_t *, "uint64ptr", NTypeUInt64Ptr);
 SPECIAL_TRAIT(float    *, "floatptr" , NTypeFloatPtr );
 SPECIAL_TRAIT(double   *, "doubleptr", NTypeDoublePtr);
+
+SPECIAL_TRAIT(const void     *, "voidptr"  , NTypeVoidPtr  );
+SPECIAL_TRAIT(const bool     *, "boolptr"  , NTypeBoolPtr  );
+SPECIAL_TRAIT(const char     *, "char8ptr" , NTypeChar8Ptr );
+SPECIAL_TRAIT(const char16_t *, "char16ptr", NTypeChar16Ptr);
+SPECIAL_TRAIT(const char32_t *, "char32ptr", NTypeChar32Ptr);
+SPECIAL_TRAIT(const int8_t   *, "int8ptr"  , NTypeInt8Ptr  );
+SPECIAL_TRAIT(const int16_t  *, "int16ptr" , NTypeInt16Ptr );
+SPECIAL_TRAIT(const int32_t  *, "int32ptr" , NTypeInt32Ptr );
+SPECIAL_TRAIT(const int64_t  *, "int64ptr" , NTypeInt64Ptr );
+SPECIAL_TRAIT(const uint8_t  *, "uint8ptr" , NTypeUInt8Ptr );
+SPECIAL_TRAIT(const uint16_t *, "uint16ptr", NTypeUInt16Ptr);
+SPECIAL_TRAIT(const uint32_t *, "uint32ptr", NTypeUInt32Ptr);
+SPECIAL_TRAIT(const uint64_t *, "uint64ptr", NTypeUInt64Ptr);
+SPECIAL_TRAIT(const float    *, "floatptr" , NTypeFloatPtr );
+SPECIAL_TRAIT(const double   *, "doubleptr", NTypeDoublePtr);
 
 #undef  nstruct
 #undef  nclass

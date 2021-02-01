@@ -15,7 +15,7 @@ public class NValue {
 
         if (object instanceof Character) {
             char word = (char) object;
-            return new NValue(NType.CHAR16, word);
+            return new NValue(NType.CHAR, word);
         }
 
         if (object instanceof Byte) {
@@ -51,20 +51,20 @@ public class NValue {
         if (object instanceof String) {
             String string = (String) object;
 
-            if (suggestType == NType.CHAR8) {
-                int  type = NType.CHAR8;
+            if (suggestType == NType.U8_PTR) {
+                int  type = NType.U8_PTR;
                 long word = allocU8Chars(string);
                 return new NValue(type, word, CLEAR_TYPE_FREE);
             }
 
-            if (suggestType == NType.CHAR16) {
-                int  type = NType.CHAR16;
+            if (suggestType == NType.CHAR_PTR) {
+                int  type = NType.CHAR_PTR;
                 long word = allocU16Chars(string);
                 return new NValue(type, word, CLEAR_TYPE_FREE);
             }
 
             //utf32 is unsupported currently.
-            //if (suggestType == NType.CHAR32) {
+            //if (suggestType == NType.U32_PTR) {
             //}
 
             if (suggestType >= NType.CUSTOM_PTR) {
@@ -137,7 +137,7 @@ public class NValue {
 
     public long asLong() {
         if (isInteger(mNativeType)) {
-            return (long) mNativeWord;
+            return mNativeWord;
         } else {
             return 0;
         }
@@ -161,7 +161,7 @@ public class NValue {
             return (double) mNativeWord;
         }
         if (isFloat(mNativeType)) {
-            return (double) floatValue(mNativeWord);
+            return floatValue(mNativeWord);
         }
         if (isDouble(mNativeType)) {
             return doubleValue(mNativeWord);
@@ -170,15 +170,15 @@ public class NValue {
     }
 
     public String asString() {
-        if (mNativeType == NType.CHAR8) {
+        if (mNativeType == NType.U8_PTR) {
             return castU8Chars(mNativeWord);
         }
-        if (mNativeType == NType.CHAR16) {
+        if (mNativeType == NType.CHAR_PTR) {
             return castU16Chars(mNativeWord);
         }
 
         //utf32 is unsupported currently.
-        //if (mNativeType == NType.CHAR32) {
+        //if (mNativeType == NType.U32_PTR) {
         //}
 
         int stringType = nativeStringType();

@@ -59,18 +59,26 @@ public class NFunc {
             return null;
         }
 
-        //items hold the c objects.
-        @SuppressWarnings({"MismatchedReadAndWriteOfArray"})
-        NValue[] items = new NValue[mArgCount];
+        final int I_0 = 0;
+        final int I_1 = 1;
+        final int I_2 = 2;
+        final int I_3 = 3;
+        final int I_M = 4;
 
-        int [] types = new int [mArgCount];
-        long[] words = new long[mArgCount];
+        //NOTE: items hold the c objects.
+        @SuppressWarnings({"MismatchedReadAndWriteOfArray"})
+        NValue[] items = new NValue[I_M];
+
+        int [] types = new int [I_M];
+        long[] words = new long[I_M];
 
         int argc = (args != null ? args.length : 0);
+        if (argc > I_M) {
+            argc = I_M;
+        }
         if (argc > mArgCount) {
             argc = mArgCount;
         }
-
         for (int n = 0; n < argc; ++n) {
             NValue value = NValue.make(args[n], mArgTypes[n]);
             if (value == null) {
@@ -83,8 +91,8 @@ public class NFunc {
         }
 
         long retWord = invokeFunc(mFuncIndex, argc,
-            types[0], types[1], types[2], types[3],
-            words[0], words[1], words[2], words[3]
+            types[I_0], types[I_1], types[I_2], types[I_3],
+            words[I_0], words[I_1], words[I_2], words[I_3]
         );
         return NValue.hold(mReturnType, retWord, mRetRetained);
     }

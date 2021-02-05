@@ -2,7 +2,11 @@
 
 #include "nenviron.h"
 
-nclink void NPrintF(const char *format, ...);
+nclink void NPrintInfo (const char *format, ...);
+nclink void NPrintError(const char *format, ...);
 
-nfunc(void, NPutS , (const char *string));
-nfunc(void, NFlush, (void));
+nfunc(void, NPutInfo , (const char *string));
+nfunc(void, NPutError, (const char *string));
+
+//internal error ouput.
+nclink void __NError(const char *format, ...);

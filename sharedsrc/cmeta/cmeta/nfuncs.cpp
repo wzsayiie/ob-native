@@ -3,6 +3,9 @@
 #include "nstructs.h"
 #include "ntypecheck.h"
 
+//from "nio.h".
+nclink void __NError(const char *format, ...);
+
 //the maximum number of arguments that can be supported.
 #define MAX_ARG_NUM 4
 
@@ -231,12 +234,14 @@ template<class R> struct _NCaller<R, MAX_ARG_NUM> {
 nclink __NWord NCallFunc(int fIndex, int argc, NType *types, __NWord *words) {
     //is it a valid index.
     if (!_NI(fIndex)) {
+        __NError("illegal function index %d", fIndex);
         return 0;
     }
 
     //are there enough arguments.
     _NFuncInfo *info = _NF(fIndex);
     if (argc < info->argCount) {
+        __NError("only %d arguments passed, but %d required", argc, info->argCount);
         return 0;
     }
 
@@ -245,6 +250,7 @@ nclink __NWord NCallFunc(int fIndex, int argc, NType *types, __NWord *words) {
         NType srcType = types[n];
         NType dstType = info->argTypes[n];
         if (!NSafeCastable(srcType, dstType)) {
+            __NError("argument %d can't cast from type %d to %d", n + 1, srcType, dstType);
             return 0;
         }
     }

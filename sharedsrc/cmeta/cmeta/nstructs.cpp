@@ -12,7 +12,7 @@ struct _NStructInfo {
 static const int EACH_ALLOC_NUM = 64;
 
 //the indexes at front are reserved.
-static const int LIST_BEGIN = NTypeCustomPtr;
+static const int LIST_BEGIN = NTYPE_CUSTOM_PTR;
 static_assert(LIST_BEGIN < EACH_ALLOC_NUM, "");
 
 static _NStructInfo *sList = NULL;

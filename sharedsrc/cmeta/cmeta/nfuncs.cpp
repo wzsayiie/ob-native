@@ -7,7 +7,7 @@
 nclink void __NError(const char *format, ...);
 
 //the maximum number of arguments that can be supported.
-#define MAX_ARG_NUM 4
+static const int MAX_ARG_NUM = 4;
 
 struct _NFuncInfo {
     const char *name;
@@ -167,20 +167,20 @@ template<> struct _NExecutor<void> {
 //safe Value cast.
 template<class T> T _NV(NType srcType, __NWord word) {
     switch (srcType) {
-        case NTypeStruct: return (T) 0;
-        case NTypePtr   : return (T) 0;
+        case NTYPE_STRUCT: return (T) 0;
+        case NTYPE_PTR   : return (T) 0;
 
-        case NTypeBool  : return (T) *(bool     *)&word;
-        case NTypeInt8  : return (T) *(int8_t   *)&word;
-        case NTypeInt16 : return (T) *(int16_t  *)&word;
-        case NTypeInt32 : return (T) *(int32_t  *)&word;
-        case NTypeInt64 : return (T) *(int64_t  *)&word;
-        case NTypeUInt8 : return (T) *(uint8_t  *)&word;
-        case NTypeUInt16: return (T) *(uint16_t *)&word;
-        case NTypeUInt32: return (T) *(uint32_t *)&word;
-        case NTypeUInt64: return (T) *(uint64_t *)&word;
-        case NTypeFloat : return (T) *(float    *)&word;
-        case NTypeDouble: return (T) *(double   *)&word;
+        case NTYPE_BOOL  : return (T) *(bool     *)&word;
+        case NTYPE_INT8  : return (T) *(int8_t   *)&word;
+        case NTYPE_INT16 : return (T) *(int16_t  *)&word;
+        case NTYPE_INT32 : return (T) *(int32_t  *)&word;
+        case NTYPE_INT64 : return (T) *(int64_t  *)&word;
+        case NTYPE_UINT8 : return (T) *(uint8_t  *)&word;
+        case NTYPE_UINT16: return (T) *(uint16_t *)&word;
+        case NTYPE_UINT32: return (T) *(uint32_t *)&word;
+        case NTYPE_UINT64: return (T) *(uint64_t *)&word;
+        case NTYPE_FLOAT : return (T) *(float    *)&word;
+        case NTYPE_DOUBLE: return (T) *(double   *)&word;
 
         default/* ptr */: return (T) *(intptr_t *)&word;
     }
@@ -206,20 +206,20 @@ template<class R, int N> struct _NCaller {
             //only use "intptr_t", "int64_t", "float" and "double" 4 types,
             //to prevent code bloat.
 
-            case NTypeStruct: return 0;
-            case NTypePtr   : return 0;
+            case NTYPE_STRUCT: return 0;
+            case NTYPE_PTR   : return 0;
 
-            case NTypeBool  : return _NCaller<R, N + 1>::C(data, a..., (intptr_t)_NV<bool    >(t, w));
-            case NTypeInt8  : return _NCaller<R, N + 1>::C(data, a..., (intptr_t)_NV<int8_t  >(t, w));
-            case NTypeInt16 : return _NCaller<R, N + 1>::C(data, a..., (intptr_t)_NV<int16_t >(t, w));
-            case NTypeInt32 : return _NCaller<R, N + 1>::C(data, a..., (intptr_t)_NV<int32_t >(t, w));
-            case NTypeInt64 : return _NCaller<R, N + 1>::C(data, a..., (int64_t )_NV<int64_t >(t, w));
-            case NTypeUInt8 : return _NCaller<R, N + 1>::C(data, a..., (intptr_t)_NV<uint8_t >(t, w));
-            case NTypeUInt16: return _NCaller<R, N + 1>::C(data, a..., (intptr_t)_NV<uint16_t>(t, w));
-            case NTypeUInt32: return _NCaller<R, N + 1>::C(data, a..., (intptr_t)_NV<uint32_t>(t, w));
-            case NTypeUInt64: return _NCaller<R, N + 1>::C(data, a..., (int64_t )_NV<uint64_t>(t, w));
-            case NTypeFloat : return _NCaller<R, N + 1>::C(data, a..., (float   )_NV<float   >(t, w));
-            case NTypeDouble: return _NCaller<R, N + 1>::C(data, a..., (double  )_NV<double  >(t, w));
+            case NTYPE_BOOL  : return _NCaller<R, N + 1>::C(data, a..., (intptr_t)_NV<bool    >(t, w));
+            case NTYPE_INT8  : return _NCaller<R, N + 1>::C(data, a..., (intptr_t)_NV<int8_t  >(t, w));
+            case NTYPE_INT16 : return _NCaller<R, N + 1>::C(data, a..., (intptr_t)_NV<int16_t >(t, w));
+            case NTYPE_INT32 : return _NCaller<R, N + 1>::C(data, a..., (intptr_t)_NV<int32_t >(t, w));
+            case NTYPE_INT64 : return _NCaller<R, N + 1>::C(data, a..., (int64_t )_NV<int64_t >(t, w));
+            case NTYPE_UINT8 : return _NCaller<R, N + 1>::C(data, a..., (intptr_t)_NV<uint8_t >(t, w));
+            case NTYPE_UINT16: return _NCaller<R, N + 1>::C(data, a..., (intptr_t)_NV<uint16_t>(t, w));
+            case NTYPE_UINT32: return _NCaller<R, N + 1>::C(data, a..., (intptr_t)_NV<uint32_t>(t, w));
+            case NTYPE_UINT64: return _NCaller<R, N + 1>::C(data, a..., (int64_t )_NV<uint64_t>(t, w));
+            case NTYPE_FLOAT : return _NCaller<R, N + 1>::C(data, a..., (float   )_NV<float   >(t, w));
+            case NTYPE_DOUBLE: return _NCaller<R, N + 1>::C(data, a..., (double  )_NV<double  >(t, w));
             
             default/* ptr */: return _NCaller<R, N + 1>::C(data, a..., (intptr_t)_NV<intptr_t>(t, w));
         }
@@ -264,21 +264,21 @@ nclink __NWord NCallFunc(int fIndex, int argc, NType *types, __NWord *words) {
         //only use "void", "intptr_t", "int64_t", "float" and "double" 5 types,
         //to prevent code bloat.
 
-        case NTypeStruct: return 0;
-        case NTypePtr   : return 0;
+        case NTYPE_STRUCT: return 0;
+        case NTYPE_PTR   : return 0;
 
-        case NTypeVoid  : return _NCaller<void    , 0>::C(&data);
-        case NTypeBool  : return _NCaller<intptr_t, 0>::C(&data);
-        case NTypeInt8  : return _NCaller<intptr_t, 0>::C(&data);
-        case NTypeInt16 : return _NCaller<intptr_t, 0>::C(&data);
-        case NTypeInt32 : return _NCaller<intptr_t, 0>::C(&data);
-        case NTypeInt64 : return _NCaller<int64_t , 0>::C(&data);
-        case NTypeUInt8 : return _NCaller<intptr_t, 0>::C(&data);
-        case NTypeUInt16: return _NCaller<intptr_t, 0>::C(&data);
-        case NTypeUInt32: return _NCaller<intptr_t, 0>::C(&data);
-        case NTypeUInt64: return _NCaller<int64_t , 0>::C(&data);
-        case NTypeFloat : return _NCaller<float   , 0>::C(&data);
-        case NTypeDouble: return _NCaller<double  , 0>::C(&data);
+        case NTYPE_VOID  : return _NCaller<void    , 0>::C(&data);
+        case NTYPE_BOOL  : return _NCaller<intptr_t, 0>::C(&data);
+        case NTYPE_INT8  : return _NCaller<intptr_t, 0>::C(&data);
+        case NTYPE_INT16 : return _NCaller<intptr_t, 0>::C(&data);
+        case NTYPE_INT32 : return _NCaller<intptr_t, 0>::C(&data);
+        case NTYPE_INT64 : return _NCaller<int64_t , 0>::C(&data);
+        case NTYPE_UINT8 : return _NCaller<intptr_t, 0>::C(&data);
+        case NTYPE_UINT16: return _NCaller<intptr_t, 0>::C(&data);
+        case NTYPE_UINT32: return _NCaller<intptr_t, 0>::C(&data);
+        case NTYPE_UINT64: return _NCaller<int64_t , 0>::C(&data);
+        case NTYPE_FLOAT : return _NCaller<float   , 0>::C(&data);
+        case NTYPE_DOUBLE: return _NCaller<double  , 0>::C(&data);
 
         default/* ptr */: return _NCaller<intptr_t, 0>::C(&data);
     }
@@ -286,15 +286,15 @@ nclink __NWord NCallFunc(int fIndex, int argc, NType *types, __NWord *words) {
 
 template<class T> struct _NTrait {
     static constexpr const char *const NAME = "struct";
-    static const NType TYPE = NTypeStruct;
+    static const NType TYPE = NTYPE_STRUCT;
 };
 template<class T> struct _NTrait<T *> {
     static constexpr const char *const NAME = "ptr";
-    static const NType TYPE = NTypePtr;
+    static const NType TYPE = NTYPE_PTR;
 };
 template<class T> struct _NTrait<T **> {
     static constexpr const char *const NAME = "ptr";
-    static const NType TYPE = NTypePtr;
+    static const NType TYPE = NTYPE_PTR;
 };
 
 #define SPECIAL_TRAIT(S, N, T)                              \
@@ -303,53 +303,53 @@ template<class T> struct _NTrait<T **> {
 /**/        static const NType TYPE = T;                    \
 /**/    }
 
-SPECIAL_TRAIT(void    , "void"  , NTypeVoid  );
-SPECIAL_TRAIT(bool    , "bool"  , NTypeBool  );
-SPECIAL_TRAIT(char    , "char8" , NTypeChar8 );
-SPECIAL_TRAIT(char16_t, "char16", NTypeChar16);
-SPECIAL_TRAIT(char32_t, "char32", NTypeChar32);
-SPECIAL_TRAIT(int8_t  , "int8"  , NTypeInt8  );
-SPECIAL_TRAIT(int16_t , "int16" , NTypeInt16 );
-SPECIAL_TRAIT(int32_t , "int32" , NTypeInt32 );
-SPECIAL_TRAIT(int64_t , "int64" , NTypeInt64 );
-SPECIAL_TRAIT(uint8_t , "uint8" , NTypeUInt8 );
-SPECIAL_TRAIT(uint16_t, "uint16", NTypeUInt16);
-SPECIAL_TRAIT(uint32_t, "uint32", NTypeUInt32);
-SPECIAL_TRAIT(uint64_t, "uint64", NTypeUInt64);
-SPECIAL_TRAIT(float   , "float" , NTypeFloat );
-SPECIAL_TRAIT(double  , "double", NTypeDouble);
+SPECIAL_TRAIT(void    , "void"  , NTYPE_VOID  );
+SPECIAL_TRAIT(bool    , "bool"  , NTYPE_BOOL  );
+SPECIAL_TRAIT(char    , "char8" , NTYPE_CHAR8 );
+SPECIAL_TRAIT(char16_t, "char16", NTYPE_CHAR16);
+SPECIAL_TRAIT(char32_t, "char32", NTYPE_CHAR32);
+SPECIAL_TRAIT(int8_t  , "int8"  , NTYPE_INT8  );
+SPECIAL_TRAIT(int16_t , "int16" , NTYPE_INT16 );
+SPECIAL_TRAIT(int32_t , "int32" , NTYPE_INT32 );
+SPECIAL_TRAIT(int64_t , "int64" , NTYPE_INT64 );
+SPECIAL_TRAIT(uint8_t , "uint8" , NTYPE_UINT8 );
+SPECIAL_TRAIT(uint16_t, "uint16", NTYPE_UINT16);
+SPECIAL_TRAIT(uint32_t, "uint32", NTYPE_UINT32);
+SPECIAL_TRAIT(uint64_t, "uint64", NTYPE_UINT64);
+SPECIAL_TRAIT(float   , "float" , NTYPE_FLOAT );
+SPECIAL_TRAIT(double  , "double", NTYPE_DOUBLE);
 
-SPECIAL_TRAIT(void     *, "voidptr"  , NTypeVoidPtr  );
-SPECIAL_TRAIT(bool     *, "boolptr"  , NTypeBoolPtr  );
-SPECIAL_TRAIT(char     *, "char8ptr" , NTypeChar8Ptr );
-SPECIAL_TRAIT(char16_t *, "char16ptr", NTypeChar16Ptr);
-SPECIAL_TRAIT(char32_t *, "char32ptr", NTypeChar32Ptr);
-SPECIAL_TRAIT(int8_t   *, "int8ptr"  , NTypeInt8Ptr  );
-SPECIAL_TRAIT(int16_t  *, "int16ptr" , NTypeInt16Ptr );
-SPECIAL_TRAIT(int32_t  *, "int32ptr" , NTypeInt32Ptr );
-SPECIAL_TRAIT(int64_t  *, "int64ptr" , NTypeInt64Ptr );
-SPECIAL_TRAIT(uint8_t  *, "uint8ptr" , NTypeUInt8Ptr );
-SPECIAL_TRAIT(uint16_t *, "uint16ptr", NTypeUInt16Ptr);
-SPECIAL_TRAIT(uint32_t *, "uint32ptr", NTypeUInt32Ptr);
-SPECIAL_TRAIT(uint64_t *, "uint64ptr", NTypeUInt64Ptr);
-SPECIAL_TRAIT(float    *, "floatptr" , NTypeFloatPtr );
-SPECIAL_TRAIT(double   *, "doubleptr", NTypeDoublePtr);
+SPECIAL_TRAIT(void     *, "voidptr"  , NTYPE_VOID_PTR  );
+SPECIAL_TRAIT(bool     *, "boolptr"  , NTYPE_BOOL_PTR  );
+SPECIAL_TRAIT(char     *, "char8ptr" , NTYPE_CHAR8_PTR );
+SPECIAL_TRAIT(char16_t *, "char16ptr", NTYPE_CHAR16_PTR);
+SPECIAL_TRAIT(char32_t *, "char32ptr", NTYPE_CHAR32_PTR);
+SPECIAL_TRAIT(int8_t   *, "int8ptr"  , NTYPE_INT8_PTR  );
+SPECIAL_TRAIT(int16_t  *, "int16ptr" , NTYPE_INT16_PTR );
+SPECIAL_TRAIT(int32_t  *, "int32ptr" , NTYPE_INT32_PTR );
+SPECIAL_TRAIT(int64_t  *, "int64ptr" , NTYPE_INT64_PTR );
+SPECIAL_TRAIT(uint8_t  *, "uint8ptr" , NTYPE_UINT8_PTR );
+SPECIAL_TRAIT(uint16_t *, "uint16ptr", NTYPE_UINT16_PTR);
+SPECIAL_TRAIT(uint32_t *, "uint32ptr", NTYPE_UINT32_PTR);
+SPECIAL_TRAIT(uint64_t *, "uint64ptr", NTYPE_UINT64_PTR);
+SPECIAL_TRAIT(float    *, "floatptr" , NTYPE_FLOAT_PTR );
+SPECIAL_TRAIT(double   *, "doubleptr", NTYPE_DOUBLE_PTR);
 
-SPECIAL_TRAIT(const void     *, "voidptr"  , NTypeVoidPtr  );
-SPECIAL_TRAIT(const bool     *, "boolptr"  , NTypeBoolPtr  );
-SPECIAL_TRAIT(const char     *, "char8ptr" , NTypeChar8Ptr );
-SPECIAL_TRAIT(const char16_t *, "char16ptr", NTypeChar16Ptr);
-SPECIAL_TRAIT(const char32_t *, "char32ptr", NTypeChar32Ptr);
-SPECIAL_TRAIT(const int8_t   *, "int8ptr"  , NTypeInt8Ptr  );
-SPECIAL_TRAIT(const int16_t  *, "int16ptr" , NTypeInt16Ptr );
-SPECIAL_TRAIT(const int32_t  *, "int32ptr" , NTypeInt32Ptr );
-SPECIAL_TRAIT(const int64_t  *, "int64ptr" , NTypeInt64Ptr );
-SPECIAL_TRAIT(const uint8_t  *, "uint8ptr" , NTypeUInt8Ptr );
-SPECIAL_TRAIT(const uint16_t *, "uint16ptr", NTypeUInt16Ptr);
-SPECIAL_TRAIT(const uint32_t *, "uint32ptr", NTypeUInt32Ptr);
-SPECIAL_TRAIT(const uint64_t *, "uint64ptr", NTypeUInt64Ptr);
-SPECIAL_TRAIT(const float    *, "floatptr" , NTypeFloatPtr );
-SPECIAL_TRAIT(const double   *, "doubleptr", NTypeDoublePtr);
+SPECIAL_TRAIT(const void     *, "voidptr"  , NTYPE_VOID_PTR  );
+SPECIAL_TRAIT(const bool     *, "boolptr"  , NTYPE_BOOL_PTR  );
+SPECIAL_TRAIT(const char     *, "char8ptr" , NTYPE_CHAR8_PTR );
+SPECIAL_TRAIT(const char16_t *, "char16ptr", NTYPE_CHAR16_PTR);
+SPECIAL_TRAIT(const char32_t *, "char32ptr", NTYPE_CHAR32_PTR);
+SPECIAL_TRAIT(const int8_t   *, "int8ptr"  , NTYPE_INT8_PTR  );
+SPECIAL_TRAIT(const int16_t  *, "int16ptr" , NTYPE_INT16_PTR );
+SPECIAL_TRAIT(const int32_t  *, "int32ptr" , NTYPE_INT32_PTR );
+SPECIAL_TRAIT(const int64_t  *, "int64ptr" , NTYPE_INT64_PTR );
+SPECIAL_TRAIT(const uint8_t  *, "uint8ptr" , NTYPE_UINT8_PTR );
+SPECIAL_TRAIT(const uint16_t *, "uint16ptr", NTYPE_UINT16_PTR);
+SPECIAL_TRAIT(const uint32_t *, "uint32ptr", NTYPE_UINT32_PTR);
+SPECIAL_TRAIT(const uint64_t *, "uint64ptr", NTYPE_UINT64_PTR);
+SPECIAL_TRAIT(const float    *, "floatptr" , NTYPE_FLOAT_PTR );
+SPECIAL_TRAIT(const double   *, "doubleptr", NTYPE_DOUBLE_PTR);
 
 #undef  nstruct
 #undef  nclass
@@ -357,7 +357,7 @@ SPECIAL_TRAIT(const double   *, "doubleptr", NTypeDoublePtr);
 #define nclass( n, s, ...) __nclass (n, s, __VA_ARGS__); SPECIAL_TRAIT(n *, #n, 0)
 
 static bool _NCheckRetRetained(NType retType, const char *funcName) {
-    if (retType >= NTypeCustomPtr) {
+    if (retType >= NTYPE_CUSTOM_PTR) {
         if (strstr(funcName, "Create")) {return true;}
         if (strstr(funcName, "Copy"  )) {return true;}
         if (strstr(funcName, "Retain")) {return true;}
@@ -391,8 +391,8 @@ struct _NFuncAdder {
         NType type = _NTrait<R>::TYPE;
 
         //the return type can't be a struct or unknown ptr.
-        if (type == NTypeStruct) {return false;}
-        if (type == NTypePtr   ) {return false;}
+        if (type == NTYPE_STRUCT) {return false;}
+        if (type == NTYPE_PTR   ) {return false;}
 
         return true;
     }
@@ -400,9 +400,9 @@ struct _NFuncAdder {
     template<class R, class A, class... B> bool CheckArgs(R (*)(A, B...), int *count) {
         NType type = _NTrait<A>::TYPE;
 
-        if (type == NTypeStruct) {return false;} //the type can't be a struct.
-        if (type == NTypePtr   ) {return false;} //the type can't be a unknown ptr.
-        if (type == NTypeVoid  ) {return false;} //this is an exception.
+        if (type == NTYPE_STRUCT) {return false;} //the type can't be a struct.
+        if (type == NTYPE_PTR   ) {return false;} //the type can't be a unknown ptr.
+        if (type == NTYPE_VOID  ) {return false;} //this is an exception.
 
         *count += 1;
         return CheckArgs((R (*)(B...))NULL, count);

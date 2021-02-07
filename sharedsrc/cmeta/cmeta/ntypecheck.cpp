@@ -1,10 +1,10 @@
 #include "ntypecheck.h"
 
-static bool _NUnknown (NType t) {return t <= NTypePtr ;}
-static bool _NIsVoid  (NType t) {return t == NTypeVoid;}
-static bool _NIsBool  (NType t) {return t == NTypeBool;}
-static bool _NIsNumber(NType t) {return t >= NTypeChar8 && t <= NTypeDouble;}
-static bool _NIsPtr   (NType t) {return t >= NTypeVoidPtr;}
+static bool _NUnknown (NType t) {return t <= NTYPE_PTR ;}
+static bool _NIsVoid  (NType t) {return t == NTYPE_VOID;}
+static bool _NIsBool  (NType t) {return t == NTYPE_BOOL;}
+static bool _NIsNumber(NType t) {return t >= NTYPE_CHAR8 && t <= NTYPE_DOUBLE;}
+static bool _NIsPtr   (NType t) {return t >= NTYPE_VOID_PTR;}
 
 bool NSafeCastable(NType srcType, NType dstType) {
     if (_NUnknown(srcType) || _NUnknown(dstType)) {

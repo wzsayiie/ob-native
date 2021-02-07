@@ -3,33 +3,35 @@
 // #include "basis.h"
 
 // nenum(NJTypeKind) {
-//     NJBool   =  1,
-//     NJChar   =  2,
-//     NJByte   =  3,
-//     NJShort  =  4,
-//     NJInt    =  5,
-//     NJLong   =  6,
-//     NJFloat  =  7,
-//     NJDouble =  8,
-//     NJString =  9,
-//     NJClass  = 10,
+//     NJTYPE_BOOLEAN =  1,
+//     NJTYPE_CHAR    =  2,
+//     NJTYPE_BYTE    =  3,
+//     NJTYPE_SHORT   =  4,
+//     NJTYPE_INT     =  5,
+//     NJTYPE_LONG    =  6,
+//     NJTYPE_FLOAT   =  7,
+//     NJTYPE_DOUBLE  =  8,
+//     NJTYPE_STRING  =  9,
+//     NJTYPE_CLASS   = 10,
 
-//     NJBoolArray   = 11,
-//     NJCharArray   = 12,
-//     NJByteArray   = 13,
-//     NJShortArray  = 14,
-//     NJIntArray    = 15,
-//     NJLongArray   = 16,
-//     NJFloatArray  = 17,
-//     NJDoubleArray = 18,
-//     NJStringArray = 19,
-//     NJClassArray  = 20,
+//     NJTYPE_BOOLEAN_ARRAY = 11,
+//     NJTYPE_CHAR_ARRAY    = 12,
+//     NJTYPE_BYTE_ARRAY    = 13,
+//     NJTYPE_SHORT_ARRAY   = 14,
+//     NJTYPE_INT_ARRAY     = 15,
+//     NJTYPE_LONG_ARRAY    = 16,
+//     NJTYPE_FLOAT_ARRAY   = 17,
+//     NJTYPE_DOUBLE_ARRAY  = 18,
+//     NJTYPE_STRING_ARRAY  = 19,
+//     NJTYPE_CLASS_ARRAY   = 20,
+
+//     NJTYPE_VOID = 21,
 // };
 
 // nenum(NJMethodKind) {
-//     NJConstructMethod = 1,
-//     NJStaticMethod    = 2,
-//     NJInstanceMethod  = 3,
+//     NJMETHOD_CONSTRUCT = 1,
+//     NJMETHOD_STATIC    = 2,
+//     NJMETHOD_INSTANCE  = 3,
 // };
 
 // nclass(NJType  , NObject);

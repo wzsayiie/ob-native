@@ -51,8 +51,8 @@ public class NValue {
         if (object instanceof String) {
             String string = (String) object;
 
-            if (suggestType == NType.U8_PTR) {
-                int  type = NType.U8_PTR;
+            if (suggestType == NType.U8CHAR_PTR) {
+                int  type = NType.U8CHAR_PTR;
                 long word = allocU8Chars(string);
                 return new NValue(type, word, CLEAR_TYPE_FREE);
             }
@@ -64,7 +64,7 @@ public class NValue {
             }
 
             //utf32 is unsupported currently.
-            //if (suggestType == NType.U32_PTR) {
+            //if (suggestType == NType.U32CHAR_PTR) {
             //}
 
             if (suggestType >= NType.CUSTOM_PTR) {
@@ -170,7 +170,7 @@ public class NValue {
     }
 
     public String asString() {
-        if (mNativeType == NType.U8_PTR) {
+        if (mNativeType == NType.U8CHAR_PTR) {
             return castU8Chars(mNativeWord);
         }
         if (mNativeType == NType.CHAR_PTR) {
@@ -178,7 +178,7 @@ public class NValue {
         }
 
         //utf32 is unsupported currently.
-        //if (mNativeType == NType.U32_PTR) {
+        //if (mNativeType == NType.U32CHAR_PTR) {
         //}
 
         int stringType = nativeStringType();

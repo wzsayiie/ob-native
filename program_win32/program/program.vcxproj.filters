@@ -58,6 +58,9 @@
     <Filter Include="sharedsrc\osui\osui_win32">
       <UniqueIdentifier>{70fea9ca-1ca6-41ba-a277-729c2569c073}</UniqueIdentifier>
     </Filter>
+    <Filter Include="sharedsrc\basis\basis\algorithm">
+      <UniqueIdentifier>{9d30dd5b-d1ae-4187-8d67-9aff5a32ddca}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="winmain.c">
@@ -152,6 +155,18 @@
     </ClCompile>
     <ClCompile Include="..\..\sharedsrc\cmeta\cmeta\ntypecheck.cpp">
       <Filter>sharedsrc\cmeta\cmeta</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharedsrc\basis\basis\algorithm\cstr.c">
+      <Filter>sharedsrc\basis\basis\algorithm</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharedsrc\basis\basis\algorithm\def.c">
+      <Filter>sharedsrc\basis\basis\algorithm</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharedsrc\basis\basis\algorithm\binlist.c">
+      <Filter>sharedsrc\basis\basis\algorithm</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharedsrc\basis\basis\algorithm\scalist.c">
+      <Filter>sharedsrc\basis\basis\algorithm</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -253,6 +268,18 @@
     </ClInclude>
     <ClInclude Include="..\..\sharedsrc\cmeta\cmeta\ntypecheck.h">
       <Filter>sharedsrc\cmeta\cmeta</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sharedsrc\basis\basis\algorithm\cstr.h">
+      <Filter>sharedsrc\basis\basis\algorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sharedsrc\basis\basis\algorithm\def.h">
+      <Filter>sharedsrc\basis\basis\algorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sharedsrc\basis\basis\algorithm\binlist.h">
+      <Filter>sharedsrc\basis\basis\algorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sharedsrc\basis\basis\algorithm\scalist.h">
+      <Filter>sharedsrc\basis\basis\algorithm</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

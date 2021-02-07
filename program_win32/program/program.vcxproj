@@ -20,6 +20,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\appsrc\cmain\cmain\launch.cpp" />
+    <ClCompile Include="..\..\sharedsrc\basis\basis\algorithm\binlist.c" />
+    <ClCompile Include="..\..\sharedsrc\basis\basis\algorithm\def.c" />
+    <ClCompile Include="..\..\sharedsrc\basis\basis\algorithm\cstr.c" />
+    <ClCompile Include="..\..\sharedsrc\basis\basis\algorithm\scalist.c" />
     <ClCompile Include="..\..\sharedsrc\basis\basis\naction.c" />
     <ClCompile Include="..\..\sharedsrc\basis\basis\narray.c" />
     <ClCompile Include="..\..\sharedsrc\basis\basis\ndata.c" />
@@ -52,6 +56,10 @@
     <ClCompile Include="winmain.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\sharedsrc\basis\basis\algorithm\binlist.h" />
+    <ClInclude Include="..\..\sharedsrc\basis\basis\algorithm\def.h" />
+    <ClInclude Include="..\..\sharedsrc\basis\basis\algorithm\cstr.h" />
+    <ClInclude Include="..\..\sharedsrc\basis\basis\algorithm\scalist.h" />
     <ClInclude Include="..\..\sharedsrc\basis\basis\basis.h" />
     <ClInclude Include="..\..\sharedsrc\basis\basis\naction.h" />
     <ClInclude Include="..\..\sharedsrc\basis\basis\narray.h" />

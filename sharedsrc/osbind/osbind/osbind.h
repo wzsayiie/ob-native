@@ -1,7 +1,5 @@
 #pragma once
 
-#include "basis.h"
-
 #if N_OS_ANDROID
     #include "njnibind.h"
 #endif

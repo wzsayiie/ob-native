@@ -29,7 +29,6 @@
     <ClCompile Include="..\..\sharedsrc\basis\basis\naction.c" />
     <ClCompile Include="..\..\sharedsrc\basis\basis\narray.c" />
     <ClCompile Include="..\..\sharedsrc\basis\basis\ndata.c" />
-    <ClCompile Include="..\..\sharedsrc\basis\basis\nenviron.c" />
     <ClCompile Include="..\..\sharedsrc\basis\basis\nio.c" />
     <ClCompile Include="..\..\sharedsrc\basis\basis\niterator.c" />
     <ClCompile Include="..\..\sharedsrc\basis\basis\nlock.c" />

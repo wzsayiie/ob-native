@@ -78,9 +78,6 @@
     <ClCompile Include="..\..\sharedsrc\basis\basis\ndata.c">
       <Filter>sharedsrc\basis\basis</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sharedsrc\basis\basis\nenviron.c">
-      <Filter>sharedsrc\basis\basis</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sharedsrc\basis\basis\nio.c">
       <Filter>sharedsrc\basis\basis</Filter>
     </ClCompile>

@@ -41,9 +41,9 @@ word slremove(scalist *list, int idx) {
     }
     list->cnt -= 1;
 
-    //free excess slots.
-    int slot = list->eom - list->cnt;
-    if (slot > EACH_ALLOC_NUM) {
+    //free excess slots if needed.
+    int vac = list->eom - list->cnt;
+    if (vac > EACH_ALLOC_NUM) {
         list->eom -= EACH_ALLOC_NUM;
         list->dat = mrealloc(list->dat, list->eom, szof(word));
     }

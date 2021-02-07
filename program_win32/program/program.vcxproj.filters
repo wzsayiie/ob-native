@@ -168,6 +168,12 @@
     <ClCompile Include="..\..\sharedsrc\basis\basis\algorithm\scalist.c">
       <Filter>sharedsrc\basis\basis\algorithm</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\sharedsrc\basis\basis\algorithm\cerpool.c">
+      <Filter>sharedsrc\basis\basis\algorithm</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharedsrc\basis\basis\algorithm\avltree.c">
+      <Filter>sharedsrc\basis\basis\algorithm</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\sharedsrc\basis\basis\basis.h">
@@ -279,6 +285,12 @@
       <Filter>sharedsrc\basis\basis\algorithm</Filter>
     </ClInclude>
     <ClInclude Include="..\..\sharedsrc\basis\basis\algorithm\scalist.h">
+      <Filter>sharedsrc\basis\basis\algorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sharedsrc\basis\basis\algorithm\cerpool.h">
+      <Filter>sharedsrc\basis\basis\algorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sharedsrc\basis\basis\algorithm\avltree.h">
       <Filter>sharedsrc\basis\basis\algorithm</Filter>
     </ClInclude>
   </ItemGroup>

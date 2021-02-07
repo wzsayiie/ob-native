@@ -34,6 +34,10 @@ void mmove(void *dst, const void *src, int size) {
     memmove(dst, src, (size_t)size);
 }
 
+void *pmove(void *ptr, int offset) {
+    return (char *)ptr + offset;
+}
+
 void mzero(void *dst, int size) {
     memset(dst, 0, (size_t)size);
 }

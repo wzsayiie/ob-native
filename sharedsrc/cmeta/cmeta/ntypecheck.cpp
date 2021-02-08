@@ -1,46 +1,46 @@
 #include "ntypecheck.h"
 
-static bool _NUnknown (NType t) {return t <= NTYPE_PTR ;}
-static bool _NIsVoid  (NType t) {return t == NTYPE_VOID;}
-static bool _NIsBool  (NType t) {return t == NTYPE_BOOL;}
-static bool _NIsNumber(NType t) {return t >= NTYPE_CHAR8 && t <= NTYPE_DOUBLE;}
-static bool _NIsPtr   (NType t) {return t >= NTYPE_VOID_PTR;}
+static bool Unknown (NType t) {return t <= NTYPE_PTR ;}
+static bool IsVoid  (NType t) {return t == NTYPE_VOID;}
+static bool IsBool  (NType t) {return t == NTYPE_BOOL;}
+static bool IsNumber(NType t) {return t >= NTYPE_CHAR8 && t <= NTYPE_DOUBLE;}
+static bool IsPtr   (NType t) {return t >= NTYPE_VOID_PTR;}
 
 bool NSafeCastable(NType srcType, NType dstType) {
-    if (_NUnknown(srcType) || _NUnknown(dstType)) {
+    if (Unknown(srcType) || Unknown(dstType)) {
         //unknown types can't be casted.
         return false;
     }
 
-    if (_NIsVoid(dstType)) {
+    if (IsVoid(dstType)) {
         //any type can be casted to void.
         return true;
     }
 
-    if (_NIsBool(dstType)) {
+    if (IsBool(dstType)) {
         //any type can be casted to bool.
         return true;
     }
 
-    if (_NIsNumber(dstType)) {
-        if (_NIsVoid(srcType)) {
+    if (IsNumber(dstType)) {
+        if (IsVoid(srcType)) {
             return true;
         }
-        if (_NIsBool(srcType)) {
+        if (IsBool(srcType)) {
             return true;
         }
-        if (_NIsNumber(srcType)) {
+        if (IsNumber(srcType)) {
             //numeric types always can be casted to each other,
             //which is more convenient for language bridging.
             return true;
         }
-        if (_NIsPtr(srcType)) {
+        if (IsPtr(srcType)) {
             return false;
         }
         return false;
     }
 
-    if (_NIsPtr(dstType)) {
+    if (IsPtr(dstType)) {
         //ptr can't be casted currently.
         return srcType == dstType;
     }

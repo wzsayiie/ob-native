@@ -28,7 +28,7 @@ NIterator *NWordTableKeys(NWordTable *self) {
     return NULL;
 }
 
-static int _NObjectComparer(NWord a, NWord b) {
+static int ObjectComparer(NWord a, NWord b) {
     if (a.asPtr != b.asPtr) {
         return a.asPtr > b.asPtr ? 1 : -1;
     } else {
@@ -36,14 +36,14 @@ static int _NObjectComparer(NWord a, NWord b) {
     }
 }
 
-static int _NStringComparer(NWord a, NWord b) {
+static int StringComparer(NWord a, NWord b) {
     NString *x = a.asPtr;
     NString *y = b.asPtr;
 
     return NStringCompare(x, y);
 }
 
-static int _NInt64Comparer(NWord a, NWord b) {
+static int Int64Comparer(NWord a, NWord b) {
     if (a.asInt64 != b.asInt64) {
         return a.asInt64 > b.asInt64 ? 1 : -1;
     } else {
@@ -90,6 +90,6 @@ static int _NInt64Comparer(NWord a, NWord b) {
 /**/        return NWordTableKeys((NWordTable *)self);          \
 /**/    }
 
-GEN_TABLE(NTable   , _NObjectComparer, NObject *, true , asPtr  , NObject *, true, asPtr)
-GEN_TABLE(NStrTable, _NStringComparer, NString *, true , asPtr  , NObject *, true, asPtr)
-GEN_TABLE(NIntTable, _NInt64Comparer , int64_t  , false, asInt64, NObject *, true, asPtr)
+GEN_TABLE(NTable   , ObjectComparer, NObject *, true , asPtr  , NObject *, true, asPtr)
+GEN_TABLE(NStrTable, StringComparer, NString *, true , asPtr  , NObject *, true, asPtr)
+GEN_TABLE(NIntTable, Int64Comparer , int64_t  , false, asInt64, NObject *, true, asPtr)

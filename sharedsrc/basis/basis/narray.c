@@ -9,7 +9,7 @@ nclass(NWordArray, NObject, {
 static const int MAX_RESERVE_ITEM_NUM = 64;
 static const int EVERY_ALLOC_ITEM_NUM = 16;
 
-static void _NWordArrayStretch(NWordArray *array, int least) {
+static void WordArrayStretch(NWordArray *array, int least) {
     int single   = array->conf.itemSize;
     int capacity = NMemorySize(array->items) / single;
     int vacancy  = capacity - array->count;
@@ -23,7 +23,7 @@ static void _NWordArrayStretch(NWordArray *array, int least) {
     }
 }
 
-static void _NWordArrayShrink(NWordArray *array) {
+static void WordArrayShrink(NWordArray *array) {
     int single   = array->conf.itemSize;
     int capacity = NMemorySize(array->items) / single;
     int vacancy  = capacity - array->count;
@@ -35,50 +35,50 @@ static void _NWordArrayShrink(NWordArray *array) {
     }
 }
 
-static void *_NWordArrayLocate(NWordArray *array, int index) {
+static void *WordArrayLocate(NWordArray *array, int index) {
     int offset = array->conf.itemSize * index;
     return (uint8_t *)array->items + offset;
 }
 
-static NWord _NWordArrayRead(NWordArray *array, int index) {
+static NWord WordArrayRead(NWordArray *array, int index) {
     NWord item = {0};
-    void *ptr  = _NWordArrayLocate(array, index);
+    void *ptr  = WordArrayLocate(array, index);
     NMoveMemory(&item, ptr, array->conf.itemSize);
     return item;
 }
 
-static void _NWordArrayWrite(NWordArray *array, int index, NWord item) {
+static void WordArrayWrite(NWordArray *array, int index, NWord item) {
     if (array->conf.itemRetain) {
         NRetain(item.asPtr);
     }
 
-    void *ptr = _NWordArrayLocate(array, index);
+    void *ptr = WordArrayLocate(array, index);
     NMoveMemory(ptr, &item, array->conf.itemSize);
 }
 
-static void _NWordArrayErase(NWordArray *array, int index) {
+static void WordArrayErase(NWordArray *array, int index) {
     if (!array->conf.itemRetain) {
         return;
     }
 
     NWord item = {0};
-    void *ptr  = _NWordArrayLocate(array, index);
+    void *ptr  = WordArrayLocate(array, index);
     NMoveMemory(&item, ptr, array->conf.itemSize);
     NRelease(item.asPtr);
 }
 
-static void _NWordArrayMove(NWordArray *array, int index, int offset) {
-    void *src = _NWordArrayLocate(array, index);
-    void *dst = _NWordArrayLocate(array, index + offset);
+static void WordArrayMove(NWordArray *array, int index, int offset) {
+    void *src = WordArrayLocate(array, index);
+    void *dst = WordArrayLocate(array, index + offset);
     int   len = array->count - index;
 
     NMoveMemory(dst, src, len * array->conf.itemSize);
 }
 
-static void _NWordArrayClear(NWordArray *array) {
+static void WordArrayClear(NWordArray *array) {
     if (array->conf.itemRetain) {
         for (int n = 0; n < (array->count); ++n) {
-            NWord item = _NWordArrayRead(array, n);
+            NWord item = WordArrayRead(array, n);
             NRelease(item.asPtr);
         }
     }
@@ -86,7 +86,7 @@ static void _NWordArrayClear(NWordArray *array) {
 }
 
 NWordArray *NWordArrayCreate(NWordArrayConf *conf) {
-    NWordArray *self = NCreate(nisizeof(NWordArray), _NWordArrayClear);
+    NWordArray *self = NCreate(nisizeof(NWordArray), WordArrayClear);
     self->conf = *conf;
     return self;
 }
@@ -97,13 +97,13 @@ NWordArray *NWordArrayCopy(NWordArray *that) {
     }
 
     NWordArray *self = NWordArrayCreate(&that->conf);
-    _NWordArrayStretch(self, that->count);
+    WordArrayStretch(self, that->count);
     NMoveMemory(self->items, that->items, that->count * that->conf.itemSize);
     self->count = that->count;
 
     if (self->conf.itemRetain) {
         for (int n = 0; n < (self->count); ++n) {
-            NWord item = _NWordArrayRead(self, n);
+            NWord item = WordArrayRead(self, n);
             NRetain(item.asPtr);
         }
     }
@@ -155,8 +155,8 @@ void NWordArrayPush(NWordArray *self, NWord item) {
         return;
     }
 
-    _NWordArrayStretch(self, 1);
-    _NWordArrayWrite(self, self->count, item);
+    WordArrayStretch(self, 1);
+    WordArrayWrite(self, self->count, item);
     self->count += 1;
 }
 
@@ -169,8 +169,8 @@ void NWordArrayPop(NWordArray *self) {
     }
 
     self->count -= 1;
-    _NWordArrayErase(self, self->count);
-    _NWordArrayShrink(self);
+    WordArrayErase(self, self->count);
+    WordArrayShrink(self);
 }
 
 void NWordArrayInsert(NWordArray *self, int index, NWord item) {
@@ -181,10 +181,10 @@ void NWordArrayInsert(NWordArray *self, int index, NWord item) {
         return;
     }
 
-    _NWordArrayStretch(self, 1);
+    WordArrayStretch(self, 1);
 
-    _NWordArrayMove(self, index, 1);
-    _NWordArrayWrite(self, index, item);
+    WordArrayMove(self, index, 1);
+    WordArrayWrite(self, index, item);
     self->count += 1;
 }
 
@@ -196,18 +196,18 @@ void NWordArrayRemove(NWordArray *self, int index) {
         return;
     }
 
-    _NWordArrayErase(self, index);
-    _NWordArrayMove(self, index + 1, -1);
+    WordArrayErase(self, index);
+    WordArrayMove(self, index + 1, -1);
     self->count -= 1;
 
-    _NWordArrayShrink(self);
+    WordArrayShrink(self);
 }
 
 void NWordArraySet(NWordArray *self, int index, NWord item) {
     if (self) {
         if (0 <= index && index < (self->count)) {
-            _NWordArrayErase(self, index);
-            _NWordArrayWrite(self, index, item);
+            WordArrayErase(self, index);
+            WordArrayWrite(self, index, item);
         }
     }
 }
@@ -215,7 +215,7 @@ void NWordArraySet(NWordArray *self, int index, NWord item) {
 NWord NWordArrayGet(NWordArray *self, int index) {
     if (self) {
         if (0 <= index && index < (self->count)) {
-            return _NWordArrayRead(self, index);
+            return WordArrayRead(self, index);
         }
     }
     NWord word = {0};

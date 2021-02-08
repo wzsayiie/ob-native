@@ -189,20 +189,20 @@ int NUTFCharsCount(const NUTFCharsStat *s) {
     return 0;
 }
 
-typedef int (*_NUTFReader)(const void *, const void *, char32_t *);
-typedef int (*_NUTFWriter)(void *, char32_t);
+typedef int (*UTFReader)(const void *, const void *, char32_t *);
+typedef int (*UTFWriter)(void *, char32_t);
 
-static int _NReadFromU32Chars(const void *s, const void *_, char32_t *c) {return NReadFromU32Chars(s, c);}
-static int _NReadFromU16Chars(const void *s, const void *_, char32_t *c) {return NReadFromU16Chars(s, c);}
-static int _NReadFromU8Chars (const void *s, const void *_, char32_t *c) {return NReadFromU8Chars (s, c);}
+static int ReadFromU32Chars(const void *s, const void *_, char32_t *c) {return NReadFromU32Chars(s, c);}
+static int ReadFromU16Chars(const void *s, const void *_, char32_t *c) {return NReadFromU16Chars(s, c);}
+static int ReadFromU8Chars (const void *s, const void *_, char32_t *c) {return NReadFromU8Chars (s, c);}
 
-static int _NCheckUTF(NUTFType type, bool isBytes, const void *p1, const void *p2, NUTFCharsStat *outStat) {
+static int CheckUTF(NUTFType type, bool isBytes, const void *p1, const void *p2, NUTFCharsStat *outStat) {
 
     //select a reader.
-    _NUTFReader reader = NULL;
-    if /**/ (type == NUTF32) {reader = isBytes ? NReadFromU32Bytes : _NReadFromU32Chars;}
-    else if (type == NUTF16) {reader = isBytes ? NReadFromU16Bytes : _NReadFromU16Chars;}
-    else if (type == NUTF8 ) {reader = isBytes ? NReadFromU8Bytes  : _NReadFromU8Chars ;}
+    UTFReader reader = NULL;
+    if /**/ (type == NUTF32) {reader = isBytes ? NReadFromU32Bytes : ReadFromU32Chars;}
+    else if (type == NUTF16) {reader = isBytes ? NReadFromU16Bytes : ReadFromU16Chars;}
+    else if (type == NUTF8 ) {reader = isBytes ? NReadFromU8Bytes  : ReadFromU8Chars ;}
 
     if (!reader || !p1) {
         NZeroMemory(outStat, nisizeof(*outStat));
@@ -235,18 +235,18 @@ static int _NCheckUTF(NUTFType type, bool isBytes, const void *p1, const void *p
     return totalSize;
 }
 
-int NCheckUTFBytes(NUTFType t, const void *b, const void *e, NUTFCharsStat *s) {return _NCheckUTF(t, 1, b, e, s);}
-int NCheckUTFChars(NUTFType t, const void *c, /*   NULL   */ NUTFCharsStat *s) {return _NCheckUTF(t, 0, c, 0, s);}
+int NCheckUTFBytes(NUTFType t, const void *b, const void *e, NUTFCharsStat *s) {return CheckUTF(t, 1, b, e, s);}
+int NCheckUTFChars(NUTFType t, const void *c, /*   NULL   */ NUTFCharsStat *s) {return CheckUTF(t, 0, c, 0, s);}
 
-static void *_NDupUTF(NUTFType dstType, NUTFType srcType, bool isBytes, const void *p1, const void *p2) {
+static void *DupUTF(NUTFType dstType, NUTFType srcType, bool isBytes, const void *p1, const void *p2) {
 
     //select a reader and a writer.
-    _NUTFReader reader = NULL;
-    if /**/ (srcType == NUTF32) {reader = isBytes ? NReadFromU32Bytes : _NReadFromU32Chars;}
-    else if (srcType == NUTF16) {reader = isBytes ? NReadFromU16Bytes : _NReadFromU16Chars;}
-    else if (srcType == NUTF8 ) {reader = isBytes ? NReadFromU8Bytes  : _NReadFromU8Chars ;}
+    UTFReader reader = NULL;
+    if /**/ (srcType == NUTF32) {reader = isBytes ? NReadFromU32Bytes : ReadFromU32Chars;}
+    else if (srcType == NUTF16) {reader = isBytes ? NReadFromU16Bytes : ReadFromU16Chars;}
+    else if (srcType == NUTF8 ) {reader = isBytes ? NReadFromU8Bytes  : ReadFromU8Chars ;}
 
-    _NUTFWriter writer = NULL;
+    UTFWriter writer = NULL;
     if /**/ (dstType == NUTF32) {writer = NWriteU32;}
     else if (dstType == NUTF16) {writer = NWriteU16;}
     else if (dstType == NUTF8 ) {writer = NWriteU8 ;}
@@ -287,10 +287,10 @@ static void *_NDupUTF(NUTFType dstType, NUTFType srcType, bool isBytes, const vo
     return buff;
 }
 
-char32_t *NDupU32FromBytes(NUTFType t, const void *b, const void *e) {return _NDupUTF(NUTF32, t, 1, b, e);}
-char16_t *NDupU16FromBytes(NUTFType t, const void *b, const void *e) {return _NDupUTF(NUTF16, t, 1, b, e);}
-char     *NDupU8FromBytes (NUTFType t, const void *b, const void *e) {return _NDupUTF(NUTF8 , t, 1, b, e);}
+char32_t *NDupU32FromBytes(NUTFType t, const void *b, const void *e) {return DupUTF(NUTF32, t, 1, b, e);}
+char16_t *NDupU16FromBytes(NUTFType t, const void *b, const void *e) {return DupUTF(NUTF16, t, 1, b, e);}
+char     *NDupU8FromBytes (NUTFType t, const void *b, const void *e) {return DupUTF(NUTF8 , t, 1, b, e);}
 
-char32_t *NDupU32FromChars(NUTFType t, const void *c) {return _NDupUTF(NUTF32, t, 0, c, 0);}
-char16_t *NDupU16FromChars(NUTFType t, const void *c) {return _NDupUTF(NUTF16, t, 0, c, 0);}
-char     *NDupU8FromChars (NUTFType t, const void *c) {return _NDupUTF(NUTF8 , t, 0, c, 0);}
+char32_t *NDupU32FromChars(NUTFType t, const void *c) {return DupUTF(NUTF32, t, 0, c, 0);}
+char16_t *NDupU16FromChars(NUTFType t, const void *c) {return DupUTF(NUTF16, t, 0, c, 0);}
+char     *NDupU8FromChars (NUTFType t, const void *c) {return DupUTF(NUTF8 , t, 0, c, 0);}

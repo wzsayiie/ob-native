@@ -7,12 +7,12 @@ nclass(NAction, NObject, {
     int      argc;
 });
 
-static void _NActionClear(NAction *action) {
+static void ActionClear(NAction *action) {
     NRelease(action->data);
 }
 
-static NAction *_NActionCreate(void *func, NObject *data, int argc) {
-    NAction *action = NCreate(nisizeof(NAction), _NActionClear);
+static NAction *ActionCreate(void *func, NObject *data, int argc) {
+    NAction *action = NCreate(nisizeof(NAction), ActionClear);
     
     action->func = func;
     action->data = NRetain(data);
@@ -21,13 +21,13 @@ static NAction *_NActionCreate(void *func, NObject *data, int argc) {
     return action;
 }
 
-NAction *NActionCreateWithFunc3(NActionFunc3 f, NObject *d) {return _NActionCreate(f, d, 3);}
-NAction *NActionCreateWithFunc2(NActionFunc2 f, NObject *d) {return _NActionCreate(f, d, 2);}
-NAction *NActionCreateWithFunc1(NActionFunc1 f, NObject *d) {return _NActionCreate(f, d, 1);}
-NAction *NActionCreateWithFunc (NActionFunc  f, NObject *d) {return _NActionCreate(f, d, 0);}
-NAction *NActionCreate         ()                           {return _NActionCreate(0, 0, 0);}
+NAction *NActionCreateWithFunc3(NActionFunc3 f, NObject *d) {return ActionCreate(f, d, 3);}
+NAction *NActionCreateWithFunc2(NActionFunc2 f, NObject *d) {return ActionCreate(f, d, 2);}
+NAction *NActionCreateWithFunc1(NActionFunc1 f, NObject *d) {return ActionCreate(f, d, 1);}
+NAction *NActionCreateWithFunc (NActionFunc  f, NObject *d) {return ActionCreate(f, d, 0);}
+NAction *NActionCreate         ()                           {return ActionCreate(0, 0, 0);}
 
-static void _NActionSetFunc(NAction *self, void *func, NObject *data, int argc) {
+static void ActionSetFunc(NAction *self, void *func, NObject *data, int argc) {
     if (!self) {
         return;
     }
@@ -39,10 +39,10 @@ static void _NActionSetFunc(NAction *self, void *func, NObject *data, int argc) 
     self->argc = argc;
 }
 
-void NActionSetFunc3(NAction *s, NActionFunc3 f, NObject *d) {_NActionSetFunc(s, f, d, 3);}
-void NActionSetFunc2(NAction *s, NActionFunc2 f, NObject *d) {_NActionSetFunc(s, f, d, 2);}
-void NActionSetFunc1(NAction *s, NActionFunc1 f, NObject *d) {_NActionSetFunc(s, f, d, 1);}
-void NActionSetFunc (NAction *s, NActionFunc  f, NObject *d) {_NActionSetFunc(s, f, d, 0);}
+void NActionSetFunc3(NAction *s, NActionFunc3 f, NObject *d) {ActionSetFunc(s, f, d, 3);}
+void NActionSetFunc2(NAction *s, NActionFunc2 f, NObject *d) {ActionSetFunc(s, f, d, 2);}
+void NActionSetFunc1(NAction *s, NActionFunc1 f, NObject *d) {ActionSetFunc(s, f, d, 1);}
+void NActionSetFunc (NAction *s, NActionFunc  f, NObject *d) {ActionSetFunc(s, f, d, 0);}
 
 void NActionClear(NAction *self) {
     if (self) {
@@ -54,7 +54,7 @@ void NActionClear(NAction *self) {
     }
 }
 
-static void _NActionRun(NAction *self, int argc, NObject *a, NObject *b, NObject *c) {
+static void ActionRun(NAction *self, int argc, NObject *a, NObject *b, NObject *c) {
     if (!self) {
         return;
     }
@@ -75,7 +75,7 @@ static void _NActionRun(NAction *self, int argc, NObject *a, NObject *b, NObject
 #define A2 NObject *a, NObject *b
 #define A1 NObject *a
 
-void NActionRun3(NAction *s, A3) {_NActionRun(s, 3, a, b, c);}
-void NActionRun2(NAction *s, A2) {_NActionRun(s, 2, a, b, 0);}
-void NActionRun1(NAction *s, A1) {_NActionRun(s, 1, a, 0, 0);}
-void NActionRun (NAction *s    ) {_NActionRun(s, 0, 0, 0, 0);}
+void NActionRun3(NAction *s, A3) {ActionRun(s, 3, a, b, c);}
+void NActionRun2(NAction *s, A2) {ActionRun(s, 2, a, b, 0);}
+void NActionRun1(NAction *s, A1) {ActionRun(s, 1, a, 0, 0);}
+void NActionRun (NAction *s    ) {ActionRun(s, 0, 0, 0, 0);}

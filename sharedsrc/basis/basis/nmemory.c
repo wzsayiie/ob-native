@@ -8,11 +8,11 @@ nstruct(NMemory, {
     int8_t data[];
 });
 
-static size_t _NMemorySize(int size) {
+static size_t MemorySize(int size) {
     return sizeof(NMemory) + (size_t)size;
 }
 
-static NMemory *_NMemoryPtr(const void *ptr) {
+static NMemory *MemoryPtr(const void *ptr) {
     return (NMemory *)ptr - 1;
 }
 
@@ -21,7 +21,7 @@ void *NAlloc(int size) {
         return NULL;
     }
     
-    size_t   mmSize = _NMemorySize(size);
+    size_t   mmSize = MemorySize(size);
     NMemory *memory = calloc(1, mmSize);
     if (memory) {
         memory->dataSize = size;
@@ -41,9 +41,9 @@ void *NRealloc(void *ptr, int size) {
         return NAlloc(size);
     }
     
-    NMemory *oldMem = _NMemoryPtr(ptr);
+    NMemory *oldMem = MemoryPtr(ptr);
 
-    size_t   mmSize = _NMemorySize(size);
+    size_t   mmSize = MemorySize(size);
     NMemory *newMem = realloc(oldMem, mmSize);
     if (newMem) {
         newMem->dataSize = size;
@@ -60,8 +60,8 @@ void *NDup(const void *ptr) {
         return NULL;
     }
 
-    NMemory *memory = _NMemoryPtr(ptr);
-    size_t   mmSize = _NMemorySize(memory->dataSize);
+    NMemory *memory = MemoryPtr(ptr);
+    size_t   mmSize = MemorySize(memory->dataSize);
 
     NMemory *dup = calloc(1, mmSize);
     if (dup) {
@@ -74,14 +74,14 @@ void *NDup(const void *ptr) {
 
 void NFree(void *ptr) {
     if (ptr) {
-        NMemory *memory = _NMemoryPtr(ptr);
+        NMemory *memory = MemoryPtr(ptr);
         free(memory);
     }
 }
 
 int NMemorySize(const void *ptr) {
     if (ptr) {
-        NMemory *memory = _NMemoryPtr(ptr);
+        NMemory *memory = MemoryPtr(ptr);
         return memory->dataSize;
     }
     return 0;

@@ -9,7 +9,7 @@ nclink void __NError(const char *format, ...);
 //the maximum number of arguments that can be supported.
 static const int MAX_ARG_NUM = 4;
 
-struct _NFuncInfo {
+struct FuncInfo {
     const char *name;
     void       *address;
     const char *retName;
@@ -27,19 +27,19 @@ static const int EACH_ALLOC_NUM = 64;
 //the index "0" is reserved.
 static const int LIST_BEGIN = 1;
 
-static _NFuncInfo *sList = NULL;
+static FuncInfo *sList = NULL;
 static int sEnd = 0;
 static int sConfine = 0;
 
-static _NFuncInfo *_NReallocFuncInfo(_NFuncInfo *list, int count) {
-    auto size = sizeof(_NFuncInfo) * count;
-    return (_NFuncInfo *)realloc(list, size);
+static FuncInfo *ReallocFuncInfo(FuncInfo *list, int count) {
+    auto size = sizeof(FuncInfo) * count;
+    return (FuncInfo *)realloc(list, size);
 }
 
-static void _NAddFunc(_NFuncInfo *info) {
+static void AddFuncInfo(FuncInfo *info) {
     if (sEnd == sConfine) {
         sConfine += EACH_ALLOC_NUM;
-        sList = _NReallocFuncInfo(sList, sConfine);
+        sList = ReallocFuncInfo(sList, sConfine);
 
         if (sEnd == 0) {
             sEnd = LIST_BEGIN;
@@ -71,7 +71,7 @@ static void _NAddFunc(_NFuncInfo *info) {
         void *dst = sList + index + 1;
         void *src = sList + index;
         int   num = sEnd  - index;
-        memmove(dst, src, num * sizeof(_NFuncInfo));
+        memmove(dst, src, num * sizeof(FuncInfo));
     }
     sList[index] = *info;
     sEnd += 1;
@@ -104,14 +104,14 @@ nclink int NFindFunc(const char *name) {
     return 0;
 }
 
-//determine whether the Index is valid.
-static bool _NI(int fIndex) {
+//determine whether the index is valid.
+static bool Idx(int fIndex) {
     return LIST_BEGIN <= fIndex && fIndex < sEnd;
 }
 
-//get complete Function information.
-static _NFuncInfo *_NF(int fIndex) {
-    _NFuncInfo *info = sList + fIndex;
+//get complete function information.
+static FuncInfo *Inf(int fIndex) {
+    FuncInfo *info = sList + fIndex;
 
     //mutex is not necessary here, cause the value obtained by each thread is the same.
     if (!info->complete) {
@@ -131,15 +131,15 @@ static _NFuncInfo *_NF(int fIndex) {
     return info;
 }
 
-nclink const char *NFuncName       (int i) {return _NI(i) ? _NF(i)->name        : NULL ;}
-nclink void       *NFuncAddress    (int i) {return _NI(i) ? _NF(i)->address     : NULL ;}
-nclink int         NFuncRetType    (int i) {return _NI(i) ? _NF(i)->retType     : 0    ;}
-nclink bool        NFuncRetRetained(int i) {return _NI(i) ? _NF(i)->retRetained : false;}
-nclink int         NFuncArgCount   (int i) {return _NI(i) ? _NF(i)->argCount    : 0    ;}
+nclink const char *NFuncName       (int i) {return Idx(i) ? Inf(i)->name        : NULL ;}
+nclink void       *NFuncAddress    (int i) {return Idx(i) ? Inf(i)->address     : NULL ;}
+nclink int         NFuncRetType    (int i) {return Idx(i) ? Inf(i)->retType     : 0    ;}
+nclink bool        NFuncRetRetained(int i) {return Idx(i) ? Inf(i)->retRetained : false;}
+nclink int         NFuncArgCount   (int i) {return Idx(i) ? Inf(i)->argCount    : 0    ;}
 
 nclink NType NFuncArgType(int fIndex, int aIndex) {
-    if (_NI(fIndex)) {
-        _NFuncInfo *info = _NF(fIndex);
+    if (Idx(fIndex)) {
+        FuncInfo *info = Inf(fIndex);
         if (0 <= aIndex && aIndex < info->argCount) {
             return info->argTypes[aIndex];
         }
@@ -150,22 +150,22 @@ nclink NType NFuncArgType(int fIndex, int aIndex) {
 //the memory layout of "__NWord" is same with "NWord" 's.
 #define __NWord int64_t
 
-template<class R> struct _NExecutor {
+template<class R> struct Executor {
     template<class... A> static __NWord Exec(void *func, A... a) {
         R ret[sizeof(__NWord)] = {0};
         *ret = ((R (*)(A...))func)(a...);
         return *(__NWord *)ret;
     }
 };
-template<> struct _NExecutor<void> {
+template<> struct Executor<void> {
     template<class... A> static __NWord Exec(void *func, A... a) {
         ((void (*)(A...))func)(a...);
         return 0;
     }
 };
 
-//safe Value cast.
-template<class T> T _NV(NType srcType, __NWord word) {
+//safe value cast.
+template<class T> T Val(NType srcType, __NWord word) {
     switch (srcType) {
         case NTYPE_STRUCT: return (T) 0;
         case NTYPE_PTR   : return (T) 0;
@@ -186,16 +186,16 @@ template<class T> T _NV(NType srcType, __NWord word) {
     }
 }
 
-struct _NCallerData {
-    _NFuncInfo *funcInfo;
-    NType      *argTypes;
-    __NWord    *argWords;
+struct CallerData {
+    FuncInfo *funcInfo;
+    NType    *argTypes;
+    __NWord  *argWords;
 };
 
-template<class R, int N> struct _NCaller {
-    template<class... A> static __NWord C(_NCallerData *data, A... a) {
+template<class R, int N> struct Caller {
+    template<class... A> static __NWord C(CallerData *data, A... a) {
         if (N == data->funcInfo->argCount) {
-            return _NExecutor<R>::Exec(data->funcInfo->address, a...);
+            return Executor<R>::Exec(data->funcInfo->address, a...);
         }
 
         NType   d = data->funcInfo->argTypes[N];
@@ -209,37 +209,37 @@ template<class R, int N> struct _NCaller {
             case NTYPE_STRUCT: return 0;
             case NTYPE_PTR   : return 0;
 
-            case NTYPE_BOOL  : return _NCaller<R, N + 1>::C(data, a..., (intptr_t)_NV<bool    >(t, w));
-            case NTYPE_INT8  : return _NCaller<R, N + 1>::C(data, a..., (intptr_t)_NV<int8_t  >(t, w));
-            case NTYPE_INT16 : return _NCaller<R, N + 1>::C(data, a..., (intptr_t)_NV<int16_t >(t, w));
-            case NTYPE_INT32 : return _NCaller<R, N + 1>::C(data, a..., (intptr_t)_NV<int32_t >(t, w));
-            case NTYPE_INT64 : return _NCaller<R, N + 1>::C(data, a..., (int64_t )_NV<int64_t >(t, w));
-            case NTYPE_UINT8 : return _NCaller<R, N + 1>::C(data, a..., (intptr_t)_NV<uint8_t >(t, w));
-            case NTYPE_UINT16: return _NCaller<R, N + 1>::C(data, a..., (intptr_t)_NV<uint16_t>(t, w));
-            case NTYPE_UINT32: return _NCaller<R, N + 1>::C(data, a..., (intptr_t)_NV<uint32_t>(t, w));
-            case NTYPE_UINT64: return _NCaller<R, N + 1>::C(data, a..., (int64_t )_NV<uint64_t>(t, w));
-            case NTYPE_FLOAT : return _NCaller<R, N + 1>::C(data, a..., (float   )_NV<float   >(t, w));
-            case NTYPE_DOUBLE: return _NCaller<R, N + 1>::C(data, a..., (double  )_NV<double  >(t, w));
+            case NTYPE_BOOL  : return Caller<R, N + 1>::C(data, a..., (intptr_t)Val<bool    >(t, w));
+            case NTYPE_INT8  : return Caller<R, N + 1>::C(data, a..., (intptr_t)Val<int8_t  >(t, w));
+            case NTYPE_INT16 : return Caller<R, N + 1>::C(data, a..., (intptr_t)Val<int16_t >(t, w));
+            case NTYPE_INT32 : return Caller<R, N + 1>::C(data, a..., (intptr_t)Val<int32_t >(t, w));
+            case NTYPE_INT64 : return Caller<R, N + 1>::C(data, a..., (int64_t )Val<int64_t >(t, w));
+            case NTYPE_UINT8 : return Caller<R, N + 1>::C(data, a..., (intptr_t)Val<uint8_t >(t, w));
+            case NTYPE_UINT16: return Caller<R, N + 1>::C(data, a..., (intptr_t)Val<uint16_t>(t, w));
+            case NTYPE_UINT32: return Caller<R, N + 1>::C(data, a..., (intptr_t)Val<uint32_t>(t, w));
+            case NTYPE_UINT64: return Caller<R, N + 1>::C(data, a..., (int64_t )Val<uint64_t>(t, w));
+            case NTYPE_FLOAT : return Caller<R, N + 1>::C(data, a..., (float   )Val<float   >(t, w));
+            case NTYPE_DOUBLE: return Caller<R, N + 1>::C(data, a..., (double  )Val<double  >(t, w));
             
-            default/* ptr */: return _NCaller<R, N + 1>::C(data, a..., (intptr_t)_NV<intptr_t>(t, w));
+            default /* ptr */: return Caller<R, N + 1>::C(data, a..., (intptr_t)Val<intptr_t>(t, w));
         }
     }
 };
-template<class R> struct _NCaller<R, MAX_ARG_NUM> {
-    template<class... A> static __NWord C(_NCallerData *data, A... a) {
-        return _NExecutor<R>::Exec(data->funcInfo->address, a...);
+template<class R> struct Caller<R, MAX_ARG_NUM> {
+    template<class... A> static __NWord C(CallerData *data, A... a) {
+        return Executor<R>::Exec(data->funcInfo->address, a...);
     }
 };
 
 nclink __NWord NCallFunc(int fIndex, int argc, NType *types, __NWord *words) {
     //is it a valid index.
-    if (!_NI(fIndex)) {
+    if (!Idx(fIndex)) {
         __NError("illegal function index %d", fIndex);
         return 0;
     }
 
     //are there enough arguments.
-    _NFuncInfo *info = _NF(fIndex);
+    FuncInfo *info = Inf(fIndex);
     if (argc < info->argCount) {
         __NError("only %d arguments passed, but %d required", argc, info->argCount);
         return 0;
@@ -255,7 +255,7 @@ nclink __NWord NCallFunc(int fIndex, int argc, NType *types, __NWord *words) {
         }
     }
 
-    _NCallerData data = {0};
+    CallerData data = {0};
     data.funcInfo = info ;
     data.argTypes = types;
     data.argWords = words;
@@ -267,38 +267,38 @@ nclink __NWord NCallFunc(int fIndex, int argc, NType *types, __NWord *words) {
         case NTYPE_STRUCT: return 0;
         case NTYPE_PTR   : return 0;
 
-        case NTYPE_VOID  : return _NCaller<void    , 0>::C(&data);
-        case NTYPE_BOOL  : return _NCaller<intptr_t, 0>::C(&data);
-        case NTYPE_INT8  : return _NCaller<intptr_t, 0>::C(&data);
-        case NTYPE_INT16 : return _NCaller<intptr_t, 0>::C(&data);
-        case NTYPE_INT32 : return _NCaller<intptr_t, 0>::C(&data);
-        case NTYPE_INT64 : return _NCaller<int64_t , 0>::C(&data);
-        case NTYPE_UINT8 : return _NCaller<intptr_t, 0>::C(&data);
-        case NTYPE_UINT16: return _NCaller<intptr_t, 0>::C(&data);
-        case NTYPE_UINT32: return _NCaller<intptr_t, 0>::C(&data);
-        case NTYPE_UINT64: return _NCaller<int64_t , 0>::C(&data);
-        case NTYPE_FLOAT : return _NCaller<float   , 0>::C(&data);
-        case NTYPE_DOUBLE: return _NCaller<double  , 0>::C(&data);
+        case NTYPE_VOID  : return Caller<void    , 0>::C(&data);
+        case NTYPE_BOOL  : return Caller<intptr_t, 0>::C(&data);
+        case NTYPE_INT8  : return Caller<intptr_t, 0>::C(&data);
+        case NTYPE_INT16 : return Caller<intptr_t, 0>::C(&data);
+        case NTYPE_INT32 : return Caller<intptr_t, 0>::C(&data);
+        case NTYPE_INT64 : return Caller<int64_t , 0>::C(&data);
+        case NTYPE_UINT8 : return Caller<intptr_t, 0>::C(&data);
+        case NTYPE_UINT16: return Caller<intptr_t, 0>::C(&data);
+        case NTYPE_UINT32: return Caller<intptr_t, 0>::C(&data);
+        case NTYPE_UINT64: return Caller<int64_t , 0>::C(&data);
+        case NTYPE_FLOAT : return Caller<float   , 0>::C(&data);
+        case NTYPE_DOUBLE: return Caller<double  , 0>::C(&data);
 
-        default/* ptr */: return _NCaller<intptr_t, 0>::C(&data);
+        default /* ptr */: return Caller<intptr_t, 0>::C(&data);
     }
 }
 
-template<class T> struct _NTrait {
+template<class T> struct Trait {
     static constexpr const char *const NAME = "struct";
     static const NType TYPE = NTYPE_STRUCT;
 };
-template<class T> struct _NTrait<T *> {
+template<class T> struct Trait<T *> {
     static constexpr const char *const NAME = "ptr";
     static const NType TYPE = NTYPE_PTR;
 };
-template<class T> struct _NTrait<T **> {
+template<class T> struct Trait<T **> {
     static constexpr const char *const NAME = "ptr";
     static const NType TYPE = NTYPE_PTR;
 };
 
 #define SPECIAL_TRAIT(S, N, T)                              \
-/**/    template<> struct _NTrait<S> {                      \
+/**/    template<> struct Trait<S> {                      \
 /**/        static constexpr const char *const NAME = N;    \
 /**/        static const NType TYPE = T;                    \
 /**/    }
@@ -356,7 +356,7 @@ SPECIAL_TRAIT(const double   *, "doubleptr", NTYPE_DOUBLE_PTR);
 #define nstruct(n,    ...) __nstruct(n   , __VA_ARGS__); SPECIAL_TRAIT(n *, #n, 0)
 #define nclass( n, s, ...) __nclass (n, s, __VA_ARGS__); SPECIAL_TRAIT(n *, #n, 0)
 
-static bool _NCheckRetRetained(NType retType, const char *funcName) {
+static bool CheckRetRetained(NType retType, const char *funcName) {
     if (retType >= NTYPE_CUSTOM_PTR) {
         if (strstr(funcName, "Create")) {return true;}
         if (strstr(funcName, "Copy"  )) {return true;}
@@ -365,7 +365,7 @@ static bool _NCheckRetRetained(NType retType, const char *funcName) {
     return false;
 }
 
-static void _NResetInfoComplete(_NFuncInfo *info) {
+static void ResetInfoComplete(FuncInfo *info) {
     //check data maybe delayed in assignment.
     if (info->retType == 0) {
         info->complete = false;
@@ -381,14 +381,14 @@ static void _NResetInfoComplete(_NFuncInfo *info) {
     info->complete = true;
 }
 
-struct _NFuncAdder {
+struct FuncAdder {
 
-    template<class R, class... A> _NFuncAdder(const char *name, R (*func)(A...)) {
+    template<class R, class... A> FuncAdder(const char *name, R (*func)(A...)) {
         AddFunc(name, func);
     }
 
     template<class R> bool CheckRet() {
-        NType type = _NTrait<R>::TYPE;
+        NType type = Trait<R>::TYPE;
 
         //the return type can't be a struct or unknown ptr.
         if (type == NTYPE_STRUCT) {return false;}
@@ -398,7 +398,7 @@ struct _NFuncAdder {
     }
 
     template<class R, class A, class... B> bool CheckArgs(R (*)(A, B...), int *count) {
-        NType type = _NTrait<A>::TYPE;
+        NType type = Trait<A>::TYPE;
 
         if (type == NTYPE_STRUCT) {return false;} //the type can't be a struct.
         if (type == NTYPE_PTR   ) {return false;} //the type can't be a unknown ptr.
@@ -411,15 +411,15 @@ struct _NFuncAdder {
         return true;
     }
 
-    template<class R, class A, class... B> void AddArgs(_NFuncInfo *info, R (*)(A, B...)) {
+    template<class R, class A, class... B> void AddArgs(FuncInfo *info, R (*)(A, B...)) {
         int index = (info->argCount)++;
 
-        info->argNames[index] = _NTrait<A>::NAME;
-        info->argTypes[index] = _NTrait<A>::TYPE;
+        info->argNames[index] = Trait<A>::NAME;
+        info->argTypes[index] = Trait<A>::TYPE;
 
         AddArgs(info, (void (*)(B...))NULL);
     }
-    template<class R> void AddArgs(_NFuncInfo *, R (*)()) {
+    template<class R> void AddArgs(FuncInfo *, R (*)()) {
     }
     
     template<class R, class... A> void AddFunc(const char *name, R (*func)(A...)) {
@@ -437,22 +437,22 @@ struct _NFuncAdder {
             return;
         }
         
-        _NFuncInfo info = {0};
+        FuncInfo info = {0};
         {
             info.name        = name;
             info.address     = (void *)func;
-            info.retName     = _NTrait<R>::NAME;
-            info.retType     = _NTrait<R>::TYPE;
-            info.retRetained = _NCheckRetRetained(_NTrait<R>::TYPE, name);
+            info.retName     = Trait<R>::NAME;
+            info.retType     = Trait<R>::TYPE;
+            info.retRetained = CheckRetRetained(Trait<R>::TYPE, name);
 
             AddArgs(&info, func);
-            _NResetInfoComplete(&info);
+            ResetInfoComplete(&info);
         }
-        _NAddFunc(&info);
+        AddFuncInfo(&info);
     }
 };
 
-#define __add_func(n) static _NFuncAdder __adder_##n(#n, n)
+#define __add_func(n) static FuncAdder __adder_##n(#n, n)
 
 #undef  nfunc
 #define nfunc(r, n, p) __nfunc(r, n, p); __add_func(n)

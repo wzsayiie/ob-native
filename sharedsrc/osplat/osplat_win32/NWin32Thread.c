@@ -1,7 +1,7 @@
 ﻿#include "nthread.h"
 #include <Windows.h>
 
-static DWORD WINAPI _NThreadProcedure(LPVOID data)
+static DWORD WINAPI ThreadProcedure(LPVOID data)
 {
     NAction *action = (NAction *)data;
     NActionRun(action);
@@ -14,7 +14,7 @@ void NRunThread(NAction *action)
     if (action)
     {
         NRetain(action);
-        CreateThread(NULL, 0, _NThreadProcedure, action, 0, NULL);
+        CreateThread(NULL, 0, ThreadProcedure, action, 0, NULL);
     }
 }
 

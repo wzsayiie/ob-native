@@ -4,7 +4,7 @@ nclass(NData, NObject, {
     void *bytes;
 });
 
-static void _NDataClear(NData *data) {
+static void DataClear(NData *data) {
     NFree(data->bytes);
 }
 
@@ -26,7 +26,7 @@ NData *NDataCreateWithSize(int size) {
 }
 
 NData *NDataCreate(void) {
-    return NCreate(nisizeof(NData), _NDataClear);
+    return NCreate(nisizeof(NData), DataClear);
 }
 
 NData *NDataCopy(NData *that) {

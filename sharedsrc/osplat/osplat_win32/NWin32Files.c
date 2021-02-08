@@ -2,7 +2,7 @@
 #include <ShlObj.h>
 #include <Windows.h>
 
-static void _NGetProgramName(WCHAR *outName)
+static void GetProgramName(WCHAR *outName)
 {
     //wcscpy(outName, L"custom_program_name");
     //return;
@@ -25,7 +25,7 @@ static void _NGetProgramName(WCHAR *outName)
     }
 }
 
-static void _NConcatenatePath(WCHAR *buffer, const WCHAR *item)
+static void ConcatenatePath(WCHAR *buffer, const WCHAR *item)
 {
     if (!item || *item == L'\0')
     {
@@ -48,15 +48,15 @@ static void _NConcatenatePath(WCHAR *buffer, const WCHAR *item)
     }
 }
 
-static NString *_NCreateUserDirectory(const WCHAR *parent, const WCHAR *sub)
+static NString *CreateUserDirectory(const WCHAR *parent, const WCHAR *sub)
 {
     WCHAR name[MAX_PATH] = L"\0";
-    _NGetProgramName(name);
+    GetProgramName(name);
 
     WCHAR buffer[MAX_PATH] = L"\0";
-    _NConcatenatePath(buffer, parent);
-    _NConcatenatePath(buffer, name);
-    _NConcatenatePath(buffer, sub);
+    ConcatenatePath(buffer, parent);
+    ConcatenatePath(buffer, name);
+    ConcatenatePath(buffer, sub);
 
     NString *path = NStringCreateWithUTFChars(NUTF16, buffer);
     if (!NPathExists(path, NULL))
@@ -74,7 +74,7 @@ NString *NCopyDocumentPath(void)
         WCHAR directory[MAX_PATH] = L"\0";
         SHGetFolderPathW(NULL, CSIDL_PERSONAL, NULL, 0, directory);
 
-        path = _NCreateUserDirectory(directory, NULL);
+        path = CreateUserDirectory(directory, NULL);
     }
     return NStringCopy(path);
 }
@@ -87,7 +87,7 @@ NString *NCopyCachesPath(void)
         WCHAR directory[MAX_PATH] = L"\0";
         GetTempPathW(MAX_PATH, directory);
 
-        path = _NCreateUserDirectory(directory, L"caches");
+        path = CreateUserDirectory(directory, L"caches");
     }
     return NStringCopy(path);
 }
@@ -100,7 +100,7 @@ NString *NCopyTemporaryPath(void)
         WCHAR directory[MAX_PATH] = L"\0";
         GetTempPathW(MAX_PATH, directory);
 
-        path = _NCreateUserDirectory(directory, L"temporary");
+        path = CreateUserDirectory(directory, L"temporary");
     }
     return NStringCopy(path);
 }
@@ -122,7 +122,7 @@ bool NMakeDirectory(NString *path, bool intermediate)
         {
             WCHAR *allChars = NAlloc(MAX_PATH * sizeof(WCHAR) + sizeof(WCHAR) + size);
             GetCurrentDirectoryW(MAX_PATH, allChars);
-            _NConcatenatePath(allChars, chars);
+            ConcatenatePath(allChars, chars);
 
             int error = SHCreateDirectoryExW(NULL, allChars, NULL);
             NFree(allChars);
@@ -156,7 +156,7 @@ NArray *NCopySubitems(NString *path, bool *success)
 
     WCHAR *target = NAlloc(size + 3 * sizeof(WCHAR));
     wcscpy(target, chars);
-    _NConcatenatePath(target, L"*");
+    ConcatenatePath(target, L"*");
 
     //traverse the subitems.
     WIN32_FIND_DATAW data = {0};

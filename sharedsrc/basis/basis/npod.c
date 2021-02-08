@@ -10,72 +10,72 @@ NValue NMakeIntValue   (int      v) {return NMakeInt64Value (v);}
 NValue NMakeUIntValue  (unsigned v) {return NMakeUInt64Value(v);}
 NValue NMakeFloatValue (float    v) {return NMakeDoubleValue(v);}
 
-static bool _NIsPtr    (NType t) {return t == NTYPE_PTR  || t >= NTYPE_VOID_PTR;}
-static bool _NIsInteger(NType t) {return t >= NTYPE_BOOL && t <= NTYPE_UINT64  ;}
-static bool _NIsStruct (NType t) {return t == NTYPE_STRUCT;}
-static bool _NIsVoid   (NType t) {return t == NTYPE_VOID  ;}
-static bool _NIsFloat  (NType t) {return t == NTYPE_FLOAT ;}
-static bool _NIsDouble (NType t) {return t == NTYPE_DOUBLE;}
+static bool IsPtr    (NType t) {return t == NTYPE_PTR  || t >= NTYPE_VOID_PTR;}
+static bool IsInteger(NType t) {return t >= NTYPE_BOOL && t <= NTYPE_UINT64  ;}
+static bool IsStruct (NType t) {return t == NTYPE_STRUCT;}
+static bool IsVoid   (NType t) {return t == NTYPE_VOID  ;}
+static bool IsFloat  (NType t) {return t == NTYPE_FLOAT ;}
+static bool IsDouble (NType t) {return t == NTYPE_DOUBLE;}
 
 bool NBoolValue(NValue value) {
     return value.asInt64 != 0;
 }
 
 int64_t NInt64Value(NValue value) {
-    if (_NIsStruct(value.type)) {
+    if (IsStruct(value.type)) {
         return 0;
     }
-    if (_NIsPtr(value.type)) {
+    if (IsPtr(value.type)) {
         //it's allowed to cast a ptr to an int.
         return value.asInt64;
     }
-    if (_NIsVoid(value.type)) {
+    if (IsVoid(value.type)) {
         return 0;
     }
-    if (_NIsInteger(value.type)) {
+    if (IsInteger(value.type)) {
         return value.asInt64;
     }
-    if (_NIsFloat(value.type)) {
+    if (IsFloat(value.type)) {
         return (int64_t)value.asDouble;
     }
-    if (_NIsDouble(value.type)) {
+    if (IsDouble(value.type)) {
         return (int64_t)value.asDouble;
     }
     return 0;
 }
 
 uint64_t NUInt64Value(NValue value) {
-    if (_NIsStruct(value.type)) {
+    if (IsStruct(value.type)) {
         return 0;
     }
-    if (_NIsPtr(value.type)) {
+    if (IsPtr(value.type)) {
         //it's allowed to cast a ptr to an int.
         return value.asUInt64;
     }
-    if (_NIsVoid(value.type)) {
+    if (IsVoid(value.type)) {
         return 0;
     }
-    if (_NIsInteger(value.type)) {
+    if (IsInteger(value.type)) {
         return value.asUInt64;
     }
-    if (_NIsFloat(value.type)) {
+    if (IsFloat(value.type)) {
         return (uint64_t)value.asDouble;
     }
-    if (_NIsDouble(value.type)) {
+    if (IsDouble(value.type)) {
         return (uint64_t)value.asDouble;
     }
     return 0;
 }
 
 double NDoubleValue(NValue value) {
-    if (_NIsFloat(value.type) || _NIsDouble(value.type)) {
+    if (IsFloat(value.type) || IsDouble(value.type)) {
         return value.asDouble;
     }
     return 0;
 }
 
 void *NPtrValue(NValue value) {
-    if (_NIsPtr(value.type)) {
+    if (IsPtr(value.type)) {
         return value.asPtr;
     }
     return NULL;

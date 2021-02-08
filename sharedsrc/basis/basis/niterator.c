@@ -1,11 +1,11 @@
 #include "niterator.h"
 #include "nmemory.h"
 
-static bool _NIteratorNext(NIterator *iterator) {
+static bool IteratorNext(NIterator *iterator) {
     return false;
 }
 
-static void *_NIteratorGet(NIterator *iterator) {
+static void *IteratorGet(NIterator *iterator) {
     return NULL;
 }
 
@@ -23,8 +23,8 @@ NIterator *NStoreIterator(void *iterator, int size) {
         NMoveMemory(store, iterator, size);
     } else {
         //empty iterator.
-        store->next = _NIteratorNext;
-        store->get  = _NIteratorGet ;
+        store->next = IteratorNext;
+        store->get  = IteratorGet ;
     }
     return store;
 }

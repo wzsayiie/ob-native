@@ -19,7 +19,7 @@ static void WordArrayStretch(NWordArray *array, int least) {
         if (enough % EVERY_ALLOC_ITEM_NUM > 0) {
             enough = (enough / EVERY_ALLOC_ITEM_NUM + 1) * EVERY_ALLOC_ITEM_NUM;
         }
-        array->items = NRealloc(array->items, enough * single);
+        array->items = NReallocMemory(array->items, enough * single);
     }
 }
 
@@ -31,7 +31,7 @@ static void WordArrayShrink(NWordArray *array) {
     if (vacancy > MAX_RESERVE_ITEM_NUM) {
         int enough = array->count + EVERY_ALLOC_ITEM_NUM;
         enough -= enough % EVERY_ALLOC_ITEM_NUM;
-        array->items = NRealloc(array->items, enough * single);
+        array->items = NReallocMemory(array->items, enough * single);
     }
 }
 
@@ -82,7 +82,7 @@ static void WordArrayClear(NWordArray *array) {
             NRelease(item.asPtr);
         }
     }
-    NFree(array->items);
+    NFreeMemory(array->items);
 }
 
 NWordArray *NWordArrayCreate(NWordArrayConf *conf) {

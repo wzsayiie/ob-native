@@ -16,7 +16,7 @@ static NMemory *MemoryPtr(const void *ptr) {
     return (NMemory *)ptr - 1;
 }
 
-void *NAlloc(int size) {
+void *NAllocMemory(int size) {
     if (size <= 0) {
         return NULL;
     }
@@ -32,13 +32,13 @@ void *NAlloc(int size) {
     }
 }
 
-void *NRealloc(void *ptr, int size) {
+void *NReallocMemory(void *ptr, int size) {
     if (size <= 0) {
         free(ptr);
         return NULL;
     }
     if (!ptr) {
-        return NAlloc(size);
+        return NAllocMemory(size);
     }
     
     NMemory *oldMem = MemoryPtr(ptr);
@@ -55,7 +55,7 @@ void *NRealloc(void *ptr, int size) {
     }
 }
 
-void *NDup(const void *ptr) {
+void *NDupMemory(const void *ptr) {
     if (!ptr) {
         return NULL;
     }
@@ -72,7 +72,7 @@ void *NDup(const void *ptr) {
     }
 }
 
-void NFree(void *ptr) {
+void NFreeMemory(void *ptr) {
     if (ptr) {
         NMemory *memory = MemoryPtr(ptr);
         free(memory);
@@ -106,7 +106,7 @@ nstruct(NObjectCarrier, {
 });
 
 NObject *NCreate(int length, void *clear) {
-    NObjectCarrier *carrier = NAlloc(nisizeof(NObjectCarrier) + length);
+    NObjectCarrier *carrier = NAllocMemory(nisizeof(NObjectCarrier) + length);
     
     carrier->count = 1;
     carrier->clear = clear;
@@ -138,6 +138,6 @@ void NRelease(NObject *object) {
         if (carrier->clear) {
             carrier->clear(object);
         }
-        NFree(carrier);
+        NFreeMemory(carrier);
     }
 }

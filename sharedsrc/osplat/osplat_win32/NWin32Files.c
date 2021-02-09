@@ -120,12 +120,12 @@ bool NMakeDirectory(NString *path, bool intermediate)
         //SHCreateDirectory() isn't support relative path.
         if (size >= 2 * sizeof(WCHAR) && chars[1] != L':')
         {
-            WCHAR *allChars = NAlloc(MAX_PATH * sizeof(WCHAR) + sizeof(WCHAR) + size);
+            WCHAR *allChars = NAllocMemory(MAX_PATH * sizeof(WCHAR) + sizeof(WCHAR) + size);
             GetCurrentDirectoryW(MAX_PATH, allChars);
             ConcatenatePath(allChars, chars);
 
             int error = SHCreateDirectoryExW(NULL, allChars, NULL);
-            NFree(allChars);
+            NFreeMemory(allChars);
 
             return error == ERROR_SUCCESS;
         }
@@ -154,7 +154,7 @@ NArray *NCopySubitems(NString *path, bool *success)
     LPCWSTR chars = NStringU16Chars(path);
     int size = NStringU16Size(path);
 
-    WCHAR *target = NAlloc(size + 3 * sizeof(WCHAR));
+    WCHAR *target = NAllocMemory(size + 3 * sizeof(WCHAR));
     wcscpy(target, chars);
     ConcatenatePath(target, L"*");
 
@@ -163,7 +163,7 @@ NArray *NCopySubitems(NString *path, bool *success)
     HANDLE state = FindFirstFileW(target, &data);
     if (state == INVALID_HANDLE_VALUE)
     {
-        NFree(target);
+        NFreeMemory(target);
         if (success) {*success = false;}
         return NULL;
     }
@@ -188,7 +188,7 @@ NArray *NCopySubitems(NString *path, bool *success)
     }
     FindClose(state);
 
-    NFree(target);
+    NFreeMemory(target);
     if (success) {*success = false;}
     return subitems;
 }
@@ -224,7 +224,7 @@ void NRemovePath(NString *path)
     const WCHAR *chars = NStringU16Chars(path);
     int size = NStringU16Size(path);
 
-    uint8_t *from = NAlloc(size + 2 * sizeof(WCHAR));
+    uint8_t *from = NAllocMemory(size + 2 * sizeof(WCHAR));
     NMoveMemory(from, chars, size);
     NMoveMemory(from + size, L"\0\0", 2 * sizeof(WCHAR));
 
@@ -236,5 +236,5 @@ void NRemovePath(NString *path)
     operation.fFlags = FOF_ALLOWUNDO | FOF_NOCONFIRMATION;
     SHFileOperationW(&operation);
 
-    NFree(from);
+    NFreeMemory(from);
 }

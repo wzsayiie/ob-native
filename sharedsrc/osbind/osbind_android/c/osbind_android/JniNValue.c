@@ -86,7 +86,7 @@ Java_src_shared_osbind_NValue_allocU8Chars(JNIEnv *env, jclass cls,
 
         int count = (int)strlen(chars);
         int size = (count + 1) * nisizeof(char);
-        object = NAlloc(size);
+        object = NAllocMemory(size);
         NMoveMemory(object, chars, size);
 
         (*env)->ReleaseStringUTFChars(env, string, chars);
@@ -114,7 +114,7 @@ Java_src_shared_osbind_NValue_allocU16Chars(JNIEnv *env, jclass cls,
 
         int count = (int)strlen16(chars);
         int size = (count + 1) * nisizeof(char16_t);
-        object = NAlloc(size);
+        object = NAllocMemory(size);
         NMoveMemory(object, chars, size);
 
         (*env)->ReleaseStringChars(env, string, chars);
@@ -141,7 +141,7 @@ Java_src_shared_osbind_NValue_freeMemory(JNIEnv *env, jclass cls,
     UNUSED(cls);
 
     void *ptr = (void *)word;
-    NFree(ptr);
+    NFreeMemory(ptr);
 }
 
 JNIEXPORT jstring JNICALL

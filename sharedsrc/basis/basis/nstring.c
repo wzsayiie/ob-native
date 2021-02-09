@@ -8,9 +8,9 @@ nclass(NString, NObject, {
 });
 
 static void StringClear(NString *string) {
-    NFree(string->u32chars);
-    NFree(string->u16chars);
-    NFree(string->u8chars );
+    NFreeMemory(string->u32chars);
+    NFreeMemory(string->u16chars);
+    NFreeMemory(string->u8chars );
 }
 
 NString *NStringCreateWithUTFBytes(NUTFType type, const void *begin, const void *end) {
@@ -52,9 +52,9 @@ NString *NStringCopy(NString *that) {
 
     self->length = that->length;
     //only copy one format.
-    if /**/ (that->u32chars) {self->u32chars = NDup(that->u32chars);}
-    else if (that->u16chars) {self->u16chars = NDup(that->u16chars);}
-    else if (that->u8chars ) {self->u8chars  = NDup(that->u8chars );}
+    if /**/ (that->u32chars) {self->u32chars = NDupMemory(that->u32chars);}
+    else if (that->u16chars) {self->u16chars = NDupMemory(that->u16chars);}
+    else if (that->u8chars ) {self->u8chars  = NDupMemory(that->u8chars );}
 
     return self;
 }
@@ -188,18 +188,18 @@ static void StringJoin(void **head, void *tail, int zeroSize) {
         int headSize = NMemorySize(*head);
         int tailSize = NMemorySize( tail);
 
-        *head = NRealloc(*head, headSize - zeroSize + tailSize);
+        *head = NReallocMemory(*head, headSize - zeroSize + tailSize);
         NMoveMemory((int8_t *)*head + headSize - zeroSize, tail, tailSize);
 
     } else {
-        *head = NDup(tail);
+        *head = NDupMemory(tail);
     }
 }
 
 static void StringOnlyReserve(NString *string, NUTFType type) {
-    if (type != NUTF32) {NFree(string->u32chars); string->u32chars = NULL;}
-    if (type != NUTF16) {NFree(string->u16chars); string->u16chars = NULL;}
-    if (type != NUTF8 ) {NFree(string->u8chars ); string->u8chars  = NULL;}
+    if (type != NUTF32) {NFreeMemory(string->u32chars); string->u32chars = NULL;}
+    if (type != NUTF16) {NFreeMemory(string->u16chars); string->u16chars = NULL;}
+    if (type != NUTF8 ) {NFreeMemory(string->u8chars ); string->u8chars  = NULL;}
 }
 
 void NStringAppend(NString *self, NString *that) {

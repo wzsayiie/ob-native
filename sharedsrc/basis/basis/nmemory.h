@@ -2,10 +2,10 @@
 
 #include "nenviron.h"
 
-nfunc(void *, NAlloc  , (int size));
-nfunc(void *, NRealloc, (void *ptr, int size));
-nfunc(void *, NDup    , (const void *ptr));
-nfunc(void  , NFree   , (void *ptr));
+nfunc(void *, NAllocMemory  , (int size));
+nfunc(void *, NReallocMemory, (void *ptr, int size));
+nfunc(void *, NDupMemory    , (const void *ptr));
+nfunc(void  , NFreeMemory   , (void *ptr));
 
 nfunc(int , NMemorySize, (const void *ptr));
 nfunc(void, NZeroMemory, (void *ptr, int size));

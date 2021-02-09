@@ -5,13 +5,13 @@ nclass(NData, NObject, {
 });
 
 static void DataClear(NData *data) {
-    NFree(data->bytes);
+    NFreeMemory(data->bytes);
 }
 
 NData *NDataCreateWithBytes(const void *bytes, int size) {
     NData *self = NDataCreate();
     if (bytes && size > 0) {
-        self->bytes = NRealloc(self->bytes, size);
+        self->bytes = NReallocMemory(self->bytes, size);
         NMoveMemory(self->bytes, bytes, size);
     }
     return self;
@@ -20,7 +20,7 @@ NData *NDataCreateWithBytes(const void *bytes, int size) {
 NData *NDataCreateWithSize(int size) {
     NData *self = NDataCreate();
     if (size > 0) {
-        self->bytes = NRealloc(self->bytes, size);
+        self->bytes = NReallocMemory(self->bytes, size);
     }
     return self;
 }
@@ -32,7 +32,7 @@ NData *NDataCreate(void) {
 NData *NDataCopy(NData *that) {
     if (that) {
         NData *data = NDataCreate();
-        data->bytes = NDup(that->bytes);
+        data->bytes = NDupMemory(that->bytes);
         return data;
     }
     return NULL;
@@ -40,7 +40,7 @@ NData *NDataCopy(NData *that) {
 
 void NDataResize(NData *self, int size) {
     if (self) {
-        self->bytes = NRealloc(self->bytes, size);
+        self->bytes = NReallocMemory(self->bytes, size);
     }
 }
 

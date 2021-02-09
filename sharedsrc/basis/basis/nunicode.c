@@ -271,7 +271,7 @@ static void *DupUTF(NUTFType dstType, NUTFType srcType, bool isBytes, const void
 
         if (usedSize + 4 > buffSize) {
             buffSize += 256; //allocate 256 bytes one time.
-            buff = NRealloc(buff, buffSize);
+            buff = NReallocMemory(buff, buffSize);
         }
         usedSize += writer(buff + usedSize, chr);
     }
@@ -279,11 +279,11 @@ static void *DupUTF(NUTFType dstType, NUTFType srcType, bool isBytes, const void
     //add '\0' at the end.
     if (usedSize + 4 > buffSize) {
         buffSize += 4;
-        buff = NRealloc(buff, buffSize);
+        buff = NReallocMemory(buff, buffSize);
     }
     usedSize += writer(buff + usedSize, 0);
 
-    buff = NRealloc(buff, usedSize);
+    buff = NReallocMemory(buff, usedSize);
     return buff;
 }
 

@@ -1,7 +1,7 @@
 #include "naction.h"
 #include <stdarg.h>
 
-#define GEN_INIT(A, F, D, C) _NObjectInit(&A->Super); A->func = F; A->data = D; A->argc = C;
+#define GEN_INIT(A, F, D, C) _NObjectInit(nsuperof(A)); A->func = F; A->data = D; A->argc = C;
 
 void _NActionInitWithFunc3(NAction *act, NActionFunc3 func, NRef data) {GEN_INIT(act, func, data, 3)}
 void _NActionInitWithFunc2(NAction *act, NActionFunc2 func, NRef data) {GEN_INIT(act, func, data, 2)}
@@ -11,7 +11,7 @@ void _NActionInit         (NAction *act                              ) {GEN_INIT
 
 void _NActionDeinit(NAction *action) {
     NRelease(action->data);
-    _NObjectDeinit(&action->Super);
+    _NObjectDeinit(nsuperof(action));
 }
 
 #define GEN_CREATE(I, ...) NAction *a = NAlloc(NAction, _NActionDeinit); I(a, ##__VA_ARGS__); return a;

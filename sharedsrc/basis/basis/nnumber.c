@@ -1,6 +1,6 @@
 #include "nnumber.h"
 
-#define GEN_INIT(NUM, VAL) _NObjectInit(&NUM->Super); NUM->value = VAL;
+#define GEN_INIT(NUM, VAL) _NObjectInit(nsuperof(NUM)); NUM->value = VAL;
 
 void _NNumberInitWithBool  (NNumber *num, bool     val) {GEN_INIT(num, NMakeBoolValue  (val));}
 void _NNumberInitWithInt64 (NNumber *num, int64_t  val) {GEN_INIT(num, NMakeInt64Value (val));}
@@ -12,7 +12,7 @@ void _NNumberInitWithFloat (NNumber *num, float    val) {GEN_INIT(num, NMakeFloa
 void _NNumberInit          (NNumber *num              ) {GEN_INIT(num, NMakeIntValue   (0)  );}
 
 void _NNumberDeinit(NNumber *number) {
-    _NObjectDeinit(&number->Super);
+    _NObjectDeinit(nsuperof(number));
 }
 
 #define GEN_CREATE(I, ...) NNumber *n = NAlloc(NNumber, _NNumberDeinit); I(n, ##__VA_ARGS__); return n;

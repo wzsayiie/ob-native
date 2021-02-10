@@ -85,7 +85,7 @@ Java_src_shared_osbind_NValue_allocU8Chars(JNIEnv *env, jclass cls,
         const char *chars = (*env)->GetStringUTFChars(env, string, NULL);
 
         int count = (int)strlen(chars);
-        int size = (count + 1) * nisizeof(char);
+        int size = (count + 1) * nsizeof(char);
         object = NAllocMemory(size);
         NMoveMemory(object, chars, size);
 
@@ -113,7 +113,7 @@ Java_src_shared_osbind_NValue_allocU16Chars(JNIEnv *env, jclass cls,
         const char16_t *chars = (*env)->GetStringChars(env, string, NULL);
 
         int count = (int)strlen16(chars);
-        int size = (count + 1) * nisizeof(char16_t);
+        int size = (count + 1) * nsizeof(char16_t);
         object = NAllocMemory(size);
         NMoveMemory(object, chars, size);
 

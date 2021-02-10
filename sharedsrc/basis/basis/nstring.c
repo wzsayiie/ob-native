@@ -1,7 +1,7 @@
 #include "nstring.h"
 
 void _NStringInitWithUTFBytes(NString *string, NUTFType type, const void *begin, const void *end) {
-    _NObjectInit(&string->Super);
+    _NObjectInit(nsuperof(string));
 
     string->length = -1;
 
@@ -11,7 +11,7 @@ void _NStringInitWithUTFBytes(NString *string, NUTFType type, const void *begin,
 }
 
 void _NStringInitWithUTFChars(NString *string, NUTFType type, const void *chars) {
-    _NObjectInit(&string->Super);
+    _NObjectInit(nsuperof(string));
 
     string->length = -1;
 
@@ -21,7 +21,7 @@ void _NStringInitWithUTFChars(NString *string, NUTFType type, const void *chars)
 }
 
 void _NStringInit(NString *string) {
-    _NObjectInit(&string->Super);
+    _NObjectInit(nsuperof(string));
 
     string->length = -1;
 }
@@ -31,7 +31,7 @@ void _NStringDeinit(NString *string) {
     NFreeMemory(string->u16chars);
     NFreeMemory(string->u8chars );
     
-    _NObjectDeinit(&string->Super);
+    _NObjectDeinit(nsuperof(string));
 }
 
 NString *NStringCreateWithUTFBytes(NUTFType type, const void *begin, const void *end) {
@@ -114,9 +114,9 @@ static int StringUTFSize(NString *string, NUTFType type) {
     if (chars) {
         int size = NMemorySize(chars);
 
-        if (type == NUTF32) {return size - nisizeof(char32_t);}
-        if (type == NUTF16) {return size - nisizeof(char16_t);}
-        if (type == NUTF8 ) {return size - nisizeof(char    );}
+        if (type == NUTF32) {return size - nsizeof(char32_t);}
+        if (type == NUTF16) {return size - nsizeof(char16_t);}
+        if (type == NUTF8 ) {return size - nsizeof(char    );}
 
         return 0;
     }

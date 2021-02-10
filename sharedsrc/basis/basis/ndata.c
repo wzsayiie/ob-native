@@ -1,7 +1,7 @@
 #include "ndata.h"
 
 void _NDataInitWithBytes(NData *data, const void *bytes, int size) {
-    _NObjectInit(&data->Super);
+    _NObjectInit(nsuperof(data));
 
     if (bytes && size > 0) {
         data->bytes = NAllocMemory(size);
@@ -10,7 +10,7 @@ void _NDataInitWithBytes(NData *data, const void *bytes, int size) {
 }
 
 void _NDataInitWithSize(NData *data, int size) {
-    _NObjectInit(&data->Super);
+    _NObjectInit(nsuperof(data));
 
     if (size > 0) {
         data->bytes = NAllocMemory(size);
@@ -18,12 +18,12 @@ void _NDataInitWithSize(NData *data, int size) {
 }
 
 void _NDataInit(NData *data) {
-    _NObjectInit(&data->Super);
+    _NObjectInit(nsuperof(data));
 }
 
 void _NDataDeinit(NData *data) {
     NFreeMemory(data->bytes);
-    _NObjectDeinit(&data->Super);
+    _NObjectDeinit(nsuperof(data));
 }
 
 NData *NDataCreateWithBytes(const void *bytes, int size) {

@@ -135,7 +135,7 @@ nenum(NType) {
 
 //type modifiers:
 
-#define nisizeof(type) ((int)sizeof(type))
+#define nsizeof(type) ((int)sizeof(type))
 
 #if N_COMPILER_CL
     #define nthreadlocal __declspec(thread)

@@ -154,7 +154,7 @@ struct StructAdder {
 
 #undef  nstruct
 #undef  nclass
-#define nstruct(n,    ...) __nstruct(n,    __VA_ARGS__); __add_struct(n, NULL, nisizeof(n))
+#define nstruct(n,    ...) __nstruct(n,    __VA_ARGS__); __add_struct(n, NULL, nsizeof(n))
 #define nclass( n, s, ...) __nclass (n, s, __VA_ARGS__); __add_struct(n, #s  , 0)
 
 #include "NEXPORT.h"

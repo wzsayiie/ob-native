@@ -60,9 +60,9 @@ static int Int64Comparer(NWord a, NWord b) {
 /**/                                                            \
 /**/        conf.keyCompare  = K_C;                             \
 /**/        conf.keyRetain   = K_R;                             \
-/**/        conf.keySize     = nisizeof(K_T);                   \
+/**/        conf.keySize     = nsizeof(K_T);                    \
 /**/        conf.valueRetain = V_R;                             \
-/**/        conf.valueSize   = nisizeof(V_T);                   \
+/**/        conf.valueSize   = nsizeof(V_T);                    \
 /**/                                                            \
 /**/        return (TABLE *)NWordTableCreate(&conf);            \
 /**/    }                                                       \

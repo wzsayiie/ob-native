@@ -205,7 +205,7 @@ static int CheckUTF(NUTFType type, bool isBytes, const void *p1, const void *p2,
     else if (type == NUTF8 ) {reader = isBytes ? NReadFromU8Bytes  : ReadFromU8Chars ;}
 
     if (!reader || !p1) {
-        NZeroMemory(outStat, nisizeof(*outStat));
+        NZeroMemory(outStat, nsizeof(*outStat));
         return 0;
     }
 

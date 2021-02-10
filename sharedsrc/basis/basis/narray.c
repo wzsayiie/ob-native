@@ -70,7 +70,7 @@ static void WordArrayMove(NWordArray *array, int index, int offset) {
 }
 
 void _NWordArrayInit(NWordArray *array, NWordArrayConf *conf) {
-    _NObjectInit(&array->Super);
+    _NObjectInit(nsuperof(array));
 
     array->conf = *conf;
 }
@@ -84,7 +84,7 @@ void _NWordArrayDeinit(NWordArray *array) {
     }
     NFreeMemory(array->items);
     
-    _NObjectDeinit(&array->Super);
+    _NObjectDeinit(nsuperof(array));
 }
 
 NWordArray *NWordArrayCreate(NWordArrayConf *conf) {
@@ -149,7 +149,7 @@ NIterator *NWordArrayItems(NWordArray *array) {
     iterator.array = array;
     iterator.ready = 0;
 
-    return NStoreIterator(&iterator, nisizeof(iterator));
+    return NStoreIterator(&iterator, nsizeof(iterator));
 }
 
 void NWordArrayPush(NWordArray *array, NWord item) {
@@ -230,7 +230,7 @@ NWord NWordArrayGet(NWordArray *array, int index) {
 /**/        NWordArrayConf conf = {0};                              \
 /**/                                                                \
 /**/        conf.itemRetain = I_RETAIN;                             \
-/**/        conf.itemSize = nisizeof(I_TYPE);                       \
+/**/        conf.itemSize = nsizeof(I_TYPE);                        \
 /**/                                                                \
 /**/        return (ARRAY *)NWordArrayCreate(&conf);                \
 /**/    }                                                           \

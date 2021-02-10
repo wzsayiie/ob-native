@@ -3,10 +3,10 @@
 #include "niterator.h"
 #include "nmemory.h"
 #include "npod.h"
+#include "scalist.h"
 
 nstruct(NWordArrayConf, {
-    bool itemRetain;
-    int  itemSize;
+    bool retain;
 });
 
 nclass(NWordArray, NObject, {
@@ -16,8 +16,7 @@ nclass(NWordArray, NObject, {
     };
 
     NWordArrayConf conf;
-    void *items;
-    int count;
+    scalist list;
 });
 
 void _NWordArrayInit  (NWordArray *array, NWordArrayConf *conf);
@@ -42,6 +41,9 @@ nclass(NArray, NWordArray, {
     };
 });
 
+void _NArrayInit  (NArray *array);
+void _NArrayDeinit(NArray *array);
+
 nfunc(NArray    *, NArrayCreate, (void));
 nfunc(NArray    *, NArrayCopy  , (NArray *that ));
 nfunc(int        , NArrayCount , (NArray *array));
@@ -60,6 +62,9 @@ nclass(NIntArray, NWordArray, {
     };
 });
 
+void _NIntArrayInit  (NIntArray *array);
+void _NIntArrayDeinit(NIntArray *array);
+
 nfunc(NIntArray *, NIntArrayCreate, (void));
 nfunc(NIntArray *, NIntArrayCopy  , (NIntArray *that ));
 nfunc(int        , NIntArrayCount , (NIntArray *array));
@@ -77,6 +82,9 @@ nclass(NFltArray, NWordArray, {
         NWordArray Super ;
     };
 });
+
+void _NFltArrayInit  (NFltArray *array);
+void _NFltArrayDeinit(NFltArray *array);
 
 nfunc(NFltArray *, NFltArrayCreate, (void));
 nfunc(NFltArray *, NFltArrayCopy  , (NFltArray *that ));

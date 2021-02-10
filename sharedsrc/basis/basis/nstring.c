@@ -162,7 +162,7 @@ static bool StringIteratorNext(StringIterator *it) {
     return false;
 }
 
-static void *StringIteratorGet(StringIterator *it) {
+static void *StringIteratorCurr(StringIterator *it) {
     return &it->current;
 }
 
@@ -172,8 +172,8 @@ NIterator *NStringRange(NString *string) {
     }
 
     StringIterator it = {0};
-    it.super.next = (NIteratorNextFunc)StringIteratorNext;
-    it.super.get  = (NIteratorGetFunc )StringIteratorGet ;
+    it.super.next = (NIteratorNext)StringIteratorNext;
+    it.super.curr = (NIteratorCurr)StringIteratorCurr;
 
     if /**/ (string->u32chars) {it.step = NReadFromU32Chars; it.remaining = string->u32chars;}
     else if (string->u16chars) {it.step = NReadFromU16Chars; it.remaining = string->u16chars;}
@@ -243,8 +243,8 @@ int NStringCompare(NString *string, NString *that) {
         bool thatValid = thatIter->next(thatIter);
 
         if (thisValid && thatValid) {
-            char32_t thisChar = *(char32_t *)thisIter->get(thisIter);
-            char32_t thatChar = *(char32_t *)thatIter->get(thatIter);
+            char32_t thisChar = thisIter->curr(thisIter).asUInt32;
+            char32_t thatChar = thatIter->curr(thatIter).asUInt32;
 
             if (thisChar > thatChar) {return  1;}
             if (thisChar < thatChar) {return -1;}

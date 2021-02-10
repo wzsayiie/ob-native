@@ -66,20 +66,26 @@ int NWordArrayCount(NWordArray *array) {
 }
 
 nstruct(NWordArrayIterator, {
-    NIterator   super ;
-    NWordArray *array ;
-    int         cursor;
+    NIterator super;
+    scalist  *list ;
+    int       curr ;
 });
 
 static bool WordArrayIteratorNext(NWordArrayIterator *iterator) {
-    return (iterator->cursor) < slcount(&(iterator->array->list));
+    if  ((iterator->curr + 1) < slcount(iterator->list)) {
+        iterator->curr += 1;
+        return true;
+    }
+    return false;
 }
 
-static void *WordArrayIteratorGet(NWordArrayIterator *iterator) {
-    static nthreadlocal word item = {0};
-
-    item = slget(&(iterator->array->list), (iterator->cursor)++);
-    return &item;
+static NWord WordArrayIteratorCurr(NWordArrayIterator *iterator) {
+    NWord curr = {0};
+    
+    word item = slget(iterator->list, iterator->curr);
+    curr.asPtr = item.asptr;
+    
+    return curr;
 }
 
 NIterator *NWordArrayItems(NWordArray *array) {
@@ -89,10 +95,10 @@ NIterator *NWordArrayItems(NWordArray *array) {
 
     NWordArrayIterator iterator = {0};
 
-    iterator.super.next = (NIteratorNextFunc)WordArrayIteratorNext;
-    iterator.super.get  = (NIteratorGetFunc )WordArrayIteratorGet ;
-    iterator.array  = array;
-    iterator.cursor = 0;
+    iterator.super.next = (NIteratorNext)WordArrayIteratorNext;
+    iterator.super.curr = (NIteratorCurr)WordArrayIteratorCurr;
+    iterator.list = &array->list;
+    iterator.curr = -1;
 
     return NStoreIterator(&iterator, nsizeof(iterator));
 }

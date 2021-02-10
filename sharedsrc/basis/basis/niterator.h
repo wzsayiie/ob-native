@@ -1,20 +1,21 @@
 #pragma once
 
 #include "nenviron.h"
+#include "npod.h"
 
 typedef struct NIterator NIterator;
 
-typedef bool  (*NIteratorNextFunc)(NIterator *iterator);
-typedef void *(*NIteratorGetFunc )(NIterator *iterator);
+typedef bool  (*NIteratorNext)(NIterator *iterator);
+typedef NWord (*NIteratorCurr)(NIterator *iterator);
 
 nstruct(NIterator, {
-    NIteratorNextFunc next;
-    NIteratorGetFunc  get ;
+    NIteratorNext next; //move cursor to next position.
+    NIteratorCurr curr; //get current value.
 });
 
 nfunc(NIterator *, NStoreIterator, (void *iterator, int size));
 
-#define nfor(type, value, iterator) \
-/**/    for (NIterator *__i = iterator                        ; __i           ; __i = 0) \
-/**/    for (                                                 ; __i->next(__i);        ) \
-/**/    for (type value = *(type *)__i->get(__i), **__b = NULL; !__b          ; ++__b  )
+#define nfor(type, value, iterator)                                        \
+/**/    for (NIterator *_i = iterator              ; _i && _i->next(_i); ) \
+/**/    for (NWord      _v = _i->curr(_i), **_a = 0; !_a++             ; ) \
+/**/    for (type    value = *(type *)&_v, **_b = 0; !_b++             ; )

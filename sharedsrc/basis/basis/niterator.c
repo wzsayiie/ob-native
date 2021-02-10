@@ -5,8 +5,9 @@ static bool IteratorNext(NIterator *iterator) {
     return false;
 }
 
-static void *IteratorGet(NIterator *iterator) {
-    return NULL;
+static NWord IteratorCurr(NIterator *iterator) {
+    NWord value = {0};
+    return value;
 }
 
 #define ITERATOR_NUM  16
@@ -19,12 +20,12 @@ NIterator *NStoreIterator(void *iterator, int size) {
     sIndex = (sIndex + 1) % ITERATOR_NUM;
 
     NIterator *store = (NIterator *)sStore[sIndex];
-    if (iterator && 0 < size && size <= ITERATOR_SIZE) {
+    if (iterator && (0 < size && size <= ITERATOR_SIZE)) {
         NMoveMemory(store, iterator, size);
     } else {
         //empty iterator.
         store->next = IteratorNext;
-        store->get  = IteratorGet ;
+        store->curr = IteratorCurr;
     }
     return store;
 }

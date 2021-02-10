@@ -21,8 +21,8 @@ typedef struct avltree {
     cmpr    cmp ;
     cerpool pool;
     atnode *root;
+    bool    ieff;
     scalist idat;
-    int     icur;
 } avltree;
 
 void atinit  (avltree *tree, cmpr cmp);
@@ -33,10 +33,7 @@ word atremove(avltree *tree, word key);
 bool atexist (avltree *tree, word key);
 int  atcount (avltree *tree);
 
-void atpbgn(avltree *tree);
-void atrbgn(avltree *tree);
-bool atnext(avltree *tree);
-word atread(avltree *tree);
+scalist *atsort(avltree *tree);
 
 #if __cplusplus
 }

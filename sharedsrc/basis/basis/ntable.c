@@ -1,8 +1,10 @@
 #include "ntable.h"
 
-nclass(NWordTable, NObject, {
-    NWordTableConf conf;
-});
+void _NWordTableInit(NWordTable *table, NWordTableConf *conf) {
+}
+
+void _NWordTableDeinit(NWordTable *table) {
+}
 
 NWordTable *NWordTableCreate(NWordTableConf *conf) {
     return NULL;
@@ -12,19 +14,19 @@ NWordTable *NWordTableCopy(NWordTable *that) {
     return NULL;
 }
 
-void NWordTableSet(NWordTable *self, NWord key, NWord value) {
+void NWordTableSet(NWordTable *table, NWord key, NWord value) {
 }
 
-NWord NWordTableGet(NWordTable *self, NWord key) {
+NWord NWordTableGet(NWordTable *table, NWord key) {
     NWord word = {0};
     return word;
 }
 
-int NWordTableCount(NWordTable *self) {
+int NWordTableCount(NWordTable *table) {
     return 0;
 }
 
-NIterator *NWordTableKeys(NWordTable *self) {
+NIterator *NWordTableKeys(NWordTable *table) {
     return NULL;
 }
 
@@ -67,29 +69,29 @@ static int Int64Comparer(NWord a, NWord b) {
 /**/    TABLE *TABLE##Copy(TABLE *that) {                       \
 /**/        return (TABLE *)NWordTableCopy((NWordTable *)that); \
 /**/    }                                                       \
-/**/    void TABLE##Set(TABLE *self, K_T key, V_T value) {      \
+/**/    void TABLE##Set(TABLE *table, K_T key, V_T value) {     \
 /**/        NWord k = {0};                                      \
 /**/        NWord v = {0};                                      \
 /**/                                                            \
 /**/        k.K_M = key;                                        \
 /**/        v.V_M = value;                                      \
 /**/                                                            \
-/**/        NWordTableSet((NWordTable *)self, k, v);            \
+/**/        NWordTableSet((NWordTable *)table, k, v);           \
 /**/    }                                                       \
-/**/    V_T TABLE##Get(TABLE *self, K_T key) {                  \
+/**/    V_T TABLE##Get(TABLE *table, K_T key) {                 \
 /**/        NWord k = {0};                                      \
 /**/        k.K_M = key;                                        \
 /**/                                                            \
-/**/        NWord v = NWordTableGet((NWordTable *)self, k);     \
+/**/        NWord v = NWordTableGet((NWordTable *)table, k);    \
 /**/        return v.V_M;                                       \
 /**/    }                                                       \
-/**/    int TABLE##Count(TABLE *self) {                         \
-/**/        return NWordTableCount((NWordTable *)self);         \
+/**/    int TABLE##Count(TABLE *table) {                        \
+/**/        return NWordTableCount((NWordTable *)table);        \
 /**/    }                                                       \
-/**/    NIterator *TABLE##Keys(TABLE *self) {                   \
-/**/        return NWordTableKeys((NWordTable *)self);          \
+/**/    NIterator *TABLE##Keys(TABLE *table) {                  \
+/**/        return NWordTableKeys((NWordTable *)table);         \
 /**/    }
 
-GEN_TABLE(NTable   , ObjectComparer, NObject *, true , asPtr  , NObject *, true, asPtr)
-GEN_TABLE(NStrTable, StringComparer, NString *, true , asPtr  , NObject *, true, asPtr)
-GEN_TABLE(NIntTable, Int64Comparer , int64_t  , false, asInt64, NObject *, true, asPtr)
+GEN_TABLE(NTable   , ObjectComparer, NRef     , true , asPtr  , NRef, true, asPtr)
+GEN_TABLE(NStrTable, StringComparer, NString *, true , asPtr  , NRef, true, asPtr)
+GEN_TABLE(NIntTable, Int64Comparer , int64_t  , false, asInt64, NRef, true, asPtr)

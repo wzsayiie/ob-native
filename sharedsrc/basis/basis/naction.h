@@ -2,27 +2,43 @@
 
 #include "nmemory.h"
 
-typedef void (*NActionFunc3)(NObject *data, NObject *a, NObject *b, NObject *c);
-typedef void (*NActionFunc2)(NObject *data, NObject *a, NObject *b);
-typedef void (*NActionFunc1)(NObject *data, NObject *a);
-typedef void (*NActionFunc )(NObject *data);
+typedef void (*NActionFunc3)(NRef data, NRef a, NRef b, NRef c);
+typedef void (*NActionFunc2)(NRef data, NRef a, NRef b);
+typedef void (*NActionFunc1)(NRef data, NRef a);
+typedef void (*NActionFunc )(NRef data);
 
-nclass(NAction, NObject);
+nclass(NAction, NObject, {
+    union {
+        NObject Object;
+        NObject Super ;
+    };
 
-nfunc(NAction *, NActionCreateWithFunc3, (NActionFunc3 func, NObject *data));
-nfunc(NAction *, NActionCreateWithFunc2, (NActionFunc2 func, NObject *data));
-nfunc(NAction *, NActionCreateWithFunc1, (NActionFunc1 func, NObject *data));
-nfunc(NAction *, NActionCreateWithFunc , (NActionFunc  func, NObject *data));
+    void *func;
+    NRef  data;
+    int   argc;
+});
+
+void _NActionInitWithFunc3(NAction *action, NActionFunc3 func, NRef data);
+void _NActionInitWithFunc2(NAction *action, NActionFunc2 func, NRef data);
+void _NActionInitWithFunc1(NAction *action, NActionFunc1 func, NRef data);
+void _NActionInitWithFunc (NAction *action, NActionFunc  func, NRef data);
+void _NActionInit         (NAction *action);
+void _NActionDeinit       (NAction *action);
+
+nfunc(NAction *, NActionCreateWithFunc3, (NActionFunc3 func, NRef data));
+nfunc(NAction *, NActionCreateWithFunc2, (NActionFunc2 func, NRef data));
+nfunc(NAction *, NActionCreateWithFunc1, (NActionFunc1 func, NRef data));
+nfunc(NAction *, NActionCreateWithFunc , (NActionFunc  func, NRef data));
 nfunc(NAction *, NActionCreate         , (void));
 
-nfunc(void, NActionSetFunc3, (NAction *self, NActionFunc3 func, NObject *data));
-nfunc(void, NActionSetFunc2, (NAction *self, NActionFunc2 func, NObject *data));
-nfunc(void, NActionSetFunc1, (NAction *self, NActionFunc1 func, NObject *data));
-nfunc(void, NActionSetFunc , (NAction *self, NActionFunc  func, NObject *data));
+nfunc(void, NActionSetFunc3, (NAction *action, NActionFunc3 func, NRef data));
+nfunc(void, NActionSetFunc2, (NAction *action, NActionFunc2 func, NRef data));
+nfunc(void, NActionSetFunc1, (NAction *action, NActionFunc1 func, NRef data));
+nfunc(void, NActionSetFunc , (NAction *action, NActionFunc  func, NRef data));
 
-nfunc(void, NActionClear, (NAction *self));
+nfunc(void, NActionClear, (NAction *action));
 
-nfunc(void, NActionRun3, (NAction *self, NObject *a, NObject *b, NObject *c));
-nfunc(void, NActionRun2, (NAction *self, NObject *a, NObject *b));
-nfunc(void, NActionRun1, (NAction *self, NObject *a));
-nfunc(void, NActionRun , (NAction *self));
+nfunc(void, NActionRun3, (NAction *action, NRef a, NRef b, NRef c));
+nfunc(void, NActionRun2, (NAction *action, NRef a, NRef b));
+nfunc(void, NActionRun1, (NAction *action, NRef a));
+nfunc(void, NActionRun , (NAction *action));

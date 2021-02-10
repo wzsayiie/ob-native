@@ -99,45 +99,48 @@ void NMoveMemory(void *dst, const void *src, int size) {
     }
 }
 
-nstruct(NObjectCarrier, {
-    int count;
-    void (*clear)(void *);
-    int8_t object[];
-});
-
-NObject *NCreate(int length, void *clear) {
-    NObjectCarrier *carrier = NAllocMemory(nisizeof(NObjectCarrier) + length);
+void *NAllocObj(int size, void *deinit) {
+    NObject *object = NAllocMemory(size);
     
-    carrier->count = 1;
-    carrier->clear = clear;
+    object->deinit = deinit;
+    object->refCount = 1;
     
-    return carrier->object;
-}
-
-NObject *NRetain(NObject *object) {
-    if (object) {
-        NObjectCarrier *carrier = (NObjectCarrier *)object - 1;
-        nsynwith(carrier) {
-            carrier->count += 1;
-        }
-    }
     return object;
 }
 
-void NRelease(NObject *object) {
-    if (!object) {
+NRef NRetain(NRef ref) {
+    if (ref) {
+        nsynwith(ref) {
+            NObject *object = ref;
+            object->refCount += 1;
+        }
+    }
+    return ref;
+}
+
+void NRelease(NRef ref) {
+    if (!ref) {
         return;
     }
     
-    NObjectCarrier *carrier = (NObjectCarrier *)object - 1;
-    nsynwith(carrier) {
-        if (--(carrier->count) > 0) {
+    nsynwith(ref) {
+        NObject *object = ref;
+        if (--(object->refCount) > 0) {
             break;
         }
         
-        if (carrier->clear) {
-            carrier->clear(object);
+        if (object->deinit) {
+            object->deinit(object);
         }
-        NFreeMemory(carrier);
+        NFreeMemory(object);
     }
+}
+
+void _NObjectInit  (NObject *object) {}
+void _NObjectDeinit(NObject *object) {}
+
+NObject *NObjectCreate(void) {
+    NObject *object = NAlloc(NObject, _NObjectDeinit);
+    _NObjectInit(object);
+    return object;
 }

@@ -2,6 +2,8 @@
 
 #include "nenviron.h"
 
+//pod memory management:
+
 nfunc(void *, NAllocMemory  , (int size));
 nfunc(void *, NReallocMemory, (void *ptr, int size));
 nfunc(void *, NDupMemory    , (const void *ptr));
@@ -11,11 +13,22 @@ nfunc(int , NMemorySize, (const void *ptr));
 nfunc(void, NZeroMemory, (void *ptr, int size));
 nfunc(void, NMoveMemory, (void *dst, const void *src, int size));
 
-typedef void NObject;
+//object managed with reference counting:
 
-//NCreate : allocate a pod object and set its reference count to 1.
-//NRetain : increment the reference count by 1.
-//NRelease: decrease the count by 1. if the count reduced to 0, delete the object.
-nfunc(NObject *, NCreate , (int      length, void *clear));
-nfunc(NObject *, NRetain , (NObject *object));
-nfunc(void     , NRelease, (NObject *object));
+typedef void *NRef;
+
+#define NAlloc(cls, deinit) NAllocObj(nisizeof(cls), deinit)
+
+nfunc(NRef, NAllocObj, (int size, void *deinit));
+nfunc(NRef, NRetain  , (NRef ref));
+nfunc(void, NRelease , (NRef ref));
+
+nstruct(NObject, {
+    void (*deinit)(void *);
+    int refCount;
+});
+
+void _NObjectInit  (NObject *object);
+void _NObjectDeinit(NObject *object);
+
+nfunc(NObject *, NObjectCreate, (void));

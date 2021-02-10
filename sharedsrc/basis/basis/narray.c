@@ -1,11 +1,5 @@
 #include "narray.h"
 
-nclass(NWordArray, NObject, {
-    NWordArrayConf conf;
-    void *items;
-    int count;
-});
-
 static const int MAX_RESERVE_ITEM_NUM = 64;
 static const int EVERY_ALLOC_ITEM_NUM = 16;
 
@@ -75,7 +69,13 @@ static void WordArrayMove(NWordArray *array, int index, int offset) {
     NMoveMemory(dst, src, len * array->conf.itemSize);
 }
 
-static void WordArrayClear(NWordArray *array) {
+void _NWordArrayInit(NWordArray *array, NWordArrayConf *conf) {
+    _NObjectInit(&array->Super);
+
+    array->conf = *conf;
+}
+
+void _NWordArrayDeinit(NWordArray *array) {
     if (array->conf.itemRetain) {
         for (int n = 0; n < (array->count); ++n) {
             NWord item = WordArrayRead(array, n);
@@ -83,12 +83,14 @@ static void WordArrayClear(NWordArray *array) {
         }
     }
     NFreeMemory(array->items);
+    
+    _NObjectDeinit(&array->Super);
 }
 
 NWordArray *NWordArrayCreate(NWordArrayConf *conf) {
-    NWordArray *self = NCreate(nisizeof(NWordArray), WordArrayClear);
-    self->conf = *conf;
-    return self;
+    NWordArray *array = NAlloc(NWordArray, _NWordArrayDeinit);
+    _NWordArrayInit(array, conf);
+    return array;
 }
 
 NWordArray *NWordArrayCopy(NWordArray *that) {
@@ -96,24 +98,24 @@ NWordArray *NWordArrayCopy(NWordArray *that) {
         return NULL;
     }
 
-    NWordArray *self = NWordArrayCreate(&that->conf);
-    WordArrayStretch(self, that->count);
-    NMoveMemory(self->items, that->items, that->count * that->conf.itemSize);
-    self->count = that->count;
+    NWordArray *array = NWordArrayCreate(&that->conf);
+    WordArrayStretch(array, that->count);
+    NMoveMemory(array->items, that->items, that->count * that->conf.itemSize);
+    array->count = that->count;
 
-    if (self->conf.itemRetain) {
-        for (int n = 0; n < (self->count); ++n) {
-            NWord item = WordArrayRead(self, n);
+    if (array->conf.itemRetain) {
+        for (int n = 0; n < (array->count); ++n) {
+            NWord item = WordArrayRead(array, n);
             NRetain(item.asPtr);
         }
     }
 
-    return self;
+    return array;
 }
 
-int NWordArrayCount(NWordArray *self) {
-    if (self) {
-        return self->count;
+int NWordArrayCount(NWordArray *array) {
+    if (array) {
+        return array->count;
     }
     return 0;
 }
@@ -135,8 +137,8 @@ static void *NWordArrayIteratorGet(NWordArrayIterator *iterator) {
     return begin + every * (iterator->ready)++;
 }
 
-NIterator *NWordArrayItems(NWordArray *self) {
-    if (!self) {
+NIterator *NWordArrayItems(NWordArray *array) {
+    if (!array) {
         return NStoreIterator(NULL, 0);
     }
 
@@ -144,78 +146,78 @@ NIterator *NWordArrayItems(NWordArray *self) {
 
     iterator.super.next = (NIteratorNextFunc)NWordArrayIteratorNext;
     iterator.super.get  = (NIteratorGetFunc )NWordArrayIteratorGet ;
-    iterator.array = self;
+    iterator.array = array;
     iterator.ready = 0;
 
     return NStoreIterator(&iterator, nisizeof(iterator));
 }
 
-void NWordArrayPush(NWordArray *self, NWord item) {
-    if (!self) {
+void NWordArrayPush(NWordArray *array, NWord item) {
+    if (!array) {
         return;
     }
 
-    WordArrayStretch(self, 1);
-    WordArrayWrite(self, self->count, item);
-    self->count += 1;
+    WordArrayStretch(array, 1);
+    WordArrayWrite(array, array->count, item);
+    array->count += 1;
 }
 
-void NWordArrayPop(NWordArray *self) {
-    if (!self) {
+void NWordArrayPop(NWordArray *array) {
+    if (!array) {
         return;
     }
-    if (self->count == 0) {
+    if (array->count == 0) {
         return;
     }
 
-    self->count -= 1;
-    WordArrayErase(self, self->count);
-    WordArrayShrink(self);
+    array->count -= 1;
+    WordArrayErase(array, array->count);
+    WordArrayShrink(array);
 }
 
-void NWordArrayInsert(NWordArray *self, int index, NWord item) {
-    if (!self) {
+void NWordArrayInsert(NWordArray *array, int index, NWord item) {
+    if (!array) {
         return;
     }
-    if (index < 0 || (self->count) < index /* legal when index == count */) {
+    if (index < 0 || (array->count) < index /* legal when index == count */) {
         return;
     }
 
-    WordArrayStretch(self, 1);
+    WordArrayStretch(array, 1);
 
-    WordArrayMove(self, index, 1);
-    WordArrayWrite(self, index, item);
-    self->count += 1;
+    WordArrayMove(array, index, 1);
+    WordArrayWrite(array, index, item);
+    array->count += 1;
 }
 
-void NWordArrayRemove(NWordArray *self, int index) {
-    if (!self) {
+void NWordArrayRemove(NWordArray *array, int index) {
+    if (!array) {
         return;
     }
-    if (index < 0 || (self->count) <= index) {
+    if (index < 0 || (array->count) <= index) {
         return;
     }
 
-    WordArrayErase(self, index);
-    WordArrayMove(self, index + 1, -1);
-    self->count -= 1;
+    WordArrayErase(array, index);
+    WordArrayMove(array, index + 1, -1);
+    array->count -= 1;
 
-    WordArrayShrink(self);
+    WordArrayShrink(array);
 }
 
-void NWordArraySet(NWordArray *self, int index, NWord item) {
-    if (self) {
-        if (0 <= index && index < (self->count)) {
-            WordArrayErase(self, index);
-            WordArrayWrite(self, index, item);
+void NWordArraySet(NWordArray *array, int index, NWord item) {
+    if (array) {
+        if (0 <= index && index < (array->count)) {
+            WordArrayErase(array, index);
+            WordArrayWrite(array, index, item);
         }
     }
 }
 
-NWord NWordArrayGet(NWordArray *self, int index) {
-    if (self) {
-        if (0 <= index && index < (self->count)) {
-            return WordArrayRead(self, index);
+NWord NWordArrayGet(NWordArray *array, int index) {
+    if (array) {
+        if (0 <= index && index < (array->count)) {
+            return WordArrayRead(array, index);
         }
     }
     NWord word = {0};
@@ -266,6 +268,6 @@ NWord NWordArrayGet(NWordArray *self, int index) {
 /**/        return NWordArrayGet((NWordArray *)array, index).MEMBER;\
 /**/    }
 
-GEN_ARRAY(NArray   , NObject *, true , asPtr   )
-GEN_ARRAY(NIntArray, int64_t  , false, asInt64 )
-GEN_ARRAY(NFltArray, double   , false, asDouble)
+GEN_ARRAY(NArray   , NRef   , true , asPtr   )
+GEN_ARRAY(NIntArray, int64_t, false, asInt64 )
+GEN_ARRAY(NFltArray, double , false, asDouble)

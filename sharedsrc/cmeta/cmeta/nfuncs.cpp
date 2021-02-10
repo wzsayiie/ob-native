@@ -147,25 +147,25 @@ nclink NType NFuncArgType(int fIndex, int aIndex) {
     return 0;
 }
 
-//the memory layout of "__NWord" is same with "NWord" 's.
-#define __NWord int64_t
+//the memory layout of "_NWord" is same with "NWord" 's.
+#define _NWord int64_t
 
 template<class R> struct Executor {
-    template<class... A> static __NWord Exec(void *func, A... a) {
-        R ret[sizeof(__NWord)] = {0};
+    template<class... A> static _NWord Exec(void *func, A... a) {
+        R ret[sizeof(_NWord)] = {0};
         *ret = ((R (*)(A...))func)(a...);
-        return *(__NWord *)ret;
+        return *(_NWord *)ret;
     }
 };
 template<> struct Executor<void> {
-    template<class... A> static __NWord Exec(void *func, A... a) {
+    template<class... A> static _NWord Exec(void *func, A... a) {
         ((void (*)(A...))func)(a...);
         return 0;
     }
 };
 
 //safe value cast.
-template<class T> T Val(NType srcType, __NWord word) {
+template<class T> T Val(NType srcType, _NWord word) {
     switch (srcType) {
         case NTYPE_STRUCT: return (T) 0;
         case NTYPE_PTR   : return (T) 0;
@@ -182,25 +182,25 @@ template<class T> T Val(NType srcType, __NWord word) {
         case NTYPE_FLOAT : return (T) *(float    *)&word;
         case NTYPE_DOUBLE: return (T) *(double   *)&word;
 
-        default/* ptr */: return (T) *(intptr_t *)&word;
+        default /* ptr */: return (T) *(intptr_t *)&word;
     }
 }
 
 struct CallerData {
     FuncInfo *funcInfo;
     NType    *argTypes;
-    __NWord  *argWords;
+    _NWord   *argWords;
 };
 
 template<class R, int N> struct Caller {
-    template<class... A> static __NWord C(CallerData *data, A... a) {
+    template<class... A> static _NWord C(CallerData *data, A... a) {
         if (N == data->funcInfo->argCount) {
             return Executor<R>::Exec(data->funcInfo->address, a...);
         }
 
-        NType   d = data->funcInfo->argTypes[N];
-        NType   t = data->argTypes[N];
-        __NWord w = data->argWords[N];
+        NType  d = data->funcInfo->argTypes[N];
+        NType  t = data->argTypes[N];
+        _NWord w = data->argWords[N];
 
         switch (d) {
             //only use "intptr_t", "int64_t", "float" and "double" 4 types,
@@ -226,12 +226,12 @@ template<class R, int N> struct Caller {
     }
 };
 template<class R> struct Caller<R, MAX_ARG_NUM> {
-    template<class... A> static __NWord C(CallerData *data, A... a) {
+    template<class... A> static _NWord C(CallerData *data, A... a) {
         return Executor<R>::Exec(data->funcInfo->address, a...);
     }
 };
 
-nclink __NWord NCallFunc(int fIndex, int argc, NType *types, __NWord *words) {
+nclink _NWord NCallFunc(int fIndex, int argc, NType *types, _NWord *words) {
     //is it a valid index.
     if (!Idx(fIndex)) {
         __NError("illegal function index %d", fIndex);

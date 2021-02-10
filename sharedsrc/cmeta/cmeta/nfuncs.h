@@ -14,9 +14,9 @@ nfunc(bool  , NFuncRetRetained, (int fIndex));
 nfunc(int   , NFuncArgCount   , (int fIndex));
 nfunc(NType , NFuncArgType    , (int fIndex, int aIndex));
 
-//the memory layout of "__NWord" is same with "NWord" 's.
-#ifndef __NWord
-#define __NWord int64_t
+//the memory layout of "_NWord" is same with "NWord" 's.
+#ifndef _NWord
+#define _NWord int64_t
 #endif
 
-nfunc(__NWord, NCallFunc, (int fIndex, int argc, NType *types, __NWord *words));
+nfunc(_NWord, NCallFunc, (int fIndex, int argc, NType *types, _NWord *words));

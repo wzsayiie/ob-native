@@ -218,29 +218,29 @@ NWord NWordArrayGet(NWordArray *array, int index) {
 /**/        return NWordArrayItems(nsuperof(array));                \
 /**/    }                                                           \
 /**/    void ARRAY##Push(ARRAY *array, TYPE item) {                 \
-/**/        NWord word = {0};                                       \
-/**/        word.MEMBER = item;                                     \
-/**/        NWordArrayPush(nsuperof(array), word);                  \
+/**/        NWord elem = {0};                                       \
+/**/        elem.MEMBER = item;                                     \
+/**/        NWordArrayPush(nsuperof(array), elem);                  \
 /**/    }                                                           \
 /**/    void ARRAY##Pop(ARRAY *array) {                             \
 /**/        NWordArrayPop(nsuperof(array));                         \
 /**/    }                                                           \
 /**/    void ARRAY##Insert(ARRAY *array, int index, TYPE item) {    \
-/**/        NWord word = {0};                                       \
-/**/        word.MEMBER = item;                                     \
-/**/        NWordArrayInsert(nsuperof(array), index, word);         \
+/**/        NWord elem = {0};                                       \
+/**/        elem.MEMBER = item;                                     \
+/**/        NWordArrayInsert(nsuperof(array), index, elem);         \
 /**/    }                                                           \
 /**/    void ARRAY##Remove(ARRAY *array, int index) {               \
 /**/        NWordArrayRemove(nsuperof(array), index);               \
 /**/    }                                                           \
 /**/    void ARRAY##Set(ARRAY *array, int index, TYPE item) {       \
-/**/        NWord word = {0};                                       \
-/**/        word.MEMBER = item;                                     \
-/**/        NWordArraySet(nsuperof(array), index, word);            \
+/**/        NWord elem = {0};                                       \
+/**/        elem.MEMBER = item;                                     \
+/**/        NWordArraySet(nsuperof(array), index, elem);            \
 /**/    }                                                           \
 /**/    TYPE ARRAY##Get(ARRAY *array, int index) {                  \
-/**/        NWord word = NWordArrayGet(nsuperof(array), index);     \
-/**/        return word.MEMBER;                                     \
+/**/        NWord elem = NWordArrayGet(nsuperof(array), index);     \
+/**/        return elem.MEMBER;                                     \
 /**/    }
 
 GEN_ARRAY(NArray   , NRef   , true , asPtr   )

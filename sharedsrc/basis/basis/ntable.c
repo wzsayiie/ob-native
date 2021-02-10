@@ -18,8 +18,12 @@ void NWordTableSet(NWordTable *table, NWord key, NWord value) {
 }
 
 NWord NWordTableGet(NWordTable *table, NWord key) {
-    NWord word = {0};
-    return word;
+    NWord val = {0};
+    return val;
+}
+
+bool NWordTableExist(NWordTable *table, NWord key) {
+    return false;
 }
 
 int NWordTableCount(NWordTable *table) {
@@ -30,7 +34,7 @@ NIterator *NWordTableKeys(NWordTable *table) {
     return NULL;
 }
 
-static int ObjectComparer(NWord a, NWord b) {
+static int RefComparer(NWord a, NWord b) {
     if (a.asPtr != b.asPtr) {
         return a.asPtr > b.asPtr ? 1 : -1;
     } else {
@@ -38,14 +42,11 @@ static int ObjectComparer(NWord a, NWord b) {
     }
 }
 
-static int StringComparer(NWord a, NWord b) {
-    NString *x = a.asPtr;
-    NString *y = b.asPtr;
-
-    return NStringCompare(x, y);
+static int StrComparer(NWord a, NWord b) {
+    return NStringCompare(a.asPtr, b.asPtr);
 }
 
-static int Int64Comparer(NWord a, NWord b) {
+static int IntComparer(NWord a, NWord b) {
     if (a.asInt64 != b.asInt64) {
         return a.asInt64 > b.asInt64 ? 1 : -1;
     } else {
@@ -53,45 +54,56 @@ static int Int64Comparer(NWord a, NWord b) {
     }
 }
 
-#define GEN_TABLE(TABLE, K_C, K_T, K_R, K_M, V_T, V_R, V_M)     \
+#define GEN_TABLE(TABLE, KC, KT, KR, KM, VT, VR, VM)            \
 /**/                                                            \
-/**/    TABLE *TABLE##Create(void) {                            \
+/**/    void _##TABLE##Init(TABLE *table) {                     \
 /**/        NWordTableConf conf = {0};                          \
+/**/        conf.keyCompare = KC;                               \
+/**/        conf.keyRetain  = KR;                               \
+/**/        conf.valRetain  = VR;                               \
 /**/                                                            \
-/**/        conf.keyCompare  = K_C;                             \
-/**/        conf.keyRetain   = K_R;                             \
-/**/        conf.keySize     = nsizeof(K_T);                    \
-/**/        conf.valueRetain = V_R;                             \
-/**/        conf.valueSize   = nsizeof(V_T);                    \
-/**/                                                            \
-/**/        return (TABLE *)NWordTableCreate(&conf);            \
+/**/        _NWordTableInit(nsuperof(table), &conf);            \
+/**/    }                                                       \
+/**/    void _##TABLE##Deinit(TABLE *table) {                   \
+/**/        _NWordTableDeinit(nsuperof(table));                 \
+/**/    }                                                       \
+/**/    TABLE *TABLE##Create(void) {                            \
+/**/        TABLE *table = NAlloc(TABLE, _##TABLE##Deinit);     \
+/**/        _##TABLE##Init(table);                              \
+/**/        return table;                                       \
 /**/    }                                                       \
 /**/    TABLE *TABLE##Copy(TABLE *that) {                       \
-/**/        return (TABLE *)NWordTableCopy((NWordTable *)that); \
+/**/        return (TABLE *)NWordTableCopy(nsuperof(that));     \
 /**/    }                                                       \
-/**/    void TABLE##Set(TABLE *table, K_T key, V_T value) {     \
+/**/    void TABLE##Set(TABLE *table, KT key, VT value) {       \
 /**/        NWord k = {0};                                      \
 /**/        NWord v = {0};                                      \
 /**/                                                            \
-/**/        k.K_M = key;                                        \
-/**/        v.V_M = value;                                      \
+/**/        k.KM = key;                                         \
+/**/        v.VM = value;                                       \
 /**/                                                            \
-/**/        NWordTableSet((NWordTable *)table, k, v);           \
+/**/        NWordTableSet(nsuperof(table), k, v);               \
 /**/    }                                                       \
-/**/    V_T TABLE##Get(TABLE *table, K_T key) {                 \
+/**/    VT TABLE##Get(TABLE *table, KT key) {                   \
 /**/        NWord k = {0};                                      \
-/**/        k.K_M = key;                                        \
+/**/        k.KM = key;                                         \
 /**/                                                            \
-/**/        NWord v = NWordTableGet((NWordTable *)table, k);    \
-/**/        return v.V_M;                                       \
+/**/        NWord v = NWordTableGet(nsuperof(table), k);        \
+/**/        return v.VM;                                        \
+/**/    }                                                       \
+/**/    bool TABLE##Exist(TABLE *table, KT key) {               \
+/**/        NWord k = {0};                                      \
+/**/        k.KM = key;                                         \
+/**/                                                            \
+/**/        return NWordTableExist(nsuperof(table), k);         \
 /**/    }                                                       \
 /**/    int TABLE##Count(TABLE *table) {                        \
-/**/        return NWordTableCount((NWordTable *)table);        \
+/**/        return NWordTableCount(nsuperof(table));            \
 /**/    }                                                       \
 /**/    NIterator *TABLE##Keys(TABLE *table) {                  \
-/**/        return NWordTableKeys((NWordTable *)table);         \
+/**/        return NWordTableKeys(nsuperof(table));             \
 /**/    }
 
-GEN_TABLE(NTable   , ObjectComparer, NRef     , true , asPtr  , NRef, true, asPtr)
-GEN_TABLE(NStrTable, StringComparer, NString *, true , asPtr  , NRef, true, asPtr)
-GEN_TABLE(NIntTable, Int64Comparer , int64_t  , false, asInt64, NRef, true, asPtr)
+GEN_TABLE(NTable   , RefComparer, NRef     , true , asPtr, NRef, true, asPtr)
+GEN_TABLE(NStrTable, StrComparer, NString *, true , asPtr, NRef, true, asPtr)
+GEN_TABLE(NIntTable, IntComparer, int      , false, asInt, NRef, true, asPtr)

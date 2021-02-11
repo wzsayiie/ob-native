@@ -235,9 +235,12 @@ void NStringAppend(NString *string, NString *that) {
 }
 
 int NStringCompare(NString *string, NString *that) {
+    if (string == that) {
+        return 0;
+    }
+    
     NIterator *thisIter = NStringRange(string);
     NIterator *thatIter = NStringRange(that);
-
     while (true) {
         bool thisValid = thisIter->next(thisIter);
         bool thatValid = thatIter->next(thatIter);

@@ -28,10 +28,10 @@ typedef struct avltree {
 void atinit  (avltree *tree, cmpr cmp);
 void atdeinit(avltree *tree);
 
-void atinsert(avltree *tree, word key, word value);
-word atremove(avltree *tree, word key);
-bool atexist (avltree *tree, word key);
-int  atcount (avltree *tree);
+atnode *atset   (avltree *tree, word key, word value);
+atnode *atget   (avltree *tree, word key);
+atnode  atremove(avltree *tree, word key);
+int     atcount (avltree *tree);
 
 scalist *atsort(avltree *tree);
 

@@ -18,15 +18,17 @@ void atdeinit(avltree *tree) {
     tree->ieff = false;
 }
 
-void atinsert(avltree *tree, word key, word value) {
+atnode *atset(avltree *tree, word key, word value) {
+    return NULL;
 }
 
-word atremove(avltree *tree, word key) {
-    return iw(0);
+atnode *atget(avltree *tree, word key) {
+    return NULL;
 }
 
-bool atexist(avltree *tree, word key) {
-    return false;
+atnode atremove(avltree *tree, word key) {
+    atnode node = {NULL};
+    return node;
 }
 
 int atcount(avltree *tree) {

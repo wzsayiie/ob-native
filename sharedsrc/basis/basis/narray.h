@@ -6,7 +6,7 @@
 #include "scalist.h"
 
 nstruct(NWordArrayConf, {
-    bool retain;
+    bool itemRetain;
 });
 
 nclass(NWordArray, NObject, {

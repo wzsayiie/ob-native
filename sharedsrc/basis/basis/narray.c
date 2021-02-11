@@ -24,7 +24,7 @@ void _NWordArrayInit(NWordArray *array, NWordArrayConf *conf) {
 }
 
 void _NWordArrayDeinit(NWordArray *array) {
-    if (array->conf.retain) {
+    if (array->conf.itemRetain) {
         WordArrayReleaseItems(array);
     }
     sldeinit(&array->list);
@@ -51,7 +51,7 @@ NWordArray *NWordArrayCopy(NWordArray *that) {
         word item = slget(tlist, i);
         slpush(alist, item);
     }
-    if (array->conf.retain) {
+    if (array->conf.itemRetain) {
         WordArrayRetainItems(array);
     }
 
@@ -108,7 +108,7 @@ void NWordArrayPush(NWordArray *array, NWord item) {
         return;
     }
     
-    if (array->conf.retain) {
+    if (array->conf.itemRetain) {
         NRetain(item.asPtr);
     }
     scalist *list = &array->list;
@@ -126,7 +126,7 @@ void NWordArrayPop(NWordArray *array) {
     }
     
     word item = slpop(list);
-    if (array->conf.retain) {
+    if (array->conf.itemRetain) {
         NRelease(item.asptr);
     }
 }
@@ -141,7 +141,7 @@ void NWordArrayInsert(NWordArray *array, int index, NWord item) {
         return;
     }
 
-    if (array->conf.retain) {
+    if (array->conf.itemRetain) {
         NRetain(item.asPtr);
     }
     slinsert(list, index, pw(item.asPtr));
@@ -158,7 +158,7 @@ void NWordArrayRemove(NWordArray *array, int index) {
     }
 
     word item = slremove(list, index);
-    if (array->conf.retain) {
+    if (array->conf.itemRetain) {
         NRelease(item.asptr);
     }
 }
@@ -173,7 +173,7 @@ void NWordArraySet(NWordArray *array, int index, NWord item) {
         return;
     }
     
-    if (array->conf.retain) {
+    if (array->conf.itemRetain) {
         word old = slget(list, index);
         NRelease(old.asptr);
         
@@ -203,7 +203,7 @@ NWord NWordArrayGet(NWordArray *array, int index) {
 /**/                                                                \
 /**/    void _##ARRAY##Init(ARRAY *array) {                         \
 /**/        NWordArrayConf conf = {0};                              \
-/**/        conf.retain = RETAIN;                                   \
+/**/        conf.itemRetain = RETAIN;                               \
 /**/        _NWordArrayInit(nsuperof(array), &conf);                \
 /**/    }                                                           \
 /**/    void _##ARRAY##Deinit(ARRAY *array) {                       \

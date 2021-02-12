@@ -37,9 +37,10 @@ void *mcalloc (int   cnt, int sin);
 void *mrealloc(void *ptr, int cnt, int sin);
 void  mfree   (void *ptr);
 
-void  mmove(void *dst, const void *src, int size);
-void *pmove(void *ptr, int offset);
-void  mzero(void *dst, int size);
+void mmove(void *dst, const void *src, int size);
+void mzero(void *dst, int size);
+
+void *pmove(const void *ptr, int offset);
 
 //debug print.
 void println(const char *fmt, ...);

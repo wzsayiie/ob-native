@@ -4,6 +4,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+//word:
+
 word pw(const void *p) {
     word w = {0};
     w.asptr = (void *)p;
@@ -12,6 +14,8 @@ word pw(const void *p) {
 
 word iw(int   i) {word w = {0}; w.asint = i; return w;}
 word fw(float f) {word w = {0}; w.asflt = f; return w;}
+
+//comparer:
 
 #define cmp(a, b) (a == b ? 0 : (a > b ? 1 : -1))
 
@@ -23,12 +27,45 @@ int scmp(word a, word b) {
     return strcmp(a.asptr, b.asptr);
 }
 
+//memory management:
+
+typedef struct mblock {
+    union {
+        void *padd;
+        int   size;
+    };
+    char load[];
+} mblock;
+
 void *mcalloc(int cnt, int sin) {
-    return calloc((size_t)cnt, (size_t)sin);
+    int size = szof(mblock) + cnt * sin;
+    //"calloc" will initialize all bytes to zero.
+    mblock *block = calloc(1, size);
+    block->size = size;
+    return block->load;
 }
 
 void *mrealloc(void *ptr, int cnt, int sin) {
-    return realloc(ptr, (size_t)cnt * sin);
+    if (!ptr) {
+        return mcalloc(cnt, sin);
+    }
+    
+    mblock *block = pmove(ptr, -szof(mblock));
+    int     osize = block->size;
+    int     nsize = szof(mblock) + cnt * sin;
+    
+    block = realloc(block, nsize);
+    block->size = nsize;
+    
+    //NOTE: initialize new bytes.
+    if (nsize > osize) {
+        void *dst = pmove(block, osize);
+        int   len = nsize - osize;
+        
+        mzero(dst, len);
+    }
+    
+    return block->load;
 }
 
 void mfree(void *ptr) {
@@ -39,13 +76,15 @@ void mmove(void *dst, const void *src, int size) {
     memmove(dst, src, (size_t)size);
 }
 
-void *pmove(void *ptr, int offset) {
-    return (char *)ptr + offset;
-}
-
 void mzero(void *dst, int size) {
     memset(dst, 0, (size_t)size);
 }
+
+void *pmove(const void *ptr, int offset) {
+    return (char *)ptr + offset;
+}
+
+//debug print:
 
 void println(const char *fmt, ...) {
     va_list args;

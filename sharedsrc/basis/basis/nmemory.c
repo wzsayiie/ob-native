@@ -3,33 +3,27 @@
 #include <stdlib.h>
 #include <string.h>
 
-nstruct(NMemory, {
-    int    dataSize;
-    int8_t data[];
+//pod memory management:
+
+nstruct(NMemoryBlock, {
+    union {
+        void *padding ;
+        int   loadSize;
+    };
+    int8_t load[];
 });
-
-static size_t MemorySize(int size) {
-    return sizeof(NMemory) + (size_t)size;
-}
-
-static NMemory *MemoryPtr(const void *ptr) {
-    return (NMemory *)ptr - 1;
-}
 
 void *NAllocMemory(int size) {
     if (size <= 0) {
         return NULL;
     }
     
-    size_t   mmSize = MemorySize(size);
-    NMemory *memory = calloc(1, mmSize);
-    if (memory) {
-        memory->dataSize = size;
-        return memory->data;
-    } else {
-        //allocation failed.
-        return NULL;
-    }
+    int blockSize = nsizeof(NMemoryBlock) + size;
+    
+    //NOTE: "calloc" will initialize all bytes to zero.
+    NMemoryBlock *block = calloc(1, blockSize);
+    block->loadSize = size;
+    return block->load;
 }
 
 void *NReallocMemory(void *ptr, int size) {
@@ -41,48 +35,48 @@ void *NReallocMemory(void *ptr, int size) {
         return NAllocMemory(size);
     }
     
-    NMemory *oldMem = MemoryPtr(ptr);
-
-    size_t   mmSize = MemorySize(size);
-    NMemory *newMem = realloc(oldMem, mmSize);
-    if (newMem) {
-        newMem->dataSize = size;
-        return newMem->data;
-    } else {
-        //reallocation failed.
-        free(oldMem);
-        return NULL;
+    NMemoryBlock *block = (NMemoryBlock *)ptr - 1;
+    int oldBlockSize = nsizeof(NMemoryBlock) + block->loadSize;
+    int newBlockSize = nsizeof(NMemoryBlock) + size;
+    
+    block = realloc(block, newBlockSize);
+    block->loadSize = size;
+    
+    //NOTE: initialize new bytes.
+    if (newBlockSize > oldBlockSize) {
+        void *dst = (int8_t *)block + oldBlockSize;
+        int   len = newBlockSize - oldBlockSize;
+        
+        NZeroMemory(dst, len);
     }
+    
+    return block->load;
 }
 
 void *NDupMemory(const void *ptr) {
     if (!ptr) {
         return NULL;
     }
+    
+    NMemoryBlock *srcBlock = (NMemoryBlock *)ptr - 1;
+    int blockSize = nsizeof(NMemoryBlock) + srcBlock->loadSize;
 
-    NMemory *memory = MemoryPtr(ptr);
-    size_t   mmSize = MemorySize(memory->dataSize);
-
-    NMemory *dup = calloc(1, mmSize);
-    if (dup) {
-        memcpy(dup, memory, mmSize);
-        return dup->data;
-    } else {
-        return NULL;
-    }
+    NMemoryBlock *dstBlock = calloc(1, blockSize);
+    NMoveMemory(dstBlock, srcBlock, blockSize);
+    return dstBlock->load;
 }
 
 void NFreeMemory(void *ptr) {
     if (ptr) {
-        NMemory *memory = MemoryPtr(ptr);
-        free(memory);
+        NMemoryBlock *block = (NMemoryBlock *)ptr - 1;
+        free(block);
     }
 }
 
 int NMemorySize(const void *ptr) {
     if (ptr) {
-        NMemory *memory = MemoryPtr(ptr);
-        return memory->dataSize;
+        NMemoryBlock *block = (NMemoryBlock *)ptr - 1;
+        return block->loadSize;
     }
     return 0;
 }
@@ -98,6 +92,8 @@ void NMoveMemory(void *dst, const void *src, int size) {
         memmove(dst, src, (size_t)size);
     }
 }
+
+//object managed with reference counting:
 
 void *NAllocObj(int size, void *deinit) {
     NObject *object = NAllocMemory(size);

@@ -7,7 +7,10 @@ extern "C" {
 #endif
 
 typedef struct cpblock {
-    bool used;
+    union {
+        void *padd;
+        bool  used;
+    };
     char load[];
 } cpblock;
 

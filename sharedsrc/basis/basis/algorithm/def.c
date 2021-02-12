@@ -4,7 +4,12 @@
 #include <stdlib.h>
 #include <string.h>
 
-word pw(void *p) {word w = {0}; w.asptr = p; return w;}
+word pw(const void *p) {
+    word w = {0};
+    w.asptr = (void *)p;
+    return w;
+}
+
 word iw(int   i) {word w = {0}; w.asint = i; return w;}
 word fw(float f) {word w = {0}; w.asflt = f; return w;}
 
@@ -42,13 +47,18 @@ void mzero(void *dst, int size) {
     memset(dst, 0, (size_t)size);
 }
 
-void print(const char *fmt, ...) {
-    char buf[512] = "\0";
-
+void println(const char *fmt, ...) {
     va_list args;
     va_start(args, fmt);
-    vsprintf(buf, fmt, args);
+    vprintf(fmt, args);
     va_end(args);
+    
+    printf("\n");
+}
 
-    printf("%s\n", buf);
+void print(const char *fmt, ...) {
+    va_list args;
+    va_start(args, fmt);
+    vprintf(fmt, args);
+    va_end(args);
 }

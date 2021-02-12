@@ -18,9 +18,9 @@ typedef struct word {
     float asflt;
 } word;
 
-word pw(void *p);
-word iw(int   i);
-word fw(float f);
+word pw(const void *p);
+word iw(int         i);
+word fw(float       f);
 
 //comparer:
 
@@ -42,7 +42,8 @@ void *pmove(void *ptr, int offset);
 void  mzero(void *dst, int size);
 
 //debug print.
-void print(const char *fmt, ...);
+void println(const char *fmt, ...);
+void print  (const char *fmt, ...);
 
 #if __cplusplus
 }

@@ -30,7 +30,6 @@ word blcover (binlist *list, int  idx);
 int bladdup(binlist *list, word key);
 int blcount(binlist *list);
 
-bool blexist (binlist *list, word key);
 word blvalue (binlist *list, word key);
 int  blindex (binlist *list, word key);
 word bloffset(binlist *list, int  idx);

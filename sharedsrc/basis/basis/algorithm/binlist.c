@@ -107,10 +107,6 @@ int blcount(binlist *list) {
     return list->cnt;
 }
 
-bool blexist(binlist *list, word key) {
-    return blindex(list, key) != -1;
-}
-
 word blvalue(binlist *list, word key) {
     bool hit = false;
     int  idx = search(list, key, &hit);

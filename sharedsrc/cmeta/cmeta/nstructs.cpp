@@ -1,6 +1,11 @@
 #include <cstdlib>
 #include <cstring>
+#include "cerpool.h"
+#include "binlist.h"
 #include "nenviron.h"
+
+//the indexes at front are reserved.
+static const int INDEX_OFFSET = NTYPE_CUSTOM_PTR;
 
 struct StructInfo {
     const char *name;
@@ -8,141 +13,91 @@ struct StructInfo {
     int size;
 };
 
-//the number of slots allocated each time.
-static const int EACH_ALLOC_NUM = 64;
+static bool    sNeedInit = true;
+static cerpool sItemPool = {0};
+static binlist sInfoList = {0};
 
-//the indexes at front are reserved.
-static const int LIST_BEGIN = NTYPE_CUSTOM_PTR;
-static_assert(LIST_BEGIN < EACH_ALLOC_NUM, "");
-
-static StructInfo *sList = NULL;
-static int sEnd = 0;
-static int sConfine = 0;
-
-static StructInfo *ReallocStructInfo(StructInfo *list, int count) {
-    auto size = sizeof(StructInfo) * count;
-    return (StructInfo *)realloc(list, size);
+static void EnsureInfo(const char *name) {
+    if (sNeedInit) {
+        cpinit(&sItemPool, nsizeof(StructInfo));
+        blinit(&sInfoList, scmp);
+        sNeedInit = false;
+    }
+    
+    int index = blindex(&sInfoList, pw(name));
+    if (index != -1) {
+        //the item already exists.
+        return;
+    }
+    
+    auto item = (StructInfo *)cpborrow(&sItemPool);
+    index = blinsert(&sInfoList, pw(name), pw(item));
+    
+    //NOTE: update field "super".
+    for (int i = 0; i < blcount(&sInfoList); ++i) {
+        word currItem = bloffset(&sInfoList, i);
+        auto currInfo = (StructInfo *)currItem.asptr;
+        
+        if (currInfo->super >= index + INDEX_OFFSET) {
+            currInfo->super += 1;
+        }
+    }
 }
 
-static StructInfo *EnsureStruct(const char *name) {
-    if (sEnd == sConfine) {
-        sConfine += EACH_ALLOC_NUM;
-        sList = ReallocStructInfo(sList, sConfine);
-
-        if (sEnd == 0) {
-            sEnd = LIST_BEGIN;
-        }
-    }
-
-    //insertion sort followed.
-    int begin = LIST_BEGIN;
-    int end   = sEnd;
-    int index = (begin + end) / 2;
-    while (begin < end) {
-        int result = strcmp(name, sList[index].name);
-        if (result == 0) {
-            //the item already exists.
-            return sList + index;
-        }
-
-        if (result > 0) {
-            begin = index + 1;
-        } else {
-            end = index;
-        }
-
-        index = (begin + end) / 2;
-    }
-
-    //insert new item.
-    if (index < sEnd) {
-        void *dst = sList + index + 1;
-        void *src = sList + index;
-        int   num = sEnd  - index;
-        memmove(dst, src, num * sizeof(StructInfo));
-    }
-    StructInfo info = {0};
-    info.name = name;
-    sList[index] = info;
-    sEnd += 1;
-
-    //update reference data of all items.
-    for (int n = LIST_BEGIN; n < sEnd; ++n) {
-        StructInfo *item = sList + n;
-        if (item->super != 0 && item->super >= index) {
-            item->super += 1;
-        }
-    }
-
-    return sList + index;
+static int InfoCount() {
+    return blcount(&sInfoList);
 }
 
-static int SearchStruct(const char *name) {
-    //binary search here.
-    int begin = LIST_BEGIN;
-    int end   = sEnd;
-
-    while (begin < end) {
-        int center = (begin + end) / 2;
-        int result = strcmp(name, sList[center].name);
-
-        if (result > 0) {
-            begin = center + 1;
-        } else if (result < 0) {
-            end = center;
-        } else {
-            return center;
-        }
+static int IndicateInfo(const char *name) {
+    int index = blindex(&sInfoList, pw(name));
+    if (index != -1) {
+        return INDEX_OFFSET + index;
+    } else {
+        return 0;
     }
-    return 0;
+}
+
+static StructInfo *GetInfo(int index) {
+    index -= INDEX_OFFSET;
+    if (0 <= index && index < InfoCount()) {
+        word item = bloffset(&sInfoList, index);
+        return (StructInfo *)item.asptr;
+    } else {
+        return NULL;
+    }
 }
 
 static void AddStruct(const char *name, const char *super, int size) {
+    EnsureInfo(name);
     if (super) {
-        EnsureStruct(super);
+        EnsureInfo(super);
     }
-
-    StructInfo *info = EnsureStruct(name);
+    
+    int infoIndex = IndicateInfo(name);
+    int superIndex = 0;
     if (super) {
-        info->super = SearchStruct(super);
+        superIndex = IndicateInfo(super);
     }
-    info->size = size;
+    
+    StructInfo *info = GetInfo(infoIndex);
+    info->name  = name;
+    info->super = superIndex;
+    info->size  = size;
 }
 
-nclink int NStructsBegin() {return LIST_BEGIN;}
-nclink int NStructsEnd  () {return sEnd;}
+nclink int NStructsBegin() {return INDEX_OFFSET;}
+nclink int NStructsEnd  () {return INDEX_OFFSET + InfoCount();}
 
 nclink int NFindStruct(const char *name) {
     if (name && *name) {
-        return SearchStruct(name);
+        return IndicateInfo(name);
     }
     return 0;
 }
 
-static bool StructIndexable(int index) {
-    return LIST_BEGIN <= index && index < sEnd;
-}
-
-nclink const char *NStructName(int index) {
-    if (StructIndexable(index)) {
-        return sList[index].name;
-    }
-    return NULL;
-}
-
-nclink int NStructSuper(int index) {
-    if (StructIndexable(index)) {
-        return sList[index].super;
-    }
-    return 0;
-}
-
-nclink int NStructSize(int index) {
-    if (StructIndexable(index)) {
-        return sList[index].size;
-    }
-    return 0;
-}
+nclink const char *NStructName (int i) {auto s = GetInfo(i); return s ? s->name  : NULL;}
+nclink int         NStructSuper(int i) {auto s = GetInfo(i); return s ? s->super : 0   ;}
+nclink int         NStructSize (int i) {auto s = GetInfo(i); return s ? s->size  : 0   ;}
 
 struct StructAdder {
     StructAdder(const char *name, const char *super, int size) {
@@ -155,6 +110,6 @@ struct StructAdder {
 #undef  nstruct
 #undef  nclass
 #define nstruct(n,    ...) __nstruct(n,    __VA_ARGS__); __add_struct(n, NULL, nsizeof(n))
-#define nclass( n, s, ...) __nclass (n, s, __VA_ARGS__); __add_struct(n, #s  , 0)
+#define nclass( n, s, ...) __nclass (n, s, __VA_ARGS__); __add_struct(n, #s  , nsizeof(n))
 
 #include "NEXPORT.h"

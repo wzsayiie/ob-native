@@ -1,5 +1,7 @@
 #include <cstdlib>
 #include <cstring>
+#include "cerpool.h"
+#include "binlist.h"
 #include "nstructs.h"
 #include "ntypecheck.h"
 
@@ -8,6 +10,9 @@ nclink void __NError(const char *format, ...);
 
 //the maximum number of arguments that can be supported.
 static const int MAX_ARG_NUM = 4;
+
+//the index "0" is reserved.
+static const int INDEX_OFFSET = 1;
 
 struct FuncInfo {
     const char *name;
@@ -21,98 +26,50 @@ struct FuncInfo {
     bool        complete;
 };
 
-//the number of slots allocated each time.
-static const int EACH_ALLOC_NUM = 64;
-
-//the index "0" is reserved.
-static const int LIST_BEGIN = 1;
-
-static FuncInfo *sList = NULL;
-static int sEnd = 0;
-static int sConfine = 0;
-
-static FuncInfo *ReallocFuncInfo(FuncInfo *list, int count) {
-    auto size = sizeof(FuncInfo) * count;
-    return (FuncInfo *)realloc(list, size);
-}
+static bool    sNeedInit = true;
+static cerpool sItemPool = {0};
+static binlist sInfoList = {0};
 
 static void AddFuncInfo(FuncInfo *info) {
-    if (sEnd == sConfine) {
-        sConfine += EACH_ALLOC_NUM;
-        sList = ReallocFuncInfo(sList, sConfine);
-
-        if (sEnd == 0) {
-            sEnd = LIST_BEGIN;
-        }
+    if (sNeedInit) {
+        cpinit(&sItemPool, nsizeof(FuncInfo));
+        blinit(&sInfoList, scmp);
+        sNeedInit = false;
     }
-
-    //insertion sort followed.
-    int begin = LIST_BEGIN;
-    int end   = sEnd;
-    int index = (begin + end) / 2;
-    while (begin < end) {
-        int result = strcmp(info->name, sList[index].name);
-        if (result == 0) {
-            //the item already exists. this is a exception.
-            return;
-        }
-
-        if (result > 0) {
-            begin = index + 1;
-        } else {
-            end = index;
-        }
-
-        index = (begin + end) / 2;
-    }
-
-    //insert new item.
-    if (index < sEnd) {
-        void *dst = sList + index + 1;
-        void *src = sList + index;
-        int   num = sEnd  - index;
-        memmove(dst, src, num * sizeof(FuncInfo));
-    }
-    sList[index] = *info;
-    sEnd += 1;
+    
+    auto storage = (FuncInfo *)cpborrow(&sItemPool);
+    *storage = *info;
+    blinsert(&sInfoList, pw(storage->name), pw(storage));
 }
 
-nclink int NFuncsBegin() {return LIST_BEGIN;}
-nclink int NFuncsEnd  () {return sEnd;}
+static int InfoCount() {
+    return blcount(&sInfoList);
+}
+
+nclink int NFuncsBegin() {return INDEX_OFFSET;}
+nclink int NFuncsEnd  () {return INDEX_OFFSET + InfoCount();}
 
 nclink int NFindFunc(const char *name) {
     if (!name || *name == '\0') {
         return 0;
     }
 
-    //binary search here.
-    int begin = LIST_BEGIN;
-    int end   = sEnd;
-
-    while (begin < end) {
-        int center = (begin + end) / 2;
-        int result = strcmp(name, sList[center].name);
-
-        if (result > 0) {
-            begin = center + 1;
-        } else if (result < 0) {
-            end = center;
-        } else {
-            return center;
-        }
+    int index = blindex(&sInfoList, pw(name));
+    if (index != -1) {
+        return index + INDEX_OFFSET;
+    } else {
+        return 0;
     }
-    return 0;
 }
 
-//determine whether the index is valid.
-static bool Idx(int fIndex) {
-    return LIST_BEGIN <= fIndex && fIndex < sEnd;
-}
-
-//get complete function information.
-static FuncInfo *Inf(int fIndex) {
-    FuncInfo *info = sList + fIndex;
-
+static FuncInfo *GetInfo(int fIndex) {
+    fIndex -= INDEX_OFFSET;
+    if (fIndex < 0 || InfoCount() <= fIndex) {
+        return NULL;
+    }
+    
+    auto info = (FuncInfo *)bloffset(&sInfoList, fIndex).asptr;
+    
     //mutex is not necessary here, cause the value obtained by each thread is the same.
     if (!info->complete) {
         if (info->retType == 0) {
@@ -131,15 +88,15 @@ static FuncInfo *Inf(int fIndex) {
     return info;
 }
 
-nclink const char *NFuncName       (int i) {return Idx(i) ? Inf(i)->name        : NULL ;}
-nclink void       *NFuncAddress    (int i) {return Idx(i) ? Inf(i)->address     : NULL ;}
-nclink int         NFuncRetType    (int i) {return Idx(i) ? Inf(i)->retType     : 0    ;}
-nclink bool        NFuncRetRetained(int i) {return Idx(i) ? Inf(i)->retRetained : false;}
-nclink int         NFuncArgCount   (int i) {return Idx(i) ? Inf(i)->argCount    : 0    ;}
+nclink const char *NFuncName       (int i) {auto f = GetInfo(i); return f ? f->name        : NULL ;}
+nclink void       *NFuncAddress    (int i) {auto f = GetInfo(i); return f ? f->address     : NULL ;}
+nclink int         NFuncRetType    (int i) {auto f = GetInfo(i); return f ? f->retType     : 0    ;}
+nclink bool        NFuncRetRetained(int i) {auto f = GetInfo(i); return f ? f->retRetained : false;}
+nclink int         NFuncArgCount   (int i) {auto f = GetInfo(i); return f ? f->argCount    : 0    ;}
 
 nclink NType NFuncArgType(int fIndex, int aIndex) {
-    if (Idx(fIndex)) {
-        FuncInfo *info = Inf(fIndex);
+    FuncInfo *info = GetInfo(fIndex);
+    if (info) {
         if (0 <= aIndex && aIndex < info->argCount) {
             return info->argTypes[aIndex];
         }
@@ -233,13 +190,13 @@ template<class R> struct Caller<R, MAX_ARG_NUM> {
 
 nclink _NWord NCallFunc(int fIndex, int argc, NType *types, _NWord *words) {
     //is it a valid index.
-    if (!Idx(fIndex)) {
+    FuncInfo *info = GetInfo(fIndex);
+    if (!info) {
         __NError("illegal function index %d", fIndex);
         return 0;
     }
 
     //are there enough arguments.
-    FuncInfo *info = Inf(fIndex);
     if (argc < info->argCount) {
         __NError("only %d arguments passed, but %d required", argc, info->argCount);
         return 0;

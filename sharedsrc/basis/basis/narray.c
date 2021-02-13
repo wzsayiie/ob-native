@@ -80,12 +80,9 @@ static bool WordArrayIteratorNext(NWordArrayIterator *iterator) {
 }
 
 static NWord WordArrayIteratorCurr(NWordArrayIterator *iterator) {
-    NWord curr = {0};
-    
-    word item = slget(iterator->list, iterator->curr);
-    curr.asPtr = item.asptr;
-    
-    return curr;
+    NWord item = {0};
+    item.asPtr = slget(iterator->list, iterator->curr).asptr;
+    return item;
 }
 
 NIterator *NWordArrayItems(NWordArray *array) {

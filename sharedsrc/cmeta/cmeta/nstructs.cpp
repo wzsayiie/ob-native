@@ -35,11 +35,10 @@ static void EnsureInfo(const char *name) {
     
     //NOTE: update field "super".
     for (int i = 0; i < blcount(&sInfoList); ++i) {
-        word currItem = bloffset(&sInfoList, i);
-        auto currInfo = (StructInfo *)currItem.asptr;
+        auto info = (StructInfo *)(bloffset(&sInfoList, i).asptr);
         
-        if (currInfo->super >= index + INDEX_OFFSET) {
-            currInfo->super += 1;
+        if (info->super >= index + INDEX_OFFSET) {
+            info->super += 1;
         }
     }
 }
@@ -60,8 +59,7 @@ static int IndicateInfo(const char *name) {
 static StructInfo *GetInfo(int index) {
     index -= INDEX_OFFSET;
     if (0 <= index && index < InfoCount()) {
-        word item = bloffset(&sInfoList, index);
-        return (StructInfo *)item.asptr;
+        return (StructInfo *)(bloffset(&sInfoList, index).asptr);
     } else {
         return NULL;
     }

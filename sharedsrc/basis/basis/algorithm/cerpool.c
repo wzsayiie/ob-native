@@ -10,9 +10,9 @@ void cpinit(cerpool *pool, int sin) {
 void cpdeinit(cerpool *pool) {
     cpboard *cursor = pool->head.next;
     while (cursor) {
-        cpboard *block = cursor;
+        cpboard *board = cursor;
         cursor = cursor->next;
-        mfree(block);
+        mfree(board);
     }
     
     mzero(pool, szof(*pool));

@@ -22,7 +22,7 @@ struct cpboard {
     cpchip   cuts[0];
 };
 
-//the memory pool that manages blocks with certain size.
+//the memory pool that manages items with certain size.
 struct cerpool {
     int     chipsz;
     int     total ;

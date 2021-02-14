@@ -6,21 +6,29 @@
 extern "C" {
 #endif
 
-typedef struct cpblock {
-    union {
-        void *padd;
-        bool  used;
-    };
-    char load[];
-} cpblock;
+typedef struct cpchip  cpchip ;
+typedef struct cpboard cpboard;
+typedef struct cerpool cerpool;
+
+struct cpchip {
+    cpboard *board;
+    char     carry[0];
+};
+
+struct cpboard {
+    cpboard *prev;
+    cpboard *next;
+    int      cost;
+    cpchip   cuts[0];
+};
 
 //the memory pool that manages blocks with certain size.
-typedef struct cerpool {
-    void *dat;
-    int   sin;
-    int   sum;
-    int   use;
-} cerpool;
+struct cerpool {
+    int     chipsz;
+    int     total ;
+    int     cost  ;
+    cpboard head  ;
+};
 
 void cpinit  (cerpool *pool, int sin);
 void cpdeinit(cerpool *pool);

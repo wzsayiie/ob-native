@@ -10,7 +10,7 @@ nstruct(NMemoryBlock, {
         void *padding ;
         int   loadSize;
     };
-    int8_t load[];
+    int8_t load[0];
 });
 
 void *NAllocMemory(int size) {

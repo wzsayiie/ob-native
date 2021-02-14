@@ -34,7 +34,7 @@ typedef struct mblock {
         void *padd;
         int   size;
     };
-    char load[];
+    char load[0];
 } mblock;
 
 void *mcalloc(int cnt, int sin) {

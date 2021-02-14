@@ -2,7 +2,7 @@
 #include <stdarg.h>
 #include <stdio.h>
 
-#if N_OS_ANDROID
+#if NOS_ANDROID
     #include <android/log.h>
     static void SysInfo (const char *s) {__android_log_write(ANDROID_LOG_INFO , "nnn", s);}
     static void SysError(const char *s) {__android_log_write(ANDROID_LOG_ERROR, "nnn", s);}

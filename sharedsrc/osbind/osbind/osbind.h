@@ -1,9 +1,9 @@
 #pragma once
 
-#if N_OS_ANDROID
+#if NOS_ANDROID
     #include "njnibind.h"
 #endif
 
-#if N_OS_IOS || N_OS_OSX
+#if NOS_IOS || NOS_OSX
     #include "NOBJCBind.h"
 #endif

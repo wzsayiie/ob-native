@@ -6,13 +6,13 @@ nfunc(void, NLock  , (int hash));
 nfunc(void, NUnlock, (int hash));
 
 #define nsynwith(n) \
-/**/    for (int __N = (NLock((int)(intptr_t)n), 1); __N; __N = (NUnlock((int)(intptr_t)n), 0)) \
-/**/    for (int __M = 1; __M; __M = 0)
+/**/    for (int _a = (NLock((int)(intptr_t)n), 1); _a; _a = (NUnlock((int)(intptr_t)n), 0)) \
+/**/    for (int _b = 1; _b; _b = 0)
 
 #define nsynonce()          \
-/**/    static int __T = 0; \
-/**/    nsynwith(&__T)      \
-/**/        if (__T == 0)   \
-/**/            if (++__T)
+/**/    static int _t = 0;  \
+/**/    nsynwith(&_t)       \
+/**/        if (_t == 0)    \
+/**/            if (++_t)
 
 #define nsyn() nsynwith(__LINE__)

@@ -9,4 +9,4 @@ nfunc(void, NPutInfo , (const char *string));
 nfunc(void, NPutError, (const char *string));
 
 //internal error ouput.
-nclink void __NError(const char *format, ...);
+nclink void _NError(const char *format, ...);

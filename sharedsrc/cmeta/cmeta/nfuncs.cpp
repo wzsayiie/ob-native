@@ -6,7 +6,7 @@
 #include "ntypecheck.h"
 
 //from "nio.h".
-nclink void __NError(const char *format, ...);
+nclink void _NError(const char *format, ...);
 
 //the maximum number of arguments that can be supported.
 static const int MAX_ARG_NUM = 4;
@@ -192,13 +192,13 @@ nclink _NWord NCallFunc(int fIndex, int argc, NType *types, _NWord *words) {
     //is it a valid index.
     FuncInfo *info = GetInfo(fIndex);
     if (!info) {
-        __NError("illegal function index %d", fIndex);
+        _NError("illegal function index %d", fIndex);
         return 0;
     }
 
     //are there enough arguments.
     if (argc < info->argCount) {
-        __NError("only %d arguments passed, but %d required", argc, info->argCount);
+        _NError("only %d arguments passed, but %d required", argc, info->argCount);
         return 0;
     }
 
@@ -207,7 +207,7 @@ nclink _NWord NCallFunc(int fIndex, int argc, NType *types, _NWord *words) {
         NType srcType = types[n];
         NType dstType = info->argTypes[n];
         if (!NSafeCastable(srcType, dstType)) {
-            __NError("argument %d can't cast from type %d to %d", n + 1, srcType, dstType);
+            _NError("argument %d can't cast from type %d to %d", n + 1, srcType, dstType);
             return 0;
         }
     }
@@ -310,8 +310,8 @@ SPECIAL_TRAIT(const double   *, "doubleptr", NTYPE_DOUBLE_PTR);
 
 #undef  nstruct
 #undef  nclass
-#define nstruct(n,    ...) __nstruct(n   , __VA_ARGS__); SPECIAL_TRAIT(n *, #n, 0)
-#define nclass( n, s, ...) __nclass (n, s, __VA_ARGS__); SPECIAL_TRAIT(n *, #n, 0)
+#define nstruct(n,    ...) _nstruct(n   , __VA_ARGS__); SPECIAL_TRAIT(n *, #n, 0)
+#define nclass( n, s, ...) _nclass (n, s, __VA_ARGS__); SPECIAL_TRAIT(n *, #n, 0)
 
 static bool CheckRetRetained(NType retType, const char *funcName) {
     if (retType >= NTYPE_CUSTOM_PTR) {
@@ -409,9 +409,9 @@ struct FuncAdder {
     }
 };
 
-#define __add_func(n) static FuncAdder __adder_##n(#n, n)
+#define _add_func(n) static FuncAdder _adder_##n(#n, n)
 
 #undef  nfunc
-#define nfunc(r, n, p) __nfunc(r, n, p); __add_func(n)
+#define nfunc(r, n, p) _nfunc(r, n, p); _add_func(n)
 
 #include "NEXPORT.h"

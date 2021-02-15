@@ -48,7 +48,7 @@ void NPutError(const char *string) {
     }
 }
 
-void __NError(const char *format, ...) {
+void _NError(const char *format, ...) {
     va_list args;
     va_start(args, format);
     Print(format, args, SysError);

@@ -67,8 +67,8 @@ Java_src_shared_osbind_NFunc_invokeFunc(JNIEnv *env, jclass cls,
     UNUSED(env);
     UNUSED(cls);
 
-    NType   types[] = {type0, type1, type2, type3};
-    __NWord words[] = {word0, word1, word2, word3};
+    NType  types[] = {type0, type1, type2, type3};
+    _NWord words[] = {word0, word1, word2, word3};
 
     return NCallFunc(fIndex, argc, types, words);
 }

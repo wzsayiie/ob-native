@@ -103,11 +103,11 @@ struct StructAdder {
     }
 };
 
-#define __add_struct(n, z, s) static StructAdder __adder_##n(#n, z, s)
+#define _add_struct(n, z, s) static StructAdder _adder_##n(#n, z, s)
 
 #undef  nstruct
 #undef  nclass
-#define nstruct(n,    ...) __nstruct(n,    __VA_ARGS__); __add_struct(n, NULL, nsizeof(n))
-#define nclass( n, s, ...) __nclass (n, s, __VA_ARGS__); __add_struct(n, #s  , nsizeof(n))
+#define nstruct(n,    ...) _nstruct(n,    __VA_ARGS__); _add_struct(n, NULL, nsizeof(n))
+#define nclass( n, s, ...) _nclass (n, s, __VA_ARGS__); _add_struct(n, #s  , nsizeof(n))
 
 #include "NEXPORT.h"

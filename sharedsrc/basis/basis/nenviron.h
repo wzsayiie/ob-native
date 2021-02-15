@@ -151,11 +151,11 @@ nenum(NType) {
 
 //the flags for generating meta data:
 
-#define __nstruct(name, ...) typedef struct name name; struct name __VA_ARGS__
-#define   nstruct(name, ...) __nstruct(name, __VA_ARGS__)
+#define _nstruct(name, ...) typedef struct name name; struct name __VA_ARGS__
+#define  nstruct(name, ...) _nstruct(name, __VA_ARGS__)
 
-#define __nclass(name, super, ...) typedef struct name name; struct name __VA_ARGS__
-#define   nclass(name, super, ...) __nclass(name, super, __VA_ARGS__)
+#define _nclass(name, super, ...) typedef struct name name; struct name __VA_ARGS__
+#define  nclass(name, super, ...) _nclass(name, super, __VA_ARGS__)
 
-#define __nfunc(ret, name, params) nclink  ret  name  params
-#define   nfunc(ret, name, params) __nfunc(ret, name, params)
+#define _nfunc(ret, name, params) nclink ret  name  params
+#define  nfunc(ret, name, params) _nfunc(ret, name, params)

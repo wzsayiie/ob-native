@@ -10,8 +10,11 @@ nstruct(NMemoryBlock, {
         void *padding ;
         int   loadSize;
     };
-    int8_t load[0];
+    int8_t load[];
 });
+
+static void *SysCalloc (int   c, int s) {return calloc ((size_t)c, (size_t)s);}
+static void *SysRealloc(void *p, int s) {return realloc(/* v* */p, (size_t)s);}
 
 void *NAllocMemory(int size) {
     if (size <= 0) {
@@ -21,7 +24,7 @@ void *NAllocMemory(int size) {
     int blockSize = nsizeof(NMemoryBlock) + size;
     
     //NOTE: "calloc" will initialize all bytes to zero.
-    NMemoryBlock *block = calloc(1, blockSize);
+    NMemoryBlock *block = SysCalloc(1, blockSize);
     block->loadSize = size;
     return block->load;
 }
@@ -39,7 +42,7 @@ void *NReallocMemory(void *ptr, int size) {
     int oldBlockSize = nsizeof(NMemoryBlock) + block->loadSize;
     int newBlockSize = nsizeof(NMemoryBlock) + size;
     
-    block = realloc(block, newBlockSize);
+    block = SysRealloc(block, newBlockSize);
     block->loadSize = size;
     
     //NOTE: initialize new bytes.
@@ -61,7 +64,7 @@ void *NDupMemory(const void *ptr) {
     NMemoryBlock *srcBlock = (NMemoryBlock *)ptr - 1;
     int blockSize = nsizeof(NMemoryBlock) + srcBlock->loadSize;
 
-    NMemoryBlock *dstBlock = calloc(1, blockSize);
+    NMemoryBlock *dstBlock = SysCalloc(1, blockSize);
     NMoveMemory(dstBlock, srcBlock, blockSize);
     return dstBlock->load;
 }

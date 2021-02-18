@@ -6,29 +6,27 @@
 extern "C" {
 #endif
 
-typedef struct cpchip  cpchip ;
-typedef struct cpboard cpboard;
-typedef struct cerpool cerpool;
-
-struct cpchip {
-    cpboard *board;
-    char     carry[0];
-};
-
+typedef
+struct cpboard cpboard;
 struct cpboard {
     cpboard *prev;
     cpboard *next;
     int      cost;
-    cpchip   cuts[0];
+    //cpchip dt[];
 };
 
+typedef struct cpchip {
+    cpboard *board;
+    //char  load[];
+} cpchip;
+
 //the memory pool that manages items with certain size.
-struct cerpool {
-    int     chipsz;
-    int     total ;
-    int     cost  ;
-    cpboard head  ;
-};
+typedef struct cerpool {
+    int      chipsz;
+    int      total ;
+    int      cost  ;
+    cpboard *first ;
+} cerpool;
 
 void cpinit  (cerpool *pool, int sin);
 void cpdeinit(cerpool *pool);

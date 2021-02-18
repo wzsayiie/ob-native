@@ -8,7 +8,7 @@ void cpinit(cerpool *pool, int sin) {
 }
 
 void cpdeinit(cerpool *pool) {
-    cpboard *cursor = pool->head.next;
+    cpboard *cursor = pool->first;
     while (cursor) {
         cpboard *board = cursor;
         cursor = cursor->next;
@@ -19,36 +19,37 @@ void cpdeinit(cerpool *pool) {
 }
 
 static void allocboard(cerpool *pool) {
-    cpboard *front = &pool->head;
-    cpboard *back  = front->next;
-    
     int size = szof(cpboard) + BOARD_CHIP_TOTAL * pool->chipsz;
     cpboard *board = mcalloc(1, size);
-    board->prev = front;
-    board->next = back;
+    board->prev = NULL;
+    board->next = pool->first;
     
     pool->total += BOARD_CHIP_TOTAL;
-    front->next = board;
-    if (back) {
-        back->prev = board;
+    if (pool->first) {
+        pool->first->prev = board;
     }
+    pool->first = board;
 }
 
 static void freeboard(cerpool *pool, cpboard *board) {
-    cpboard *front = board->prev;
-    cpboard *back  = board->next;
-    
     pool->total -= BOARD_CHIP_TOTAL;
-    front->next = back;
-    if (back) {
-        back->prev = front;
+    if (pool->first == board) {
+        pool->first = board->next;
+        if (pool->first) {
+            pool->first->prev = NULL;
+        }
+    } else {
+        board->prev->next = board->next;
+        if (board->next) {
+            board->next->prev = board->prev;
+        }
     }
     
     mfree(board);
 }
 
 static cpboard *vacboard(cerpool *pool) {
-    cpboard *board = pool->head.next;
+    cpboard *board = pool->first;
     for (; board; board = board->next) {
         if (board->cost < BOARD_CHIP_TOTAL) {
             return board;
@@ -59,7 +60,7 @@ static cpboard *vacboard(cerpool *pool) {
 }
 
 static cpchip *vacchip(cerpool *pool, cpboard *board) {
-    cpchip *chip = board->cuts;
+    cpchip *chip = (cpchip *)(board + 1);
     while (true) {
         if (chip->board == NULL) {
             return chip;
@@ -84,11 +85,11 @@ void *cpborrow(cerpool *pool) {
     board->cost += 1;
     pool->cost += 1;
     
-    return chip->carry;
+    return (cpchip *)chip + 1;
 }
 
-void cpreturn(cerpool *pool, void *carry) {
-    cpchip  *chip  = (cpchip *)carry - 1;
+void cpreturn(cerpool *pool, void *load) {
+    cpchip  *chip  = (cpchip *)load - 1;
     cpboard *board = chip->board;
     
     chip->board = NULL;

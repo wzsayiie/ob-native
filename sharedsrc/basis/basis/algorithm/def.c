@@ -34,13 +34,16 @@ typedef struct mblock {
         void *padd;
         int   size;
     };
-    char load[0];
+    char load[];
 } mblock;
+
+static void *syscalloc (int   c, int s) {return calloc ((size_t)c, (size_t)s);}
+static void *sysrealloc(void *p, int s) {return realloc(/* v* */p, (size_t)s);}
 
 void *mcalloc(int cnt, int sin) {
     int size = szof(mblock) + cnt * sin;
     //"calloc" will initialize all bytes to zero.
-    mblock *block = calloc(1, size);
+    mblock *block = syscalloc(1, size);
     block->size = size;
     return block->load;
 }
@@ -54,7 +57,7 @@ void *mrealloc(void *ptr, int cnt, int sin) {
     int     osize = block->size;
     int     nsize = szof(mblock) + cnt * sin;
     
-    block = realloc(block, nsize);
+    block = sysrealloc(block, nsize);
     block->size = nsize;
     
     //NOTE: initialize new bytes.

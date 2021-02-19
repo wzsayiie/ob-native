@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE2468E625DFF34000ED25DE /* ncpprefs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE2468E025DFF34000ED25DE /* ncpprefs.cpp */; };
+		CE2468E725DFF34000ED25DE /* nobjectref.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE2468E325DFF34000ED25DE /* nobjectref.cpp */; };
+		CE2468E825DFF34000ED25DE /* nactionref.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE2468E425DFF34000ED25DE /* nactionref.cpp */; };
 		CE37F59525D0351400C8302C /* launch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE37F59425D0351400C8302C /* launch.cpp */; };
 		CE37F62425D0352E00C8302C /* nsocket_posix.c in Sources */ = {isa = PBXBuildFile; fileRef = CE37F59A25D0352E00C8302C /* nsocket_posix.c */; };
 		CE37F62525D0352E00C8302C /* nsocket.c in Sources */ = {isa = PBXBuildFile; fileRef = CE37F59D25D0352E00C8302C /* nsocket.c */; };
@@ -17,8 +20,6 @@
 		CE37F63325D0352E00C8302C /* nlaunch.c in Sources */ = {isa = PBXBuildFile; fileRef = CE37F5C225D0352E00C8302C /* nlaunch.c */; };
 		CE37F63725D0352E00C8302C /* NIOSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE37F5CD25D0352E00C8302C /* NIOSViewController.m */; };
 		CE37F63825D0352E00C8302C /* NIOSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CE37F5CE25D0352E00C8302C /* NIOSAppDelegate.m */; };
-		CE37F63925D0352E00C8302C /* nany.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE37F5D325D0352E00C8302C /* nany.cpp */; };
-		CE37F63A25D0352E00C8302C /* nref.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE37F5D525D0352E00C8302C /* nref.cpp */; };
 		CE37F63B25D0352E00C8302C /* NMacBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = CE37F5DA25D0352E00C8302C /* NMacBundle.m */; };
 		CE37F63C25D0352E00C8302C /* NMacThread.m in Sources */ = {isa = PBXBuildFile; fileRef = CE37F5DB25D0352E00C8302C /* NMacThread.m */; };
 		CE37F63D25D0352E00C8302C /* NMacRunloop.m in Sources */ = {isa = PBXBuildFile; fileRef = CE37F5DC25D0352E00C8302C /* NMacRunloop.m */; };
@@ -51,6 +52,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CE2468E025DFF34000ED25DE /* ncpprefs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ncpprefs.cpp; sourceTree = "<group>"; };
+		CE2468E125DFF34000ED25DE /* nobjectref.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nobjectref.h; sourceTree = "<group>"; };
+		CE2468E225DFF34000ED25DE /* nactionref.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nactionref.h; sourceTree = "<group>"; };
+		CE2468E325DFF34000ED25DE /* nobjectref.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = nobjectref.cpp; sourceTree = "<group>"; };
+		CE2468E425DFF34000ED25DE /* nactionref.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = nactionref.cpp; sourceTree = "<group>"; };
+		CE2468E525DFF34000ED25DE /* ncpprefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ncpprefs.h; sourceTree = "<group>"; };
 		CE37F59425D0351400C8302C /* launch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = launch.cpp; sourceTree = "<group>"; };
 		CE37F59A25D0352E00C8302C /* nsocket_posix.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = nsocket_posix.c; sourceTree = "<group>"; };
 		CE37F59B25D0352E00C8302C /* nhttp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nhttp.h; sourceTree = "<group>"; };
@@ -70,11 +77,7 @@
 		CE37F5CE25D0352E00C8302C /* NIOSAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIOSAppDelegate.m; sourceTree = "<group>"; };
 		CE37F5CF25D0352E00C8302C /* NIOSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIOSViewController.h; sourceTree = "<group>"; };
 		CE37F5D025D0352E00C8302C /* NIOSAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIOSAppDelegate.h; sourceTree = "<group>"; };
-		CE37F5D325D0352E00C8302C /* nany.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = nany.cpp; sourceTree = "<group>"; };
 		CE37F5D425D0352E00C8302C /* cplus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cplus.h; sourceTree = "<group>"; };
-		CE37F5D525D0352E00C8302C /* nref.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = nref.cpp; sourceTree = "<group>"; };
-		CE37F5D625D0352E00C8302C /* nref.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nref.h; sourceTree = "<group>"; };
-		CE37F5D725D0352E00C8302C /* nany.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nany.h; sourceTree = "<group>"; };
 		CE37F5DA25D0352E00C8302C /* NMacBundle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMacBundle.m; sourceTree = "<group>"; };
 		CE37F5DB25D0352E00C8302C /* NMacThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMacThread.m; sourceTree = "<group>"; };
 		CE37F5DC25D0352E00C8302C /* NMacRunloop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMacRunloop.m; sourceTree = "<group>"; };
@@ -280,10 +283,12 @@
 			isa = PBXGroup;
 			children = (
 				CE37F5D425D0352E00C8302C /* cplus.h */,
-				CE37F5D325D0352E00C8302C /* nany.cpp */,
-				CE37F5D725D0352E00C8302C /* nany.h */,
-				CE37F5D525D0352E00C8302C /* nref.cpp */,
-				CE37F5D625D0352E00C8302C /* nref.h */,
+				CE2468E425DFF34000ED25DE /* nactionref.cpp */,
+				CE2468E225DFF34000ED25DE /* nactionref.h */,
+				CE2468E025DFF34000ED25DE /* ncpprefs.cpp */,
+				CE2468E525DFF34000ED25DE /* ncpprefs.h */,
+				CE2468E325DFF34000ED25DE /* nobjectref.cpp */,
+				CE2468E125DFF34000ED25DE /* nobjectref.h */,
 			);
 			path = cplus;
 			sourceTree = "<group>";
@@ -509,7 +514,9 @@
 				CE37F64725D0352E00C8302C /* osplat.c in Sources */,
 				CE37F59525D0351400C8302C /* launch.cpp in Sources */,
 				CE37F63B25D0352E00C8302C /* NMacBundle.m in Sources */,
+				CE2468E725DFF34000ED25DE /* nobjectref.cpp in Sources */,
 				CE37F65A25D0352E00C8302C /* ntypecheck.cpp in Sources */,
+				CE2468E825DFF34000ED25DE /* nactionref.cpp in Sources */,
 				CE37F63C25D0352E00C8302C /* NMacThread.m in Sources */,
 				CE37F64C25D0352E00C8302C /* nio.c in Sources */,
 				CE37F65925D0352E00C8302C /* nlock.c in Sources */,
@@ -532,15 +539,14 @@
 				CE37F63D25D0352E00C8302C /* NMacRunloop.m in Sources */,
 				CE37F62725D0352E00C8302C /* nsocket_win32.c in Sources */,
 				CE9FEBB424F2439B0029E036 /* main.m in Sources */,
-				CE37F63A25D0352E00C8302C /* nref.cpp in Sources */,
 				CE37F64D25D0352E00C8302C /* narray.c in Sources */,
 				CE37F64825D0352E00C8302C /* nnumber.c in Sources */,
 				CE37F65625D0352E00C8302C /* npod.c in Sources */,
 				CE37F62625D0352E00C8302C /* nhttp.c in Sources */,
 				CE37F65525D0352E00C8302C /* nmemory.c in Sources */,
 				CE37F65325D0352E00C8302C /* cstr.c in Sources */,
-				CE37F63925D0352E00C8302C /* nany.cpp in Sources */,
 				CE37F64A25D0352E00C8302C /* nstring.c in Sources */,
+				CE2468E625DFF34000ED25DE /* ncpprefs.cpp in Sources */,
 				CE37F63E25D0352E00C8302C /* NMacFiles.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

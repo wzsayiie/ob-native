@@ -41,8 +41,9 @@
     <ClCompile Include="..\..\sharedsrc\cmeta\cmeta\ntypecheck.cpp" />
     <ClCompile Include="..\..\sharedsrc\cmeta\cmeta\nfuncs.cpp" />
     <ClCompile Include="..\..\sharedsrc\cmeta\cmeta\nstructs.cpp" />
-    <ClCompile Include="..\..\sharedsrc\cplus\cplus\nany.cpp" />
-    <ClCompile Include="..\..\sharedsrc\cplus\cplus\nref.cpp" />
+    <ClCompile Include="..\..\sharedsrc\cplus\cplus\nactionref.cpp" />
+    <ClCompile Include="..\..\sharedsrc\cplus\cplus\ncpprefs.cpp" />
+    <ClCompile Include="..\..\sharedsrc\cplus\cplus\nobjectref.cpp" />
     <ClCompile Include="..\..\sharedsrc\net\net\nhttp.c" />
     <ClCompile Include="..\..\sharedsrc\net\net\nsocket.c" />
     <ClCompile Include="..\..\sharedsrc\net\net\nsocket_posix.c" />
@@ -83,8 +84,9 @@
     <ClInclude Include="..\..\sharedsrc\cmeta\cmeta\nfuncs.h" />
     <ClInclude Include="..\..\sharedsrc\cmeta\cmeta\nstructs.h" />
     <ClInclude Include="..\..\sharedsrc\cplus\cplus\cplus.h" />
-    <ClInclude Include="..\..\sharedsrc\cplus\cplus\nany.h" />
-    <ClInclude Include="..\..\sharedsrc\cplus\cplus\nref.h" />
+    <ClInclude Include="..\..\sharedsrc\cplus\cplus\nactionref.h" />
+    <ClInclude Include="..\..\sharedsrc\cplus\cplus\ncpprefs.h" />
+    <ClInclude Include="..\..\sharedsrc\cplus\cplus\nobjectref.h" />
     <ClInclude Include="..\..\sharedsrc\net\net\net.h" />
     <ClInclude Include="..\..\sharedsrc\net\net\nhttp.h" />
     <ClInclude Include="..\..\sharedsrc\net\net\nsocket.h" />

@@ -1,4 +1,5 @@
 #pragma once
 
-#include "nany.h"
-#include "nref.h"
+#include "nactionref.h"
+#include "ncpprefs.h"
+#include "nobjectref.h"

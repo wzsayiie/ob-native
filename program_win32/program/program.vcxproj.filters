@@ -108,9 +108,6 @@
     <ClCompile Include="..\..\sharedsrc\cmeta\cmeta\nfuncs.cpp">
       <Filter>sharedsrc\cmeta\cmeta</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sharedsrc\cplus\cplus\nref.cpp">
-      <Filter>sharedsrc\cplus\cplus</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sharedsrc\net\net\nhttp.c">
       <Filter>sharedsrc\net\net</Filter>
     </ClCompile>
@@ -144,9 +141,6 @@
     <ClCompile Include="..\..\sharedsrc\osplat\osplat\osplat.c">
       <Filter>sharedsrc\osplat\osplat</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sharedsrc\cplus\cplus\nany.cpp">
-      <Filter>sharedsrc\cplus\cplus</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sharedsrc\cmeta\cmeta\nstructs.cpp">
       <Filter>sharedsrc\cmeta\cmeta</Filter>
     </ClCompile>
@@ -170,6 +164,15 @@
     </ClCompile>
     <ClCompile Include="..\..\sharedsrc\basis\basis\algorithm\avltree.c">
       <Filter>sharedsrc\basis\basis\algorithm</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharedsrc\cplus\cplus\nobjectref.cpp">
+      <Filter>sharedsrc\cplus\cplus</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharedsrc\cplus\cplus\nactionref.cpp">
+      <Filter>sharedsrc\cplus\cplus</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharedsrc\cplus\cplus\ncpprefs.cpp">
+      <Filter>sharedsrc\cplus\cplus</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -227,9 +230,6 @@
     <ClInclude Include="..\..\sharedsrc\cplus\cplus\cplus.h">
       <Filter>sharedsrc\cplus\cplus</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\sharedsrc\cplus\cplus\nref.h">
-      <Filter>sharedsrc\cplus\cplus</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\sharedsrc\net\net\net.h">
       <Filter>sharedsrc\net\net</Filter>
     </ClInclude>
@@ -263,9 +263,6 @@
     <ClInclude Include="..\..\sharedsrc\osui\osui_win32\NWinMain.h">
       <Filter>sharedsrc\osui\osui_win32</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\sharedsrc\cplus\cplus\nany.h">
-      <Filter>sharedsrc\cplus\cplus</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\sharedsrc\cmeta\cmeta\nstructs.h">
       <Filter>sharedsrc\cmeta\cmeta</Filter>
     </ClInclude>
@@ -289,6 +286,15 @@
     </ClInclude>
     <ClInclude Include="..\..\sharedsrc\basis\basis\algorithm\avltree.h">
       <Filter>sharedsrc\basis\basis\algorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sharedsrc\cplus\cplus\ncpprefs.h">
+      <Filter>sharedsrc\cplus\cplus</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sharedsrc\cplus\cplus\nobjectref.h">
+      <Filter>sharedsrc\cplus\cplus</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sharedsrc\cplus\cplus\nactionref.h">
+      <Filter>sharedsrc\cplus\cplus</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

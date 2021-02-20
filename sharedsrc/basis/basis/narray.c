@@ -246,6 +246,6 @@ NWord NWordArrayGet(NWordArray *array, int index) {
 /**/        return elem.MEMBER;                                     \
 /**/    }
 
-GEN_ARRAY(NArray   , NRef   , true , asPtr   )
-GEN_ARRAY(NIntArray, int64_t, false, asInt64 )
-GEN_ARRAY(NFltArray, double , false, asDouble)
+GEN_ARRAY(NArray   , NRef , true , asPtr  )
+GEN_ARRAY(NIntArray, int  , false, asInt  )
+GEN_ARRAY(NFltArray, float, false, asFloat)

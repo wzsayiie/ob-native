@@ -69,12 +69,12 @@ nfunc(NIntArray *, NIntArrayCreate, (void));
 nfunc(NIntArray *, NIntArrayCopy  , (NIntArray *that ));
 nfunc(int        , NIntArrayCount , (NIntArray *array));
 nfunc(NIterator *, NIntArrayItems , (NIntArray *array));
-nfunc(void       , NIntArrayPush  , (NIntArray *array, int64_t item));
+nfunc(void       , NIntArrayPush  , (NIntArray *array, int item));
 nfunc(void       , NIntArrayPop   , (NIntArray *array));
-nfunc(void       , NIntArrayInsert, (NIntArray *array, int index, int64_t item));
+nfunc(void       , NIntArrayInsert, (NIntArray *array, int index, int item));
 nfunc(void       , NIntArrayRemove, (NIntArray *array, int index));
-nfunc(void       , NIntArraySet   , (NIntArray *array, int index, int64_t item));
-nfunc(int64_t    , NIntArrayGet   , (NIntArray *array, int index));
+nfunc(void       , NIntArraySet   , (NIntArray *array, int index, int item));
+nfunc(int        , NIntArrayGet   , (NIntArray *array, int index));
 
 nclass(NFltArray, NWordArray, {
     union {
@@ -90,9 +90,9 @@ nfunc(NFltArray *, NFltArrayCreate, (void));
 nfunc(NFltArray *, NFltArrayCopy  , (NFltArray *that ));
 nfunc(int        , NFltArrayCount , (NFltArray *array));
 nfunc(NIterator *, NFltArrayItems , (NFltArray *array));
-nfunc(void       , NFltArrayPush  , (NFltArray *array, double item));
+nfunc(void       , NFltArrayPush  , (NFltArray *array, float item));
 nfunc(void       , NFltArrayPop   , (NFltArray *array));
-nfunc(void       , NFltArrayInsert, (NFltArray *array, int index, double item));
+nfunc(void       , NFltArrayInsert, (NFltArray *array, int index, float item));
 nfunc(void       , NFltArrayRemove, (NFltArray *array, int index));
-nfunc(void       , NFltArraySet   , (NFltArray *array, int index, double item));
-nfunc(double     , NFltArrayGet   , (NFltArray *array, int index));
+nfunc(void       , NFltArraySet   , (NFltArray *array, int index, float item));
+nfunc(float      , NFltArrayGet   , (NFltArray *array, int index));

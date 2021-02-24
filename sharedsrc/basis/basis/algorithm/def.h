@@ -43,8 +43,7 @@ void mzero(void *dst, int size);
 void *pmove(const void *ptr, int offset);
 
 //debug print.
-void println(const char *fmt, ...);
-void print  (const char *fmt, ...);
+void print(const char *fmt, ...);
 
 #if __cplusplus
 }

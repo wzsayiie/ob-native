@@ -1,8 +1,13 @@
 #include "def.h"
 #include <stdarg.h>
-#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
+#if ANDROID
+    #include <android/log.h>
+#else
+    #include <stdio.h>
+#endif
 
 //word:
 
@@ -89,18 +94,16 @@ void *pmove(const void *ptr, int offset) {
 
 //debug print:
 
-void println(const char *fmt, ...) {
-    va_list args;
-    va_start(args, fmt);
-    vprintf(fmt, args);
-    va_end(args);
-    
-    printf("\n");
-}
-
 void print(const char *fmt, ...) {
     va_list args;
     va_start(args, fmt);
-    vprintf(fmt, args);
+
+    #if ANDROID
+        __android_log_vprint(ANDROID_LOG_DEBUG, "nnn", fmt, args);
+    #else
+        vprintf(fmt, args);
+        printf("\n");
+    #endif
+
     va_end(args);
 }

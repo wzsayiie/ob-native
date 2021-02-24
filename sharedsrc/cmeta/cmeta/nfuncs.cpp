@@ -143,14 +143,14 @@ template<class T> T Val(NType srcType, _NWord word) {
     }
 }
 
-struct CallerData {
+struct OnceCallData {
     FuncInfo *funcInfo;
     NType    *argTypes;
     _NWord   *argWords;
 };
 
 template<class R, int N> struct Caller {
-    template<class... A> static _NWord C(CallerData *data, A... a) {
+    template<class... A> static _NWord C(OnceCallData *data, A... a) {
         if (N == data->funcInfo->argCount) {
             return Executor<R>::Exec(data->funcInfo->address, a...);
         }
@@ -183,12 +183,28 @@ template<class R, int N> struct Caller {
     }
 };
 template<class R> struct Caller<R, MAX_ARG_NUM> {
-    template<class... A> static _NWord C(CallerData *data, A... a) {
+    template<class... A> static _NWord C(OnceCallData *data, A... a) {
         return Executor<R>::Exec(data->funcInfo->address, a...);
     }
 };
 
-nclink _NWord NCallFunc(int fIndex, int argc, NType *types, _NWord *words) {
+static nthreadlocal int    sCallerArgCount = 0;
+static nthreadlocal NType  sCallerArgTypes[MAX_ARG_NUM] = {0};
+static nthreadlocal _NWord sCallerArgWords[MAX_ARG_NUM] = {0};
+
+nclink void NCallerReset() {
+    sCallerArgCount = 0;
+}
+
+nclink void NCallerPush(NType argType, _NWord argWord) {
+    if (sCallerArgCount < MAX_ARG_NUM) {
+        sCallerArgTypes[sCallerArgCount] = argType;
+        sCallerArgWords[sCallerArgCount] = argWord;
+        sCallerArgCount += 1;
+    }
+}
+
+nclink _NWord NCallFunc(int fIndex) {
     //is it a valid index.
     FuncInfo *info = GetInfo(fIndex);
     if (!info) {
@@ -197,14 +213,14 @@ nclink _NWord NCallFunc(int fIndex, int argc, NType *types, _NWord *words) {
     }
 
     //are there enough arguments.
-    if (argc < info->argCount) {
-        _NError("only %d arguments passed, but %d required", argc, info->argCount);
+    if (sCallerArgCount < info->argCount) {
+        _NError("only %d arguments passed, but %d required", sCallerArgCount, info->argCount);
         return 0;
     }
 
     //are the argument types correct.
     for (int n = 0; n < info->argCount; ++n) {
-        NType srcType = types[n];
+        NType srcType = sCallerArgTypes[n];
         NType dstType = info->argTypes[n];
         if (!NSafeCastable(srcType, dstType)) {
             _NError("argument %d can't cast from type %d to %d", n + 1, srcType, dstType);
@@ -212,10 +228,10 @@ nclink _NWord NCallFunc(int fIndex, int argc, NType *types, _NWord *words) {
         }
     }
 
-    CallerData data = {0};
-    data.funcInfo = info ;
-    data.argTypes = types;
-    data.argWords = words;
+    OnceCallData data = {0};
+    data.funcInfo = info;
+    data.argTypes = sCallerArgTypes;
+    data.argWords = sCallerArgWords;
 
     switch (info->retType) {
         //only use "void", "intptr_t", "int64_t", "float" and "double" 5 types,

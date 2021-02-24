@@ -19,4 +19,6 @@ nfunc(NType , NFuncArgType    , (int fIndex, int aIndex));
 #define _NWord int64_t
 #endif
 
-nfunc(_NWord, NCallFunc, (int fIndex, int argc, NType *types, _NWord *words));
+nfunc(void  , NCallerReset, (void));
+nfunc(void  , NCallerPush , (NType argType, _NWord argWord));
+nfunc(_NWord, NCallFunc   , (int   fIndex));

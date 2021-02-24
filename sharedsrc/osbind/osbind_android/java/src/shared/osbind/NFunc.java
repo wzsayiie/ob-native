@@ -49,51 +49,35 @@ public class NFunc {
     private static native int     funcArgCount   (int    fIndex);
     private static native int     funcArgType    (int    fIndex, int aIndex);
 
-    private static native long invokeFunc(int fIndex, int argc,
-        int  type0, int  type1, int  type2, int  type3,
-        long word0, long word1, long word2, long word3
-    );
+    private static native void callerReset();
+    private static native void callerPush (int argType, long argWord);
+    private static native long callFunc   (int fIndex);
 
     private NValue call(Object[] args) {
         if (mFuncIndex == 0) {
             return null;
         }
 
-        final int I_0 = 0;
-        final int I_1 = 1;
-        final int I_2 = 2;
-        final int I_3 = 3;
-        final int I_M = 4;
-
-        //NOTE: items hold the c objects.
-        @SuppressWarnings({"MismatchedReadAndWriteOfArray"})
-        NValue[] items = new NValue[I_M];
-
-        int [] types = new int [I_M];
-        long[] words = new long[I_M];
-
-        int argc = (args != null ? args.length : 0);
-        if (argc > I_M) {
-            argc = I_M;
+        int argCount = (args != null ? args.length : 0);
+        if (argCount > mArgCount) {
+            argCount = mArgCount;
         }
-        if (argc > mArgCount) {
-            argc = mArgCount;
+
+        NValue[] params = new NValue[argCount];
+        for (int i = 0; i < argCount; ++i) {
+            params[i] = NValue.make(args[i], mArgTypes[i]);
         }
-        for (int n = 0; n < argc; ++n) {
-            NValue value = NValue.make(args[n], mArgTypes[n]);
-            if (value == null) {
-                continue;
+
+        callerReset();
+        for (int i = 0; i < argCount; ++i) {
+            if (params[i] != null) {
+                callerPush(params[i].nativeType(), params[i].nativeWord());
+            } else {
+                callerPush(NType.VOID, 0);
             }
-
-            items[n] = value;
-            types[n] = value.nativeType();
-            words[n] = value.nativeWord();
         }
 
-        long retWord = invokeFunc(mFuncIndex, argc,
-            types[I_0], types[I_1], types[I_2], types[I_3],
-            words[I_0], words[I_1], words[I_2], words[I_3]
-        );
+        long retWord = callFunc(mFuncIndex);
         return NValue.hold(mReturnType, retWord, mRetRetained);
     }
 }

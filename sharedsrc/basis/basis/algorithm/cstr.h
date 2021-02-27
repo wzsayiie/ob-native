@@ -22,6 +22,10 @@ char     *csdup  (const char     *str);
 char32_t *csdup16(const char16_t *str);
 char32_t *csdup32(const char32_t *str);
 
+void cscat  (char     *dst, const char     *src);
+void cscat16(char16_t *dst, const char16_t *src);
+void cscat32(char32_t *dst, const char32_t *src);
+
 #if __cplusplus
 }
 #endif

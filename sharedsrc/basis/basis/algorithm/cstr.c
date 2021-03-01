@@ -1,7 +1,7 @@
 #include "cstr.h"
 #include "def.h"
 
-static int next(const void **ptr, int sin) {
+static int read(const void **ptr, int sin) {
     int val = 0;
     switch (sin) {
         case 1 : val = **(char     **)ptr; break;
@@ -10,13 +10,13 @@ static int next(const void **ptr, int sin) {
         default:;
     }
 
-    *ptr = (char *)*ptr + sin;
+    *ptr = pmove(*ptr, sin);
     return val;
 }
 
 static int len(const void *str, int sin) {
     int cnt = 0;
-    while (next(&str, sin)) {
+    while (read(&str, sin)) {
         cnt += 1;
     }
     return cnt;
@@ -28,8 +28,8 @@ int cslen32(const char32_t *str) {return len(str, 4);}
 
 static int cmp(const void *a, const void *b, int sin) {
     while (true) {
-        int x = next(&a, sin);
-        int y = next(&b, sin);
+        int x = read(&a, sin);
+        int y = read(&b, sin);
 
         if (x != y) {
             return x > y ? 1 : -1;
@@ -57,3 +57,14 @@ static void *dup(const void *str, int sin) {
 char     *csdup  (const char     *str) {return dup(str, 1);}
 char32_t *csdup16(const char16_t *str) {return dup(str, 2);}
 char32_t *csdup32(const char32_t *str) {return dup(str, 4);}
+
+void cat(void *dst, const void *src, int sin) {
+    int dlen = len(dst, sin);
+    int slen = len(src, sin) + 1;
+    
+    mmove(pmove(dst, dlen * sin), src, slen * sin);
+}
+
+void cscat  (char     *dst, const char     *src) {cat(dst, src, 1);}
+void cscat16(char16_t *dst, const char16_t *src) {cat(dst, src, 2);}
+void cscat32(char32_t *dst, const char32_t *src) {cat(dst, src, 3);}

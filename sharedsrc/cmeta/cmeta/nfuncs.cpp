@@ -196,11 +196,14 @@ nclink void NCallerReset() {
 }
 
 nclink void NCallerPush(NType argType, _NWord argWord) {
-    if (sCallerArgCount < MAX_ARG_NUM) {
-        sCallerArgTypes[sCallerArgCount] = argType;
-        sCallerArgWords[sCallerArgCount] = argWord;
-        sCallerArgCount += 1;
+    if (sCallerArgCount == MAX_ARG_NUM) {
+        _NError("only supports up to %d arguments", MAX_ARG_NUM);
+        return;
     }
+
+    sCallerArgTypes[sCallerArgCount] = argType;
+    sCallerArgWords[sCallerArgCount] = argWord;
+    sCallerArgCount += 1;
 }
 
 static bool Between(NType lower, NType value, NType upper) {

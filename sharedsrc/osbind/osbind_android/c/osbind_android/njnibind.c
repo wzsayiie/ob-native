@@ -695,8 +695,12 @@ void NJNICallerReset(void) {
     sCallerArgCount = 0;
 }
 
-static bool CallerCanPush(void) {
-    return sCallerArgCount < _NJNI_MAX_ARG_NUM;
+static bool CallerPushable(void) {
+    if (sCallerArgCount == _NJNI_MAX_ARG_NUM) {
+        _NError("only supports up to %d arguments for jni bind", _NJNI_MAX_ARG_NUM);
+        return false;
+    }
+    return true;
 }
 
 static void CallerPush(char type, jvalue word) {
@@ -706,7 +710,7 @@ static void CallerPush(char type, jvalue word) {
 }
 
 void NJNICallerPushBoolean(bool arg) {
-    if (CallerCanPush()) {
+    if (CallerPushable()) {
         jvalue word = {0};
         word.z = arg;
         CallerPush('z', word);
@@ -714,7 +718,7 @@ void NJNICallerPushBoolean(bool arg) {
 }
 
 void NJNICallerPushLong(int64_t arg) {
-    if (CallerCanPush()) {
+    if (CallerPushable()) {
         jvalue word = {0};
         word.j = arg;
         CallerPush('j', word);
@@ -722,7 +726,7 @@ void NJNICallerPushLong(int64_t arg) {
 }
 
 void NJNICallerPushDouble(double arg) {
-    if (CallerCanPush()) {
+    if (CallerPushable()) {
         jvalue word = {0};
         word.d = arg;
         CallerPush('d', word);
@@ -730,7 +734,7 @@ void NJNICallerPushDouble(double arg) {
 }
 
 void NJNICallerPushString(NString *arg) {
-    if (!CallerCanPush()) {
+    if (!CallerPushable()) {
         return;
     }
 
@@ -749,7 +753,7 @@ void NJNICallerPushString(NString *arg) {
 }
 
 void NJNICallerPushObject(NJNIObject *arg) {
-    if (!CallerCanPush()) {
+    if (!CallerPushable()) {
         return;
     }
 

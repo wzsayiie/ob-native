@@ -1,4 +1,4 @@
-﻿#include "NWinMain.h"
+﻿#include "NWin32Main.h"
 #include <stdio.h>
 #include "osui.h"
 

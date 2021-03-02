@@ -1,4 +1,4 @@
-#include "NWinMain.h"
+#include "NWin32Main.h"
 
 int APIENTRY wWinMain(
     _In_     HINSTANCE hInst    ,

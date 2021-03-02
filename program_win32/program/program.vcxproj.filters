@@ -61,6 +61,15 @@
     <Filter Include="sharedsrc\basis\basis\algorithm">
       <UniqueIdentifier>{9d30dd5b-d1ae-4187-8d67-9aff5a32ddca}</UniqueIdentifier>
     </Filter>
+    <Filter Include="sharedsrc\osbind">
+      <UniqueIdentifier>{a4ec5508-3c3c-4bdc-b706-52d998bd85b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sharedsrc\osbind\osbind_win32">
+      <UniqueIdentifier>{1e70afa8-86eb-475b-b44c-51b295eac14b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sharedsrc\osbind\osbind">
+      <UniqueIdentifier>{d0de71f0-1293-4d30-b408-d6a027cd1aec}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="winmain.c">
@@ -117,9 +126,6 @@
     <ClCompile Include="..\..\sharedsrc\osui\osui\nlaunch.c">
       <Filter>sharedsrc\osui\osui</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sharedsrc\osui\osui_win32\NWinMain.c">
-      <Filter>sharedsrc\osui\osui_win32</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sharedsrc\net\net\nsocket_posix.c">
       <Filter>sharedsrc\net\net</Filter>
     </ClCompile>
@@ -173,6 +179,15 @@
     </ClCompile>
     <ClCompile Include="..\..\sharedsrc\cplus\cplus\ncpprefs.cpp">
       <Filter>sharedsrc\cplus\cplus</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharedsrc\osui\osui_win32\NWin32Main.c">
+      <Filter>sharedsrc\osui\osui_win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharedsrc\osbind\osbind\osbind.c">
+      <Filter>sharedsrc\osbind\osbind</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharedsrc\osbind\osbind_win32\NWin32Bind.c">
+      <Filter>sharedsrc\osbind\osbind_win32</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -260,9 +275,6 @@
     <ClInclude Include="..\..\sharedsrc\osui\osui\osui.h">
       <Filter>sharedsrc\osui\osui</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\sharedsrc\osui\osui_win32\NWinMain.h">
-      <Filter>sharedsrc\osui\osui_win32</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\sharedsrc\cmeta\cmeta\nstructs.h">
       <Filter>sharedsrc\cmeta\cmeta</Filter>
     </ClInclude>
@@ -295,6 +307,15 @@
     </ClInclude>
     <ClInclude Include="..\..\sharedsrc\cplus\cplus\nactionref.h">
       <Filter>sharedsrc\cplus\cplus</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sharedsrc\osui\osui_win32\NWin32Main.h">
+      <Filter>sharedsrc\osui\osui_win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sharedsrc\osbind\osbind\osbind.h">
+      <Filter>sharedsrc\osbind\osbind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sharedsrc\osbind\osbind_win32\NWin32Bind.h">
+      <Filter>sharedsrc\osbind\osbind_win32</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

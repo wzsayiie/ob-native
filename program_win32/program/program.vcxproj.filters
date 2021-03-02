@@ -150,9 +150,6 @@
     <ClCompile Include="..\..\sharedsrc\cmeta\cmeta\nstructs.cpp">
       <Filter>sharedsrc\cmeta\cmeta</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sharedsrc\cmeta\cmeta\ntypecheck.cpp">
-      <Filter>sharedsrc\cmeta\cmeta</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sharedsrc\basis\basis\algorithm\cstr.c">
       <Filter>sharedsrc\basis\basis\algorithm</Filter>
     </ClCompile>
@@ -276,9 +273,6 @@
       <Filter>sharedsrc\osui\osui</Filter>
     </ClInclude>
     <ClInclude Include="..\..\sharedsrc\cmeta\cmeta\nstructs.h">
-      <Filter>sharedsrc\cmeta\cmeta</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\sharedsrc\cmeta\cmeta\ntypecheck.h">
       <Filter>sharedsrc\cmeta\cmeta</Filter>
     </ClInclude>
     <ClInclude Include="..\..\sharedsrc\basis\basis\algorithm\cstr.h">

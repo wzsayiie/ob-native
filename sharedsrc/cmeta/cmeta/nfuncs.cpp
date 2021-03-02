@@ -3,7 +3,6 @@
 #include "cerpool.h"
 #include "binlist.h"
 #include "nstructs.h"
-#include "ntypecheck.h"
 
 //from "nio.h".
 nclink void _NError(const char *format, ...);
@@ -204,6 +203,79 @@ nclink void NCallerPush(NType argType, _NWord argWord) {
     }
 }
 
+static bool Between(NType lower, NType value, NType upper) {
+    return lower <= value && value <= upper;
+}
+
+static bool Unknown   (NType t) {return Between(NTYPE_STRUCT  , t, NTYPE_PTR       );}
+static bool IsVoid    (NType t) {return Between(NTYPE_VOID    , t, NTYPE_VOID      );}
+static bool IsBool    (NType t) {return Between(NTYPE_BOOL    , t, NTYPE_BOOL      );}
+static bool IsNumber  (NType t) {return Between(NTYPE_CHAR8   , t, NTYPE_DOUBLE    );}
+static bool IsVoidPtr (NType t) {return Between(NTYPE_VOID_PTR, t, NTYPE_VOID_PTR  );}
+static bool IsBasicPtr(NType t) {return Between(NTYPE_BOOL_PTR, t, NTYPE_DOUBLE_PTR);}
+
+static bool SafeCastable(NType srcType, NType dstType) {
+    if (Unknown(srcType) || Unknown(dstType)) {
+        //unknown types can't be casted.
+        return false;
+    }
+
+    if (IsVoid(dstType)) {
+        //any type can be casted to void.
+        return true;
+    }
+
+    if (IsBool(dstType)) {
+        //any type can be casted to bool.
+        return true;
+    }
+
+    if (IsNumber(dstType)) {
+        if (IsVoid(srcType)) {return true;}
+        if (IsBool(srcType)) {return true;}
+
+        if (IsNumber(srcType)) {
+            //numeric types always can be casted to each other,
+            //which is more convenient for cross-language calling.
+            return true;
+        }
+        
+        if (IsVoidPtr (srcType)) {return false;}
+        if (IsBasicPtr(srcType)) {return false;}
+        /* src is custom ptr */  {return false;}
+    }
+
+    if (IsVoidPtr(dstType)) {
+        if (IsVoid  (srcType)) {return false;}
+        if (IsBool  (srcType)) {return false;}
+        if (IsNumber(srcType)) {return false;}
+        
+        //any ptr can be casted to void ptr.
+        if (IsVoidPtr (srcType)) {return true;}
+        if (IsBasicPtr(srcType)) {return true;}
+        /* src is custom ptr */  {return true;}
+    }
+
+    if (IsBasicPtr(dstType)) {
+        //basic ptr can't be casted to other types.
+        return srcType == dstType;
+    }
+    
+    //dst is custom ptr.
+    if (IsVoid    (srcType)) {return false;}
+    if (IsBool    (srcType)) {return false;}
+    if (IsNumber  (srcType)) {return false;}
+    if (IsVoidPtr (srcType)) {return false;}
+    if (IsBasicPtr(srcType)) {return false;}
+
+    while (NType super = NStructSuper(srcType)) {
+        if (dstType == super) {
+            return true;
+        }
+    }
+    return false;
+}
+
 nclink _NWord NCallFunc(int fIndex) {
     //is it a valid index.
     FuncInfo *info = GetInfo(fIndex);
@@ -222,7 +294,7 @@ nclink _NWord NCallFunc(int fIndex) {
     for (int n = 0; n < info->argCount; ++n) {
         NType srcType = sCallerArgTypes[n];
         NType dstType = info->argTypes[n];
-        if (!NSafeCastable(srcType, dstType)) {
+        if (!SafeCastable(srcType, dstType)) {
             _NError("argument %d can't cast from type %d to %d", n + 1, srcType, dstType);
             return 0;
         }
@@ -233,28 +305,31 @@ nclink _NWord NCallFunc(int fIndex) {
     data.argTypes = sCallerArgTypes;
     data.argWords = sCallerArgWords;
 
+    _NWord retValue = 0;
     switch (info->retType) {
         //only use "void", "intptr_t", "int64_t", "float" and "double" 5 types,
         //to prevent code bloat.
-
-        case NTYPE_STRUCT: return 0;
-        case NTYPE_PTR   : return 0;
-
-        case NTYPE_VOID  : return Caller<void    , 0>::C(&data);
-        case NTYPE_BOOL  : return Caller<intptr_t, 0>::C(&data);
-        case NTYPE_INT8  : return Caller<intptr_t, 0>::C(&data);
-        case NTYPE_INT16 : return Caller<intptr_t, 0>::C(&data);
-        case NTYPE_INT32 : return Caller<intptr_t, 0>::C(&data);
-        case NTYPE_INT64 : return Caller<int64_t , 0>::C(&data);
-        case NTYPE_UINT8 : return Caller<intptr_t, 0>::C(&data);
-        case NTYPE_UINT16: return Caller<intptr_t, 0>::C(&data);
-        case NTYPE_UINT32: return Caller<intptr_t, 0>::C(&data);
-        case NTYPE_UINT64: return Caller<int64_t , 0>::C(&data);
-        case NTYPE_FLOAT : return Caller<float   , 0>::C(&data);
-        case NTYPE_DOUBLE: return Caller<double  , 0>::C(&data);
-
-        default /* ptr */: return Caller<intptr_t, 0>::C(&data);
+        case NTYPE_STRUCT: break;
+        case NTYPE_PTR   : break;
+        case NTYPE_VOID  : retValue = Caller<void    , 0>::C(&data); break;
+        case NTYPE_BOOL  : retValue = Caller<intptr_t, 0>::C(&data); break;
+        case NTYPE_INT8  : retValue = Caller<intptr_t, 0>::C(&data); break;
+        case NTYPE_INT16 : retValue = Caller<intptr_t, 0>::C(&data); break;
+        case NTYPE_INT32 : retValue = Caller<intptr_t, 0>::C(&data); break;
+        case NTYPE_INT64 : retValue = Caller<int64_t , 0>::C(&data); break;
+        case NTYPE_UINT8 : retValue = Caller<intptr_t, 0>::C(&data); break;
+        case NTYPE_UINT16: retValue = Caller<intptr_t, 0>::C(&data); break;
+        case NTYPE_UINT32: retValue = Caller<intptr_t, 0>::C(&data); break;
+        case NTYPE_UINT64: retValue = Caller<int64_t , 0>::C(&data); break;
+        case NTYPE_FLOAT : retValue = Caller<float   , 0>::C(&data); break;
+        case NTYPE_DOUBLE: retValue = Caller<double  , 0>::C(&data); break;
+        default /* ptr */: retValue = Caller<intptr_t, 0>::C(&data);
     }
+
+    //NOTE: clear arguments.
+    NCallerReset();
+
+    return retValue;
 }
 
 template<class T> struct Trait {
@@ -271,7 +346,7 @@ template<class T> struct Trait<T **> {
 };
 
 #define SPECIAL_TRAIT(S, N, T)                              \
-/**/    template<> struct Trait<S> {                      \
+/**/    template<> struct Trait<S> {                        \
 /**/        static constexpr const char *const NAME = N;    \
 /**/        static const NType TYPE = T;                    \
 /**/    }

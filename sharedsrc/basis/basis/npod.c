@@ -10,12 +10,18 @@ NValue NMakeIntValue   (int      v) {return NMakeInt64Value (v);}
 NValue NMakeUIntValue  (unsigned v) {return NMakeUInt64Value(v);}
 NValue NMakeFloatValue (float    v) {return NMakeDoubleValue(v);}
 
-static bool IsPtr    (NType t) {return t == NTYPE_PTR  || t >= NTYPE_VOID_PTR;}
-static bool IsInteger(NType t) {return t >= NTYPE_BOOL && t <= NTYPE_UINT64  ;}
-static bool IsStruct (NType t) {return t == NTYPE_STRUCT;}
-static bool IsVoid   (NType t) {return t == NTYPE_VOID  ;}
-static bool IsFloat  (NType t) {return t == NTYPE_FLOAT ;}
-static bool IsDouble (NType t) {return t == NTYPE_DOUBLE;}
+static bool IsStruct(NType t) {return t == NTYPE_STRUCT;}
+static bool IsVoid  (NType t) {return t == NTYPE_VOID  ;}
+static bool IsFloat (NType t) {return t == NTYPE_FLOAT ;}
+static bool IsDouble(NType t) {return t == NTYPE_DOUBLE;}
+
+static bool IsPtr(NType t) {
+    return NTYPE_PTR == t || NTYPE_VOID_PTR <= t;
+}
+
+static bool IsInteger(NType t) {
+    return NTYPE_BOOL <= t && t <= NTYPE_UINT64;
+}
 
 bool NBoolValue(NValue value) {
     return value.asInt64 != 0;

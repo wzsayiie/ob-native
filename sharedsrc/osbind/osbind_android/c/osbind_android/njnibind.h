@@ -1,85 +1,115 @@
 #pragma once
 
-// #include "basis.h"
+#include "basis.h"
+#include <jni.h>
 
-// nenum(NJTypeKind) {
-//     NJTYPE_BOOLEAN =  1,
-//     NJTYPE_CHAR    =  2,
-//     NJTYPE_BYTE    =  3,
-//     NJTYPE_SHORT   =  4,
-//     NJTYPE_INT     =  5,
-//     NJTYPE_LONG    =  6,
-//     NJTYPE_FLOAT   =  7,
-//     NJTYPE_DOUBLE  =  8,
-//     NJTYPE_STRING  =  9,
-//     NJTYPE_CLASS   = 10,
+//import a jni type:
 
-//     NJTYPE_BOOLEAN_ARRAY = 11,
-//     NJTYPE_CHAR_ARRAY    = 12,
-//     NJTYPE_BYTE_ARRAY    = 13,
-//     NJTYPE_SHORT_ARRAY   = 14,
-//     NJTYPE_INT_ARRAY     = 15,
-//     NJTYPE_LONG_ARRAY    = 16,
-//     NJTYPE_FLOAT_ARRAY   = 17,
-//     NJTYPE_DOUBLE_ARRAY  = 18,
-//     NJTYPE_STRING_ARRAY  = 19,
-//     NJTYPE_CLASS_ARRAY   = 20,
+nenum(_NJNIClassType) {
+    _NJNI_CLASS_VOID    =  1,
+    _NJNI_CLASS_BOOLEAN =  2,
+    _NJNI_CLASS_CHAR    =  3,
+    _NJNI_CLASS_BYTE    =  4,
+    _NJNI_CLASS_SHORT   =  5,
+    _NJNI_CLASS_INT     =  6,
+    _NJNI_CLASS_LONG    =  7,
+    _NJNI_CLASS_FLOAT   =  8,
+    _NJNI_CLASS_DOUBLE  =  9,
+    _NJNI_CLASS_STRING  = 10,
+    _NJNI_CLASS_OBJECT  = 11,
+    _NJNI_CLASS_ARRAY   = 12,
+};
 
-//     NJTYPE_VOID = 21,
-// };
+nclass(NJNIClass, NObject, {
+    union {
+        NObject Object;
+        NObject Super ;
+    };
 
-// nenum(NJMethodKind) {
-//     NJMETHOD_CONSTRUCT = 1,
-//     NJMETHOD_STATIC    = 2,
-//     NJMETHOD_INSTANCE  = 3,
-// };
+    _NJNIClassType classType;
+    char          *className;
+    jclass         jniRef   ;
+    NJNIClass     *itemClass;
+});
 
-// nclass(NJType  , NObject);
-// nclass(NJMethod, NObject);
-// nclass(NJObject, NObject);
+nfunc(NJNIClass *, NJNIImportClass, (const char *name));
+nfunc(NJNIClass *, NJNIImportArrayClass, (NJNIClass *itemClass));
 
-// //import jni types:
+//create a jni array:
 
-// nfunc(NJType *, NJBasicType, (NJTypeKind  kind));
-// nfunc(NJType *, NJClassType, (const char *path));
+nclass(NJNIObject, NObject, {
+    union {
+        NObject Object;
+        NObject Super ;
+    };
 
-// //manipulate array types:
+    NJNIClass *cls   ;
+    jobject   *jniRef;
+});
 
-// nfunc(NJObject *, NJCreateArray, (NJTypeKind kind, int count));
+nfunc(NJNIObject *, NJNICreateArray, (NJNIClass *cls, int count));
 
-// nfunc(int, NJArrayCount, (NJObject *array));
+nfunc(int, NJNIArrayCount, (NJNIObject *array));
 
-// nfunc(void, NJSetBoolItem  , (NJObject *array, int index, bool      item));
-// nfunc(void, NJSetIntItem   , (NJObject *array, int index, int64_t   item));
-// nfunc(void, NJSetFltItem   , (NJObject *array, int index, double    item));
-// nfunc(void, NJSetStringItem, (NJObject *array, int index, NString  *item));
-// nfunc(void, NJSetObjectItem, (NJObject *array, int index, NJObject *item));
+nfunc(void, NJNISetBooleanItem, (NJNIObject *array, int index, bool        item));
+nfunc(void, NJNISetLongItem   , (NJNIObject *array, int index, int64_t     item));
+nfunc(void, NJNISetDoubleItem , (NJNIObject *array, int index, double      item));
+nfunc(void, NJNISetStringItem , (NJNIObject *array, int index, NString    *item));
+nfunc(void, NJNISetObjectItem , (NJNIObject *array, int index, NJNIObject *item));
 
-// nfunc(bool   , NJBoolItem, (NJObject *array, int index));
-// nfunc(int64_t, NJIntItem , (NJObject *array, int index));
-// nfunc(double , NJFltItem , (NJObject *array, int index));
+nfunc(bool        , NJNIBooleanItem     , (NJNIObject *array, int index));
+nfunc(int64_t     , NJNILongItem        , (NJNIObject *array, int index));
+nfunc(double      , NJNIDoubleItem      , (NJNIObject *array, int index));
+nfunc(NString    *, NJNIRetainStringItem, (NJNIObject *array, int index));
+nfunc(NJNIObject *, NJNIRetainObjectItem, (NJNIObject *array, int index));
 
-// nfunc(NString  *, NJRetainStringItem, (NJObject *array, int index));
-// nfunc(NJObject *, NJRetainObjectItem, (NJObject *array, int index));
+//find a jni method:
 
-// //find jni methods:
+nenum(_NJNIMethodType) {
+    _NJNI_METHOD_INIT     = 1,
+    _NJNI_METHOD_INSTANCE = 2,
+    _NJNI_METHOD_STATIC   = 3,
+};
 
-// nfunc(void      , NJFinderSetArgs, (NType *arg0, NType *arg1, NType *arg2, NType *arg3));
-// nfunc(void      , NJFinderSetRet , (NType *ret));
-// nfunc(NJMethod *, NJFindMethod   , (NType *cls, NJMethodKind kind, const char *func));
+#define _NJNI_MAX_ARG_NUM 4
 
-// //invoke jni methods:
+nclass(NJNIMethod, NObject, {
+    union {
+        NObject Object;
+        NObject Super ;
+    };
 
-// nfunc(void, NJCallerPushBool  , (int reset, bool      arg));
-// nfunc(void, NJCallerPushInt   , (int reset, int64_t   arg));
-// nfunc(void, NJCallerPushFlt   , (int reset, double    arg));
-// nfunc(void, NJCallerPushString, (int reset, NString  *arg));
-// nfunc(void, NJCallerPushObject, (int reset, NJObject *arg));
+    NJNIClass      *owningClass;
+    _NJNIMethodType methodType ;
+    char           *methodName ;
+    char           *signature  ;
+    jmethodID       jniMethodID;
 
-// nfunc(void   , NJCallVoid, (NJObject *object, NJMethod *method));
-// nfunc(bool   , NJCallBool, (NJObject *object, NJMethod *method));
-// nfunc(int64_t, NJCallInt , (NJObject *object, NJMethod *method));
-// nfunc(double , NJCallFlt , (NJObject *object, NJMethod *method));
+    NJNIClass *retClass;
+    int        argCount;
+    NJNIClass *argClasses[_NJNI_MAX_ARG_NUM];
+});
 
-// nfunc(NString  *, NJCallRetainString, (NJObject *object, NJMethod *method));
-// nfunc(NJObject *, NJCallRetainObject, (NJObject *object, NJMethod *method));
+nfunc(void, NJNIFinderReset , (void));
+nfunc(void, NJNIFinderSetRet, (NJNIClass *ret));
+nfunc(void, NJNIFinderAddArg, (NJNIClass *arg));
+
+nfunc(NJNIMethod *, NJNIFindInitMethod    , (NJNIClass *cls));
+nfunc(NJNIMethod *, NJNIFindInstanceMethod, (NJNIClass *cls, const char *name));
+nfunc(NJNIMethod *, NJNIFindStaticMethod  , (NJNIClass *cls, const char *name));
+
+//call a jni method:
+
+nfunc(void, NJNICallerReset      , (void));
+nfunc(void, NJNICallerPushBoolean, (bool        arg));
+nfunc(void, NJNICallerPushLong   , (int64_t     arg));
+nfunc(void, NJNICallerPushDouble , (double      arg));
+nfunc(void, NJNICallerPushString , (NString    *arg));
+nfunc(void, NJNICallerPushObject , (NJNIObject *arg));
+
+nfunc(void        , NJNICallVoid        , (NJNIObject *object, NJNIMethod *method));
+nfunc(bool        , NJNICallBoolean     , (NJNIObject *object, NJNIMethod *method));
+nfunc(int64_t     , NJNICallLong        , (NJNIObject *object, NJNIMethod *method));
+nfunc(double      , NJNICallDouble      , (NJNIObject *object, NJNIMethod *method));
+nfunc(NString    *, NJNICallRetainString, (NJNIObject *object, NJNIMethod *method));
+nfunc(NJNIObject *, NJNICallRetainObject, (NJNIObject *object, NJNIMethod *method));

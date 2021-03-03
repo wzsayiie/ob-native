@@ -21,4 +21,4 @@ nfunc(NType , NFuncArgType    , (int fIndex, int aIndex));
 
 nfunc(void  , NCallerReset, (void));
 nfunc(void  , NCallerPush , (NType argType, _NWord argWord));
-nfunc(_NWord, NCallFunc   , (int   fIndex));
+nfunc(_NWord, NCall       , (int   fIndex));

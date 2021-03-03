@@ -271,15 +271,15 @@ static bool SafeCastable(NType srcType, NType dstType) {
     if (IsVoidPtr (srcType)) {return false;}
     if (IsBasicPtr(srcType)) {return false;}
 
-    while (NType super = NStructSuper(srcType)) {
-        if (dstType == super) {
+    for (; srcType; srcType = NStructSuper(srcType)) {
+        if (dstType == srcType) {
             return true;
         }
     }
     return false;
 }
 
-nclink _NWord NCallFunc(int fIndex) {
+nclink _NWord NCall(int fIndex) {
     //is it a valid index.
     FuncInfo *info = GetInfo(fIndex);
     if (!info) {
@@ -293,8 +293,13 @@ nclink _NWord NCallFunc(int fIndex) {
         return 0;
     }
 
-    //are the argument types correct.
+    //check argument types.
     for (int n = 0; n < info->argCount; ++n) {
+        //NOTE: "0" is legal for any type.
+        if (sCallerArgWords[n] == 0) {
+            continue;
+        }
+
         NType srcType = sCallerArgTypes[n];
         NType dstType = info->argTypes[n];
         if (!SafeCastable(srcType, dstType)) {

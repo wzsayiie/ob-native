@@ -43,21 +43,21 @@ Java_src_shared_osbind_NFunc_funcArgType(JNIEnv *env, jclass cls,
 }
 
 JNIEXPORT void JNICALL
-Java_src_shared_osbind_NFunc_callerReset(JNIEnv *env, jclass cls)
+Java_src_shared_osbind_NFunc_nativeCallerReset(JNIEnv *env, jclass cls)
 {
     NCallerReset();
 }
 
 JNIEXPORT void JNICALL
-Java_src_shared_osbind_NFunc_callerPush(JNIEnv *env, jclass cls,
+Java_src_shared_osbind_NFunc_nativeCallerPush(JNIEnv *env, jclass cls,
     jint argType, jlong argWord)
 {
     NCallerPush(argType, argWord);
 }
 
 JNIEXPORT jlong JNICALL
-Java_src_shared_osbind_NFunc_callFunc(JNIEnv *env, jclass cls,
+Java_src_shared_osbind_NFunc_nativeCall(JNIEnv *env, jclass cls,
     jint fIndex)
 {
-    return NCallFunc(fIndex);
+    return NCall(fIndex);
 }

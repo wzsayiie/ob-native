@@ -49,9 +49,9 @@ public class NFunc {
     private static native int     funcArgCount   (int    fIndex);
     private static native int     funcArgType    (int    fIndex, int aIndex);
 
-    private static native void callerReset();
-    private static native void callerPush (int argType, long argWord);
-    private static native long callFunc   (int fIndex);
+    private static native void nativeCallerReset();
+    private static native void nativeCallerPush (int argType, long argWord);
+    private static native long nativeCall       (int fIndex);
 
     private NValue call(Object[] args) {
         if (mFuncIndex == 0) {
@@ -68,16 +68,16 @@ public class NFunc {
             params[i] = NValue.make(args[i], mArgTypes[i]);
         }
 
-        callerReset();
+        nativeCallerReset();
         for (int i = 0; i < argCount; ++i) {
             if (params[i] != null) {
-                callerPush(params[i].nativeType(), params[i].nativeWord());
+                nativeCallerPush(params[i].nativeType(), params[i].nativeWord());
             } else {
-                callerPush(NType.VOID, 0);
+                nativeCallerPush(NType.VOID, 0);
             }
         }
 
-        long retWord = callFunc(mFuncIndex);
+        long retWord = nativeCall(mFuncIndex);
         return NValue.hold(mReturnType, retWord, mRetRetained);
     }
 }

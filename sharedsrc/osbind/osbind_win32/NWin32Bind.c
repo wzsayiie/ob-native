@@ -1,4 +1,4 @@
-#include "NWin32Bind.h"
+﻿#include "NWin32Bind.h"
 #include <Windows.h>
 
 NWINLib *NWINLoadLibrary(NString *dllPath) {

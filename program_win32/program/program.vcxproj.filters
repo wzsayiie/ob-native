@@ -126,9 +126,6 @@
     <ClCompile Include="..\..\sharedsrc\cmeta\cmeta\nfuncs.cpp">
       <Filter>sharedsrc\cmeta\cmeta</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sharedsrc\net\net\nhttp.c">
-      <Filter>sharedsrc\net\net</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sharedsrc\net\net\nsocket.c">
       <Filter>sharedsrc\net\net</Filter>
     </ClCompile>
@@ -261,9 +258,6 @@
       <Filter>sharedsrc\cplus\cplus</Filter>
     </ClInclude>
     <ClInclude Include="..\..\sharedsrc\net\net\net.h">
-      <Filter>sharedsrc\net\net</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\sharedsrc\net\net\nhttp.h">
       <Filter>sharedsrc\net\net</Filter>
     </ClInclude>
     <ClInclude Include="..\..\sharedsrc\net\net\nsocket.h">

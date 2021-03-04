@@ -45,7 +45,6 @@
     <ClCompile Include="..\..\sharedsrc\cplus\cplus\nactionref.cpp" />
     <ClCompile Include="..\..\sharedsrc\cplus\cplus\ncpprefs.cpp" />
     <ClCompile Include="..\..\sharedsrc\cplus\cplus\nobjectref.cpp" />
-    <ClCompile Include="..\..\sharedsrc\net\net\nhttp.c" />
     <ClCompile Include="..\..\sharedsrc\net\net\nsocket.c" />
     <ClCompile Include="..\..\sharedsrc\net\net\nsocket_posix.c" />
     <ClCompile Include="..\..\sharedsrc\net\net\nsocket_win32.c" />
@@ -90,7 +89,6 @@
     <ClInclude Include="..\..\sharedsrc\cplus\cplus\ncpprefs.h" />
     <ClInclude Include="..\..\sharedsrc\cplus\cplus\nobjectref.h" />
     <ClInclude Include="..\..\sharedsrc\net\net\net.h" />
-    <ClInclude Include="..\..\sharedsrc\net\net\nhttp.h" />
     <ClInclude Include="..\..\sharedsrc\net\net\nsocket.h" />
     <ClInclude Include="..\..\sharedsrc\osbind\osbind\osbind.h" />
     <ClInclude Include="..\..\sharedsrc\osbind\osbind_win32\NWin32Bind.h" />

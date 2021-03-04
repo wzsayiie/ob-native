@@ -19,7 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\appsrc\cmain\cmain\launch.cpp" />
+    <ClCompile Include="..\..\appsrc\cmain\cmain\claunch.cpp" />
+    <ClCompile Include="..\..\appsrc\jsmain\jsmain\jslaunch.c" />
+    <ClCompile Include="..\..\appsrc\main\main\launch.c" />
     <ClCompile Include="..\..\sharedsrc\basis\basis\algorithm\avltree.c" />
     <ClCompile Include="..\..\sharedsrc\basis\basis\algorithm\binlist.c" />
     <ClCompile Include="..\..\sharedsrc\basis\basis\algorithm\cerpool.c" />

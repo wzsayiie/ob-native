@@ -6,6 +6,9 @@ set(lib_name main)
 list(APPEND inc_path ../../HEADERS)
 
 list(APPEND src_aims ../../appsrc/cmain/cmain/*.cpp)
+list(APPEND src_aims ../../appsrc/jsmain/jsmain/*.c)
+list(APPEND src_aims ../../appsrc/main/main/*.c)
+
 list(APPEND src_aims ../../sharedsrc/basis/basis/*.c)
 list(APPEND src_aims ../../sharedsrc/cmeta/cmeta/*.cpp)
 list(APPEND src_aims ../../sharedsrc/cplus/cplus/*.cpp)

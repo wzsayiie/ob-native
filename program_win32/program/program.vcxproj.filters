@@ -70,13 +70,22 @@
     <Filter Include="sharedsrc\osbind\osbind">
       <UniqueIdentifier>{d0de71f0-1293-4d30-b408-d6a027cd1aec}</UniqueIdentifier>
     </Filter>
+    <Filter Include="appsrc\main">
+      <UniqueIdentifier>{4f1af8d9-8e88-4d4e-8f1e-f5e30ff87f4c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="appsrc\main\main">
+      <UniqueIdentifier>{2c51ea14-3fbd-41a3-9345-fd8448b78f25}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="appsrc\jsmain">
+      <UniqueIdentifier>{f1a32359-ae93-46ad-9583-8fa2631ec85e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="appsrc\jsmain\jsmain">
+      <UniqueIdentifier>{e8375ad2-896b-4cc7-ac51-a60bb90c4568}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="winmain.c">
       <Filter>program</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\appsrc\cmain\cmain\launch.cpp">
-      <Filter>appsrc\cmain\cmain</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sharedsrc\basis\basis\naction.c">
       <Filter>sharedsrc\basis\basis</Filter>
@@ -185,6 +194,15 @@
     </ClCompile>
     <ClCompile Include="..\..\sharedsrc\osbind\osbind_win32\NWin32Bind.c">
       <Filter>sharedsrc\osbind\osbind_win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\appsrc\cmain\cmain\claunch.cpp">
+      <Filter>appsrc\cmain\cmain</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\appsrc\main\main\launch.c">
+      <Filter>appsrc\main\main</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\appsrc\jsmain\jsmain\jslaunch.c">
+      <Filter>appsrc\jsmain\jsmain</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

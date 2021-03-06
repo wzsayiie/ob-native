@@ -4,7 +4,7 @@
 static DWORD WINAPI ThreadProcedure(LPVOID data)
 {
     NAction *action = data;
-    NActionRun(action);
+    NActionRun(action, NULL);
     NRelease(action);
     return 0;
 }

@@ -8,7 +8,7 @@ void NRunThread(NAction *action) {
     
     NRetain(action);
     NSThread *thread = [[NSThread alloc] initWithBlock:^{
-        NActionRun(action);
+        NActionRun(action, NULL);
         NRelease(action);
     }];
     [thread start];

@@ -4,7 +4,7 @@
 static void ActionProcedure(void *param)
 {
     NAction *action = param;
-    NActionRun(action);
+    NActionRun(action, NULL);
     NRelease(action);
 }
 

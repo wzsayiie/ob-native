@@ -8,7 +8,7 @@ void NPostOnMain(NAction *action) {
     
     NRetain(action);
     dispatch_async(dispatch_get_main_queue(), ^{
-        NActionRun(action);
+        NActionRun(action, NULL);
         NRelease(action);
     });
 }

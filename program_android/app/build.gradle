@@ -37,8 +37,9 @@ android {
     //source files:
     sourceSets {
         main {
-            java.srcDirs += "../../sharedsrc/osui/osui_android/java"
             java.srcDirs += "../../sharedsrc/osbind/osbind_android/java"
+            java.srcDirs += "../../sharedsrc/osplat/osplat_android/java"
+            java.srcDirs += "../../sharedsrc/osui/osui_android/java"
         }
     }
 }

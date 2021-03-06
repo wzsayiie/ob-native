@@ -201,6 +201,9 @@
     <ClCompile Include="..\..\appsrc\jsmain\jsmain\jslaunch.c">
       <Filter>appsrc\jsmain\jsmain</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\sharedsrc\osplat\osplat_win32\NWin32AppContext.c">
+      <Filter>sharedsrc\osplat\osplat_win32</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\sharedsrc\basis\basis\basis.h">
@@ -322,6 +325,9 @@
     </ClInclude>
     <ClInclude Include="..\..\sharedsrc\osbind\osbind_win32\NWin32Bind.h">
       <Filter>sharedsrc\osbind\osbind_win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sharedsrc\osplat\osplat_win32\NWin32AppContext.h">
+      <Filter>sharedsrc\osplat\osplat_win32</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

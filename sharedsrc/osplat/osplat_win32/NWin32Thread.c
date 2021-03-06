@@ -3,7 +3,7 @@
 
 static DWORD WINAPI ThreadProcedure(LPVOID data)
 {
-    NAction *action = (NAction *)data;
+    NAction *action = data;
     NActionRun(action);
     NRelease(action);
     return 0;

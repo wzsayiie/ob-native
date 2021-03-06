@@ -1,95 +1,91 @@
 ﻿#include "NWin32Main.h"
+#include "NWin32AppContext.h"
+#include "nlaunch.h"
 #include <stdio.h>
-#include "osui.h"
 
-static VOID OpenConsole(VOID)
+static void OpenConsole(void)
 {
     AllocConsole();
 
-    FILE* lpStdin  = NULL;
-    FILE* lpStdout = NULL;
-    FILE* lpStderr = NULL;
-    _wfreopen_s(&lpStdin , L"conin$" , L"r", stdin );
-    _wfreopen_s(&lpStdout, L"conout$", L"w", stdout);
-    _wfreopen_s(&lpStderr, L"conout$", L"w", stderr);
+    FILE* newStdin  = NULL;
+    FILE* newStdout = NULL;
+    FILE* newStderr = NULL;
+    _wfreopen_s(&newStdin , L"conin$" , L"r", stdin );
+    _wfreopen_s(&newStdout, L"conout$", L"w", stdout);
+    _wfreopen_s(&newStderr, L"conout$", L"w", stderr);
 
-    WCHAR szTitle[MAX_PATH];
-    GetConsoleTitleW(szTitle, MAX_PATH);
+    WCHAR title[MAX_PATH];
+    GetConsoleTitleW(title, MAX_PATH);
 
-    HWND hWnd = FindWindowW(NULL, szTitle);
+    HWND hWnd = FindWindowW(NULL, title);
     SetWindowPos(hWnd, HWND_TOP, 300, 100, 0, 0, SWP_NOSIZE);
 }
 
-static LRESULT CALLBACK MainWindowProc(HWND hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam)
+static LRESULT CALLBACK MainWindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
-    switch (nMsg)
+    if (msg == WM_CREATE)
     {
-        case WM_CREATE:
-        {
-            break;
-        }
-        
-        case WM_PAINT:
-        {
-            PAINTSTRUCT stPaint;
-            BeginPaint(hWnd, &stPaint);
-            EndPaint(hWnd, &stPaint);
-            break;
-        }
-
-        case WM_DESTROY:
-        {
-            PostQuitMessage(0);
-            break;
-        }
-
-        default:
-        {
-            return DefWindowProc(hWnd, nMsg, wParam, lParam);
-        }
+        _NWINSetMainHWND(hwnd);
+        OpenConsole();
+        NLaunch();
     }
+    else if (msg == WM_PAINT)
+    {
+        PAINTSTRUCT paint;
+        BeginPaint(hwnd, &paint);
+        EndPaint(hwnd, &paint);
+    }
+    else if (msg == WM_DESTROY)
+    {
+        PostQuitMessage(0);
+    }
+    else
+    {
+        bool consumed = _NWINWindowProc(msg, wParam, lParam);
+        if (consumed) {
+            return 0;
+        }
+        return DefWindowProcW(hwnd, msg, wParam, lParam);
+    }
+
     return 0;
 }
 
-int NWinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPWSTR lpCmdLine, int nCmdShow)
+int NWINMain(HINSTANCE inst, HINSTANCE prevInst, LPWSTR cmdLine, int cmdShow)
 {
-    OpenConsole();
-
-    NLaunch();
-
     //register main window class.
-    LPCWSTR lpszClassName = L"NMainWindow";
-    WNDCLASSW stClass = {0};
+    LPCWSTR className = L"NMainWindow";
+    WNDCLASSW wndClass = {0};
 
-    stClass.style         = CS_HREDRAW | CS_VREDRAW;
-    stClass.lpfnWndProc   = MainWindowProc;
-    stClass.cbClsExtra    = 0;
-    stClass.cbWndExtra    = 0;
-    stClass.hInstance     = hInst;
-    stClass.hIcon         = NULL;
-    stClass.hCursor       = NULL;
-    stClass.hbrBackground = (HBRUSH)COLOR_WINDOW;
-    stClass.lpszMenuName  = NULL;
-    stClass.lpszClassName = lpszClassName;
+    wndClass.style         = CS_HREDRAW | CS_VREDRAW;
+    wndClass.lpfnWndProc   = MainWindowProc;
+    wndClass.cbClsExtra    = 0;
+    wndClass.cbWndExtra    = 0;
+    wndClass.hInstance     = inst;
+    wndClass.hIcon         = NULL;
+    wndClass.hCursor       = NULL;
+    wndClass.hbrBackground = (HBRUSH)COLOR_WINDOW;
+    wndClass.lpszMenuName  = NULL;
+    wndClass.lpszClassName = className;
 
-    RegisterClassW(&stClass);
+    RegisterClassW(&wndClass);
 
     //show main window.
-    HWND hWnd = CreateWindowExW(
+    HWND hwnd = CreateWindowExW(
         /* dwExStyle    */ 0,
-        /* lpClassName  */ lpszClassName,
+        /* lpClassName  */ className,
         /* lpWindowName */ L"Native",
         /* dwStyle      */ WS_OVERLAPPEDWINDOW,
         /* x,y          */   0, 100,
         /* width,height */ 300, 300,
         /* hWndParent   */ NULL,
         /* hMenu        */ NULL,
-        /* hInstance    */ hInst,
+        /* hInstance    */ inst,
         /* lpParam      */ NULL
     );
 
-    ShowWindow(hWnd, nCmdShow);
-    UpdateWindow(hWnd);
+    ShowWindow(hwnd, cmdShow);
+    UpdateWindow(hwnd);
 
     //message loop.
     MSG msg;

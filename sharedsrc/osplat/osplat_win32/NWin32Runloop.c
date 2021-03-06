@@ -1,6 +1,21 @@
 ﻿#include "nrunloop.h"
-#include <Windows.h>
+#include "NWin32AppContext.h"
+
+static void ActionProcedure(void *param)
+{
+    NAction *action = param;
+    NActionRun(action);
+    NRelease(action);
+}
 
 void NPostOnMain(NAction *action)
 {
+    if (!action)
+    {
+        return;
+    }
+
+    HWND hwnd = NWINGetMainHWND();
+    NRetain(action);
+    NWINPostAction(hwnd, ActionProcedure, action);
 }

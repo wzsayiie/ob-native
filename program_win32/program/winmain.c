@@ -1,10 +1,10 @@
 ﻿#include "NWin32Main.h"
 
 int APIENTRY wWinMain(
-    _In_     HINSTANCE hInst    ,
-    _In_opt_ HINSTANCE hPrevInst,
-    _In_     LPWSTR    lpCmdLine,
-    _In_     int       nCmdShow )
+    _In_     HINSTANCE inst    ,
+    _In_opt_ HINSTANCE prevInst,
+    _In_     LPWSTR    cmdLine ,
+    _In_     int       cmdShow )
 {
-    return NWinMain(hInst, hPrevInst, lpCmdLine, nCmdShow);
+    return NWINMain(inst, prevInst, cmdLine, cmdShow);
 }

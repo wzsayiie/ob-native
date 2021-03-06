@@ -2,4 +2,4 @@
 
 #include <Windows.h>
 
-int NWinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPWSTR lpCmdLine, int nCmdShow);
+int NWINMain(HINSTANCE inst, HINSTANCE prevInst, LPWSTR cmdLine, int cmdShow);

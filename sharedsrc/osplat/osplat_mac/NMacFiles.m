@@ -33,7 +33,7 @@ bool NMakeDirectory(NString *path, bool intermediate) {
     return false;
 }
 
-NArray *NCopySubitems(NString *path, bool *success) {
+NArray *NCopySubItems(NString *path, bool *success) {
     if (NStringIsEmpty(path)) {
         if (success) {
             *success = false;

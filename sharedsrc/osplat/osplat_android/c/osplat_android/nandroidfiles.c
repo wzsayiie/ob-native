@@ -9,18 +9,18 @@ NString *NCopyCachesPath(void) {
 }
 
 NString *NCopyTemporaryPath(void) {
-    return NULL;
+    return NCopyCachesPath();
 }
 
 bool NMakeDirectory(NString *path, bool intermediate) {
     return false;
 }
 
-NArray *NCopySubitems(NString *path, bool *success) {
+NArray *NCopySubItems(NString *path, bool *outSuccess) {
     return NULL;
 }
 
-bool NPathExists(NString *path, bool *isDirectory) {
+bool NPathExists(NString *path, bool *outIsDirectory) {
     return false;
 }
 

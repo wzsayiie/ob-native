@@ -152,6 +152,10 @@ NJNIClass *NJNIImportClass(const char *name) {
     else if (cscmp(name, "float"  ) == 0) {type = _NJNI_CLASS_FLOAT  ;}
     else if (cscmp(name, "double" ) == 0) {type = _NJNI_CLASS_DOUBLE ;}
 
+    else if (cscmp(name, "java/lang/String") == 0) {
+        type = _NJNI_CLASS_STRING;
+    }
+
     return ImportClass(type, name, NULL);
 }
 
@@ -555,6 +559,11 @@ static void ConcatenateSignature(char *buffer, NJNIClass *cls) {
         case _NJNI_CLASS_FLOAT  : cscat(buffer, "F"); return;
         case _NJNI_CLASS_DOUBLE : cscat(buffer, "D"); return;
         default:;
+    }
+
+    if (cls->classType == _NJNI_CLASS_STRING) {
+        cscat(buffer, "Ljava/lang/String;");
+        return;
     }
 
     if (cls->classType == _NJNI_CLASS_OBJECT) {
@@ -1006,7 +1015,7 @@ NString *NJNICallRetainString(NJNIObject *object, NJNIMethod *method) {
         NString *string = CreateStringFromJNI(env, ret.l);
         (*env)->DeleteLocalRef(env, ret.l);
         return string;
-    } if (retType == _NJNI_CLASS_OBJECT || retType == _NJNI_CLASS_ARRAY) {
+    } else if (retType == _NJNI_CLASS_OBJECT || retType == _NJNI_CLASS_ARRAY) {
         (*env)->DeleteLocalRef(env, ret.l);
         return NULL;
     } else {

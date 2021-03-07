@@ -142,7 +142,7 @@ bool NMakeDirectory(NString *path, bool intermediate)
     }
 }
 
-static void setOutBool(bool *out, bool value) {
+static void SetOutBool(bool *out, bool value) {
     if (out) {
         *out = value;
     }
@@ -152,7 +152,7 @@ NArray *NCopySubItems(NString *path, bool *outSuccess)
 {
     if (NStringIsEmpty(path))
     {
-        setOutBool(outSuccess, false);
+        SetOutBool(outSuccess, false);
         return NULL;
     }
 
@@ -170,7 +170,7 @@ NArray *NCopySubItems(NString *path, bool *outSuccess)
     if (state == INVALID_HANDLE_VALUE)
     {
         NFreeMemory(target);
-        setOutBool(outSuccess, false);
+        SetOutBool(outSuccess, false);
         return NULL;
     }
 
@@ -195,7 +195,7 @@ NArray *NCopySubItems(NString *path, bool *outSuccess)
     FindClose(state);
 
     NFreeMemory(target);
-    setOutBool(outSuccess, true);
+    SetOutBool(outSuccess, true);
     return subitems;
 }
 
@@ -215,7 +215,7 @@ bool NPathExists(NString *path, bool *outIsDirectory)
         }
     }
 
-    setOutBool(outIsDirectory, directory);
+    SetOutBool(outIsDirectory, directory);
     return exists;
 }
 

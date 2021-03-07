@@ -33,11 +33,15 @@ bool NMakeDirectory(NString *path, bool intermediate) {
     return false;
 }
 
-NArray *NCopySubItems(NString *path, bool *success) {
+static void SetOutBool(bool *output, bool value) {
+    if (output) {
+        *output = value;
+    }
+}
+
+NArray *NCopySubItems(NString *path, bool *outSuccess) {
     if (NStringIsEmpty(path)) {
-        if (success) {
-            *success = false;
-        }
+        SetOutBool(outSuccess, false);
         return NULL;
     }
     
@@ -46,9 +50,7 @@ NArray *NCopySubItems(NString *path, bool *success) {
     NSError *error = nil;
     NSArray<NSString *> *contents = [manager contentsOfDirectoryAtPath:NS(path) error:&error];
     if (error) {
-        if (success) {
-            *success = false;
-        }
+        SetOutBool(outSuccess, false);
         return NULL;
     }
 
@@ -65,13 +67,11 @@ NArray *NCopySubItems(NString *path, bool *success) {
         NRelease(item);
     }
     
-    if (success) {
-        *success = true;
-    }
+    SetOutBool(outSuccess, true);
     return subitems;
 }
 
-bool NPathExists(NString *path, bool *isDirectory) {
+bool NPathExists(NString *path, bool *outIsDirectory) {
     BOOL directory = NO;
     bool exists = false;
 
@@ -80,9 +80,7 @@ bool NPathExists(NString *path, bool *isDirectory) {
         return [manager fileExistsAtPath:NS(path) isDirectory:&directory];
     }
     
-    if (isDirectory) {
-        *isDirectory = directory;
-    }
+    SetOutBool(outIsDirectory, directory);
     return exists;
 }
 

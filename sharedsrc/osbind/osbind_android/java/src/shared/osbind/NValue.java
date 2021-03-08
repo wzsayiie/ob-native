@@ -83,7 +83,7 @@ public class NValue {
         return null;
     }
 
-    public static NValue hold(int type, long word, boolean retained) {
+    public static NValue hold(int type, long word, boolean needRelease) {
        if (isUnknown(type)) {
            return null;
        }
@@ -92,7 +92,7 @@ public class NValue {
            return null;
        }
 
-       int clearType = retained ? CLEAR_TYPE_RELEASE : CLEAR_TYPE_NONE;
+       int clearType = needRelease ? CLEAR_TYPE_RELEASE : CLEAR_TYPE_NONE;
        return new NValue(type, word, clearType);
     }
 
@@ -189,13 +189,23 @@ public class NValue {
         return null;
     }
 
+    //NOTE:
+    //the method is used to manually release native objects.
+    //the java vm doesn't know the type and size of the resources occupied by native objects,
+    //and can't release them in time.
+    public void dispose() {
+        synchronized (this) {
+            clearNativeObject();
+        }
+    }
+
     private static final int CLEAR_TYPE_NONE    = 0;
     private static final int CLEAR_TYPE_RELEASE = 1;
     private static final int CLEAR_TYPE_FREE    = 2;
 
     private final int  mNativeType;
-    private final long mNativeWord;
-    private final int  mClearType ;
+    private /* */ long mNativeWord;
+    private /* */ int  mClearType ;
 
     private NValue(int nativeType, long nativeWord) {
         mNativeType = nativeType;
@@ -212,11 +222,20 @@ public class NValue {
     @Override
     protected void finalize() throws Throwable {
         super.finalize();
-        if (mClearType == CLEAR_TYPE_RELEASE) {
-            releaseObject(mNativeWord);
-        } else if (mClearType == CLEAR_TYPE_FREE) {
-            freeMemory(mNativeWord);
+        clearNativeObject();
+    }
+
+    private void clearNativeObject() {
+        if (mClearType == CLEAR_TYPE_NONE) {
+            return;
         }
+
+        switch (mClearType) {
+            case CLEAR_TYPE_RELEASE: releaseObject(mNativeWord); break;
+            case CLEAR_TYPE_FREE   : freeMemory   (mNativeWord); break;
+        }
+        mClearType = CLEAR_TYPE_NONE;
+        mNativeWord = 0;
     }
 
     private static boolean isUnknown(int t) { return t <= NType.PTR   ; }

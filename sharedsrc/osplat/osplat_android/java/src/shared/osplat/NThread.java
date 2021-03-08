@@ -14,6 +14,7 @@ public class NThread {
         Thread thread = new Thread(() -> {
             NFunc func = new NFunc("NActionRun");
             func.callVoid(action, null);
+            action.dispose();
         });
         thread.start();
     }

@@ -18,6 +18,7 @@ public class NRunLoop {
         new Handler(looper).post(() -> {
             NFunc func = new NFunc("NActionRun");
             func.callVoid(action, null);
+            action.dispose();
         });
     }
 }

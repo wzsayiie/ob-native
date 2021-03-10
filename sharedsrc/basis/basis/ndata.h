@@ -21,6 +21,6 @@ nfunc(NData *, NDataCreate         , (void));
 
 nfunc(NData *, NDataCopy, (NData *that));
 
-nfunc(void  , NDataResize, (NData *data, int size));
+nfunc(void *, NDataResize, (NData *data, int size));
 nfunc(void *, NDataBytes , (NData *data));
 nfunc(int   , NDataSize  , (NData *data));

@@ -53,10 +53,12 @@ NData *NDataCopy(NData *that) {
     return NULL;
 }
 
-void NDataResize(NData *data, int size) {
+void *NDataResize(NData *data, int size) {
     if (data) {
         data->bytes = NReallocMemory(data->bytes, size);
+        return data->bytes;
     }
+    return NULL;
 }
 
 void *NDataBytes(NData *data) {

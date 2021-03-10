@@ -62,6 +62,7 @@ nfunc(int64_t     , NJNILongItem        , (NJNIObject *array, int index));
 nfunc(double      , NJNIDoubleItem      , (NJNIObject *array, int index));
 nfunc(NString    *, NJNIRetainStringItem, (NJNIObject *array, int index));
 nfunc(NJNIObject *, NJNIRetainObjectItem, (NJNIObject *array, int index));
+nfunc(NData      *, NJNICopyPODItems    , (NJNIObject *array));
 
 //find a jni method:
 

@@ -457,6 +457,54 @@ NJNIObject *NJNIRetainObjectItem(NJNIObject *array, int index) {
     return object;
 }
 
+NData *NJNICopyPODItems(NJNIObject *array) {
+    if (!IsArrayObject(array)) {
+        return NULL;
+    }
+
+    //isn't pod array.
+    _NJNIClassType itemType = array->cls->itemClass->classType;
+    if (itemType == _NJNI_CLASS_STRING
+     || itemType == _NJNI_CLASS_OBJECT
+     || itemType == _NJNI_CLASS_ARRAY)
+    {
+        return NULL;
+    }
+
+    int cnt = NJNIArrayCount(array);
+    if (cnt == 0) {
+        return NULL;
+    }
+
+    NData *dat = NDataCreate();
+    switch (itemType) {
+        case _NJNI_CLASS_BOOLEAN: NDataResize(dat, cnt * 1); break;
+        case _NJNI_CLASS_CHAR   : NDataResize(dat, cnt * 2); break;
+        case _NJNI_CLASS_BYTE   : NDataResize(dat, cnt * 1); break;
+        case _NJNI_CLASS_SHORT  : NDataResize(dat, cnt * 2); break;
+        case _NJNI_CLASS_INT    : NDataResize(dat, cnt * 4); break;
+        case _NJNI_CLASS_LONG   : NDataResize(dat, cnt * 8); break;
+        case _NJNI_CLASS_FLOAT  : NDataResize(dat, cnt * 4); break;
+        case _NJNI_CLASS_DOUBLE : NDataResize(dat, cnt * 8); break;
+        default/*STR, OBJ, ARR*/: ;
+    }
+    jobject ref = array->jniRef;
+    JNIEnv *env = GetEnv();
+    void   *buf = NDataBytes(dat);
+    switch (itemType) {
+        case _NJNI_CLASS_BOOLEAN: (*env)->GetBooleanArrayRegion(env, ref, 0, cnt, buf); break;
+        case _NJNI_CLASS_CHAR   : (*env)->GetCharArrayRegion   (env, ref, 0, cnt, buf); break;
+        case _NJNI_CLASS_BYTE   : (*env)->GetByteArrayRegion   (env, ref, 0, cnt, buf); break;
+        case _NJNI_CLASS_SHORT  : (*env)->GetShortArrayRegion  (env, ref, 0, cnt, buf); break;
+        case _NJNI_CLASS_INT    : (*env)->GetIntArrayRegion    (env, ref, 0, cnt, buf); break;
+        case _NJNI_CLASS_LONG   : (*env)->GetLongArrayRegion   (env, ref, 0, cnt, buf); break;
+        case _NJNI_CLASS_FLOAT  : (*env)->GetFloatArrayRegion  (env, ref, 0, cnt, buf); break;
+        case _NJNI_CLASS_DOUBLE : (*env)->GetDoubleArrayRegion (env, ref, 0, cnt, buf); break;
+        default/*STR, OBJ, ARR*/: ;
+    }
+    return dat;
+}
+
 static void JNIMethodInit(NJNIMethod *method) {
     _NObjectInit(nsuperof(method));
 }

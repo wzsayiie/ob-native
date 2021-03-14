@@ -19,10 +19,10 @@
 		CE37F70A25D0364D00C8302C /* NOSXViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE37F69C25D0364D00C8302C /* NOSXViewController.m */; };
 		CE37F70B25D0364D00C8302C /* NOSXAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CE37F69E25D0364D00C8302C /* NOSXAppDelegate.m */; };
 		CE37F70C25D0364D00C8302C /* NOSXWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE37F6A025D0364D00C8302C /* NOSXWindowController.m */; };
-		CE37F71125D0364D00C8302C /* NMacBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = CE37F6B025D0364D00C8302C /* NMacBundle.m */; };
-		CE37F71225D0364D00C8302C /* NMacThread.m in Sources */ = {isa = PBXBuildFile; fileRef = CE37F6B125D0364D00C8302C /* NMacThread.m */; };
-		CE37F71325D0364D00C8302C /* NMacRunloop.m in Sources */ = {isa = PBXBuildFile; fileRef = CE37F6B225D0364D00C8302C /* NMacRunloop.m */; };
-		CE37F71425D0364D00C8302C /* NMacFiles.m in Sources */ = {isa = PBXBuildFile; fileRef = CE37F6B325D0364D00C8302C /* NMacFiles.m */; };
+		CE37F71125D0364D00C8302C /* NMACBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = CE37F6B025D0364D00C8302C /* NMACBundle.m */; };
+		CE37F71225D0364D00C8302C /* NMACThread.m in Sources */ = {isa = PBXBuildFile; fileRef = CE37F6B125D0364D00C8302C /* NMACThread.m */; };
+		CE37F71325D0364D00C8302C /* NMACRunloop.m in Sources */ = {isa = PBXBuildFile; fileRef = CE37F6B225D0364D00C8302C /* NMACRunloop.m */; };
+		CE37F71425D0364D00C8302C /* NMACFiles.m in Sources */ = {isa = PBXBuildFile; fileRef = CE37F6B325D0364D00C8302C /* NMACFiles.m */; };
 		CE37F71D25D0364D00C8302C /* osplat.c in Sources */ = {isa = PBXBuildFile; fileRef = CE37F6C125D0364D00C8302C /* osplat.c */; };
 		CE37F71E25D0364D00C8302C /* nnumber.c in Sources */ = {isa = PBXBuildFile; fileRef = CE37F6C925D0364D00C8302C /* nnumber.c */; };
 		CE37F71F25D0364D00C8302C /* niterator.c in Sources */ = {isa = PBXBuildFile; fileRef = CE37F6CA25D0364D00C8302C /* niterator.c */; };
@@ -77,10 +77,10 @@
 		CE37F6A025D0364D00C8302C /* NOSXWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NOSXWindowController.m; sourceTree = "<group>"; };
 		CE37F6A125D0364D00C8302C /* NOSXAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NOSXAppDelegate.h; sourceTree = "<group>"; };
 		CE37F6AA25D0364D00C8302C /* cplus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cplus.h; sourceTree = "<group>"; };
-		CE37F6B025D0364D00C8302C /* NMacBundle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMacBundle.m; sourceTree = "<group>"; };
-		CE37F6B125D0364D00C8302C /* NMacThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMacThread.m; sourceTree = "<group>"; };
-		CE37F6B225D0364D00C8302C /* NMacRunloop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMacRunloop.m; sourceTree = "<group>"; };
-		CE37F6B325D0364D00C8302C /* NMacFiles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMacFiles.m; sourceTree = "<group>"; };
+		CE37F6B025D0364D00C8302C /* NMACBundle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMACBundle.m; sourceTree = "<group>"; };
+		CE37F6B125D0364D00C8302C /* NMACThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMACThread.m; sourceTree = "<group>"; };
+		CE37F6B225D0364D00C8302C /* NMACRunloop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMACRunloop.m; sourceTree = "<group>"; };
+		CE37F6B325D0364D00C8302C /* NMACFiles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMACFiles.m; sourceTree = "<group>"; };
 		CE37F6C125D0364D00C8302C /* osplat.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = osplat.c; sourceTree = "<group>"; };
 		CE37F6C225D0364D00C8302C /* nbundle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nbundle.h; sourceTree = "<group>"; };
 		CE37F6C325D0364D00C8302C /* nrunloop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nrunloop.h; sourceTree = "<group>"; };
@@ -291,10 +291,10 @@
 		CE37F6AF25D0364D00C8302C /* osplat_mac */ = {
 			isa = PBXGroup;
 			children = (
-				CE37F6B025D0364D00C8302C /* NMacBundle.m */,
-				CE37F6B325D0364D00C8302C /* NMacFiles.m */,
-				CE37F6B225D0364D00C8302C /* NMacRunloop.m */,
-				CE37F6B125D0364D00C8302C /* NMacThread.m */,
+				CE37F6B025D0364D00C8302C /* NMACBundle.m */,
+				CE37F6B325D0364D00C8302C /* NMACFiles.m */,
+				CE37F6B225D0364D00C8302C /* NMACRunloop.m */,
+				CE37F6B125D0364D00C8302C /* NMACThread.m */,
 			);
 			path = osplat_mac;
 			sourceTree = "<group>";
@@ -544,8 +544,8 @@
 				CE37F70C25D0364D00C8302C /* NOSXWindowController.m in Sources */,
 				CE37F72525D0364D00C8302C /* binlist.c in Sources */,
 				CE37F71D25D0364D00C8302C /* osplat.c in Sources */,
-				CE37F71125D0364D00C8302C /* NMacBundle.m in Sources */,
-				CE37F71225D0364D00C8302C /* NMacThread.m in Sources */,
+				CE37F71125D0364D00C8302C /* NMACBundle.m in Sources */,
+				CE37F71225D0364D00C8302C /* NMACThread.m in Sources */,
 				CE37F72225D0364D00C8302C /* nio.c in Sources */,
 				CE37F72F25D0364D00C8302C /* nlock.c in Sources */,
 				CE37F71F25D0364D00C8302C /* niterator.c in Sources */,
@@ -566,7 +566,7 @@
 				CE37F72425D0364D00C8302C /* nunicode.c in Sources */,
 				CE37F70B25D0364D00C8302C /* NOSXAppDelegate.m in Sources */,
 				CE2468F325DFF38500ED25DE /* ncpprefs.cpp in Sources */,
-				CE37F71325D0364D00C8302C /* NMacRunloop.m in Sources */,
+				CE37F71325D0364D00C8302C /* NMACRunloop.m in Sources */,
 				CE37F6FD25D0364D00C8302C /* nsocket_win32.c in Sources */,
 				CED80C2C24F2ADA30063F3DE /* main.m in Sources */,
 				CE37F72325D0364D00C8302C /* narray.c in Sources */,
@@ -579,7 +579,7 @@
 				CEF62B6525F10D6D0050F57C /* launch.c in Sources */,
 				CE37F72925D0364D00C8302C /* cstr.c in Sources */,
 				CE37F72025D0364D00C8302C /* nstring.c in Sources */,
-				CE37F71425D0364D00C8302C /* NMacFiles.m in Sources */,
+				CE37F71425D0364D00C8302C /* NMACFiles.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -18,10 +18,6 @@
 		CE37F63325D0352E00C8302C /* nlaunch.c in Sources */ = {isa = PBXBuildFile; fileRef = CE37F5C225D0352E00C8302C /* nlaunch.c */; };
 		CE37F63725D0352E00C8302C /* NIOSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE37F5CD25D0352E00C8302C /* NIOSViewController.m */; };
 		CE37F63825D0352E00C8302C /* NIOSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CE37F5CE25D0352E00C8302C /* NIOSAppDelegate.m */; };
-		CE37F63B25D0352E00C8302C /* NMacBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = CE37F5DA25D0352E00C8302C /* NMacBundle.m */; };
-		CE37F63C25D0352E00C8302C /* NMacThread.m in Sources */ = {isa = PBXBuildFile; fileRef = CE37F5DB25D0352E00C8302C /* NMacThread.m */; };
-		CE37F63D25D0352E00C8302C /* NMacRunloop.m in Sources */ = {isa = PBXBuildFile; fileRef = CE37F5DC25D0352E00C8302C /* NMacRunloop.m */; };
-		CE37F63E25D0352E00C8302C /* NMacFiles.m in Sources */ = {isa = PBXBuildFile; fileRef = CE37F5DD25D0352E00C8302C /* NMacFiles.m */; };
 		CE37F64725D0352E00C8302C /* osplat.c in Sources */ = {isa = PBXBuildFile; fileRef = CE37F5EB25D0352E00C8302C /* osplat.c */; };
 		CE37F64825D0352E00C8302C /* nnumber.c in Sources */ = {isa = PBXBuildFile; fileRef = CE37F5F325D0352E00C8302C /* nnumber.c */; };
 		CE37F64925D0352E00C8302C /* niterator.c in Sources */ = {isa = PBXBuildFile; fileRef = CE37F5F425D0352E00C8302C /* niterator.c */; };
@@ -46,6 +42,10 @@
 		CE9FEBB224F2439B0029E036 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE9FEBAE24F2439B0029E036 /* Assets.xcassets */; };
 		CE9FEBB324F2439B0029E036 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE9FEBAF24F2439B0029E036 /* LaunchScreen.storyboard */; };
 		CE9FEBB424F2439B0029E036 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9FEBB024F2439B0029E036 /* main.m */; };
+		CEDBDEF725FE172500659AD2 /* NMACBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDBDEF325FE172500659AD2 /* NMACBundle.m */; };
+		CEDBDEF825FE172500659AD2 /* NMACRunloop.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDBDEF425FE172500659AD2 /* NMACRunloop.m */; };
+		CEDBDEF925FE172500659AD2 /* NMACFiles.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDBDEF525FE172500659AD2 /* NMACFiles.m */; };
+		CEDBDEFA25FE172500659AD2 /* NMACThread.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDBDEF625FE172500659AD2 /* NMACThread.m */; };
 		CEF62B5625F10D3E0050F57C /* launch.c in Sources */ = {isa = PBXBuildFile; fileRef = CEF62B4F25F10D3D0050F57C /* launch.c */; };
 		CEF62B5725F10D3E0050F57C /* claunch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEF62B5225F10D3D0050F57C /* claunch.cpp */; };
 		CEF62B5825F10D3E0050F57C /* jslaunch.c in Sources */ = {isa = PBXBuildFile; fileRef = CEF62B5525F10D3D0050F57C /* jslaunch.c */; };
@@ -75,10 +75,6 @@
 		CE37F5CF25D0352E00C8302C /* NIOSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIOSViewController.h; sourceTree = "<group>"; };
 		CE37F5D025D0352E00C8302C /* NIOSAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIOSAppDelegate.h; sourceTree = "<group>"; };
 		CE37F5D425D0352E00C8302C /* cplus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cplus.h; sourceTree = "<group>"; };
-		CE37F5DA25D0352E00C8302C /* NMacBundle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMacBundle.m; sourceTree = "<group>"; };
-		CE37F5DB25D0352E00C8302C /* NMacThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMacThread.m; sourceTree = "<group>"; };
-		CE37F5DC25D0352E00C8302C /* NMacRunloop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMacRunloop.m; sourceTree = "<group>"; };
-		CE37F5DD25D0352E00C8302C /* NMacFiles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMacFiles.m; sourceTree = "<group>"; };
 		CE37F5EB25D0352E00C8302C /* osplat.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = osplat.c; sourceTree = "<group>"; };
 		CE37F5EC25D0352E00C8302C /* nbundle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nbundle.h; sourceTree = "<group>"; };
 		CE37F5ED25D0352E00C8302C /* nrunloop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nrunloop.h; sourceTree = "<group>"; };
@@ -134,6 +130,10 @@
 		CE9FEBAE24F2439B0029E036 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE9FEBAF24F2439B0029E036 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE9FEBB024F2439B0029E036 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		CEDBDEF325FE172500659AD2 /* NMACBundle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMACBundle.m; sourceTree = "<group>"; };
+		CEDBDEF425FE172500659AD2 /* NMACRunloop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMACRunloop.m; sourceTree = "<group>"; };
+		CEDBDEF525FE172500659AD2 /* NMACFiles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMACFiles.m; sourceTree = "<group>"; };
+		CEDBDEF625FE172500659AD2 /* NMACThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMACThread.m; sourceTree = "<group>"; };
 		CEF62B4F25F10D3D0050F57C /* launch.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = launch.c; sourceTree = "<group>"; };
 		CEF62B5225F10D3D0050F57C /* claunch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = claunch.cpp; sourceTree = "<group>"; };
 		CEF62B5525F10D3D0050F57C /* jslaunch.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = jslaunch.c; sourceTree = "<group>"; };
@@ -287,10 +287,10 @@
 		CE37F5D925D0352E00C8302C /* osplat_mac */ = {
 			isa = PBXGroup;
 			children = (
-				CE37F5DA25D0352E00C8302C /* NMacBundle.m */,
-				CE37F5DD25D0352E00C8302C /* NMacFiles.m */,
-				CE37F5DC25D0352E00C8302C /* NMacRunloop.m */,
-				CE37F5DB25D0352E00C8302C /* NMacThread.m */,
+				CEDBDEF325FE172500659AD2 /* NMACBundle.m */,
+				CEDBDEF525FE172500659AD2 /* NMACFiles.m */,
+				CEDBDEF425FE172500659AD2 /* NMACRunloop.m */,
+				CEDBDEF625FE172500659AD2 /* NMACThread.m */,
 			);
 			path = osplat_mac;
 			sourceTree = "<group>";
@@ -538,12 +538,11 @@
 			files = (
 				CE37F65025D0352E00C8302C /* scalist.c in Sources */,
 				CE37F63025D0352E00C8302C /* NOBJCBind.c in Sources */,
+				CEDBDEF725FE172500659AD2 /* NMACBundle.m in Sources */,
 				CE37F64F25D0352E00C8302C /* binlist.c in Sources */,
 				CE37F64725D0352E00C8302C /* osplat.c in Sources */,
-				CE37F63B25D0352E00C8302C /* NMacBundle.m in Sources */,
 				CE2468E725DFF34000ED25DE /* nobjectref.cpp in Sources */,
 				CE2468E825DFF34000ED25DE /* nactionref.cpp in Sources */,
-				CE37F63C25D0352E00C8302C /* NMacThread.m in Sources */,
 				CE37F64C25D0352E00C8302C /* nio.c in Sources */,
 				CE37F65925D0352E00C8302C /* nlock.c in Sources */,
 				CE37F64925D0352E00C8302C /* niterator.c in Sources */,
@@ -554,6 +553,7 @@
 				CE37F62525D0352E00C8302C /* nsocket.c in Sources */,
 				CE37F65C25D0352E00C8302C /* nfuncs.cpp in Sources */,
 				CE37F65125D0352E00C8302C /* def.c in Sources */,
+				CEDBDEF925FE172500659AD2 /* NMACFiles.m in Sources */,
 				CE37F63325D0352E00C8302C /* nlaunch.c in Sources */,
 				CE37F65425D0352E00C8302C /* cerpool.c in Sources */,
 				CE37F65825D0352E00C8302C /* ndata.c in Sources */,
@@ -563,9 +563,10 @@
 				CE37F64E25D0352E00C8302C /* nunicode.c in Sources */,
 				CE37F63825D0352E00C8302C /* NIOSAppDelegate.m in Sources */,
 				CEF62B5625F10D3E0050F57C /* launch.c in Sources */,
+				CEDBDEF825FE172500659AD2 /* NMACRunloop.m in Sources */,
 				CEF62B5825F10D3E0050F57C /* jslaunch.c in Sources */,
-				CE37F63D25D0352E00C8302C /* NMacRunloop.m in Sources */,
 				CE37F62725D0352E00C8302C /* nsocket_win32.c in Sources */,
+				CEDBDEFA25FE172500659AD2 /* NMACThread.m in Sources */,
 				CE9FEBB424F2439B0029E036 /* main.m in Sources */,
 				CE37F64D25D0352E00C8302C /* narray.c in Sources */,
 				CE37F64825D0352E00C8302C /* nnumber.c in Sources */,
@@ -575,7 +576,6 @@
 				CE37F64A25D0352E00C8302C /* nstring.c in Sources */,
 				CEF62B5725F10D3E0050F57C /* claunch.cpp in Sources */,
 				CE2468E625DFF34000ED25DE /* ncpprefs.cpp in Sources */,
-				CE37F63E25D0352E00C8302C /* NMacFiles.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

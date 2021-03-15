@@ -50,6 +50,8 @@
     <ClCompile Include="..\..\sharedsrc\net\net\nsocket_win32.c" />
     <ClCompile Include="..\..\sharedsrc\osbind\osbind\osbind.c" />
     <ClCompile Include="..\..\sharedsrc\osbind\osbind_win32\NWin32Bind.c" />
+    <ClCompile Include="..\..\sharedsrc\osjs\osjs\osjs.c" />
+    <ClCompile Include="..\..\sharedsrc\osjs\osjs_win32\NWin32JSRT.c" />
     <ClCompile Include="..\..\sharedsrc\osplat\osplat\osplat.c" />
     <ClCompile Include="..\..\sharedsrc\osplat\osplat_win32\NWin32AppContext.c" />
     <ClCompile Include="..\..\sharedsrc\osplat\osplat_win32\NWin32Bundle.c" />
@@ -93,6 +95,7 @@
     <ClInclude Include="..\..\sharedsrc\net\net\nsocket.h" />
     <ClInclude Include="..\..\sharedsrc\osbind\osbind\osbind.h" />
     <ClInclude Include="..\..\sharedsrc\osbind\osbind_win32\NWin32Bind.h" />
+    <ClInclude Include="..\..\sharedsrc\osjs\osjs\osjs.h" />
     <ClInclude Include="..\..\sharedsrc\osplat\osplat\nbundle.h" />
     <ClInclude Include="..\..\sharedsrc\osplat\osplat\nfiles.h" />
     <ClInclude Include="..\..\sharedsrc\osplat\osplat\nrunloop.h" />

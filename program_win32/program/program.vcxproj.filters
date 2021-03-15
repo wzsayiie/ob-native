@@ -82,6 +82,15 @@
     <Filter Include="appsrc\jsmain\jsmain">
       <UniqueIdentifier>{e8375ad2-896b-4cc7-ac51-a60bb90c4568}</UniqueIdentifier>
     </Filter>
+    <Filter Include="sharedsrc\osjs">
+      <UniqueIdentifier>{9e502058-1042-47c1-bfb2-3d95974a34a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sharedsrc\osjs\osjs">
+      <UniqueIdentifier>{b56c4e71-e184-485a-9276-3b523d78c019}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sharedsrc\osjs\osjs_win32">
+      <UniqueIdentifier>{011c256b-b778-4b87-aeeb-c9a397a52e13}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="winmain.c">
@@ -203,6 +212,12 @@
     </ClCompile>
     <ClCompile Include="..\..\sharedsrc\osplat\osplat_win32\NWin32AppContext.c">
       <Filter>sharedsrc\osplat\osplat_win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharedsrc\osjs\osjs\osjs.c">
+      <Filter>sharedsrc\osjs\osjs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharedsrc\osjs\osjs_win32\NWin32JSRT.c">
+      <Filter>sharedsrc\osjs\osjs_win32</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -328,6 +343,9 @@
     </ClInclude>
     <ClInclude Include="..\..\sharedsrc\osplat\osplat_win32\NWin32AppContext.h">
       <Filter>sharedsrc\osplat\osplat_win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sharedsrc\osjs\osjs\osjs.h">
+      <Filter>sharedsrc\osjs\osjs</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

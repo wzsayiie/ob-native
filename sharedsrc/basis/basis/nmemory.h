@@ -17,9 +17,9 @@ nfunc(void, NMoveMemory, (void *dst, const void *src, int size));
 
 typedef void *NRef;
 
-#define NAlloc(cls, deinit) NAllocObject(nsizeof(cls), deinit)
+#define NAlloc(cls, deinit) NAllocObject(nsizeof(cls), #cls, deinit)
 
-nfunc(NRef, NAllocObject, (int size, void *deinit));
+nfunc(NRef, NAllocObject, (int size, const char *clsName, void *deinit));
 
 nfunc(NRef, NRetain , (NRef ref));
 nfunc(void, NRelease, (NRef ref));
@@ -27,6 +27,7 @@ nfunc(void, NRelease, (NRef ref));
 #define nsuperof(object) (&(object)->Super)
 
 nstruct(NObject, {
+    const char *clsName;
     void (*deinit)(void *);
     int refCount;
 });

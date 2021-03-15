@@ -98,10 +98,11 @@ void NMoveMemory(void *dst, const void *src, int size) {
 
 //object managed with reference counting:
 
-void *NAllocObject(int size, void *deinit) {
+void *NAllocObject(int size, const char *clsName, void *deinit) {
     NObject *object = NAllocMemory(size);
     
-    object->deinit = deinit;
+    object->clsName  = clsName;
+    object->deinit   = deinit;
     object->refCount = 1;
     
     return object;

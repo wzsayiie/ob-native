@@ -42,6 +42,8 @@
 		CE9FEBB224F2439B0029E036 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE9FEBAE24F2439B0029E036 /* Assets.xcassets */; };
 		CE9FEBB324F2439B0029E036 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE9FEBAF24F2439B0029E036 /* LaunchScreen.storyboard */; };
 		CE9FEBB424F2439B0029E036 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9FEBB024F2439B0029E036 /* main.m */; };
+		CEA0182725FF882D000064C2 /* osjs.c in Sources */ = {isa = PBXBuildFile; fileRef = CEA0181725FF882D000064C2 /* osjs.c */; };
+		CEA0182C25FF882D000064C2 /* NMACJavaScriptCore.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA0182625FF882D000064C2 /* NMACJavaScriptCore.m */; };
 		CEDBDEF725FE172500659AD2 /* NMACBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDBDEF325FE172500659AD2 /* NMACBundle.m */; };
 		CEDBDEF825FE172500659AD2 /* NMACRunloop.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDBDEF425FE172500659AD2 /* NMACRunloop.m */; };
 		CEDBDEF925FE172500659AD2 /* NMACFiles.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDBDEF525FE172500659AD2 /* NMACFiles.m */; };
@@ -130,6 +132,9 @@
 		CE9FEBAE24F2439B0029E036 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE9FEBAF24F2439B0029E036 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE9FEBB024F2439B0029E036 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		CEA0181725FF882D000064C2 /* osjs.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = osjs.c; sourceTree = "<group>"; };
+		CEA0181825FF882D000064C2 /* osjs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = osjs.h; sourceTree = "<group>"; };
+		CEA0182625FF882D000064C2 /* NMACJavaScriptCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMACJavaScriptCore.m; sourceTree = "<group>"; };
 		CEDBDEF325FE172500659AD2 /* NMACBundle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMACBundle.m; sourceTree = "<group>"; };
 		CEDBDEF425FE172500659AD2 /* NMACRunloop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMACRunloop.m; sourceTree = "<group>"; };
 		CEDBDEF525FE172500659AD2 /* NMACFiles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMACFiles.m; sourceTree = "<group>"; };
@@ -169,6 +174,7 @@
 				CE37F5D125D0352E00C8302C /* cplus */,
 				CE37F59825D0352E00C8302C /* net */,
 				CE37F5A125D0352E00C8302C /* osbind */,
+				CEA0181525FF882D000064C2 /* osjs */,
 				CE37F5D825D0352E00C8302C /* osplat */,
 				CE37F5B725D0352E00C8302C /* osui */,
 			);
@@ -419,6 +425,32 @@
 			path = program;
 			sourceTree = "<group>";
 		};
+		CEA0181525FF882D000064C2 /* osjs */ = {
+			isa = PBXGroup;
+			children = (
+				CEA0181625FF882D000064C2 /* osjs */,
+				CEA0182525FF882D000064C2 /* osjs_mac */,
+			);
+			path = osjs;
+			sourceTree = "<group>";
+		};
+		CEA0181625FF882D000064C2 /* osjs */ = {
+			isa = PBXGroup;
+			children = (
+				CEA0181725FF882D000064C2 /* osjs.c */,
+				CEA0181825FF882D000064C2 /* osjs.h */,
+			);
+			path = osjs;
+			sourceTree = "<group>";
+		};
+		CEA0182525FF882D000064C2 /* osjs_mac */ = {
+			isa = PBXGroup;
+			children = (
+				CEA0182625FF882D000064C2 /* NMACJavaScriptCore.m */,
+			);
+			path = osjs_mac;
+			sourceTree = "<group>";
+		};
 		CEF62B4D25F10D3D0050F57C /* main */ = {
 			isa = PBXGroup;
 			children = (
@@ -554,6 +586,7 @@
 				CE37F65C25D0352E00C8302C /* nfuncs.cpp in Sources */,
 				CE37F65125D0352E00C8302C /* def.c in Sources */,
 				CEDBDEF925FE172500659AD2 /* NMACFiles.m in Sources */,
+				CEA0182725FF882D000064C2 /* osjs.c in Sources */,
 				CE37F63325D0352E00C8302C /* nlaunch.c in Sources */,
 				CE37F65425D0352E00C8302C /* cerpool.c in Sources */,
 				CE37F65825D0352E00C8302C /* ndata.c in Sources */,
@@ -571,6 +604,7 @@
 				CE37F64D25D0352E00C8302C /* narray.c in Sources */,
 				CE37F64825D0352E00C8302C /* nnumber.c in Sources */,
 				CE37F65625D0352E00C8302C /* npod.c in Sources */,
+				CEA0182C25FF882D000064C2 /* NMACJavaScriptCore.m in Sources */,
 				CE37F65525D0352E00C8302C /* nmemory.c in Sources */,
 				CE37F65325D0352E00C8302C /* cstr.c in Sources */,
 				CE37F64A25D0352E00C8302C /* nstring.c in Sources */,

@@ -44,6 +44,8 @@
 		CE37F72F25D0364D00C8302C /* nlock.c in Sources */ = {isa = PBXBuildFile; fileRef = CE37F6EE25D0364D00C8302C /* nlock.c */; };
 		CE37F73125D0364D00C8302C /* nstructs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE37F6F725D0364D00C8302C /* nstructs.cpp */; };
 		CE37F73225D0364D00C8302C /* nfuncs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE37F6F925D0364D00C8302C /* nfuncs.cpp */; };
+		CEA0184225FF8874000064C2 /* osjs.c in Sources */ = {isa = PBXBuildFile; fileRef = CEA0183225FF8874000064C2 /* osjs.c */; };
+		CEA0184725FF8874000064C2 /* NMACJavaScriptCore.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA0184125FF8874000064C2 /* NMACJavaScriptCore.m */; };
 		CED80C2624F2ADA30063F3DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CED80C2524F2ADA30063F3DE /* Assets.xcassets */; };
 		CED80C2C24F2ADA30063F3DE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CED80C2B24F2ADA30063F3DE /* main.m */; };
 		CEF62B6425F10D6D0050F57C /* jslaunch.c in Sources */ = {isa = PBXBuildFile; fileRef = CEF62B5D25F10D6D0050F57C /* jslaunch.c */; };
@@ -131,6 +133,9 @@
 		CE37F6F725D0364D00C8302C /* nstructs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = nstructs.cpp; sourceTree = "<group>"; };
 		CE37F6F825D0364D00C8302C /* nstructs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nstructs.h; sourceTree = "<group>"; };
 		CE37F6F925D0364D00C8302C /* nfuncs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = nfuncs.cpp; sourceTree = "<group>"; };
+		CEA0183225FF8874000064C2 /* osjs.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = osjs.c; sourceTree = "<group>"; };
+		CEA0183325FF8874000064C2 /* osjs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = osjs.h; sourceTree = "<group>"; };
+		CEA0184125FF8874000064C2 /* NMACJavaScriptCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMACJavaScriptCore.m; sourceTree = "<group>"; };
 		CED80C1C24F2ADA20063F3DE /* program.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = program.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CED80C2524F2ADA30063F3DE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CED80C2A24F2ADA30063F3DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -171,6 +176,7 @@
 				CE37F6A725D0364D00C8302C /* cplus */,
 				CE37F66E25D0364D00C8302C /* net */,
 				CE37F67725D0364D00C8302C /* osbind */,
+				CEA0183025FF8874000064C2 /* osjs */,
 				CE37F6AE25D0364D00C8302C /* osplat */,
 				CE37F68D25D0364D00C8302C /* osui */,
 			);
@@ -394,6 +400,32 @@
 			path = cmeta;
 			sourceTree = "<group>";
 		};
+		CEA0183025FF8874000064C2 /* osjs */ = {
+			isa = PBXGroup;
+			children = (
+				CEA0183125FF8874000064C2 /* osjs */,
+				CEA0184025FF8874000064C2 /* osjs_mac */,
+			);
+			path = osjs;
+			sourceTree = "<group>";
+		};
+		CEA0183125FF8874000064C2 /* osjs */ = {
+			isa = PBXGroup;
+			children = (
+				CEA0183225FF8874000064C2 /* osjs.c */,
+				CEA0183325FF8874000064C2 /* osjs.h */,
+			);
+			path = osjs;
+			sourceTree = "<group>";
+		};
+		CEA0184025FF8874000064C2 /* osjs_mac */ = {
+			isa = PBXGroup;
+			children = (
+				CEA0184125FF8874000064C2 /* NMACJavaScriptCore.m */,
+			);
+			path = osjs_mac;
+			sourceTree = "<group>";
+		};
 		CED80C1324F2ADA20063F3DE = {
 			isa = PBXGroup;
 			children = (
@@ -569,9 +601,11 @@
 				CE37F71325D0364D00C8302C /* NMACRunloop.m in Sources */,
 				CE37F6FD25D0364D00C8302C /* nsocket_win32.c in Sources */,
 				CED80C2C24F2ADA30063F3DE /* main.m in Sources */,
+				CEA0184225FF8874000064C2 /* osjs.c in Sources */,
 				CE37F72325D0364D00C8302C /* narray.c in Sources */,
 				CE37F71E25D0364D00C8302C /* nnumber.c in Sources */,
 				CE37F72C25D0364D00C8302C /* npod.c in Sources */,
+				CEA0184725FF8874000064C2 /* NMACJavaScriptCore.m in Sources */,
 				CE2468F125DFF38500ED25DE /* nactionref.cpp in Sources */,
 				CE2468F225DFF38500ED25DE /* nobjectref.cpp in Sources */,
 				CE37F72B25D0364D00C8302C /* nmemory.c in Sources */,

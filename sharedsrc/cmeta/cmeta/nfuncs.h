@@ -6,19 +6,17 @@ nfunc(int, NFuncsBegin, (void));
 nfunc(int, NFuncsEnd  , (void));
 nfunc(int, NFindFunc  , (const char *name));
 
-nfunc(const char *, NFuncName, (int fIndex));
+nfunc(const char *, NFuncName, (int index));
 
-nfunc(void *, NFuncAddress    , (int fIndex));
-nfunc(NType , NFuncRetType    , (int fIndex));
-nfunc(bool  , NFuncRetRetained, (int fIndex));
-nfunc(int   , NFuncArgCount   , (int fIndex));
-nfunc(NType , NFuncArgType    , (int fIndex, int aIndex));
+nfunc(void *, NFuncAddress  , (int index));
+nfunc(NType , NFuncRetType  , (int index));
+nfunc(bool  , NFuncRetRetain, (int index));
+nfunc(int   , NFuncArgCount , (int index));
+nfunc(NType , NFuncArgType  , (int index, int argIndex));
 
 //the memory layout of "_NWord" is same with "NWord" 's.
-#ifndef _NWord
-#define _NWord int64_t
-#endif
+typedef int64_t _NWord;
 
-nfunc(void  , NCallerReset, (void));
-nfunc(void  , NCallerPush , (NType argType, _NWord argWord));
-nfunc(_NWord, NCall       , (int   fIndex));
+nfunc(void  , NFuncPrepare, (void));
+nfunc(void  , NFuncPushArg, (NType type, _NWord word));
+nfunc(_NWord, NFuncCall   , (int index));

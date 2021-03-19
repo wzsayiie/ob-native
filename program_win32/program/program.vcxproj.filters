@@ -219,6 +219,18 @@
     <ClCompile Include="..\..\sharedsrc\osjs\osjs_win32\NWin32JSRT.c">
       <Filter>sharedsrc\osjs\osjs_win32</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\sharedsrc\cmeta\cmeta\nfuncmeta_p.cpp">
+      <Filter>sharedsrc\cmeta\cmeta</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharedsrc\cmeta\cmeta\NGEN.cpp">
+      <Filter>sharedsrc\cmeta\cmeta</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharedsrc\cmeta\cmeta\nstructmeta_p.cpp">
+      <Filter>sharedsrc\cmeta\cmeta</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharedsrc\cmeta\cmeta\nfunccall_p.cpp">
+      <Filter>sharedsrc\cmeta\cmeta</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\sharedsrc\basis\basis\basis.h">
@@ -264,9 +276,6 @@
       <Filter>sharedsrc\basis\basis</Filter>
     </ClInclude>
     <ClInclude Include="..\..\sharedsrc\cmeta\cmeta\cmeta.h">
-      <Filter>sharedsrc\cmeta\cmeta</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\sharedsrc\cmeta\cmeta\NEXPORT.h">
       <Filter>sharedsrc\cmeta\cmeta</Filter>
     </ClInclude>
     <ClInclude Include="..\..\sharedsrc\cmeta\cmeta\nfuncs.h">
@@ -346,6 +355,21 @@
     </ClInclude>
     <ClInclude Include="..\..\sharedsrc\osjs\osjs\osjs.h">
       <Filter>sharedsrc\osjs\osjs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sharedsrc\cmeta\cmeta\nfuncmeta_p.h">
+      <Filter>sharedsrc\cmeta\cmeta</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sharedsrc\cmeta\cmeta\NGEN.h">
+      <Filter>sharedsrc\cmeta\cmeta</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sharedsrc\cmeta\cmeta\nstructmeta_p.h">
+      <Filter>sharedsrc\cmeta\cmeta</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sharedsrc\cmeta\cmeta\ntrait_p.h">
+      <Filter>sharedsrc\cmeta\cmeta</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sharedsrc\cmeta\cmeta\nfunccall_p.h">
+      <Filter>sharedsrc\cmeta\cmeta</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

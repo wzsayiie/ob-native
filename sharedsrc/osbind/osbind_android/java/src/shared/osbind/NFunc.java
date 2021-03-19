@@ -4,80 +4,90 @@ package src.shared.osbind;
 public class NFunc {
 
     public NFunc(String name) {
-        mFuncIndex   = findFuncByName (name);
-        mReturnType  = funcReturnType (mFuncIndex);
-        mRetRetained = funcRetRetained(mFuncIndex);
-        mArgCount    = funcArgCount   (mFuncIndex);
+        mFuncIndex  = findFuncByName(name);
+        mReturnType = funcReturnType(mFuncIndex);
+        mRetRetain  = funcRetRetain (mFuncIndex);
+        mArgCount   = funcArgCount  (mFuncIndex);
 
         mArgTypes = new int[mArgCount];
-        for (int n = 0; n < mArgCount; ++n) {
-            mArgTypes[n] = funcArgType(mFuncIndex, n);
+        for (int idx = 0; idx < mArgCount; ++idx) {
+            mArgTypes[idx] = funcArgType(mFuncIndex, idx);
         }
     }
 
-    public void callVoid(Object... a) {
-        call(a);
+    public void callVoid(Object... arg) {
+        call(arg);
     }
 
-    public boolean callBoolean(Object... a) {
-        NValue value = call(a);
-        return value != null && value.asBoolean();
+    public boolean callBoolean(Object... arg) {
+        NValue ret = call(arg);
+        if (ret != null) {
+            return ret.asBoolean();
+        }
+        return false;
     }
 
-    public char   callChar  (Object... a) { NValue v = call(a); return v != null ? v.asChar   () : 0; }
-    public byte   callByte  (Object... a) { NValue v = call(a); return v != null ? v.asByte   () : 0; }
-    public short  callShort (Object... a) { NValue v = call(a); return v != null ? v.asShort  () : 0; }
-    public int    callInt   (Object... a) { NValue v = call(a); return v != null ? v.asInt    () : 0; }
-    public long   callLong  (Object... a) { NValue v = call(a); return v != null ? v.asLong   () : 0; }
-    public float  callFloat (Object... a) { NValue v = call(a); return v != null ? v.asFloat  () : 0; }
-    public double callDouble(Object... a) { NValue v = call(a); return v != null ? v.asDouble () : 0; }
-    public String callString(Object... a) { NValue v = call(a); return v != null ? v.asString () : null; }
+    public char   callChar  (Object... arg) { NValue ret = call(arg); return ret != null ? ret.asChar   () : 0; }
+    public byte   callByte  (Object... arg) { NValue ret = call(arg); return ret != null ? ret.asByte   () : 0; }
+    public short  callShort (Object... arg) { NValue ret = call(arg); return ret != null ? ret.asShort  () : 0; }
+    public int    callInt   (Object... arg) { NValue ret = call(arg); return ret != null ? ret.asInt    () : 0; }
+    public long   callLong  (Object... arg) { NValue ret = call(arg); return ret != null ? ret.asLong   () : 0; }
+    public float  callFloat (Object... arg) { NValue ret = call(arg); return ret != null ? ret.asFloat  () : 0; }
+    public double callDouble(Object... arg) { NValue ret = call(arg); return ret != null ? ret.asDouble () : 0; }
 
-    public NValue callValue(Object... a) {
-        return call(a);
+    public String callString(Object... arg) {
+        NValue ret = call(arg);
+        if (ret != null) {
+            return ret.asString();
+        }
+        return null;
     }
 
-    private final int     mFuncIndex  ;
-    private final int     mReturnType ;
-    private final boolean mRetRetained;
-    private final int     mArgCount   ;
-    private final int[]   mArgTypes   ;
+    public NValue callValue(Object... arg) {
+        return call(arg);
+    }
 
-    private static native int     findFuncByName (String fName );
-    private static native int     funcReturnType (int    fIndex);
-    private static native boolean funcRetRetained(int    fIndex);
-    private static native int     funcArgCount   (int    fIndex);
-    private static native int     funcArgType    (int    fIndex, int aIndex);
+    private final int     mFuncIndex ;
+    private final int     mReturnType;
+    private final boolean mRetRetain ;
+    private final int     mArgCount  ;
+    private final int[]   mArgTypes  ;
 
-    private static native void nativeCallerReset();
-    private static native void nativeCallerPush (int argType, long argWord);
-    private static native long nativeCall       (int fIndex);
+    private static native int     findFuncByName(String name );
+    private static native int     funcReturnType(int    index);
+    private static native boolean funcRetRetain (int    index);
+    private static native int     funcArgCount  (int    index);
+    private static native int     funcArgType   (int    index, int argIndex);
 
-    private NValue call(Object[] args) {
+    private static native void nativeFuncPrepare();
+    private static native void nativeFuncPushArg(int type, long word);
+    private static native long nativeFuncCall   (int index);
+
+    private NValue call(Object[] arg) {
         if (mFuncIndex == 0) {
             return null;
         }
 
-        int argCount = (args != null ? args.length : 0);
+        int argCount = (arg != null ? arg.length : 0);
         if (argCount > mArgCount) {
             argCount = mArgCount;
         }
 
         NValue[] params = new NValue[argCount];
         for (int i = 0; i < argCount; ++i) {
-            params[i] = NValue.make(args[i], mArgTypes[i]);
+            params[i] = NValue.make(arg[i], mArgTypes[i]);
         }
 
-        nativeCallerReset();
+        nativeFuncPrepare();
         for (int i = 0; i < argCount; ++i) {
             if (params[i] != null) {
-                nativeCallerPush(params[i].nativeType(), params[i].nativeWord());
+                nativeFuncPushArg(params[i].nativeType(), params[i].nativeWord());
             } else {
-                nativeCallerPush(NType.VOID, 0);
+                nativeFuncPushArg(NType.PTR, 0);
             }
         }
 
-        long retWord = nativeCall(mFuncIndex);
-        return NValue.hold(mReturnType, retWord, mRetRetained);
+        long ret = nativeFuncCall(mFuncIndex);
+        return NValue.hold(mReturnType, ret, mRetRetain);
     }
 }

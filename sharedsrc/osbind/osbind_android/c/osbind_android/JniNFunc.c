@@ -3,61 +3,61 @@
 
 JNIEXPORT jint JNICALL
 Java_src_shared_osbind_NFunc_findFuncByName(JNIEnv *env, jclass cls,
-    jstring fName)
+    jstring name)
 {
-    int fIndex = 0;
-    if (fName) {
-        const char *chars = (*env)->GetStringUTFChars(env, fName, NULL);
-        fIndex = NFindFunc(chars);
-        (*env)->ReleaseStringUTFChars(env, fName, chars);
+    int index = 0;
+    if (name) {
+        const char *chars = (*env)->GetStringUTFChars(env, name, NULL);
+        index = NFindFunc(chars);
+        (*env)->ReleaseStringUTFChars(env, name, chars);
     }
-    return fIndex;
+    return index;
 }
 
 JNIEXPORT jint JNICALL
 Java_src_shared_osbind_NFunc_funcReturnType(JNIEnv *env, jclass cls,
-    jint fIndex)
+    jint index)
 {
-    return NFuncRetType(fIndex);
+    return NFuncRetType(index);
 }
 
 JNIEXPORT jboolean JNICALL
-Java_src_shared_osbind_NFunc_funcRetRetained(JNIEnv *env, jclass cls,
-    jint fIndex)
+Java_src_shared_osbind_NFunc_funcRetRetain(JNIEnv *env, jclass cls,
+    jint index)
 {
-    return NFuncRetRetained(fIndex);
+    return NFuncRetRetain(index);
 }
 
 JNIEXPORT jint JNICALL
 Java_src_shared_osbind_NFunc_funcArgCount(JNIEnv *env, jclass cls,
-    jint fIndex)
+    jint index)
 {
-    return NFuncArgCount(fIndex);
+    return NFuncArgCount(index);
 }
 
 JNIEXPORT jint JNICALL
 Java_src_shared_osbind_NFunc_funcArgType(JNIEnv *env, jclass cls,
-    jint fIndex, int aIndex)
+    jint index, int argIndex)
 {
-    return NFuncArgType(fIndex, aIndex);
+    return NFuncArgType(index, argIndex);
 }
 
 JNIEXPORT void JNICALL
-Java_src_shared_osbind_NFunc_nativeCallerReset(JNIEnv *env, jclass cls)
+Java_src_shared_osbind_NFunc_nativeFuncPrepare(JNIEnv *env, jclass cls)
 {
-    NCallerReset();
+    NFuncPrepare();
 }
 
 JNIEXPORT void JNICALL
-Java_src_shared_osbind_NFunc_nativeCallerPush(JNIEnv *env, jclass cls,
-    jint argType, jlong argWord)
+Java_src_shared_osbind_NFunc_nativeFuncPushArg(JNIEnv *env, jclass cls,
+    jint type, jlong word)
 {
-    NCallerPush(argType, argWord);
+    NFuncPushArg(type, word);
 }
 
 JNIEXPORT jlong JNICALL
-Java_src_shared_osbind_NFunc_nativeCall(JNIEnv *env, jclass cls,
-    jint fIndex)
+Java_src_shared_osbind_NFunc_nativeFuncCall(JNIEnv *env, jclass cls,
+    jint index)
 {
-    return NCall(fIndex);
+    return NFuncCall(index);
 }

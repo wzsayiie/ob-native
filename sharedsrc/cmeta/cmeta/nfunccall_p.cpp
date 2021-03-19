@@ -1,7 +1,7 @@
 #include "nfunccall_p.h"
 #include "basis.h"
 #include "nfuncmeta_p.h"
-#include "nstructmeta_p.h"
+#include "ntypemeta_p.h"
 
 static NType DynamicType(NType staticType, _NWord word) {
     if (NTypeIsRef(staticType)) {

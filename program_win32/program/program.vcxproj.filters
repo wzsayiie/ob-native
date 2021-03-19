@@ -162,7 +162,7 @@
     <ClCompile Include="..\..\sharedsrc\osplat\osplat\osplat.c">
       <Filter>sharedsrc\osplat\osplat</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sharedsrc\cmeta\cmeta\nstructs.cpp">
+    <ClCompile Include="..\..\sharedsrc\cmeta\cmeta\ntypes.cpp">
       <Filter>sharedsrc\cmeta\cmeta</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sharedsrc\basis\basis\algorithm\cstr.c">
@@ -225,7 +225,7 @@
     <ClCompile Include="..\..\sharedsrc\cmeta\cmeta\NGEN.cpp">
       <Filter>sharedsrc\cmeta\cmeta</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sharedsrc\cmeta\cmeta\nstructmeta_p.cpp">
+    <ClCompile Include="..\..\sharedsrc\cmeta\cmeta\ntypemeta_p.cpp">
       <Filter>sharedsrc\cmeta\cmeta</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sharedsrc\cmeta\cmeta\nfunccall_p.cpp">
@@ -311,7 +311,7 @@
     <ClInclude Include="..\..\sharedsrc\osui\osui\osui.h">
       <Filter>sharedsrc\osui\osui</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\sharedsrc\cmeta\cmeta\nstructs.h">
+    <ClInclude Include="..\..\sharedsrc\cmeta\cmeta\ntypes.h">
       <Filter>sharedsrc\cmeta\cmeta</Filter>
     </ClInclude>
     <ClInclude Include="..\..\sharedsrc\basis\basis\algorithm\cstr.h">
@@ -362,7 +362,7 @@
     <ClInclude Include="..\..\sharedsrc\cmeta\cmeta\NGEN.h">
       <Filter>sharedsrc\cmeta\cmeta</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\sharedsrc\cmeta\cmeta\nstructmeta_p.h">
+    <ClInclude Include="..\..\sharedsrc\cmeta\cmeta\ntypemeta_p.h">
       <Filter>sharedsrc\cmeta\cmeta</Filter>
     </ClInclude>
     <ClInclude Include="..\..\sharedsrc\cmeta\cmeta\ntrait_p.h">

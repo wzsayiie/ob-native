@@ -1,6 +1,6 @@
 #include "nfuncmeta_p.h"
-#include "nstructmeta_p.h"
 #include "ntrait_p.h"
+#include "ntypemeta_p.h"
 
 #undef  nstruct
 #undef  nclass

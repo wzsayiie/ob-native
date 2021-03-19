@@ -1,5 +1,5 @@
-#include "nstructs.h"
-#include "nstructmeta_p.h"
+#include "ntypes.h"
+#include "ntypemeta_p.h"
 
 int NStructsBegin() {
     return StructsBegin();

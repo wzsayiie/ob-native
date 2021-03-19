@@ -1,4 +1,4 @@
-#include "nstructmeta_p.h"
+#include "ntypemeta_p.h"
 #include "basis.h"
 #include "binlist.h"
 #include "cerpool.h"

@@ -3,7 +3,7 @@
 #include "basis.h"
 #include "binlist.h"
 #include "cerpool.h"
-#include "nstructmeta_p.h"
+#include "ntypemeta_p.h"
 
 static cerpool sEntryPool = {0};
 static binlist sEntryList = {0};

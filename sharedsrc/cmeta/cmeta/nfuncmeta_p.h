@@ -54,17 +54,20 @@ struct FuncAdder {
     template<class Ret>
     bool CheckRet() {
         //the return type can't be a struct or unknown ptr.
-        if (TraitType<Ret>::TYPE == NTYPE_STRUCT) {return false;}
-        if (TraitType<Ret>::TYPE == NTYPE_PTR   ) {return false;}
-
+        if (NTypeIsBlur(TraitType<Ret>::TYPE)) {
+            return false;
+        }
         return true;
     }
 
     template<class Ret, class First, class... Follow>
     bool CheckArg(Ret (*)(First, Follow...), int *count) {
-        if (TraitType<First>::TYPE == NTYPE_STRUCT) {return false;}
-        if (TraitType<First>::TYPE == NTYPE_PTR   ) {return false;}
-        if (TraitType<First>::TYPE == NTYPE_VOID  ) {return false;}
+        if (NTypeIsBlur(TraitType<Ret>::TYPE)) {
+            return false;
+        }
+        if (NTypeIsVoid(TraitType<Ret>::TYPE)) {
+            return false;
+        }
 
         *count += 1;
         return CheckArg((Ret (*)(Follow...))NULL, count);

@@ -4,7 +4,7 @@
 #include "nstructmeta_p.h"
 
 static NType DynamicType(NType staticType, _NWord word) {
-    if (staticType >= NTYPE_CUSTOM_PTR) {
+    if (NTypeIsRef(staticType)) {
         auto object = (NObject *)word;
         return FindStruct(object->clsName);
     }
@@ -15,72 +15,52 @@ static bool Between(NType lower, NType value, NType upper) {
     return lower <= value && value <= upper;
 }
 
-static bool Unknown   (NType t) {return Between(NTYPE_STRUCT  , t, NTYPE_PTR       );}
-static bool IsVoid    (NType t) {return Between(NTYPE_VOID    , t, NTYPE_VOID      );}
-static bool IsBool    (NType t) {return Between(NTYPE_BOOL    , t, NTYPE_BOOL      );}
-static bool IsNumber  (NType t) {return Between(NTYPE_CHAR8   , t, NTYPE_DOUBLE    );}
-static bool IsVoidPtr (NType t) {return Between(NTYPE_VOID_PTR, t, NTYPE_VOID_PTR  );}
-static bool IsBasicPtr(NType t) {return Between(NTYPE_BOOL_PTR, t, NTYPE_DOUBLE_PTR);}
-
 static bool SafeCastable(NType srcType, NType dstType) {
-    if (Unknown(srcType) || Unknown(dstType)) {
-        //unknown types can't be casted.
+    if (NTypeIsBlur(srcType) || NTypeIsBlur(dstType)) {
+        //blur types can't be casted.
         return false;
     }
 
-    if (IsVoid(dstType)) {
+    if (NTypeIsVoid(dstType)) {
         //any type can be casted to void.
         return true;
     }
 
-    if (IsBool(dstType)) {
+    if (NTypeIsBool(dstType)) {
         //any type can be casted to bool.
         return true;
     }
 
-    if (IsNumber(dstType)) {
-        if (IsVoid(srcType)) {return true;}
-        if (IsBool(srcType)) {return true;}
-
-        if (IsNumber(srcType)) {
+    if (NTypeIsNum(dstType)) {
+        if (NTypeIsVoid(srcType)) {
+            return true;
+        }
+        if (NTypeIsBool(srcType)) {
+            return true;
+        }
+        if (NTypeIsNum(srcType)) {
             //numeric types always can be casted to each other,
             //which is more convenient for cross-language calling.
             return true;
         }
         
-        if (IsVoidPtr (srcType)) {return false;}
-        if (IsBasicPtr(srcType)) {return false;}
-        /* src is custom ptr  */ {return false;}
+        return false;
     }
 
-    if (IsVoidPtr(dstType)) {
-        if (IsVoid  (srcType)) {return false;}
-        if (IsBool  (srcType)) {return false;}
-        if (IsNumber(srcType)) {return false;}
-        
-        //any ptr can be casted to void ptr.
-        if (IsVoidPtr (srcType)) {return true;}
-        if (IsBasicPtr(srcType)) {return true;}
-        /* src is custom ptr  */ {return true;}
+    if (NTypeIsPtr(dstType)) {
+        return dstType == srcType;
     }
 
-    if (IsBasicPtr(dstType)) {
-        //basic ptr can't be casted to other types.
-        return srcType == dstType;
+    //here dstType is object ref:
+    if (!NTypeIsRef(srcType)) {
+        return false;
     }
-    
-    //dst is custom ptr.
-    if (IsVoid    (srcType)) {return false;}
-    if (IsBool    (srcType)) {return false;}
-    if (IsNumber  (srcType)) {return false;}
-    if (IsVoidPtr (srcType)) {return false;}
-    if (IsBasicPtr(srcType)) {return false;}
-
     for (; srcType; srcType = StructSuper(srcType)) {
         if (dstType == srcType) {
             return true;
         }
     }
+
     return false;
 }
 
@@ -181,7 +161,7 @@ Type Cast(NType srcType, _NWord word) {
     if (srcType == NTYPE_UINT64) return (Type) *(uint64_t *)&word;
     if (srcType == NTYPE_FLOAT ) return (Type) *(float    *)&word;
     if (srcType == NTYPE_DOUBLE) return (Type) *(double   *)&word;
-    else /* src is custom ptr */ return (Type) *(intptr_t *)&word;
+    else /* pointer/reference */ return (Type) *(intptr_t *)&word;
 }
 
 template<class Ret, int N>
@@ -211,7 +191,7 @@ struct Caller {
         if (dstType == NTYPE_UINT64) return Caller<Ret, N + 1>::Call(status, arg..., (int64_t )Cast<uint64_t>(srcType, word));
         if (dstType == NTYPE_FLOAT ) return Caller<Ret, N + 1>::Call(status, arg..., (float   )Cast<float   >(srcType, word));
         if (dstType == NTYPE_DOUBLE) return Caller<Ret, N + 1>::Call(status, arg..., (double  )Cast<double  >(srcType, word));
-        else /* dst is custom ptr */ return Caller<Ret, N + 1>::Call(status, arg..., (intptr_t)Cast<intptr_t>(srcType, word));
+        else /* pointer/reference */ return Caller<Ret, N + 1>::Call(status, arg..., (intptr_t)Cast<intptr_t>(srcType, word));
     }
 };
 

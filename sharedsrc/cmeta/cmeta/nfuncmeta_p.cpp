@@ -9,7 +9,7 @@ static cerpool sEntryPool = {0};
 static binlist sEntryList = {0};
 
 bool FuncAdder::RetRetain(NType retType, const char *funcName) {
-    if (retType >= NTYPE_CUSTOM_PTR) {
+    if (NTypeIsRef(retType)) {
         if (strstr(funcName, "Create")) {return true;}
         if (strstr(funcName, "Copy"  )) {return true;}
         if (strstr(funcName, "Retain")) {return true;}

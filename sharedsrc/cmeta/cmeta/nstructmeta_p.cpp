@@ -7,7 +7,7 @@ const int INNER_INDEX_INVALID = -1;
 const int INNER_INDEX_FIRST   =  0;
 
 const int OUTER_INDEX_INVALID = 0;
-const int OUTER_INDEX_FIRSY   = NTYPE_CUSTOM_PTR;
+const int OUTER_INDEX_FIRSY   = NTYPE_CUSTOM_REF;
 
 struct StructEntry {
     const char *name;

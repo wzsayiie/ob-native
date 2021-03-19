@@ -118,7 +118,10 @@ nenum(NType) {
     NTYPE_FLOAT_PTR  = 31,
     NTYPE_DOUBLE_PTR = 32,
 
-    NTYPE_CUSTOM_PTR = 33,
+    NTYPE_OBJECT_REF = 33, //NObject ref.
+    NTYPE_STRING_REF = 34, //NString ref.
+
+    NTYPE_CUSTOM_REF = 35,
 
   #if NPTR_64
     NTYPE_INT      = NTYPE_INT64     ,
@@ -132,6 +135,17 @@ nenum(NType) {
     NTYPE_UINT_PTR = NTYPE_UINT32_PTR,
   #endif
 };
+
+#define NTypeIsBlur(t) (t <= NTYPE_PTR )
+#define NTypeIsVoid(t) (t == NTYPE_VOID)
+#define NTypeIsBool(t) (t == NTYPE_BOOL)
+
+#define NTypeIsNum( t) (NTYPE_CHAR8 <= t && t <= NTYPE_DOUBLE)
+#define NTypeIsInt( t) (NTYPE_CHAR8 <= t && t <= NTYPE_UINT64)
+#define NTypeIsFlt( t) (NTYPE_FLOAT <= t && t <= NTYPE_DOUBLE)
+
+#define NTypeIsPtr( t) (NTYPE_VOID_PTR   == t && t <= NTYPE_DOUBLE_PTR)
+#define NTypeIsRef( t) (NTYPE_OBJECT_REF <= t)
 
 //type modifiers:
 

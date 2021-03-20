@@ -42,8 +42,12 @@
 		CE37F72D25D0364D00C8302C /* naction.c in Sources */ = {isa = PBXBuildFile; fileRef = CE37F6E825D0364D00C8302C /* naction.c */; };
 		CE37F72E25D0364D00C8302C /* ndata.c in Sources */ = {isa = PBXBuildFile; fileRef = CE37F6EC25D0364D00C8302C /* ndata.c */; };
 		CE37F72F25D0364D00C8302C /* nlock.c in Sources */ = {isa = PBXBuildFile; fileRef = CE37F6EE25D0364D00C8302C /* nlock.c */; };
-		CE37F73125D0364D00C8302C /* nstructs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE37F6F725D0364D00C8302C /* nstructs.cpp */; };
-		CE37F73225D0364D00C8302C /* nfuncs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE37F6F925D0364D00C8302C /* nfuncs.cpp */; };
+		CE60F86F260632480077AE18 /* ntypemeta_p.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE60F862260632480077AE18 /* ntypemeta_p.cpp */; };
+		CE60F870260632480077AE18 /* ntypes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE60F865260632480077AE18 /* ntypes.cpp */; };
+		CE60F871260632480077AE18 /* nfunccall_p.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE60F866260632480077AE18 /* nfunccall_p.cpp */; };
+		CE60F872260632480077AE18 /* nfuncmeta_p.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE60F868260632480077AE18 /* nfuncmeta_p.cpp */; };
+		CE60F873260632480077AE18 /* nfuncs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE60F86A260632480077AE18 /* nfuncs.cpp */; };
+		CE60F874260632480077AE18 /* NGEN.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE60F86D260632480077AE18 /* NGEN.cpp */; };
 		CEA0184225FF8874000064C2 /* osjs.c in Sources */ = {isa = PBXBuildFile; fileRef = CEA0183225FF8874000064C2 /* osjs.c */; };
 		CEA0184725FF8874000064C2 /* NMACJavaScriptCore.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA0184125FF8874000064C2 /* NMACJavaScriptCore.m */; };
 		CED80C2624F2ADA30063F3DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CED80C2524F2ADA30063F3DE /* Assets.xcassets */; };
@@ -127,12 +131,20 @@
 		CE37F6ED25D0364D00C8302C /* ntable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ntable.h; sourceTree = "<group>"; };
 		CE37F6EE25D0364D00C8302C /* nlock.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = nlock.c; sourceTree = "<group>"; };
 		CE37F6EF25D0364D00C8302C /* nmemory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nmemory.h; sourceTree = "<group>"; };
-		CE37F6F425D0364D00C8302C /* cmeta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cmeta.h; sourceTree = "<group>"; };
-		CE37F6F525D0364D00C8302C /* NEXPORT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NEXPORT.h; sourceTree = "<group>"; };
-		CE37F6F625D0364D00C8302C /* nfuncs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nfuncs.h; sourceTree = "<group>"; };
-		CE37F6F725D0364D00C8302C /* nstructs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = nstructs.cpp; sourceTree = "<group>"; };
-		CE37F6F825D0364D00C8302C /* nstructs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nstructs.h; sourceTree = "<group>"; };
-		CE37F6F925D0364D00C8302C /* nfuncs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = nfuncs.cpp; sourceTree = "<group>"; };
+		CE60F861260632480077AE18 /* ntypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ntypes.h; sourceTree = "<group>"; };
+		CE60F862260632480077AE18 /* ntypemeta_p.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ntypemeta_p.cpp; sourceTree = "<group>"; };
+		CE60F863260632480077AE18 /* nfunccall_p.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nfunccall_p.h; sourceTree = "<group>"; };
+		CE60F864260632480077AE18 /* nfuncmeta_p.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nfuncmeta_p.h; sourceTree = "<group>"; };
+		CE60F865260632480077AE18 /* ntypes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ntypes.cpp; sourceTree = "<group>"; };
+		CE60F866260632480077AE18 /* nfunccall_p.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = nfunccall_p.cpp; sourceTree = "<group>"; };
+		CE60F867260632480077AE18 /* NGEN.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGEN.h; sourceTree = "<group>"; };
+		CE60F868260632480077AE18 /* nfuncmeta_p.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = nfuncmeta_p.cpp; sourceTree = "<group>"; };
+		CE60F869260632480077AE18 /* ntypemeta_p.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ntypemeta_p.h; sourceTree = "<group>"; };
+		CE60F86A260632480077AE18 /* nfuncs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = nfuncs.cpp; sourceTree = "<group>"; };
+		CE60F86B260632480077AE18 /* ntrait_p.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ntrait_p.h; sourceTree = "<group>"; };
+		CE60F86C260632480077AE18 /* cmeta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cmeta.h; sourceTree = "<group>"; };
+		CE60F86D260632480077AE18 /* NGEN.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NGEN.cpp; sourceTree = "<group>"; };
+		CE60F86E260632480077AE18 /* nfuncs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nfuncs.h; sourceTree = "<group>"; };
 		CEA0183225FF8874000064C2 /* osjs.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = osjs.c; sourceTree = "<group>"; };
 		CEA0183325FF8874000064C2 /* osjs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = osjs.h; sourceTree = "<group>"; };
 		CEA0184125FF8874000064C2 /* NMACJavaScriptCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMACJavaScriptCore.m; sourceTree = "<group>"; };
@@ -390,12 +402,20 @@
 		CE37F6F125D0364D00C8302C /* cmeta */ = {
 			isa = PBXGroup;
 			children = (
-				CE37F6F425D0364D00C8302C /* cmeta.h */,
-				CE37F6F525D0364D00C8302C /* NEXPORT.h */,
-				CE37F6F925D0364D00C8302C /* nfuncs.cpp */,
-				CE37F6F625D0364D00C8302C /* nfuncs.h */,
-				CE37F6F725D0364D00C8302C /* nstructs.cpp */,
-				CE37F6F825D0364D00C8302C /* nstructs.h */,
+				CE60F86C260632480077AE18 /* cmeta.h */,
+				CE60F866260632480077AE18 /* nfunccall_p.cpp */,
+				CE60F863260632480077AE18 /* nfunccall_p.h */,
+				CE60F868260632480077AE18 /* nfuncmeta_p.cpp */,
+				CE60F864260632480077AE18 /* nfuncmeta_p.h */,
+				CE60F86A260632480077AE18 /* nfuncs.cpp */,
+				CE60F86E260632480077AE18 /* nfuncs.h */,
+				CE60F86D260632480077AE18 /* NGEN.cpp */,
+				CE60F867260632480077AE18 /* NGEN.h */,
+				CE60F86B260632480077AE18 /* ntrait_p.h */,
+				CE60F862260632480077AE18 /* ntypemeta_p.cpp */,
+				CE60F869260632480077AE18 /* ntypemeta_p.h */,
+				CE60F865260632480077AE18 /* ntypes.cpp */,
+				CE60F861260632480077AE18 /* ntypes.h */,
 			);
 			path = cmeta;
 			sourceTree = "<group>";
@@ -581,27 +601,31 @@
 				CE37F72225D0364D00C8302C /* nio.c in Sources */,
 				CE37F72F25D0364D00C8302C /* nlock.c in Sources */,
 				CE37F71F25D0364D00C8302C /* niterator.c in Sources */,
+				CE60F86F260632480077AE18 /* ntypemeta_p.cpp in Sources */,
 				CE37F72D25D0364D00C8302C /* naction.c in Sources */,
 				CE37F72125D0364D00C8302C /* ntable.c in Sources */,
 				CEF62B6625F10D6D0050F57C /* claunch.cpp in Sources */,
 				CE37F70525D0364D00C8302C /* osbind.c in Sources */,
 				CE37F6FB25D0364D00C8302C /* nsocket.c in Sources */,
 				CEF62B6425F10D6D0050F57C /* jslaunch.c in Sources */,
-				CE37F73225D0364D00C8302C /* nfuncs.cpp in Sources */,
 				CE37F72725D0364D00C8302C /* def.c in Sources */,
 				CE37F70925D0364D00C8302C /* nlaunch.c in Sources */,
 				CE37F72A25D0364D00C8302C /* cerpool.c in Sources */,
 				CE37F72E25D0364D00C8302C /* ndata.c in Sources */,
 				CE37F6FA25D0364D00C8302C /* nsocket_posix.c in Sources */,
-				CE37F73125D0364D00C8302C /* nstructs.cpp in Sources */,
 				CE37F72825D0364D00C8302C /* avltree.c in Sources */,
+				CE60F872260632480077AE18 /* nfuncmeta_p.cpp in Sources */,
 				CE37F72425D0364D00C8302C /* nunicode.c in Sources */,
 				CE37F70B25D0364D00C8302C /* NOSXAppDelegate.m in Sources */,
+				CE60F871260632480077AE18 /* nfunccall_p.cpp in Sources */,
 				CE2468F325DFF38500ED25DE /* ncpprefs.cpp in Sources */,
+				CE60F873260632480077AE18 /* nfuncs.cpp in Sources */,
 				CE37F71325D0364D00C8302C /* NMACRunloop.m in Sources */,
+				CE60F870260632480077AE18 /* ntypes.cpp in Sources */,
 				CE37F6FD25D0364D00C8302C /* nsocket_win32.c in Sources */,
 				CED80C2C24F2ADA30063F3DE /* main.m in Sources */,
 				CEA0184225FF8874000064C2 /* osjs.c in Sources */,
+				CE60F874260632480077AE18 /* NGEN.cpp in Sources */,
 				CE37F72325D0364D00C8302C /* narray.c in Sources */,
 				CE37F71E25D0364D00C8302C /* nnumber.c in Sources */,
 				CE37F72C25D0364D00C8302C /* npod.c in Sources */,

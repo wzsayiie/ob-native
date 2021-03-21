@@ -6,6 +6,7 @@
 #include "nenviron.h"
 #include "nio.h"
 #include "niterator.h"
+#include "nlambda.h"
 #include "nlock.h"
 #include "nmemory.h"
 #include "nnumber.h"

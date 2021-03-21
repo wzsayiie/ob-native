@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE1A1C2B26077B0B00ECF9A7 /* nlambda.c in Sources */ = {isa = PBXBuildFile; fileRef = CE1A1C2A26077B0B00ECF9A7 /* nlambda.c */; };
 		CE2468E625DFF34000ED25DE /* ncpprefs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE2468E025DFF34000ED25DE /* ncpprefs.cpp */; };
 		CE2468E725DFF34000ED25DE /* nobjectref.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE2468E325DFF34000ED25DE /* nobjectref.cpp */; };
 		CE2468E825DFF34000ED25DE /* nactionref.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE2468E425DFF34000ED25DE /* nactionref.cpp */; };
@@ -58,6 +59,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CE1A1C2926077B0B00ECF9A7 /* nlambda.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nlambda.h; sourceTree = "<group>"; };
+		CE1A1C2A26077B0B00ECF9A7 /* nlambda.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = nlambda.c; sourceTree = "<group>"; };
 		CE2468E025DFF34000ED25DE /* ncpprefs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ncpprefs.cpp; sourceTree = "<group>"; };
 		CE2468E125DFF34000ED25DE /* nobjectref.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nobjectref.h; sourceTree = "<group>"; };
 		CE2468E225DFF34000ED25DE /* nactionref.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nactionref.h; sourceTree = "<group>"; };
@@ -350,6 +353,8 @@
 				CE37F61425D0352E00C8302C /* nio.h */,
 				CE37F5F425D0352E00C8302C /* niterator.c */,
 				CE37F60E25D0352E00C8302C /* niterator.h */,
+				CE1A1C2A26077B0B00ECF9A7 /* nlambda.c */,
+				CE1A1C2926077B0B00ECF9A7 /* nlambda.h */,
 				CE37F61825D0352E00C8302C /* nlock.c */,
 				CE37F5FB25D0352E00C8302C /* nlock.h */,
 				CE37F60D25D0352E00C8302C /* nmemory.c */,
@@ -608,6 +613,7 @@
 				CE37F62525D0352E00C8302C /* nsocket.c in Sources */,
 				CE60F85B260631FF0077AE18 /* NGEN.cpp in Sources */,
 				CE37F65125D0352E00C8302C /* def.c in Sources */,
+				CE1A1C2B26077B0B00ECF9A7 /* nlambda.c in Sources */,
 				CEDBDEF925FE172500659AD2 /* NMACFiles.m in Sources */,
 				CEA0182725FF882D000064C2 /* osjs.c in Sources */,
 				CE37F63325D0352E00C8302C /* nlaunch.c in Sources */,

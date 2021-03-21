@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE1A1C2726077AE000ECF9A7 /* nlambda.c in Sources */ = {isa = PBXBuildFile; fileRef = CE1A1C2526077AE000ECF9A7 /* nlambda.c */; };
 		CE2468F125DFF38500ED25DE /* nactionref.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE2468EC25DFF38400ED25DE /* nactionref.cpp */; };
 		CE2468F225DFF38500ED25DE /* nobjectref.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE2468ED25DFF38400ED25DE /* nobjectref.cpp */; };
 		CE2468F325DFF38500ED25DE /* ncpprefs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE2468F025DFF38400ED25DE /* ncpprefs.cpp */; };
@@ -58,6 +59,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CE1A1C2526077AE000ECF9A7 /* nlambda.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = nlambda.c; sourceTree = "<group>"; };
+		CE1A1C2626077AE000ECF9A7 /* nlambda.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nlambda.h; sourceTree = "<group>"; };
 		CE2468EB25DFF38400ED25DE /* nactionref.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nactionref.h; sourceTree = "<group>"; };
 		CE2468EC25DFF38400ED25DE /* nactionref.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = nactionref.cpp; sourceTree = "<group>"; };
 		CE2468ED25DFF38400ED25DE /* nobjectref.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = nobjectref.cpp; sourceTree = "<group>"; };
@@ -354,6 +357,8 @@
 				CE37F6EA25D0364D00C8302C /* nio.h */,
 				CE37F6CA25D0364D00C8302C /* niterator.c */,
 				CE37F6E425D0364D00C8302C /* niterator.h */,
+				CE1A1C2526077AE000ECF9A7 /* nlambda.c */,
+				CE1A1C2626077AE000ECF9A7 /* nlambda.h */,
 				CE37F6EE25D0364D00C8302C /* nlock.c */,
 				CE37F6D125D0364D00C8302C /* nlock.h */,
 				CE37F6E325D0364D00C8302C /* nmemory.c */,
@@ -600,6 +605,7 @@
 				CE37F71225D0364D00C8302C /* NMACThread.m in Sources */,
 				CE37F72225D0364D00C8302C /* nio.c in Sources */,
 				CE37F72F25D0364D00C8302C /* nlock.c in Sources */,
+				CE1A1C2726077AE000ECF9A7 /* nlambda.c in Sources */,
 				CE37F71F25D0364D00C8302C /* niterator.c in Sources */,
 				CE60F86F260632480077AE18 /* ntypemeta_p.cpp in Sources */,
 				CE37F72D25D0364D00C8302C /* naction.c in Sources */,

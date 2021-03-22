@@ -120,8 +120,9 @@ nenum(NType) {
 
     NTYPE_OBJECT_REF = 33, //NObject ref.
     NTYPE_STRING_REF = 34, //NString ref.
+    NTYPE_LAMBDA_REF = 35, //NLambda ref.
 
-    NTYPE_CUSTOM_REF = 35,
+    NTYPE_CUSTOM_REF = 36,
 
   #if NPTR_64
     NTYPE_INT      = NTYPE_INT64     ,

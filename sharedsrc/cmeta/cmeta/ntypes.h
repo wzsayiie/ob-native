@@ -2,11 +2,11 @@
 
 #include "nenviron.h"
 
-nfunc(int, NStructsBegin, (void));
-nfunc(int, NStructsEnd  , (void));
-nfunc(int, NFindStruct  , (const char *name));
+nfunc(NType, NStructsBegin, (void));
+nfunc(NType, NStructsEnd  , (void));
+nfunc(NType, NFindType    , (const char *name));
 
-nfunc(const char *, NStructName, (int index));
+nfunc(const char *, NTypeName, (NType type));
 
-nfunc(int, NStructSuper, (int index));
-nfunc(int, NStructSize , (int index));
+nfunc(int  , NTypeSize , (NType type));
+nfunc(NType, NTypeSuper, (NType type));

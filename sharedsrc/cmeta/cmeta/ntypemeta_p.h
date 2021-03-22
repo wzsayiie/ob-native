@@ -6,18 +6,18 @@
 
 #include "nenviron.h"
 
-struct StructAdder {
-    StructAdder(const char *name, const char *super, int size);
+struct TypeAdder {
+    TypeAdder(const char *name, const char *super, int size);
 };
 
-#define AddStruct(nm)     static StructAdder _struct_##nm(#nm, NULL, nsizeof(nm))
-#define AddClass( nm, sp) static StructAdder _struct_##nm(#nm, #sp , nsizeof(nm))
+#define AddStruct(nm)     static TypeAdder _struct_##nm(#nm, NULL, nsizeof(nm))
+#define AddClass( nm, sp) static TypeAdder _struct_##nm(#nm, #sp , nsizeof(nm))
 
 int StructsBegin();
 int StructsEnd  ();
-int FindStruct  (const char *name);
+int FindType    (const char *name);
 
-const char *StructName(int index);
+const char *TypeName(int index);
 
-int StructSuper(int index);
-int StructSize (int index);
+int TypeSize (int index);
+int TypeSuper(int index);

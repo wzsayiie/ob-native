@@ -9,21 +9,21 @@ int NStructsEnd() {
     return StructsEnd();
 }
 
-int NFindStruct(const char *name) {
+int NFindType(const char *name) {
     if (name && *name != '\0') {
-        return FindStruct(name);
+        return FindType(name);
     }
     return 0;
 }
 
-const char *NStructName(int index) {
-    return StructName(index);
+const char *NTypeName(int type) {
+    return TypeName(type);
 }
 
-int NStructSuper(int index) {
-    return StructSuper(index);
+int NTypeSize(NType type) {
+    return TypeSize(type);
 }
 
-int NStructSize(int index) {
-    return StructSize(index);
+int NTypeSuper(NType type) {
+    return TypeSuper(type);
 }

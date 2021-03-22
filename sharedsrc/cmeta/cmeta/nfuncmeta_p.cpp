@@ -79,7 +79,7 @@ NType FuncRetType(int index) {
     }
 
     if (entry->retType == 0) {
-        entry->retType = FindStruct(entry->retName);
+        entry->retType = FindType(entry->retName);
     }
     return entry->retType;
 }
@@ -112,7 +112,7 @@ NType FuncArgType(int index, int argIndex) {
 
     if (entry->argTypes[argIndex] == 0) {
         const char *name = entry->argNames[argIndex];
-        entry->argTypes[argIndex] = FindStruct(name);
+        entry->argTypes[argIndex] = FindType(name);
     }
     return entry->argTypes[argIndex];
 }

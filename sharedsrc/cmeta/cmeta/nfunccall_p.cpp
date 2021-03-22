@@ -6,7 +6,7 @@
 static NType DynamicType(NType staticType, _NWord word) {
     if (NTypeIsRef(staticType)) {
         auto object = (NObject *)word;
-        return FindStruct(object->clsName);
+        return FindType(object->clsName);
     }
     return staticType;
 }
@@ -55,7 +55,7 @@ static bool SafeCastable(NType srcType, NType dstType) {
     if (!NTypeIsRef(srcType)) {
         return false;
     }
-    for (; srcType; srcType = StructSuper(srcType)) {
+    for (; srcType; srcType = TypeSuper(srcType)) {
         if (dstType == srcType) {
             return true;
         }

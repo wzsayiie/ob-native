@@ -231,6 +231,9 @@
     <ClCompile Include="..\..\sharedsrc\cmeta\cmeta\nfunccall_p.cpp">
       <Filter>sharedsrc\cmeta\cmeta</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\sharedsrc\basis\basis\nlambda.c">
+      <Filter>sharedsrc\basis\basis</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\sharedsrc\basis\basis\basis.h">
@@ -370,6 +373,9 @@
     </ClInclude>
     <ClInclude Include="..\..\sharedsrc\cmeta\cmeta\nfunccall_p.h">
       <Filter>sharedsrc\cmeta\cmeta</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sharedsrc\basis\basis\nlambda.h">
+      <Filter>sharedsrc\basis\basis</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

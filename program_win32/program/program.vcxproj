@@ -33,6 +33,7 @@
     <ClCompile Include="..\..\sharedsrc\basis\basis\ndata.c" />
     <ClCompile Include="..\..\sharedsrc\basis\basis\nio.c" />
     <ClCompile Include="..\..\sharedsrc\basis\basis\niterator.c" />
+    <ClCompile Include="..\..\sharedsrc\basis\basis\nlambda.c" />
     <ClCompile Include="..\..\sharedsrc\basis\basis\nlock.c" />
     <ClCompile Include="..\..\sharedsrc\basis\basis\nmemory.c" />
     <ClCompile Include="..\..\sharedsrc\basis\basis\nnumber.c" />
@@ -80,6 +81,7 @@
     <ClInclude Include="..\..\sharedsrc\basis\basis\nenviron.h" />
     <ClInclude Include="..\..\sharedsrc\basis\basis\nio.h" />
     <ClInclude Include="..\..\sharedsrc\basis\basis\niterator.h" />
+    <ClInclude Include="..\..\sharedsrc\basis\basis\nlambda.h" />
     <ClInclude Include="..\..\sharedsrc\basis\basis\nlock.h" />
     <ClInclude Include="..\..\sharedsrc\basis\basis\nmemory.h" />
     <ClInclude Include="..\..\sharedsrc\basis\basis\nnumber.h" />

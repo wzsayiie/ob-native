@@ -141,12 +141,14 @@ nenum(NType) {
 #define NTypeIsVoid(t) (t == NTYPE_VOID)
 #define NTypeIsBool(t) (t == NTYPE_BOOL)
 
-#define NTypeIsNum( t) (NTYPE_CHAR8 <= t && t <= NTYPE_DOUBLE)
-#define NTypeIsInt( t) (NTYPE_CHAR8 <= t && t <= NTYPE_UINT64)
-#define NTypeIsFlt( t) (NTYPE_FLOAT <= t && t <= NTYPE_DOUBLE)
+#define NTypeIsNum(t)  (NTYPE_CHAR8 <= t && t <= NTYPE_DOUBLE)
+#define NTypeIsInt(t)  (NTYPE_CHAR8 <= t && t <= NTYPE_UINT64)
+#define NTypeIsFlt(t)  (NTYPE_FLOAT <= t && t <= NTYPE_DOUBLE)
+#define NTypeIsSInt(t) (NTYPE_CHAR8 <= t && t <= NTYPE_INT64 )
+#define NTypeIsUInt(t) (NTYPE_UInt8 <= t && t <= NTYPE_UINT64)
 
-#define NTypeIsPtr( t) (NTYPE_VOID_PTR   == t && t <= NTYPE_DOUBLE_PTR)
-#define NTypeIsRef( t) (NTYPE_OBJECT_REF <= t)
+#define NTypeIsPtr(t)  (NTYPE_VOID_PTR   == t && t <= NTYPE_DOUBLE_PTR)
+#define NTypeIsRef(t)  (NTYPE_OBJECT_REF <= t)
 
 //type modifiers:
 

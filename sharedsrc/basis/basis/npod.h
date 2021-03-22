@@ -2,29 +2,43 @@
 
 #include "nenviron.h"
 
+typedef struct NObject NObject;
+typedef struct NString NString;
+typedef struct NLambda NLambda;
+
 nstruct(NWord, {
     union {
-        bool      asBool  ;
-        int8_t    asInt8  ;
-        int16_t   asInt16 ;
-        int32_t   asInt32 ;
-        int64_t   asInt64 ;
-        int       asInt   ;
-        uint8_t   asUInt8 ;
-        uint16_t  asUInt16;
-        uint32_t  asUInt32;
-        uint64_t  asUInt64;
-        unsigned  asUInt  ;
-        float     asFloat ;
-        double    asDouble;
-        void     *asPtr   ;
+        bool      asBool    ;
+        
+        int8_t    asInt8    ;
+        int16_t   asInt16   ;
+        int32_t   asInt32   ;
+        int64_t   asInt64   ;
+        int       asInt     ;
+
+        uint8_t   asUInt8   ;
+        uint16_t  asUInt16  ;
+        uint32_t  asUInt32  ;
+        uint64_t  asUInt64  ;
+        unsigned  asUInt    ;
+
+        float     asFloat   ;
+        double    asDouble  ;
+
+        char     *asU8Chars ;
+        char16_t *asU16Chars;
+        char32_t *asU32Chars;
+        void     *asPtr     ;
+
+        NObject  *asObject  ;
+        NString  *asString  ;
+        NLambda  *asLambda  ;
     };
 });
 
 nstruct(NValue, {
     NType type;
     union {
-        bool     asBool  ;
         int64_t  asInt64 ;
         uint64_t asUInt64;
         double   asDouble;
@@ -32,20 +46,32 @@ nstruct(NValue, {
     };
 });
 
-nclink NValue NMakeBoolValue  (bool     value);
-nclink NValue NMakeInt64Value (int64_t  value);
-nclink NValue NMakeUInt64Value(uint64_t value);
-nclink NValue NMakeDoubleValue(double   value);
-nclink NValue NMakePtrValue   (void    *value);
-nclink NValue NMakeIntValue   (int      value);
-nclink NValue NMakeUIntValue  (unsigned value);
-nclink NValue NMakeFloatValue (float    value);
+nclink NValue NMakeBoolValue    (bool      raw);
+nclink NValue NMakeIntValue     (int       raw);
+nclink NValue NMakeInt64Value   (int64_t   raw);
+nclink NValue NMakeUIntValue    (unsigned  raw);
+nclink NValue NMakeUInt64Value  (uint64_t  raw);
+nclink NValue NMakeFloatValue   (float     raw);
+nclink NValue NMakeDoubleValue  (double    raw);
+nclink NValue NMakeU8CharsValue (char     *raw);
+nclink NValue NMakeU16CharsValue(char16_t *raw);
+nclink NValue NMakeU32CharsValue(char32_t *raw);
+nclink NValue NMakePtrValue     (void     *raw);
+nclink NValue NMakeObjectValue  (NObject  *raw);
+nclink NValue NMakeStringValue  (NString  *raw);
+nclink NValue NMakeLambdaValue  (NLambda  *raw);
 
-nclink bool     NBoolValue  (NValue value);
-nclink int64_t  NInt64Value (NValue value);
-nclink uint64_t NUInt64Value(NValue value);
-nclink double   NDoubleValue(NValue value);
-nclink void    *NPtrValue   (NValue value);
-nclink int      NIntValue   (NValue value);
-nclink unsigned NUIntValue  (NValue value);
-nclink float    NFloatValue (NValue value);
+nclink bool      NBoolValue    (NValue value);
+nclink int       NIntValue     (NValue value);
+nclink int64_t   NInt64Value   (NValue value);
+nclink unsigned  NUIntValue    (NValue value);
+nclink uint64_t  NUInt64Value  (NValue value);
+nclink float     NFloatValue   (NValue value);
+nclink double    NDoubleValue  (NValue value);
+nclink char     *NU8CharsValue (NValue value);
+nclink char16_t *NU16CharsValue(NValue value);
+nclink char32_t *NU32CharsValue(NValue value);
+nclink void     *NPtrValue     (NValue value);
+nclink NObject  *NObjectValue  (NValue value);
+nclink NString  *NStringValue  (NValue value);
+nclink NLambda  *NLambdaValue  (NValue value);

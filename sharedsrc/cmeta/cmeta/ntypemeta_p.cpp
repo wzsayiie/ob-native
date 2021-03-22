@@ -49,7 +49,7 @@ const TypeEntry PREFINED_TYPES[] = {
 
     {"33", "NObject"  , nsizeof(NObject   ), NULL},
     {"34", "NString"  , nsizeof(NString   ), "33"},
-    {"35", "NLamdba"  , nsizeof(NString   ), "33"},
+    {"35", "NLamdba"  , nsizeof(NLambda   ), "33"},
 
     {NULL}
 };

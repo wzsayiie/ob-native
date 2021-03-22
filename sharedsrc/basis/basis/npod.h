@@ -16,10 +16,10 @@ nstruct(NWord, {
         float     asFloat   ;
         double    asDouble  ;
 
+        void     *asPtr     ;
         char     *asU8Chars ;
         char16_t *asU16Chars;
         char32_t *asU32Chars;
-        void     *asPtr     ;
 
         NObject  *asObject  ;
         NString  *asString  ;
@@ -44,10 +44,10 @@ nclink NValue NMakeUIntValue    (unsigned  raw);
 nclink NValue NMakeUInt64Value  (uint64_t  raw);
 nclink NValue NMakeFloatValue   (float     raw);
 nclink NValue NMakeDoubleValue  (double    raw);
+nclink NValue NMakePtrValue     (void     *raw);
 nclink NValue NMakeU8CharsValue (char     *raw);
 nclink NValue NMakeU16CharsValue(char16_t *raw);
 nclink NValue NMakeU32CharsValue(char32_t *raw);
-nclink NValue NMakePtrValue     (void     *raw);
 nclink NValue NMakeObjectValue  (NObject  *raw);
 nclink NValue NMakeStringValue  (NString  *raw);
 nclink NValue NMakeLambdaValue  (NLambda  *raw);
@@ -59,10 +59,10 @@ nclink unsigned  NUIntValue    (NValue value);
 nclink uint64_t  NUInt64Value  (NValue value);
 nclink float     NFloatValue   (NValue value);
 nclink double    NDoubleValue  (NValue value);
+nclink void     *NPtrValue     (NValue value);
 nclink char     *NU8CharsValue (NValue value);
 nclink char16_t *NU16CharsValue(NValue value);
 nclink char32_t *NU32CharsValue(NValue value);
-nclink void     *NPtrValue     (NValue value);
 nclink NObject  *NObjectValue  (NValue value);
 nclink NString  *NStringValue  (NValue value);
 nclink NLambda  *NLambdaValue  (NValue value);

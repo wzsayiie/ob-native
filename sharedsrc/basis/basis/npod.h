@@ -9,19 +9,10 @@ typedef struct NLambda NLambda;
 nstruct(NWord, {
     union {
         bool      asBool    ;
-        
-        int8_t    asInt8    ;
-        int16_t   asInt16   ;
-        int32_t   asInt32   ;
-        int64_t   asInt64   ;
         int       asInt     ;
-
-        uint8_t   asUInt8   ;
-        uint16_t  asUInt16  ;
-        uint32_t  asUInt32  ;
-        uint64_t  asUInt64  ;
+        int64_t   asInt64   ;
         unsigned  asUInt    ;
-
+        uint64_t  asUInt64  ;
         float     asFloat   ;
         double    asDouble  ;
 

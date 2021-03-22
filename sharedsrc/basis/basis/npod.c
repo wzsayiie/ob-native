@@ -1,6 +1,6 @@
 #include "npod.h"
 
-#define RETURN_VALUE(tid, mem, raw) NValue val = {0}; val.type = tid; val.mem = raw; return val
+#define RETURN_VALUE(TYPE, MEM, RAW) NValue val = {0}; val.type = TYPE; val.MEM = RAW; return val
 
 NValue NMakeBoolValue    (bool      raw) {RETURN_VALUE(NTYPE_INT64     , asInt64 , raw);}
 NValue NMakeIntValue     (int       raw) {RETURN_VALUE(NTYPE_INT64     , asInt64 , raw);}
@@ -103,7 +103,7 @@ double NDoubleValue(NValue value) {
     }
 }
 
-#define RETURN_PTR(val, tid) return val.type == tid ? val.asPtr : NULL
+#define RETURN_PTR(VAL, TYPE) return VAL.type == TYPE ? VAL.asPtr : NULL
 
 char     *NU8CharsValue (NValue value) {RETURN_PTR(value, NTYPE_CHAR8_PTR );}
 char16_t *NU16CharsValue(NValue value) {RETURN_PTR(value, NTYPE_CHAR16_PTR);}

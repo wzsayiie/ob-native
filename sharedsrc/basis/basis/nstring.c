@@ -246,8 +246,8 @@ int NStringCompare(NString *string, NString *that) {
         bool thatValid = thatIter->next(thatIter);
 
         if (thisValid && thatValid) {
-            char32_t thisChar = thisIter->curr(thisIter).asUInt32;
-            char32_t thatChar = thatIter->curr(thatIter).asUInt32;
+            int thisChar = thisIter->curr(thisIter).asUInt;
+            int thatChar = thatIter->curr(thatIter).asUInt;
 
             if (thisChar > thatChar) {return  1;}
             if (thisChar < thatChar) {return -1;}

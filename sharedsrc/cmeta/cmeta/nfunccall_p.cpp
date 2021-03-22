@@ -11,10 +11,6 @@ static NType DynamicType(NType staticType, _NWord word) {
     return staticType;
 }
 
-static bool Between(NType lower, NType value, NType upper) {
-    return lower <= value && value <= upper;
-}
-
 static bool SafeCastable(NType srcType, NType dstType) {
     if (NTypeIsBlur(srcType) || NTypeIsBlur(dstType)) {
         //blur types can't be casted.

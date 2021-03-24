@@ -17,10 +17,10 @@ nfunc(NWINApi *, NWINGetProcAddress, (NWINLib *library, const char *name));
 //due to the historical reason(cpus before 80486 have no built-in floating point unit),
 //win32 apis doesn't use floating point types as function arguments or return values.
 
-nfunc(void, NWINCallerReset  , (void));
-nfunc(void, NWINCallerPushPtr, (const void *arg));
-nfunc(void, NWINCallerPushInt, (int64_t     arg));
+nfunc(void, NWINApiPrepare, (void));
+nfunc(void, NWINApiPushPtr, (const void *arg));
+nfunc(void, NWINApiPushInt, (int64_t     arg));
 
-nfunc(void   , NWINCallVoid, (NWINApi *api));
-nfunc(void  *, NWINCallPtr , (NWINApi *api));
-nfunc(int64_t, NWINCallInt , (NWINApi *api));
+nfunc(void   , NWINApiCallVoid, (NWINApi *api));
+nfunc(void  *, NWINApiCallPtr , (NWINApi *api));
+nfunc(int64_t, NWINApiCallInt , (NWINApi *api));

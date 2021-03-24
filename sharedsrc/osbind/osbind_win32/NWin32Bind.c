@@ -37,119 +37,98 @@ NWINApi *NWINGetProcAddress(NWINLib *library, const char *name) {
 
 #define MAX_ARG_NUM 8
 
-static nthreadlocal int      sCallerArgCount = 0;
-static nthreadlocal intptr_t sCallerArgWords[MAX_ARG_NUM] = {0};
+static nthreadlocal int      sArgCount = 0;
+static nthreadlocal intptr_t sArgWords[MAX_ARG_NUM] = {0};
 
-void NWINCallerReset(void) {
-    sCallerArgCount = 0;
+void NWINApiPrepare(void) {
+    sArgCount = 0;
 }
 
-static void CallerPush(intptr_t arg) {
-    if (sCallerArgCount == MAX_ARG_NUM) {
+static void Push(intptr_t arg) {
+    if (sArgCount == MAX_ARG_NUM) {
         _NError("only supports up to %d arguments for win32 api bind", MAX_ARG_NUM);
         return;
     }
 
     //the argument size of win32 apis will not exceed one cpu word size.
-    sCallerArgWords[sCallerArgCount] = arg;
-    sCallerArgCount += 1;
+    sArgWords[sArgCount] = arg;
+    sArgCount += 1;
 }
 
-void NWINCallerPushPtr(const void *arg) {CallerPush((intptr_t)arg);}
-void NWINCallerPushInt(int64_t     arg) {CallerPush((intptr_t)arg);}
+void NWINApiPushPtr(const void *arg) {Push((intptr_t)arg);}
+void NWINApiPushInt(int64_t     arg) {Push((intptr_t)arg);}
 
-void NWINCallVoid(NWINApi *api) {
+#define TYPE_0(T) void
+#define TYPE_1(T) T
+#define TYPE_2(T) T,T
+#define TYPE_3(T) TYPE_2(T),T
+#define TYPE_4(T) TYPE_2(T),TYPE_2(T)
+#define TYPE_5(T) TYPE_3(T),TYPE_2(T)
+#define TYPE_6(T) TYPE_3(T),TYPE_3(T)
+#define TYPE_7(T) TYPE_4(T),TYPE_3(T)
+#define TYPE_8(T) TYPE_4(T),TYPE_4(T)
+
+#define VAL_0(V)
+#define VAL_1(V) V[0]
+#define VAL_2(V) V[0],V[1]
+#define VAL_3(V) V[0],V[1],V[2]
+#define VAL_4(V) V[0],V[1],V[2],V[3]
+#define VAL_5(V) V[0],V[1],V[2],V[3],V[4]
+#define VAL_6(V) V[0],V[1],V[2],V[3],V[4],V[5]
+#define VAL_7(V) V[0],V[1],V[2],V[3],V[4],V[5],V[6]
+#define VAL_8(V) V[0],V[1],V[2],V[3],V[4],V[5],V[6],V[7]
+
+void NWINApiCallVoid(NWINApi *api) {
     if (!api) {
         return;
     }
 
-    typedef intptr_t IPTR;
-    #define IPTR_0 void
-    #define IPTR_1 IPTR
-    #define IPTR_2 IPTR,IPTR
-    #define IPTR_3 IPTR,IPTR,IPTR
-    #define IPTR_4 IPTR,IPTR,IPTR,IPTR
-    #define IPTR_5 IPTR,IPTR,IPTR,IPTR,IPTR
-    #define IPTR_6 IPTR,IPTR,IPTR,IPTR,IPTR,IPTR
-    #define IPTR_7 IPTR,IPTR,IPTR,IPTR,IPTR,IPTR,IPTR
-    #define IPTR_8 IPTR,IPTR,IPTR,IPTR,IPTR,IPTR,IPTR,IPTR
+    //NOTE: don't use the cached pass directly, so the lambda can be called recursively.
+    int count = sArgCount;
+    intptr_t words[MAX_ARG_NUM] = {0};
+    NMoveMemory(&words, sArgWords, nsizeof(words));
+    NWINApiPrepare();
 
-    IPTR *word = sCallerArgWords;
-    #define word_0
-    #define word_1 word[0]
-    #define word_2 word[0],word[1]
-    #define word_3 word[0],word[1],word[2]
-    #define word_4 word[0],word[1],word[2],word[3]
-    #define word_5 word[0],word[1],word[2],word[3],word[4]
-    #define word_6 word[0],word[1],word[2],word[3],word[4],word[5]
-    #define word_7 word[0],word[1],word[2],word[3],word[4],word[5],word[6]
-    #define word_8 word[0],word[1],word[2],word[3],word[4],word[5],word[6],word[7]
-
-    switch (sCallerArgCount) {
-        case 0 : ((void (*)(IPTR_0))api)(word_0); break;
-        case 1 : ((void (*)(IPTR_1))api)(word_1); break;
-        case 2 : ((void (*)(IPTR_2))api)(word_2); break;
-        case 3 : ((void (*)(IPTR_3))api)(word_3); break;
-        case 4 : ((void (*)(IPTR_4))api)(word_4); break;
-        case 5 : ((void (*)(IPTR_5))api)(word_5); break;
-        case 6 : ((void (*)(IPTR_6))api)(word_6); break;
-        case 7 : ((void (*)(IPTR_7))api)(word_7); break;
-        case 8 : ((void (*)(IPTR_8))api)(word_8); break;
+    switch (count) {
+        case 0 : ((void (*)(TYPE_0(intptr_t)))api)(VAL_0(words)); break;
+        case 1 : ((void (*)(TYPE_1(intptr_t)))api)(VAL_1(words)); break;
+        case 2 : ((void (*)(TYPE_2(intptr_t)))api)(VAL_2(words)); break;
+        case 3 : ((void (*)(TYPE_3(intptr_t)))api)(VAL_3(words)); break;
+        case 4 : ((void (*)(TYPE_4(intptr_t)))api)(VAL_4(words)); break;
+        case 5 : ((void (*)(TYPE_5(intptr_t)))api)(VAL_5(words)); break;
+        case 6 : ((void (*)(TYPE_6(intptr_t)))api)(VAL_6(words)); break;
+        case 7 : ((void (*)(TYPE_7(intptr_t)))api)(VAL_7(words)); break;
+        case 8 : ((void (*)(TYPE_8(intptr_t)))api)(VAL_8(words)); break;
         default: ;
     }
-
-    //NOTE: clear arguments.
-    NWINCallerReset();
 }
 
-void *NWINCallPtr(NWINApi *api) {
+void *NWINApiCallPtr(NWINApi *api) {
     if (!api) {
         return NULL;
     }
 
-    typedef intptr_t IPTR;
-    #define IPTR_0 void
-    #define IPTR_1 IPTR
-    #define IPTR_2 IPTR,IPTR
-    #define IPTR_3 IPTR,IPTR,IPTR
-    #define IPTR_4 IPTR,IPTR,IPTR,IPTR
-    #define IPTR_5 IPTR,IPTR,IPTR,IPTR,IPTR
-    #define IPTR_6 IPTR,IPTR,IPTR,IPTR,IPTR,IPTR
-    #define IPTR_7 IPTR,IPTR,IPTR,IPTR,IPTR,IPTR,IPTR
-    #define IPTR_8 IPTR,IPTR,IPTR,IPTR,IPTR,IPTR,IPTR,IPTR
+    //NOTE: don't use the cached pass directly, so the lambda can be called recursively.
+    int count = sArgCount;
+    intptr_t words[MAX_ARG_NUM] = {0};
+    NMoveMemory(&words, sArgWords, nsizeof(words));
+    NWINApiPrepare();
 
-    IPTR *word = sCallerArgWords;
-    #define word_0
-    #define word_1 word[0]
-    #define word_2 word[0],word[1]
-    #define word_3 word[0],word[1],word[2]
-    #define word_4 word[0],word[1],word[2],word[3]
-    #define word_5 word[0],word[1],word[2],word[3],word[4]
-    #define word_6 word[0],word[1],word[2],word[3],word[4],word[5]
-    #define word_7 word[0],word[1],word[2],word[3],word[4],word[5],word[6]
-    #define word_8 word[0],word[1],word[2],word[3],word[4],word[5],word[6],word[7]
-
-    void *ret = NULL;
-    switch (sCallerArgCount) {
-        case 0 : ret = ((void *(*)(IPTR_0))api)(word_0); break;
-        case 1 : ret = ((void *(*)(IPTR_1))api)(word_1); break;
-        case 2 : ret = ((void *(*)(IPTR_2))api)(word_2); break;
-        case 3 : ret = ((void *(*)(IPTR_3))api)(word_3); break;
-        case 4 : ret = ((void *(*)(IPTR_4))api)(word_4); break;
-        case 5 : ret = ((void *(*)(IPTR_5))api)(word_5); break;
-        case 6 : ret = ((void *(*)(IPTR_6))api)(word_6); break;
-        case 7 : ret = ((void *(*)(IPTR_7))api)(word_7); break;
-        case 8 : ret = ((void *(*)(IPTR_8))api)(word_8); break;
-        default: ;
+    switch (count) {
+        case 0 : return ((void *(*)(TYPE_0(intptr_t)))api)(VAL_0(words));
+        case 1 : return ((void *(*)(TYPE_1(intptr_t)))api)(VAL_1(words));
+        case 2 : return ((void *(*)(TYPE_2(intptr_t)))api)(VAL_2(words));
+        case 3 : return ((void *(*)(TYPE_3(intptr_t)))api)(VAL_3(words));
+        case 4 : return ((void *(*)(TYPE_4(intptr_t)))api)(VAL_4(words));
+        case 5 : return ((void *(*)(TYPE_5(intptr_t)))api)(VAL_5(words));
+        case 6 : return ((void *(*)(TYPE_6(intptr_t)))api)(VAL_6(words));
+        case 7 : return ((void *(*)(TYPE_7(intptr_t)))api)(VAL_7(words));
+        case 8 : return ((void *(*)(TYPE_8(intptr_t)))api)(VAL_8(words));
+        default: return NULL;
     }
-
-    //NOTE: clear arguments.
-    NWINCallerReset();
-
-    return ret;
 }
 
-int64_t NWINCallInt(NWINApi *api) {
+int64_t NWINApiCallInt(NWINApi *api) {
     //the return value size of win32 apis will not exceed one cpu word size.
-    return (int64_t)NWINCallPtr(api);
+    return (int64_t)NWINApiCallPtr(api);
 }

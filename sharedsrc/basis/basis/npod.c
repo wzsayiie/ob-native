@@ -1,21 +1,28 @@
 #include "npod.h"
 
-#define RETURN_VALUE(TYPE, MEM, RAW) NValue val = {0}; val.type = TYPE; val.MEM = RAW; return val
+NValue NMakeVoidValue(void) {
+    NValue value = {0};
+    return value;
+}
 
-NValue NMakeBoolValue    (bool      raw) {RETURN_VALUE(NTYPE_INT64     , asInt64 , raw);}
-NValue NMakeIntValue     (int       raw) {RETURN_VALUE(NTYPE_INT64     , asInt64 , raw);}
-NValue NMakeInt64Value   (int64_t   raw) {RETURN_VALUE(NTYPE_INT64     , asInt64 , raw);}
-NValue NMakeUIntValue    (unsigned  raw) {RETURN_VALUE(NTYPE_UINT64    , asUInt64, raw);}
-NValue NMakeUInt64Value  (uint64_t  raw) {RETURN_VALUE(NTYPE_UINT64    , asUInt64, raw);}
-NValue NMakeFloatValue   (float     raw) {RETURN_VALUE(NTYPE_DOUBLE    , asDouble, raw);}
-NValue NMakeDoubleValue  (double    raw) {RETURN_VALUE(NTYPE_DOUBLE    , asDouble, raw);}
-NValue NMakePtrValue     (void     *raw) {RETURN_VALUE(NTYPE_VOID_PTR  , asPtr   , raw);}
-NValue NMakeU8CharsValue (char     *raw) {RETURN_VALUE(NTYPE_CHAR8_PTR , asPtr   , raw);}
-NValue NMakeU16CharsValue(char16_t *raw) {RETURN_VALUE(NTYPE_CHAR16_PTR, asPtr   , raw);}
-NValue NMakeU32CharsValue(char32_t *raw) {RETURN_VALUE(NTYPE_CHAR32_PTR, asPtr   , raw);}
-NValue NMakeObjectValue  (NObject  *raw) {RETURN_VALUE(NTYPE_OBJECT_REF, asPtr   , raw);}
-NValue NMakeStringValue  (NString  *raw) {RETURN_VALUE(NTYPE_STRING_REF, asPtr   , raw);}
-NValue NMakeLambdaValue  (NLambda  *raw) {RETURN_VALUE(NTYPE_LAMBDA_REF, asPtr   , raw);}
+#define RETURN_MAKE(TYPE, MEM, RAW) NValue val = {0}; val.type = TYPE; val.MEM = RAW; return val
+
+NValue NMakeBoolValue  (bool     raw) {RETURN_MAKE(NTYPE_INT64   , asInt64 , raw);}
+NValue NMakeIntValue   (int      raw) {RETURN_MAKE(NTYPE_INT64   , asInt64 , raw);}
+NValue NMakeInt64Value (int64_t  raw) {RETURN_MAKE(NTYPE_INT64   , asInt64 , raw);}
+NValue NMakeUIntValue  (unsigned raw) {RETURN_MAKE(NTYPE_UINT64  , asUInt64, raw);}
+NValue NMakeUInt64Value(uint64_t raw) {RETURN_MAKE(NTYPE_UINT64  , asUInt64, raw);}
+NValue NMakeFloatValue (float    raw) {RETURN_MAKE(NTYPE_DOUBLE  , asDouble, raw);}
+NValue NMakeDoubleValue(double   raw) {RETURN_MAKE(NTYPE_DOUBLE  , asDouble, raw);}
+NValue NMakePtrValue   (void    *raw) {RETURN_MAKE(NTYPE_VOID_PTR, asPtr   , raw);}
+
+NValue NMakeU8CharsValue (const char     *raw) {RETURN_MAKE(NTYPE_CHAR8_PTR , asPtr, (char     *)raw);}
+NValue NMakeU16CharsValue(const char16_t *raw) {RETURN_MAKE(NTYPE_CHAR16_PTR, asPtr, (char16_t *)raw);}
+NValue NMakeU32CharsValue(const char32_t *raw) {RETURN_MAKE(NTYPE_CHAR32_PTR, asPtr, (char32_t *)raw);}
+
+NValue NMakeObjectValue(void    *raw) {RETURN_MAKE(NTYPE_OBJECT_REF, asObject, raw);}
+NValue NMakeStringValue(NString *raw) {RETURN_MAKE(NTYPE_STRING_REF, asObject, raw);}
+NValue NMakeLambdaValue(NLambda *raw) {RETURN_MAKE(NTYPE_LAMBDA_REF, asObject, raw);}
 
 bool NBoolValue(NValue value) {
     switch (value.type) {
@@ -28,9 +35,9 @@ bool NBoolValue(NValue value) {
         case NTYPE_CHAR16_PTR: return value.asPtr != 0;
         case NTYPE_CHAR32_PTR: return value.asPtr != 0;
         
-        case NTYPE_OBJECT_REF: return value.asPtr != 0;
-        case NTYPE_STRING_REF: return value.asPtr != 0;
-        case NTYPE_LAMBDA_REF: return value.asPtr != 0;
+        case NTYPE_OBJECT_REF: return value.asObject != 0;
+        case NTYPE_STRING_REF: return value.asObject != 0;
+        case NTYPE_LAMBDA_REF: return value.asObject != 0;
 
         default: return false;
     }
@@ -52,9 +59,9 @@ int64_t NInt64Value(NValue value) {
         case NTYPE_CHAR16_PTR: return (int64_t)value.asPtr;
         case NTYPE_CHAR32_PTR: return (int64_t)value.asPtr;
         
-        case NTYPE_OBJECT_REF: return (int64_t)value.asPtr;
-        case NTYPE_STRING_REF: return (int64_t)value.asPtr;
-        case NTYPE_LAMBDA_REF: return (int64_t)value.asPtr;
+        case NTYPE_OBJECT_REF: return (int64_t)value.asObject;
+        case NTYPE_STRING_REF: return (int64_t)value.asObject;
+        case NTYPE_LAMBDA_REF: return (int64_t)value.asObject;
 
         default: return 0;
     }
@@ -76,9 +83,9 @@ uint64_t NUInt64Value(NValue value) {
         case NTYPE_CHAR16_PTR: return (uint64_t)value.asPtr;
         case NTYPE_CHAR32_PTR: return (uint64_t)value.asPtr;
         
-        case NTYPE_OBJECT_REF: return (uint64_t)value.asPtr;
-        case NTYPE_STRING_REF: return (uint64_t)value.asPtr;
-        case NTYPE_LAMBDA_REF: return (uint64_t)value.asPtr;
+        case NTYPE_OBJECT_REF: return (uint64_t)value.asObject;
+        case NTYPE_STRING_REF: return (uint64_t)value.asObject;
+        case NTYPE_LAMBDA_REF: return (uint64_t)value.asObject;
 
         default: return 0;
     }
@@ -94,43 +101,39 @@ double NDoubleValue(NValue value) {
         case NTYPE_UINT64: return (double)value.asUInt64;
         case NTYPE_DOUBLE: return (double)value.asDouble;
 
-        case NTYPE_VOID_PTR  : return 0;
-        case NTYPE_CHAR8_PTR : return 0;
-        case NTYPE_CHAR16_PTR: return 0;
-        case NTYPE_CHAR32_PTR: return 0;
-        
-        case NTYPE_OBJECT_REF: return 0;
-        case NTYPE_STRING_REF: return 0;
-        case NTYPE_LAMBDA_REF: return 0;
-
         default: return 0;
     }
 }
 
 void *NPtrValue(NValue value) {
     switch (value.type) {
-        case NTYPE_INT64 : return NULL;
-        case NTYPE_UINT64: return NULL;
-        case NTYPE_DOUBLE: return NULL;
-
         case NTYPE_VOID_PTR  : return value.asPtr;
         case NTYPE_CHAR8_PTR : return value.asPtr;
         case NTYPE_CHAR16_PTR: return value.asPtr;
         case NTYPE_CHAR32_PTR: return value.asPtr;
 
-        case NTYPE_OBJECT_REF: return value.asPtr;
-        case NTYPE_STRING_REF: return value.asPtr;
-        case NTYPE_LAMBDA_REF: return value.asPtr;
+        //object reference also is a pointer.
+        case NTYPE_OBJECT_REF: return value.asObject;
+        case NTYPE_STRING_REF: return value.asObject;
+        case NTYPE_LAMBDA_REF: return value.asObject;
 
         default: return NULL;
     }
 }
 
-#define RETURN_PTR(VAL, TYPE) return VAL.type == TYPE ? VAL.asPtr : NULL
+char     *NU8CharsValue (NValue val) {return val.type == NTYPE_CHAR8_PTR  ? val.asPtr : NULL;}
+char16_t *NU16CharsValue(NValue val) {return val.type == NTYPE_CHAR16_PTR ? val.asPtr : NULL;}
+char32_t *NU32CharsValue(NValue val) {return val.type == NTYPE_CHAR32_PTR ? val.asPtr : NULL;}
 
-char     *NU8CharsValue (NValue value) {RETURN_PTR(value, NTYPE_CHAR8_PTR );}
-char16_t *NU16CharsValue(NValue value) {RETURN_PTR(value, NTYPE_CHAR16_PTR);}
-char32_t *NU32CharsValue(NValue value) {RETURN_PTR(value, NTYPE_CHAR32_PTR);}
-NObject  *NObjectValue  (NValue value) {RETURN_PTR(value, NTYPE_OBJECT_REF);}
-NString  *NStringValue  (NValue value) {RETURN_PTR(value, NTYPE_STRING_REF);}
-NLambda  *NLambdaValue  (NValue value) {RETURN_PTR(value, NTYPE_LAMBDA_REF);}
+void *NObjectValue(NValue value) {
+    switch (value.type) {
+        case NTYPE_OBJECT_REF: return value.asObject;
+        case NTYPE_STRING_REF: return value.asObject;
+        case NTYPE_LAMBDA_REF: return value.asObject;
+
+        default: return NULL;
+    }
+}
+
+NString *NStringValue(NValue val) {return val.type == NTYPE_STRING_REF ? val.asObject : NULL;}
+NLambda *NLambdaValue(NValue val) {return val.type == NTYPE_STRING_REF ? val.asObject : NULL;}

@@ -2,4 +2,4 @@
 
 #include "basis.h"
 
-nfunc(void, NPostOnMain, (NAction *action));
+nfunc(void, NPostOnMain, (NLambda *lambda));

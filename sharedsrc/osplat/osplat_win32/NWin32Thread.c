@@ -3,18 +3,20 @@
 
 static DWORD WINAPI ThreadProcedure(LPVOID data)
 {
-    NAction *action = data;
-    NActionRun(action, NULL);
-    NRelease(action);
+    NLambda *lambda = data;
+    NLambdaPrepareCall(lambda);
+    NLambdaCallVoid(lambda);
+    NRelease(lambda);
+
     return 0;
 }
 
-void NRunThread(NAction *action)
+void NRunThread(NLambda *lambda)
 {
-    if (action)
+    if (lambda)
     {
-        NRetain(action);
-        CreateThread(NULL, 0, ThreadProcedure, action, 0, NULL);
+        NRetain(lambda);
+        CreateThread(NULL, 0, ThreadProcedure, lambda, 0, NULL);
     }
 }
 

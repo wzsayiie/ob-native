@@ -2,5 +2,5 @@
 
 #include "basis.h"
 
-nfunc(void, NRunThread  , (NAction *action));
+nfunc(void, NRunThread  , (NLambda *lambda));
 nfunc(void, NThreadSleep, (float seconds));

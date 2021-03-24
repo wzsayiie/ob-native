@@ -1,6 +1,6 @@
 ﻿#include "NWin32AppContext.h"
 
-static const UINT NWM_ACTION = WM_USER + 0x401;
+static const UINT NWM_LAMBDA = WM_USER + 0x401;
 
 static HWND sMainHWND = NULL;
 
@@ -11,11 +11,12 @@ void _NWINSetMainHWND(HWND hwnd)
 
 bool _NWINWindowProc(UINT msg, WPARAM wParam, LPARAM lParam)
 {
-    if (msg == NWM_ACTION)
+    if (msg == NWM_LAMBDA)
     {
-        NWINActionFunc func = (NWINActionFunc)wParam;
-        void *arg = (void *)lParam;
-        func(arg);
+        NLambda *lambda = (NLambda *)wParam;
+        NLambdaPrepareCall(lambda);
+        NLambdaCallVoid(lambda);
+        NRelease(lambda);
 
         return true;
     }
@@ -27,14 +28,11 @@ HWND NWINGetMainHWND(void)
     return sMainHWND;
 }
 
-void NWINPostAction(HWND hwnd, NWINActionFunc func, void *arg)
+void NWINPostLambda(HWND hwnd, NLambda *lambda)
 {
-    if (!hwnd || !func)
+    if (hwnd && lambda)
     {
-        return;
+        NRetain(lambda);
+        PostMessageW(hwnd, NWM_LAMBDA, (WPARAM)lambda, 0);
     }
-
-    WPARAM wParam = (WPARAM)func;
-    LPARAM lParam = (LPARAM)arg;
-    PostMessageW(hwnd, NWM_ACTION, wParam, lParam);
 }

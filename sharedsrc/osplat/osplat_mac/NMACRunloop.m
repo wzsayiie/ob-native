@@ -1,14 +1,16 @@
 #import "nrunloop.h"
 #import <Foundation/Foundation.h>
 
-void NPostOnMain(NAction *action) {
-    if (!action) {
+void NPostOnMain(NLambda *lambda) {
+    if (!lambda) {
         return;
     }
     
-    NRetain(action);
+    NRetain(lambda);
     dispatch_async(dispatch_get_main_queue(), ^{
-        NActionRun(action, NULL);
-        NRelease(action);
+        NLambdaPrepareCall(lambda);
+        NLambdaCallVoid(lambda);
+
+        NRelease(lambda);
     });
 }

@@ -188,6 +188,7 @@ static NValue Call(NLambda *lambda) {
     return lambda->pass.retainedRet;
 }
 
+void     NLambdaCallVoid  (NLambda *lam) {/*.... NVoidValue*/(Call(lam));}
 bool     NLambdaCallBool  (NLambda *lam) {return NBoolValue  (Call(lam));}
 int      NLambdaCallInt   (NLambda *lam) {return NIntValue   (Call(lam));}
 int64_t  NLambdaCallInt64 (NLambda *lam) {return NInt64Value (Call(lam));}

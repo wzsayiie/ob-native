@@ -88,6 +88,7 @@ nfunc(void, NLambdaPushObject  , (NLambda *lambda, NRef           *arg));
 nfunc(void, NLambdaPushString  , (NLambda *lambda, NString        *arg));
 nfunc(void, NLambdaPushLambda  , (NLambda *lambda, NLambda        *arg));
 
+nfunc(void     , NLambdaCallVoid  , (NLambda *lambda));
 nfunc(bool     , NLambdaCallBool  , (NLambda *lambda));
 nfunc(int      , NLambdaCallInt   , (NLambda *lambda));
 nfunc(int64_t  , NLambdaCallInt64 , (NLambda *lambda));

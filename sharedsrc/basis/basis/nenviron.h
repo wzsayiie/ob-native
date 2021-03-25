@@ -83,8 +83,8 @@
 
 nenum(NType) {
 
-    NTYPE_STRUCT = 1, //unknown struct.
-    NTYPE_PTR    = 2, //unknown ptr.
+    NTYPE_BLUR_STRUCT = 1, //unknown struct.
+    NTYPE_BLUR_PTR    = 2, //unknown ptr.
 
     NTYPE_VOID   =  3,
     NTYPE_BOOL   =  4,
@@ -118,11 +118,11 @@ nenum(NType) {
     NTYPE_FLOAT_PTR  = 31,
     NTYPE_DOUBLE_PTR = 32,
 
-    NTYPE_OBJECT_REF = 33, //NObject ref.
-    NTYPE_STRING_REF = 34, //NString ref.
-    NTYPE_LAMBDA_REF = 35, //NLambda ref.
+    NTYPE_OBJECT = 33, //NObject ref.
+    NTYPE_STRING = 34, //NString ref.
+    NTYPE_LAMBDA = 35, //NLambda ref.
 
-    NTYPE_CUSTOM_REF = 36,
+    NTYPE_USER_BEGIN = 36,
 
   #if NPTR_64
     NTYPE_INT      = NTYPE_INT64     ,
@@ -136,19 +136,6 @@ nenum(NType) {
     NTYPE_UINT_PTR = NTYPE_UINT32_PTR,
   #endif
 };
-
-#define NTypeIsBlur(t) (t <= NTYPE_PTR )
-#define NTypeIsVoid(t) (t == NTYPE_VOID)
-#define NTypeIsBool(t) (t == NTYPE_BOOL)
-
-#define NTypeIsNum(t)  (NTYPE_CHAR8 <= t && t <= NTYPE_DOUBLE)
-#define NTypeIsInt(t)  (NTYPE_CHAR8 <= t && t <= NTYPE_UINT64)
-#define NTypeIsFlt(t)  (NTYPE_FLOAT <= t && t <= NTYPE_DOUBLE)
-#define NTypeIsSInt(t) (NTYPE_CHAR8 <= t && t <= NTYPE_INT64 )
-#define NTypeIsUInt(t) (NTYPE_UInt8 <= t && t <= NTYPE_UINT64)
-
-#define NTypeIsPtr(t)  (NTYPE_VOID_PTR   == t && t <= NTYPE_DOUBLE_PTR)
-#define NTypeIsRef(t)  (NTYPE_OBJECT_REF <= t)
 
 //type modifiers:
 

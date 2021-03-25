@@ -11,11 +11,11 @@ template<class T> struct TraitName {
 };
 
 template<class T> struct TraitType {
-    static const NType TYPE = NTYPE_STRUCT;
+    static const NType TYPE = NTYPE_BLUR_STRUCT;
 };
 
-template<class T> struct TraitType<T * > {static const NType TYPE = NTYPE_PTR;};
-template<class T> struct TraitType<T **> {static const NType TYPE = NTYPE_PTR;};
+template<class T> struct TraitType<T * > {static const NType TYPE = NTYPE_BLUR_PTR;};
+template<class T> struct TraitType<T **> {static const NType TYPE = NTYPE_BLUR_PTR;};
 
 template<> struct TraitType<void    > {static const NType TYPE = NTYPE_VOID  ;};
 template<> struct TraitType<bool    > {static const NType TYPE = NTYPE_BOOL  ;};

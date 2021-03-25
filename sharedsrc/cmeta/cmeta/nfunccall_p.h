@@ -6,9 +6,9 @@
 
 #include "nenviron.h"
 
-typedef int64_t _NWord;
+typedef int64_t _Word;
 
 void FuncPrepare();
-void FuncPushArg(NType type, _NWord word);
+void FuncPushArg(NType type, _Word word);
 
 int64_t FuncCall(int funcIndex);

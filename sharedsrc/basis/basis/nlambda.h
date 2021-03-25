@@ -8,11 +8,12 @@
 
 nstruct(NPass, {
     int    argCount;
-    NValue unretainArgs[NPASS_MAX_ARG_NUM];
-    NValue retainedRet;
+    NValue argValues[NPASS_MAX_ARG_NUM];
+    NValue retValue;
 });
 
-nfunc(int             , NPassArgCount   , (NPass *pass));
+nfunc(int, NPassArgCount, (NPass *pass));
+
 nfunc(bool            , NPassArgBool    , (NPass *pass, int index));
 nfunc(int             , NPassArgInt     , (NPass *pass, int index));
 nfunc(int64_t         , NPassArgInt64   , (NPass *pass, int index));
@@ -88,15 +89,18 @@ nfunc(void, NLambdaPushObject  , (NLambda *lambda, NRef           *arg));
 nfunc(void, NLambdaPushString  , (NLambda *lambda, NString        *arg));
 nfunc(void, NLambdaPushLambda  , (NLambda *lambda, NLambda        *arg));
 
-nfunc(void     , NLambdaCallVoid  , (NLambda *lambda));
-nfunc(bool     , NLambdaCallBool  , (NLambda *lambda));
-nfunc(int      , NLambdaCallInt   , (NLambda *lambda));
-nfunc(int64_t  , NLambdaCallInt64 , (NLambda *lambda));
-nfunc(unsigned , NLambdaCallUInt  , (NLambda *lambda));
-nfunc(uint64_t , NLambdaCallUInt64, (NLambda *lambda));
-nfunc(float    , NLambdaCallFloat , (NLambda *lambda));
-nfunc(double   , NLambdaCallDouble, (NLambda *lambda));
-nfunc(void    *, NLambdaCallPtr   , (NLambda *lambda));
-nfunc(NRef     , NLambdaCallObject, (NLambda *lambda));
-nfunc(NString *, NLambdaCallString, (NLambda *lambda));
-nfunc(NLambda *, NLambdaCallLambda, (NLambda *lambda));
+nfunc(void            , NLambdaCallVoid    , (NLambda *lambda));
+nfunc(bool            , NLambdaCallBool    , (NLambda *lambda));
+nfunc(int             , NLambdaCallInt     , (NLambda *lambda));
+nfunc(int64_t         , NLambdaCallInt64   , (NLambda *lambda));
+nfunc(unsigned        , NLambdaCallUInt    , (NLambda *lambda));
+nfunc(uint64_t        , NLambdaCallUInt64  , (NLambda *lambda));
+nfunc(float           , NLambdaCallFloat   , (NLambda *lambda));
+nfunc(double          , NLambdaCallDouble  , (NLambda *lambda));
+nfunc(void           *, NLambdaCallPtr     , (NLambda *lambda));
+nfunc(const char     *, NLambdaCallU8Chars , (NLambda *lambda));
+nfunc(const char16_t *, NLambdaCallU16Chars, (NLambda *lambda));
+nfunc(const char32_t *, NLambdaCallU32Chars, (NLambda *lambda));
+nfunc(NRef            , NLambdaCallObject  , (NLambda *lambda));
+nfunc(NString        *, NLambdaCallString  , (NLambda *lambda));
+nfunc(NLambda        *, NLambdaCallLambda  , (NLambda *lambda));

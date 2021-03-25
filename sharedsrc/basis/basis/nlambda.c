@@ -1,5 +1,23 @@
 #include "nlambda.h"
 
+static void SetValue(NValue *dst, NValue src) {
+    NRef object = NObjectValue(*dst);
+    NRelease(object);
+
+    object = NObjectValue(src);
+    NRetain(object);
+
+    *dst = src;
+}
+
+static void ZeroValues(NValue *values, int count) {
+    for (NValue *itm = values; itm < values + count; ++itm) {
+        NRef object = NObjectValue(*itm);
+        NRelease(object);
+        *itm = NMakeVoidValue();
+    }
+}
+
 int NPassArgCount(NPass *pass) {
     if (pass) {
         return pass->argCount;
@@ -10,7 +28,7 @@ int NPassArgCount(NPass *pass) {
 static NValue Arg(NPass *pass, int index) {
     if (pass) {
         if (0 <= index && index < pass->argCount) {
-            return pass->unretainArgs[index];
+            return pass->argValues[index];
         }
     }
     return NMakeVoidValue();
@@ -32,16 +50,17 @@ NString        *NPassArgString  (NPass *pas, int idx) {return NStringValue  (Arg
 NLambda        *NPassArgLambda  (NPass *pas, int idx) {return NLambdaValue  (Arg(pas, idx));}
 
 static void SetRet(NPass *pass, NValue ret) {
-    NValue *value = &pass->retainedRet;
+    SetValue(&pass->retValue, ret);
+}
 
-    if (NTypeIsRef(value->type)) {
-        NRelease(value->asObject);
+static void SetStrRet(NPass *pass, NUTFType type, const void *chars) {
+    NString *string = NULL;
+    if (chars) {
+        string = NStringCreateWithUTFChars(type, chars);
     }
-
-    if (NTypeIsRef(ret.type)) {
-        NRetain(ret.asObject);
-    }
-    *value = ret;
+    
+    NValue ret = NMakeStringValue(string);
+    SetValue(&pass->retValue, ret);
 }
 
 void NPassReturnBool  (NPass *pas, bool     ret) {if (pas) SetRet(pas, NMakeBoolValue  (ret));}
@@ -52,15 +71,6 @@ void NPassReturnUInt64(NPass *pas, uint64_t ret) {if (pas) SetRet(pas, NMakeUInt
 void NPassReturnFloat (NPass *pas, float    ret) {if (pas) SetRet(pas, NMakeFloatValue (ret));}
 void NPassReturnDouble(NPass *pas, double   ret) {if (pas) SetRet(pas, NMakeDoubleValue(ret));}
 void NPassReturnPtr   (NPass *pas, void    *ret) {if (pas) SetRet(pas, NMakePtrValue   (ret));}
-
-static void SetStrRet(NPass *pass, NUTFType type, const void *chars) {
-    NString *string = NULL;
-    if (chars) {
-        string = NStringCreateWithUTFChars(type, chars);
-    }
-
-    SetRet(pass, NMakeStringValue(string));
-}
 
 void NPassReturnU8Chars (NPass *pas, const char     *ret) {if (pas) SetStrRet(pas, NUTF8 , ret);}
 void NPassReturnU16Chars(NPass *pas, const char16_t *ret) {if (pas) SetStrRet(pas, NUTF16, ret);}
@@ -88,18 +98,10 @@ void _NLambdaInit(NLambda *lambda) {
     _NObjectInit(nsuperof(lambda));
 }
 
-static void ReleaseRet(NLambda *lambda) {
-    NValue *value = &lambda->pass.retainedRet;
-
-    if (NTypeIsRef(value->type)) {
-        NRelease(value->asObject);
-        *value = NMakeVoidValue();
-    }
-}
-
 void _NLambdaDeinit(NLambda *lambda) {
     NRelease(lambda->customObject);
-    ReleaseRet(lambda);
+    ZeroValues(lambda->pass.argValues, lambda->pass.argCount);
+    ZeroValues(&lambda->pass.retValue, 0);
 
     _NObjectDeinit(nsuperof(lambda));
 }
@@ -143,60 +145,87 @@ void NLambdaSetData(NLambda *lambda, void *data) {
 
 void NLambdaPrepareCall(NLambda *lambda) {
     if (lambda) {
-        ReleaseRet(lambda);
-        NZeroMemory(&lambda->pass, nsizeof(NPass));
+        ZeroValues(lambda->pass.argValues, lambda->pass.argCount);
+        ZeroValues(&lambda->pass.retValue, 0);
+        lambda->pass.argCount = 0;
     }
 }
 
-static void PushArg(NLambda *lambda, NValue arg) {
-    if (lambda->pass.argCount == NPASS_MAX_ARG_NUM) {
+static void Push(NLambda *lambda, NValue arg) {
+    NPass *pass = &lambda->pass;
+
+    if ((pass->argCount) >= NPASS_MAX_ARG_NUM) {
         return;
     }
 
-    lambda->pass.unretainArgs[lambda->pass.argCount] = arg;
-    lambda->pass.argCount += 1;
+    SetValue(pass->argValues + pass->argCount, arg);
+    pass->argCount += 1;
 }
 
-void NLambdaPushBool    (NLambda *lam, bool            arg) {if (lam) PushArg(lam, NMakeBoolValue    (arg));}
-void NLambdaPushInt     (NLambda *lam, int             arg) {if (lam) PushArg(lam, NMakeIntValue     (arg));}
-void NLambdaPushInt64   (NLambda *lam, int64_t         arg) {if (lam) PushArg(lam, NMakeInt64Value   (arg));}
-void NLambdaPushUInt    (NLambda *lam, unsigned        arg) {if (lam) PushArg(lam, NMakeUIntValue    (arg));}
-void NLambdaPushUInt64  (NLambda *lam, uint64_t        arg) {if (lam) PushArg(lam, NMakeUInt64Value  (arg));}
-void NLambdaPushFloat   (NLambda *lam, float           arg) {if (lam) PushArg(lam, NMakeFloatValue   (arg));}
-void NLambdaPushDouble  (NLambda *lam, double          arg) {if (lam) PushArg(lam, NMakeDoubleValue  (arg));}
-void NLambdaPushPtr     (NLambda *lam, void           *arg) {if (lam) PushArg(lam, NMakePtrValue     (arg));}
-void NLambdaPushU8Chars (NLambda *lam, const char     *arg) {if (lam) PushArg(lam, NMakeU8CharsValue (arg));}
-void NLambdaPushU16Chars(NLambda *lam, const char16_t *arg) {if (lam) PushArg(lam, NMakeU16CharsValue(arg));}
-void NLambdaPushU32Chars(NLambda *lam, const char32_t *arg) {if (lam) PushArg(lam, NMakeU32CharsValue(arg));}
-void NLambdaPushObject  (NLambda *lam, NRef           *arg) {if (lam) PushArg(lam, NMakeObjectValue  (arg));}
-void NLambdaPushString  (NLambda *lam, NString        *arg) {if (lam) PushArg(lam, NMakeStringValue  (arg));}
-void NLambdaPushLambda  (NLambda *lam, NLambda        *arg) {if (lam) PushArg(lam, NMakeLambdaValue  (arg));}
+static void PushChars(NLambda *lambda, NUTFType type, const void *chars) {
+    NPass *pass = &lambda->pass;
+
+    if ((pass->argCount) >= NPASS_MAX_ARG_NUM) {
+        return;
+    }
+
+    NString *string = NULL;
+    if (chars) {
+        string = NStringCreateWithUTFChars(type, chars);
+    }
+
+    NValue arg = NMakeStringValue(string);
+    SetValue(pass->argValues + pass->argCount, arg);
+    pass->argCount += 1;
+}
+
+void NLambdaPushBool  (NLambda *lam, bool     arg) {if (lam) Push(lam, NMakeBoolValue  (arg));}
+void NLambdaPushInt   (NLambda *lam, int      arg) {if (lam) Push(lam, NMakeIntValue   (arg));}
+void NLambdaPushInt64 (NLambda *lam, int64_t  arg) {if (lam) Push(lam, NMakeInt64Value (arg));}
+void NLambdaPushUInt  (NLambda *lam, unsigned arg) {if (lam) Push(lam, NMakeUIntValue  (arg));}
+void NLambdaPushUInt64(NLambda *lam, uint64_t arg) {if (lam) Push(lam, NMakeUInt64Value(arg));}
+void NLambdaPushFloat (NLambda *lam, float    arg) {if (lam) Push(lam, NMakeFloatValue (arg));}
+void NLambdaPushDouble(NLambda *lam, double   arg) {if (lam) Push(lam, NMakeDoubleValue(arg));}
+void NLambdaPushPtr   (NLambda *lam, void    *arg) {if (lam) Push(lam, NMakePtrValue   (arg));}
+
+void NLambdaPushU8Chars (NLambda *lam, const char     *arg) {if (lam) PushChars(lam, NUTF8 , arg);}
+void NLambdaPushU16Chars(NLambda *lam, const char16_t *arg) {if (lam) PushChars(lam, NUTF16, arg);}
+void NLambdaPushU32Chars(NLambda *lam, const char32_t *arg) {if (lam) PushChars(lam, NUTF32, arg);}
+
+void NLambdaPushObject(NLambda *lam, NRef    *arg) {if (lam) Push(lam, NMakeObjectValue(arg));}
+void NLambdaPushString(NLambda *lam, NString *arg) {if (lam) Push(lam, NMakeStringValue(arg));}
+void NLambdaPushLambda(NLambda *lam, NLambda *arg) {if (lam) Push(lam, NMakeLambdaValue(arg));}
 
 static NValue Call(NLambda *lambda) {
     if (!lambda || !lambda->func) {
         return NMakeVoidValue();
     }
 
-    ReleaseRet(lambda);
-
     //NOTE: don't use the cached pass directly, so the lambda can be called recursively.
     NPass pass = lambda->pass;
     NZeroMemory(&lambda->pass, nsizeof(NPass));
 
     lambda->func(lambda, &pass);
+
+    ZeroValues(lambda->pass.argValues, lambda->pass.argCount);
+    ZeroValues(&lambda->pass.retValue, 1);
     lambda->pass = pass;
-    return lambda->pass.retainedRet;
+
+    return lambda->pass.retValue;
 }
 
-void     NLambdaCallVoid  (NLambda *lam) {/*.... NVoidValue*/(Call(lam));}
-bool     NLambdaCallBool  (NLambda *lam) {return NBoolValue  (Call(lam));}
-int      NLambdaCallInt   (NLambda *lam) {return NIntValue   (Call(lam));}
-int64_t  NLambdaCallInt64 (NLambda *lam) {return NInt64Value (Call(lam));}
-unsigned NLambdaCallUInt  (NLambda *lam) {return NUIntValue  (Call(lam));}
-uint64_t NLambdaCallUInt64(NLambda *lam) {return NUInt64Value(Call(lam));}
-float    NLambdaCallFloat (NLambda *lam) {return NFloatValue (Call(lam));}
-double   NLambdaCallDouble(NLambda *lam) {return NDoubleValue(Call(lam));}
-void    *NLambdaCallPtr   (NLambda *lam) {return NPtrValue   (Call(lam));}
-NRef     NLambdaCallObject(NLambda *lam) {return NObjectValue(Call(lam));}
-NString *NLambdaCallString(NLambda *lam) {return NStringValue(Call(lam));}
-NLambda *NLambdaCallLambda(NLambda *lam) {return NLambdaValue(Call(lam));}
+void            NLambdaCallVoid    (NLambda *lam) {/*.... NVoidValue*/(Call(lam));}
+bool            NLambdaCallBool    (NLambda *lam) {return NBoolValue  (Call(lam));}
+int             NLambdaCallInt     (NLambda *lam) {return NIntValue   (Call(lam));}
+int64_t         NLambdaCallInt64   (NLambda *lam) {return NInt64Value (Call(lam));}
+unsigned        NLambdaCallUInt    (NLambda *lam) {return NUIntValue  (Call(lam));}
+uint64_t        NLambdaCallUInt64  (NLambda *lam) {return NUInt64Value(Call(lam));}
+float           NLambdaCallFloat   (NLambda *lam) {return NFloatValue (Call(lam));}
+double          NLambdaCallDouble  (NLambda *lam) {return NDoubleValue(Call(lam));}
+void           *NLambdaCallPtr     (NLambda *lam) {return NPtrValue   (Call(lam));}
+const char     *NLambdaCallU8Chars (NLambda *lam) {return NPtrValue   (Call(lam));}
+const char16_t *NLambdaCallU16Chars(NLambda *lam) {return NPtrValue   (Call(lam));}
+const char32_t *NLambdaCallU32Chars(NLambda *lam) {return NPtrValue   (Call(lam));}
+NRef            NLambdaCallObject  (NLambda *lam) {return NObjectValue(Call(lam));}
+NString        *NLambdaCallString  (NLambda *lam) {return NStringValue(Call(lam));}
+NLambda        *NLambdaCallLambda  (NLambda *lam) {return NLambdaValue(Call(lam));}

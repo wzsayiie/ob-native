@@ -45,10 +45,10 @@ void NFuncPrepare() {
     return FuncPrepare();
 }
 
-void NFuncPushArg(NType type, _NWord word) {
+void NFuncPushArg(NType type, _Word word) {
     return FuncPushArg(type, word);
 }
 
-_NWord NFuncCall(int index) {
+_Word NFuncCall(int index) {
     return FuncCall(index);
 }

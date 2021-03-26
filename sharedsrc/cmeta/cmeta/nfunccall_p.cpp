@@ -1,10 +1,12 @@
 #include "nfunccall_p.h"
 #include "basis.h"
+#include "cstr.h"
 #include "nfuncmeta_p.h"
 #include "ntypemeta_p.h"
 
 template<class Ret>
 _Word AsBasic(NType type, _Word word, bool *error) {
+
     Ret ret[nsizeof(_Word)] = {0};
     switch (type) {
         case NTYPE_BOOL  : *ret = (Ret) *(bool     *)&word; return *(_Word *)ret;
@@ -24,89 +26,59 @@ _Word AsBasic(NType type, _Word word, bool *error) {
 
         default:;
     }
-
     *error = true;
     return 0;
 }
 
 static _Word AllocU8Chars(NType type, _Word word, bool *error) {
-    if (type == NTYPE_CHAR8_PTR ) {return (_Word)NDupU8FromChars(NUTF8 , (void *)word);}
-    if (type == NTYPE_CHAR16_PTR) {return (_Word)NDupU8FromChars(NUTF16, (void *)word);}
-    if (type == NTYPE_CHAR32_PTR) {return (_Word)NDupU8FromChars(NUTF32, (void *)word);}
-
     if (type == NTYPE_STRING) {
         const char *chars = NStringU8Chars((NString *)word);
-        return (_Word)NDupU8FromChars(NUTF8, chars);
+        return (_Word)csdup(chars);
     }
-
     *error = true;
     return 0;
 }
 
 static _Word AllocU16Chars(NType type, _Word word, bool *error) {
-    if (type == NTYPE_CHAR8_PTR ) {return (_Word)NDupU16FromChars(NUTF8 , (void *)word);}
-    if (type == NTYPE_CHAR16_PTR) {return (_Word)NDupU16FromChars(NUTF16, (void *)word);}
-    if (type == NTYPE_CHAR32_PTR) {return (_Word)NDupU16FromChars(NUTF32, (void *)word);}
-
     if (type == NTYPE_STRING) {
         const char16_t *chars = NStringU16Chars((NString *)word);
-        return (_Word)NDupU16FromChars(NUTF16, chars);
+        return (_Word)csdup16(chars);
     }
-
     *error = true;
     return 0;
 }
 
 static _Word AllocU32Chars(NType type, _Word word, bool *error) {
-    if (type == NTYPE_CHAR8_PTR ) {return (_Word)NDupU32FromChars(NUTF8 , (void *)word);}
-    if (type == NTYPE_CHAR16_PTR) {return (_Word)NDupU32FromChars(NUTF16, (void *)word);}
-    if (type == NTYPE_CHAR32_PTR) {return (_Word)NDupU32FromChars(NUTF32, (void *)word);}
-
     if (type == NTYPE_STRING) {
         const char32_t *chars = NStringU32Chars((NString *)word);
-        return (_Word)NDupU32FromChars(NUTF32, chars);
+        return (_Word)csdup32(chars);
     }
-
     *error = true;
     return 0;
 }
 
-static _Word RetainString(NType type, _Word word, bool *error) {
-    if (type == NTYPE_CHAR8_PTR ) {return (_Word)NStringCreateWithUTFChars(NUTF8 , (void *)word);}
-    if (type == NTYPE_CHAR16_PTR) {return (_Word)NStringCreateWithUTFChars(NUTF16, (void *)word);}
-    if (type == NTYPE_CHAR32_PTR) {return (_Word)NStringCreateWithUTFChars(NUTF32, (void *)word);}
+static _Word RetainPtr(NType dstType, NType srcType, _Word srcWord, bool *error) {
 
-    if (type == NTYPE_STRING) {
-        return (_Word)NRetain((NString *)word);
-    }
-
-    *error = true;
-    return 0;
-}
-
-static _Word AsPtr(NType dstType, NType srcType, _Word word, bool *error) {
-    if (srcType >= NTYPE_OBJECT) {
-        //is object reference.
-        auto object = (NObject *)word;
+    //dst and src are both object reference.
+    if (dstType >= NTYPE_OBJECT && srcType >= NTYPE_OBJECT) {
+        auto object = (NObject *)srcWord;
 
         for (NType tp = FindType(object->clsName); tp; tp = TypeSuper(tp)) {
             if (tp == dstType) {
-                return word;
+                NRetain((NRef) srcWord);
+                return srcWord;
             }
         }
-
-        *error = true;
-        return 0;
     }
 
-    if (srcType >= NTYPE_VOID_PTR) {
-        //is pod pointer.
-        if (dstType == srcType) {
-            return word;
+    //dst and src are both pointer.
+    if (dstType >= NTYPE_VOID_PTR && srcType >= NTYPE_VOID_PTR) {
+        if (dstType == NTYPE_VOID_PTR) {
+            return srcWord;
         }
-
-        *error = true;
-        return 0;
+        if (dstType == srcType) {
+            return srcWord;
+        }
     }
 
     *error = true;
@@ -114,8 +86,10 @@ static _Word AsPtr(NType dstType, NType srcType, _Word word, bool *error) {
 }
 
 struct Ticket {
-    void *needFuncAddr;
-    NType needRetType;
+    const char *funcName;
+    void       *funcAddress;
+    NType       funcRetType;
+
     int   needArgCount;
     NType needArgTypes[FUNC_MAX_ARG_NUM];
 
@@ -123,62 +97,62 @@ struct Ticket {
     _Word pushArgWords[FUNC_MAX_ARG_NUM];
 };
 
-static void SetTicketFunc(Ticket *ticket, int funcIndex) {
-    ticket->needFuncAddr = FuncAddress (funcIndex);
-    ticket->needRetType  = FuncRetType (funcIndex);
-    ticket->needArgCount = FuncArgCount(funcIndex);
+static void SetFuncInfo(Ticket *ticket, int funcIndex) {
+    ticket->funcName    = FuncName   (funcIndex);
+    ticket->funcAddress = FuncAddress(funcIndex);
+    ticket->funcRetType = FuncRetType(funcIndex);
 
+    ticket->needArgCount = FuncArgCount(funcIndex);
     for (int idx = 0; idx < (ticket->needArgCount); ++idx) {
         ticket->needArgTypes[idx] = FuncArgType(funcIndex, idx);
     }
 }
 
-static void NewTicketArgs(Ticket *ticket, NType *types, _Word *words) {
+static void RetainSuitableArgs(Ticket *ticket, NType *srcTypes, _Word *srcWords) {
     for (int idx = 0; idx < (ticket->needArgCount); ++idx) {
 
-        NType srcType = types[idx];
-        _Word srcWord = words[idx];
-        NType dstType = ticket->needArgTypes[idx];
-        _Word dstWord = 0;
-        bool  error   = false;
+        NType st = srcTypes[idx];
+        _Word sw = srcWords[idx];
+        NType dt = ticket->needArgTypes[idx];
+        _Word dw = 0;
 
-        switch (dstType) {
+        bool err = false;
+        switch (dt) {
             case NTYPE_BLUR_STRUCT: return;
             case NTYPE_BLUR_PTR   : return;
             case NTYPE_VOID       : return;
 
-            case NTYPE_BOOL  : dstWord = AsBasic<bool    >(srcType, srcWord, &error); break;
-            case NTYPE_CHAR8 : dstWord = AsBasic<char    >(srcType, srcWord, &error); break;
-            case NTYPE_CHAR16: dstWord = AsBasic<char16_t>(srcType, srcWord, &error); break;
-            case NTYPE_CHAR32: dstWord = AsBasic<char32_t>(srcType, srcWord, &error); break;
-            case NTYPE_INT8  : dstWord = AsBasic<int8_t  >(srcType, srcWord, &error); break;
-            case NTYPE_INT16 : dstWord = AsBasic<int16_t >(srcType, srcWord, &error); break;
-            case NTYPE_INT32 : dstWord = AsBasic<int32_t >(srcType, srcWord, &error); break;
-            case NTYPE_INT64 : dstWord = AsBasic<int64_t >(srcType, srcWord, &error); break;
-            case NTYPE_UINT8 : dstWord = AsBasic<uint8_t >(srcType, srcWord, &error); break;
-            case NTYPE_UINT16: dstWord = AsBasic<uint16_t>(srcType, srcWord, &error); break;
-            case NTYPE_UINT32: dstWord = AsBasic<uint32_t>(srcType, srcWord, &error); break;
-            case NTYPE_UINT64: dstWord = AsBasic<uint64_t>(srcType, srcWord, &error); break;
-            case NTYPE_FLOAT : dstWord = AsBasic<float   >(srcType, srcWord, &error); break;
-            case NTYPE_DOUBLE: dstWord = AsBasic<double  >(srcType, srcWord, &error); break;
+            case NTYPE_BOOL  : dw = AsBasic<bool    >(st, sw, &err); break;
+            case NTYPE_CHAR8 : dw = AsBasic<char    >(st, sw, &err); break;
+            case NTYPE_CHAR16: dw = AsBasic<char16_t>(st, sw, &err); break;
+            case NTYPE_CHAR32: dw = AsBasic<char32_t>(st, sw, &err); break;
+            case NTYPE_INT8  : dw = AsBasic<int8_t  >(st, sw, &err); break;
+            case NTYPE_INT16 : dw = AsBasic<int16_t >(st, sw, &err); break;
+            case NTYPE_INT32 : dw = AsBasic<int32_t >(st, sw, &err); break;
+            case NTYPE_INT64 : dw = AsBasic<int64_t >(st, sw, &err); break;
+            case NTYPE_UINT8 : dw = AsBasic<uint8_t >(st, sw, &err); break;
+            case NTYPE_UINT16: dw = AsBasic<uint16_t>(st, sw, &err); break;
+            case NTYPE_UINT32: dw = AsBasic<uint32_t>(st, sw, &err); break;
+            case NTYPE_UINT64: dw = AsBasic<uint64_t>(st, sw, &err); break;
+            case NTYPE_FLOAT : dw = AsBasic<float   >(st, sw, &err); break;
+            case NTYPE_DOUBLE: dw = AsBasic<double  >(st, sw, &err); break;
 
-            case NTYPE_CHAR8_PTR : dstWord = AllocU8Chars (srcType, srcWord, &error); break;
-            case NTYPE_CHAR16_PTR: dstWord = AllocU16Chars(srcType, srcWord, &error); break;
-            case NTYPE_CHAR32_PTR: dstWord = AllocU32Chars(srcType, srcWord, &error); break;
-            case NTYPE_STRING    : dstWord = RetainString (srcType, srcWord, &error); break;
+            case NTYPE_CHAR8_PTR : dw = AllocU8Chars (st, sw, &err); break;
+            case NTYPE_CHAR16_PTR: dw = AllocU16Chars(st, sw, &err); break;
+            case NTYPE_CHAR32_PTR: dw = AllocU32Chars(st, sw, &err); break;
 
-            default: dstWord = AsPtr(dstType, srcType, srcWord, &error);
+            default: dw = RetainPtr(dt, st, sw, &err);
         }
-        if (error) {
+        if (err) {
             return;
         }
 
-        ticket->pushArgWords[idx] = dstWord;
+        ticket->pushArgWords[idx] = dw;
         ticket->pushArgCount = idx + 1;
     }
 }
 
-static void DelTicketArgs(Ticket *ticket) {
+static void ReleaseSuitableArgs(Ticket *ticket) {
     for (int idx = 0; idx < (ticket->pushArgCount); ++idx) {
         NType type = ticket->needArgTypes[idx];
         _Word word = ticket->pushArgWords[idx];
@@ -187,7 +161,7 @@ static void DelTicketArgs(Ticket *ticket) {
             case NTYPE_CHAR8_PTR : NFreeMemory((void *)word); break;
             case NTYPE_CHAR16_PTR: NFreeMemory((void *)word); break;
             case NTYPE_CHAR32_PTR: NFreeMemory((void *)word); break;
-            case NTYPE_STRING    : NRelease   ((void *)word); break;
+            case NTYPE_OBJECT    : NRelease   ((NRef  )word); break;
             default:;
         }
     }
@@ -222,8 +196,9 @@ struct Caller {
 
     template<class... Arg>
     static _Word Call(Ticket *ticket, Arg... arg) {
+
         if (N == ticket->needArgCount) {
-            return Executor<Ret>::Exec(ticket->needFuncAddr, arg...);
+            return Executor<Ret>::Exec(ticket->funcAddress, arg...);
         }
 
         NType type = ticket->needArgTypes[N];
@@ -248,7 +223,7 @@ struct Caller<Ret, FUNC_MAX_ARG_NUM> {
 
     template<class... Arg>
     static _Word Call(Ticket *ticket, Arg... arg) {
-        return Executor<Ret>::Exec(ticket->needFuncAddr, arg...);
+        return Executor<Ret>::Exec(ticket->funcAddress, arg...);
     }
 };
 
@@ -257,13 +232,45 @@ static nthreadlocal NType sArgTypes[FUNC_MAX_ARG_NUM] = {0};
 static nthreadlocal _Word sArgWords[FUNC_MAX_ARG_NUM] = {0};
 
 void FuncPrepare() {
+    for (int idx = 0; idx < sArgCount; ++idx) {
+        if (sArgTypes[idx] >= NTYPE_OBJECT) {
+            NRelease((NRef)sArgWords[idx]);
+        }
+    }
+
+    NZeroMemory(sArgTypes, nsizeof(NType) * FUNC_MAX_ARG_NUM);
+    NZeroMemory(sArgWords, nsizeof(_Word) * FUNC_MAX_ARG_NUM);
     sArgCount = 0;
 }
 
 void FuncPushArg(NType type, _Word word) {
     if (sArgCount == FUNC_MAX_ARG_NUM) {
-        _NError("only supports up to %d arguments", FUNC_MAX_ARG_NUM);
+        _NError("dynamic calling only supports up to %d arguments", FUNC_MAX_ARG_NUM);
         return;
+    }
+
+    //NOTE: in the case of cross-language calls, it may be difficult for
+    //the upper language to hold c objects in the calling lifecycle.
+    if (type == NTYPE_CHAR8_PTR) {
+        type = NTYPE_STRING;
+        if (word) {
+            word = (_Word)NStringCreateWithUTFChars(NUTF8 , (void *)word);
+        }
+    }
+    else if (type == NTYPE_CHAR16_PTR) {
+        type = NTYPE_STRING;
+        if (word) {
+            word = (_Word)NStringCreateWithUTFChars(NUTF16, (void *)word);
+        }
+    }
+    else if (type == NTYPE_CHAR32_PTR) {
+        type = NTYPE_STRING;
+        if (word) {
+            word = (_Word)NStringCreateWithUTFChars(NUTF32, (void *)word);
+        }
+    }
+    else if (type >= NTYPE_OBJECT) {
+        NRetain((NRef)word);
     }
 
     sArgTypes[sArgCount] = type;
@@ -273,28 +280,32 @@ void FuncPushArg(NType type, _Word word) {
 
 _Word FuncCall(int funcIndex) {
     Ticket ticket = {0};
-    SetTicketFunc(&ticket, funcIndex);
-    if (!ticket.needFuncAddr) {
+    SetFuncInfo(&ticket, funcIndex);
+    if (!ticket.funcAddress) {
         _NError("illegal function index %d", funcIndex);
         FuncPrepare();
         return 0;
     }
 
     if (sArgCount < ticket.needArgCount) {
-        _NError("only %d arguments passed, but %d required", sArgCount, ticket.needArgCount);
+        const char *name = ticket.funcName;
+        const int   need = ticket.needArgCount;
+        const int   push = sArgCount;
+        _NError("function '%s' needs %d arguments, but only %d passed", name, need, push);
+        
         FuncPrepare();
         return 0;
     }
 
-    NewTicketArgs(&ticket, sArgTypes, sArgWords);
+    RetainSuitableArgs(&ticket, sArgTypes, sArgWords);
     if (ticket.pushArgCount < ticket.needArgCount) {
-        int   next = ticket.pushArgCount;
-        NType push = sArgTypes[next];
-        NType need = ticket.needArgTypes[next];
-
-        _NError("argument %d can't cast from type %d to %d", next + 1, push, need);
+        const char *name = ticket.funcName;
+        const int   next = ticket.pushArgCount;
+        const char *push = TypeName(sArgTypes[next]);
+        const char *need = TypeName(ticket.needArgTypes[next]);
+        _NError("'%s' argument %d can't cast '%s' to '%s'", name, next + 1, push, need);
         
-        DelTicketArgs(&ticket);
+        ReleaseSuitableArgs(&ticket);
         FuncPrepare();
         return 0;
     }
@@ -303,7 +314,7 @@ _Word FuncCall(int funcIndex) {
     FuncPrepare();
 
     _Word retWord = 0;
-    switch (ticket.needRetType) {
+    switch (ticket.funcRetType) {
         case NTYPE_BLUR_STRUCT: break;
         case NTYPE_BLUR_PTR   : break;
 
@@ -316,6 +327,6 @@ _Word FuncCall(int funcIndex) {
         case NTYPE_DOUBLE: retWord = Caller<double  , 0>::Call(&ticket); break;
         default /*short*/: retWord = Caller<intptr_t, 0>::Call(&ticket); break;
     }
-    DelTicketArgs(&ticket);
+    ReleaseSuitableArgs(&ticket);
     return retWord;
 }

@@ -34,33 +34,33 @@ static NValue Arg(NPass *pass, int index) {
     return NMakeVoidValue();
 }
 
-bool            NPassArgBool    (NPass *pas, int idx) {return NBoolValue    (Arg(pas, idx));}
-int             NPassArgInt     (NPass *pas, int idx) {return NIntValue     (Arg(pas, idx));}
-int64_t         NPassArgInt64   (NPass *pas, int idx) {return NInt64Value   (Arg(pas, idx));}
-unsigned        NPassArgUInt    (NPass *pas, int idx) {return NUIntValue    (Arg(pas, idx));}
-uint64_t        NPassArgUInt64  (NPass *pas, int idx) {return NUInt64Value  (Arg(pas, idx));}
-float           NPassArgFloat   (NPass *pas, int idx) {return NFloatValue   (Arg(pas, idx));}
-double          NPassArgDouble  (NPass *pas, int idx) {return NDoubleValue  (Arg(pas, idx));}
-void           *NPassArgPtr     (NPass *pas, int idx) {return NPtrValue     (Arg(pas, idx));}
-const char     *NPassArgU8Chars (NPass *pas, int idx) {return NU8CharsValue (Arg(pas, idx));}
-const char16_t *NPassArgU16Chars(NPass *pas, int idx) {return NU16CharsValue(Arg(pas, idx));}
-const char32_t *NPassArgU32Chars(NPass *pas, int idx) {return NU32CharsValue(Arg(pas, idx));}
-NRef            NPassArgObject  (NPass *pas, int idx) {return NObjectValue  (Arg(pas, idx));}
-NString        *NPassArgString  (NPass *pas, int idx) {return NStringValue  (Arg(pas, idx));}
-NLambda        *NPassArgLambda  (NPass *pas, int idx) {return NLambdaValue  (Arg(pas, idx));}
+bool      NPassArgBool    (NPass *pas, int idx) {return NBoolValue    (Arg(pas, idx));}
+int       NPassArgInt     (NPass *pas, int idx) {return NIntValue     (Arg(pas, idx));}
+int64_t   NPassArgInt64   (NPass *pas, int idx) {return NInt64Value   (Arg(pas, idx));}
+unsigned  NPassArgUInt    (NPass *pas, int idx) {return NUIntValue    (Arg(pas, idx));}
+uint64_t  NPassArgUInt64  (NPass *pas, int idx) {return NUInt64Value  (Arg(pas, idx));}
+float     NPassArgFloat   (NPass *pas, int idx) {return NFloatValue   (Arg(pas, idx));}
+double    NPassArgDouble  (NPass *pas, int idx) {return NDoubleValue  (Arg(pas, idx));}
+void     *NPassArgPtr     (NPass *pas, int idx) {return NPtrValue     (Arg(pas, idx));}
+char     *NPassArgU8Chars (NPass *pas, int idx) {return NU8CharsValue (Arg(pas, idx));}
+char16_t *NPassArgU16Chars(NPass *pas, int idx) {return NU16CharsValue(Arg(pas, idx));}
+char32_t *NPassArgU32Chars(NPass *pas, int idx) {return NU32CharsValue(Arg(pas, idx));}
+NRef      NPassArgObject  (NPass *pas, int idx) {return NObjectValue  (Arg(pas, idx));}
+NString  *NPassArgString  (NPass *pas, int idx) {return NStringValue  (Arg(pas, idx));}
+NLambda  *NPassArgLambda  (NPass *pas, int idx) {return NLambdaValue  (Arg(pas, idx));}
 
 static void SetRet(NPass *pass, NValue ret) {
     SetValue(&pass->retValue, ret);
 }
 
 static void SetStrRet(NPass *pass, NUTFType type, const void *chars) {
-    NString *string = NULL;
     if (chars) {
-        string = NStringCreateWithUTFChars(type, chars);
+        NString *string = NStringCreateWithUTFChars(type, chars);
+        SetValue(&pass->retValue, NMakeStringValue(string));
+        NRelease(string);
+    } else {
+        SetValue(&pass->retValue, NMakeStringValue(NULL));
     }
-    
-    NValue ret = NMakeStringValue(string);
-    SetValue(&pass->retValue, ret);
 }
 
 void NPassReturnBool  (NPass *pas, bool     ret) {if (pas) SetRet(pas, NMakeBoolValue  (ret));}
@@ -101,7 +101,7 @@ void _NLambdaInit(NLambda *lambda) {
 void _NLambdaDeinit(NLambda *lambda) {
     NRelease(lambda->customObject);
     ZeroValues(lambda->pass.argValues, lambda->pass.argCount);
-    ZeroValues(&lambda->pass.retValue, 0);
+    ZeroValues(&lambda->pass.retValue, 1);
 
     _NObjectDeinit(nsuperof(lambda));
 }
@@ -146,7 +146,7 @@ void NLambdaSetData(NLambda *lambda, void *data) {
 void NLambdaPrepareCall(NLambda *lambda) {
     if (lambda) {
         ZeroValues(lambda->pass.argValues, lambda->pass.argCount);
-        ZeroValues(&lambda->pass.retValue, 0);
+        ZeroValues(&lambda->pass.retValue, 1);
         lambda->pass.argCount = 0;
     }
 }
@@ -169,13 +169,14 @@ static void PushChars(NLambda *lambda, NUTFType type, const void *chars) {
         return;
     }
 
-    NString *string = NULL;
+    NValue *value = pass->argValues + pass->argCount;
     if (chars) {
-        string = NStringCreateWithUTFChars(type, chars);
+        NString *string = NStringCreateWithUTFChars(type, chars);
+        SetValue(value, NMakeStringValue(string));
+        NRelease(string);
+    } else {
+        SetValue(value, NMakeStringValue(NULL));
     }
-
-    NValue arg = NMakeStringValue(string);
-    SetValue(pass->argValues + pass->argCount, arg);
     pass->argCount += 1;
 }
 
@@ -205,7 +206,9 @@ static NValue Call(NLambda *lambda) {
     NPass pass = lambda->pass;
     NZeroMemory(&lambda->pass, nsizeof(NPass));
 
+    ZeroValues(&pass.retValue, 1);
     lambda->func(lambda, &pass);
+    ZeroValues(pass.argValues, pass.argCount);
 
     ZeroValues(lambda->pass.argValues, lambda->pass.argCount);
     ZeroValues(&lambda->pass.retValue, 1);
@@ -214,18 +217,18 @@ static NValue Call(NLambda *lambda) {
     return lambda->pass.retValue;
 }
 
-void            NLambdaCallVoid    (NLambda *lam) {/*.... NVoidValue*/(Call(lam));}
-bool            NLambdaCallBool    (NLambda *lam) {return NBoolValue  (Call(lam));}
-int             NLambdaCallInt     (NLambda *lam) {return NIntValue   (Call(lam));}
-int64_t         NLambdaCallInt64   (NLambda *lam) {return NInt64Value (Call(lam));}
-unsigned        NLambdaCallUInt    (NLambda *lam) {return NUIntValue  (Call(lam));}
-uint64_t        NLambdaCallUInt64  (NLambda *lam) {return NUInt64Value(Call(lam));}
-float           NLambdaCallFloat   (NLambda *lam) {return NFloatValue (Call(lam));}
-double          NLambdaCallDouble  (NLambda *lam) {return NDoubleValue(Call(lam));}
-void           *NLambdaCallPtr     (NLambda *lam) {return NPtrValue   (Call(lam));}
-const char     *NLambdaCallU8Chars (NLambda *lam) {return NPtrValue   (Call(lam));}
-const char16_t *NLambdaCallU16Chars(NLambda *lam) {return NPtrValue   (Call(lam));}
-const char32_t *NLambdaCallU32Chars(NLambda *lam) {return NPtrValue   (Call(lam));}
-NRef            NLambdaCallObject  (NLambda *lam) {return NObjectValue(Call(lam));}
-NString        *NLambdaCallString  (NLambda *lam) {return NStringValue(Call(lam));}
-NLambda        *NLambdaCallLambda  (NLambda *lam) {return NLambdaValue(Call(lam));}
+void      NLambdaCallVoid    (NLambda *lam) {/*.... NVoidValue*/  (Call(lam));}
+bool      NLambdaCallBool    (NLambda *lam) {return NBoolValue    (Call(lam));}
+int       NLambdaCallInt     (NLambda *lam) {return NIntValue     (Call(lam));}
+int64_t   NLambdaCallInt64   (NLambda *lam) {return NInt64Value   (Call(lam));}
+unsigned  NLambdaCallUInt    (NLambda *lam) {return NUIntValue    (Call(lam));}
+uint64_t  NLambdaCallUInt64  (NLambda *lam) {return NUInt64Value  (Call(lam));}
+float     NLambdaCallFloat   (NLambda *lam) {return NFloatValue   (Call(lam));}
+double    NLambdaCallDouble  (NLambda *lam) {return NDoubleValue  (Call(lam));}
+void     *NLambdaCallPtr     (NLambda *lam) {return NPtrValue     (Call(lam));}
+char     *NLambdaCallU8Chars (NLambda *lam) {return NU8CharsValue (Call(lam));}
+char16_t *NLambdaCallU16Chars(NLambda *lam) {return NU16CharsValue(Call(lam));}
+char32_t *NLambdaCallU32Chars(NLambda *lam) {return NU32CharsValue(Call(lam));}
+NRef      NLambdaCallObject  (NLambda *lam) {return NObjectValue  (Call(lam));}
+NString  *NLambdaCallString  (NLambda *lam) {return NStringValue  (Call(lam));}
+NLambda  *NLambdaCallLambda  (NLambda *lam) {return NLambdaValue  (Call(lam));}

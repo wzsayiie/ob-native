@@ -29,11 +29,18 @@ nstruct(NWord, {
 nstruct(NValue, {
     NType type;
     union {
-        int64_t  asInt64 ;
-        uint64_t asUInt64;
-        double   asDouble;
-        void    *asPtr   ;
-        void    *asObject;
+        int64_t   asInt64   ;
+        uint64_t  asUInt64  ;
+        double    asDouble  ;
+
+        void     *asPtr     ;
+        char     *asU8Chars ;
+        char16_t *asU16Chars;
+        char32_t *asU32Chars;
+
+        void     *asObject  ;
+        NString  *asString  ;
+        NLambda  *asLambda  ;
     };
 });
 

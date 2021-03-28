@@ -30,29 +30,23 @@ _Word AsBasic(NType type, _Word word, bool *error) {
     return 0;
 }
 
-static _Word AllocU8Chars(NType type, _Word word, bool *error) {
+static _Word AllocChars(NUTFType utf, NType type, _Word word, bool *error) {
+    //"FuncPushArg" will not use "NTYPE_CHARX_PTR".
     if (type == NTYPE_STRING) {
-        const char *chars = NStringU8Chars((NString *)word);
-        return (_Word)csdup(chars);
+        auto string = (NString *)word;
+        switch (type) {
+            case NUTF8 : return (_Word)csdup  (NStringU8Chars (string));
+            case NUTF16: return (_Word)csdup16(NStringU16Chars(string));
+            case NUTF32: return (_Word)csdup32(NStringU32Chars(string));
+            default    : return 0;
+        }
     }
-    *error = true;
-    return 0;
-}
-
-static _Word AllocU16Chars(NType type, _Word word, bool *error) {
-    if (type == NTYPE_STRING) {
-        const char16_t *chars = NStringU16Chars((NString *)word);
-        return (_Word)csdup16(chars);
+    
+    //it's "null".
+    if (type == NTYPE_VOID_PTR && word == 0) {
+        return 0;
     }
-    *error = true;
-    return 0;
-}
-
-static _Word AllocU32Chars(NType type, _Word word, bool *error) {
-    if (type == NTYPE_STRING) {
-        const char32_t *chars = NStringU32Chars((NString *)word);
-        return (_Word)csdup32(chars);
-    }
+    
     *error = true;
     return 0;
 }
@@ -73,9 +67,16 @@ static _Word RetainPtr(NType dstType, NType srcType, _Word srcWord, bool *error)
 
     //dst and src are both pointer.
     if (dstType >= NTYPE_VOID_PTR && srcType >= NTYPE_VOID_PTR) {
+        //it's "null".
+        if (srcType == NTYPE_VOID_PTR && srcWord == 0) {
+            return srcWord;
+        }
+        
+        //it's legal that any pointer casted to void pointer.
         if (dstType == NTYPE_VOID_PTR) {
             return srcWord;
         }
+        
         if (dstType == srcType) {
             return srcWord;
         }
@@ -137,9 +138,9 @@ static void RetainSuitableArgs(Ticket *ticket, NType *srcTypes, _Word *srcWords)
             case NTYPE_FLOAT : dw = AsBasic<float   >(st, sw, &err); break;
             case NTYPE_DOUBLE: dw = AsBasic<double  >(st, sw, &err); break;
 
-            case NTYPE_CHAR8_PTR : dw = AllocU8Chars (st, sw, &err); break;
-            case NTYPE_CHAR16_PTR: dw = AllocU16Chars(st, sw, &err); break;
-            case NTYPE_CHAR32_PTR: dw = AllocU32Chars(st, sw, &err); break;
+            case NTYPE_CHAR8_PTR : dw = AllocChars(NUTF8 , st, sw, &err); break;
+            case NTYPE_CHAR16_PTR: dw = AllocChars(NUTF16, st, sw, &err); break;
+            case NTYPE_CHAR32_PTR: dw = AllocChars(NUTF32, st, sw, &err); break;
 
             default: dw = RetainPtr(dt, st, sw, &err);
         }

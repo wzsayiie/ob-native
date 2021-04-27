@@ -1,6 +1,5 @@
 #pragma once
 
-#include "naction.h"
 #include "narray.h"
 #include "ndata.h"
 #include "nenviron.h"

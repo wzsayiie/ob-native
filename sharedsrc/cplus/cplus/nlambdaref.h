@@ -2,6 +2,6 @@
 
 #include "nobjectref.h"
 
-ncppclass(NAction, NActionRef, NObjectRef) {
+ncppclass(NLambda, NLambdaRef, NObjectRef) {
     NCPP_BODY
 };

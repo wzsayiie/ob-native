@@ -28,7 +28,6 @@
     <ClCompile Include="..\..\sharedsrc\basis\basis\algorithm\def.c" />
     <ClCompile Include="..\..\sharedsrc\basis\basis\algorithm\cstr.c" />
     <ClCompile Include="..\..\sharedsrc\basis\basis\algorithm\scalist.c" />
-    <ClCompile Include="..\..\sharedsrc\basis\basis\naction.c" />
     <ClCompile Include="..\..\sharedsrc\basis\basis\narray.c" />
     <ClCompile Include="..\..\sharedsrc\basis\basis\ndata.c" />
     <ClCompile Include="..\..\sharedsrc\basis\basis\nio.c" />
@@ -47,8 +46,8 @@
     <ClCompile Include="..\..\sharedsrc\cmeta\cmeta\NGEN.cpp" />
     <ClCompile Include="..\..\sharedsrc\cmeta\cmeta\ntypes.cpp" />
     <ClCompile Include="..\..\sharedsrc\cmeta\cmeta\ntypemeta_p.cpp" />
-    <ClCompile Include="..\..\sharedsrc\cplus\cplus\nactionref.cpp" />
     <ClCompile Include="..\..\sharedsrc\cplus\cplus\ncpprefs.cpp" />
+    <ClCompile Include="..\..\sharedsrc\cplus\cplus\nlambdaref.cpp" />
     <ClCompile Include="..\..\sharedsrc\cplus\cplus\nobjectref.cpp" />
     <ClCompile Include="..\..\sharedsrc\net\net\nsocket.c" />
     <ClCompile Include="..\..\sharedsrc\net\net\nsocket_posix.c" />
@@ -75,7 +74,6 @@
     <ClInclude Include="..\..\sharedsrc\basis\basis\algorithm\cstr.h" />
     <ClInclude Include="..\..\sharedsrc\basis\basis\algorithm\scalist.h" />
     <ClInclude Include="..\..\sharedsrc\basis\basis\basis.h" />
-    <ClInclude Include="..\..\sharedsrc\basis\basis\naction.h" />
     <ClInclude Include="..\..\sharedsrc\basis\basis\narray.h" />
     <ClInclude Include="..\..\sharedsrc\basis\basis\ndata.h" />
     <ClInclude Include="..\..\sharedsrc\basis\basis\nenviron.h" />
@@ -98,8 +96,8 @@
     <ClInclude Include="..\..\sharedsrc\cmeta\cmeta\ntypemeta_p.h" />
     <ClInclude Include="..\..\sharedsrc\cmeta\cmeta\ntrait_p.h" />
     <ClInclude Include="..\..\sharedsrc\cplus\cplus\cplus.h" />
-    <ClInclude Include="..\..\sharedsrc\cplus\cplus\nactionref.h" />
     <ClInclude Include="..\..\sharedsrc\cplus\cplus\ncpprefs.h" />
+    <ClInclude Include="..\..\sharedsrc\cplus\cplus\nlambdaref.h" />
     <ClInclude Include="..\..\sharedsrc\cplus\cplus\nobjectref.h" />
     <ClInclude Include="..\..\sharedsrc\net\net\net.h" />
     <ClInclude Include="..\..\sharedsrc\net\net\nsocket.h" />

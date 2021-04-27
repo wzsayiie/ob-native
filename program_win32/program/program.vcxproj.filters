@@ -96,9 +96,6 @@
     <ClCompile Include="winmain.c">
       <Filter>program</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sharedsrc\basis\basis\naction.c">
-      <Filter>sharedsrc\basis\basis</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sharedsrc\basis\basis\narray.c">
       <Filter>sharedsrc\basis\basis</Filter>
     </ClCompile>
@@ -186,9 +183,6 @@
     <ClCompile Include="..\..\sharedsrc\cplus\cplus\nobjectref.cpp">
       <Filter>sharedsrc\cplus\cplus</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sharedsrc\cplus\cplus\nactionref.cpp">
-      <Filter>sharedsrc\cplus\cplus</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sharedsrc\cplus\cplus\ncpprefs.cpp">
       <Filter>sharedsrc\cplus\cplus</Filter>
     </ClCompile>
@@ -234,12 +228,12 @@
     <ClCompile Include="..\..\sharedsrc\basis\basis\nlambda.c">
       <Filter>sharedsrc\basis\basis</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\sharedsrc\cplus\cplus\nlambdaref.cpp">
+      <Filter>sharedsrc\cplus\cplus</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\sharedsrc\basis\basis\basis.h">
-      <Filter>sharedsrc\basis\basis</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\sharedsrc\basis\basis\naction.h">
       <Filter>sharedsrc\basis\basis</Filter>
     </ClInclude>
     <ClInclude Include="..\..\sharedsrc\basis\basis\narray.h">
@@ -341,9 +335,6 @@
     <ClInclude Include="..\..\sharedsrc\cplus\cplus\nobjectref.h">
       <Filter>sharedsrc\cplus\cplus</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\sharedsrc\cplus\cplus\nactionref.h">
-      <Filter>sharedsrc\cplus\cplus</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\sharedsrc\osui\osui_win32\NWin32Main.h">
       <Filter>sharedsrc\osui\osui_win32</Filter>
     </ClInclude>
@@ -376,6 +367,9 @@
     </ClInclude>
     <ClInclude Include="..\..\sharedsrc\basis\basis\nlambda.h">
       <Filter>sharedsrc\basis\basis</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sharedsrc\cplus\cplus\nlambdaref.h">
+      <Filter>sharedsrc\cplus\cplus</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

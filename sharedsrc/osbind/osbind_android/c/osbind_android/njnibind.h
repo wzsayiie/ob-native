@@ -91,9 +91,9 @@ nclass(NJNIMethod, NObject, {
     NJNIClass *argClasses[_NJNI_MAX_ARG_NUM];
 });
 
-nfunc(void, NJNIFinderReset , (void));
-nfunc(void, NJNIFinderSetRet, (NJNIClass *ret));
-nfunc(void, NJNIFinderAddArg, (NJNIClass *arg));
+nfunc(void, NJNIFinderPrepare, (void));
+nfunc(void, NJNIFinderSetRet , (NJNIClass *ret));
+nfunc(void, NJNIFinderAddArg , (NJNIClass *arg));
 
 nfunc(NJNIMethod *, NJNIFindInitMethod    , (NJNIClass *cls));
 nfunc(NJNIMethod *, NJNIFindInstanceMethod, (NJNIClass *cls, const char *name));
@@ -101,7 +101,7 @@ nfunc(NJNIMethod *, NJNIFindStaticMethod  , (NJNIClass *cls, const char *name));
 
 //call a jni method:
 
-nfunc(void, NJNICallerReset      , (void));
+nfunc(void, NJNICallerPrepareCall, (void));
 nfunc(void, NJNICallerPushBoolean, (bool        arg));
 nfunc(void, NJNICallerPushLong   , (int64_t     arg));
 nfunc(void, NJNICallerPushDouble , (double      arg));

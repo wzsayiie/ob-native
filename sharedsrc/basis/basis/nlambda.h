@@ -85,7 +85,7 @@ nfunc(void, NLambdaPushPtr     , (NLambda *lambda, void           *arg));
 nfunc(void, NLambdaPushU8Chars , (NLambda *lambda, const char     *arg));
 nfunc(void, NLambdaPushU16Chars, (NLambda *lambda, const char16_t *arg));
 nfunc(void, NLambdaPushU32Chars, (NLambda *lambda, const char32_t *arg));
-nfunc(void, NLambdaPushObject  , (NLambda *lambda, NRef           *arg));
+nfunc(void, NLambdaPushObject  , (NLambda *lambda, NRef            arg));
 nfunc(void, NLambdaPushString  , (NLambda *lambda, NString        *arg));
 nfunc(void, NLambdaPushLambda  , (NLambda *lambda, NLambda        *arg));
 

@@ -13,8 +13,10 @@ public class NActivity extends Activity {
         super.onCreate(savedInstanceState);
         NAppContext.notifyMainActivityCreated(this);
 
-        NFunc launch = new NFunc("NLaunch");
-        launch.callVoid();
+        NFunc launch = NFunc.find("NLaunch");
+        if (launch != null) {
+            launch.callVoid();
+        }
     }
 
     @Override

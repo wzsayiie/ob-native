@@ -193,7 +193,7 @@ void NLambdaPushU8Chars (NLambda *lam, const char     *arg) {if (lam) PushChars(
 void NLambdaPushU16Chars(NLambda *lam, const char16_t *arg) {if (lam) PushChars(lam, NUTF16, arg);}
 void NLambdaPushU32Chars(NLambda *lam, const char32_t *arg) {if (lam) PushChars(lam, NUTF32, arg);}
 
-void NLambdaPushObject(NLambda *lam, NRef    *arg) {if (lam) Push(lam, NMakeObjectValue(arg));}
+void NLambdaPushObject(NLambda *lam, NRef     arg) {if (lam) Push(lam, NMakeObjectValue(arg));}
 void NLambdaPushString(NLambda *lam, NString *arg) {if (lam) Push(lam, NMakeStringValue(arg));}
 void NLambdaPushLambda(NLambda *lam, NLambda *arg) {if (lam) Push(lam, NMakeLambdaValue(arg));}
 

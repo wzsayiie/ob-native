@@ -536,7 +536,7 @@ static nthreadlocal NJNIClass *sFinderRetClass = NULL;
 static nthreadlocal int        sFinderArgCount = 0;
 static nthreadlocal NJNIClass *sFinderArgClasses[_NJNI_MAX_ARG_NUM] = {NULL};
 
-void NJNIFinderReset(void) {
+void NJNIFinderPrepare(void) {
     sFinderRetClass = NULL;
     sFinderArgCount = 0;
 }
@@ -693,7 +693,7 @@ static NJNIMethod *FindMethod(NJNIClass *cls, _NJNIMethodType type, const char *
     }
 
     //NOTE: clear arguments.
-    NJNIFinderReset();
+    NJNIFinderPrepare();
 
     return method;
 }
@@ -738,7 +738,7 @@ static nthreadlocal int    sCallerArgCount = 0;
 static nthreadlocal char   sCallerArgSigns[_NJNI_MAX_ARG_NUM] = {0};
 static nthreadlocal jvalue sCallerArgWords[_NJNI_MAX_ARG_NUM] = {0};
 
-void NJNICallerReset(void) {
+void NJNICallerPrepareCall(void) {
     if (sCallerArgCount == 0) {
         return;
     }
@@ -953,7 +953,7 @@ static jvalue CallMethod(JNIEnv *env, NJNIObject *object, NJNIMethod *method, bo
     }
 
     //NOTE: clear arguments.
-    NJNICallerReset();
+    NJNICallerPrepareCall();
 
     return ret;
 }

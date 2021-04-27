@@ -3,8 +3,8 @@ package src.shared.osbind;
 @SuppressWarnings({W.OMIT_0, W.OMIT_1})
 public class NType {
 
-    public static final int STRUCT = 1;
-    public static final int PTR    = 2;
+    public static final int BLUR_STRUCT = 1;
+    public static final int BLUR_PTR    = 2;
 
     public static final int VOID    =  3;
     public static final int BOOLEAN =  4;
@@ -38,5 +38,9 @@ public class NType {
     public static final int FLOAT_PTR   = 31;
     public static final int DOUBLE_PTR  = 32;
 
-    public static final int CUSTOM_PTR = 33;
+    public static final int OBJECT = 33;
+    public static final int STRING = 34;
+    public static final int LAMBDA = 35;
+
+    public static final int USER_BEGIN = 36;
 }

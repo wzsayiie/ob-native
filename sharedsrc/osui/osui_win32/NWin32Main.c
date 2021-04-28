@@ -1,6 +1,6 @@
 ﻿#include "NWin32Main.h"
 #include "NWin32AppContext.h"
-#include "nlaunch.h"
+#include "osui.h"
 #include <stdio.h>
 
 static void OpenConsole(void)

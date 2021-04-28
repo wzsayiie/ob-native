@@ -2,6 +2,6 @@
 
 #include "basis.h"
 
-//"launch" is the first event of the program.
-//developers need to implement this function.
+//"launch" is the entry function of the program.
+//developers need to implement it.
 nfunc(void, NLaunch, (void));

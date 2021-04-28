@@ -135,9 +135,6 @@
     <ClCompile Include="..\..\sharedsrc\net\net\nsocket.c">
       <Filter>sharedsrc\net\net</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sharedsrc\osui\osui\nlaunch.c">
-      <Filter>sharedsrc\osui\osui</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sharedsrc\net\net\nsocket_posix.c">
       <Filter>sharedsrc\net\net</Filter>
     </ClCompile>
@@ -230,6 +227,36 @@
     </ClCompile>
     <ClCompile Include="..\..\sharedsrc\cplus\cplus\nlambdaref.cpp">
       <Filter>sharedsrc\cplus\cplus</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharedsrc\osui\osui\nbrush.c">
+      <Filter>sharedsrc\osui\osui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharedsrc\osui\osui\nbutton.c">
+      <Filter>sharedsrc\osui\osui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharedsrc\osui\osui\ncolor.c">
+      <Filter>sharedsrc\osui\osui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharedsrc\osui\osui\nimageview.c">
+      <Filter>sharedsrc\osui\osui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharedsrc\osui\osui\nkey.c">
+      <Filter>sharedsrc\osui\osui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharedsrc\osui\osui\nlabel.c">
+      <Filter>sharedsrc\osui\osui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharedsrc\osui\osui\nlayout.c">
+      <Filter>sharedsrc\osui\osui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharedsrc\osui\osui\ntextfield.c">
+      <Filter>sharedsrc\osui\osui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharedsrc\osui\osui\nview.c">
+      <Filter>sharedsrc\osui\osui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharedsrc\osui\osui\nwindow.c">
+      <Filter>sharedsrc\osui\osui</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -370,6 +397,36 @@
     </ClInclude>
     <ClInclude Include="..\..\sharedsrc\cplus\cplus\nlambdaref.h">
       <Filter>sharedsrc\cplus\cplus</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sharedsrc\osui\osui\nbrush.h">
+      <Filter>sharedsrc\osui\osui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sharedsrc\osui\osui\nbutton.h">
+      <Filter>sharedsrc\osui\osui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sharedsrc\osui\osui\ncolor.h">
+      <Filter>sharedsrc\osui\osui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sharedsrc\osui\osui\nimageview.h">
+      <Filter>sharedsrc\osui\osui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sharedsrc\osui\osui\nkey.h">
+      <Filter>sharedsrc\osui\osui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sharedsrc\osui\osui\nlabel.h">
+      <Filter>sharedsrc\osui\osui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sharedsrc\osui\osui\nlayout.h">
+      <Filter>sharedsrc\osui\osui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sharedsrc\osui\osui\ntextfield.h">
+      <Filter>sharedsrc\osui\osui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sharedsrc\osui\osui\nview.h">
+      <Filter>sharedsrc\osui\osui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sharedsrc\osui\osui\nwindow.h">
+      <Filter>sharedsrc\osui\osui</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

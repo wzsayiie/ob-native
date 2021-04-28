@@ -62,7 +62,16 @@
     <ClCompile Include="..\..\sharedsrc\osplat\osplat_win32\NWin32Files.c" />
     <ClCompile Include="..\..\sharedsrc\osplat\osplat_win32\NWin32Runloop.c" />
     <ClCompile Include="..\..\sharedsrc\osplat\osplat_win32\NWin32Thread.c" />
-    <ClCompile Include="..\..\sharedsrc\osui\osui\nlaunch.c" />
+    <ClCompile Include="..\..\sharedsrc\osui\osui\nbrush.c" />
+    <ClCompile Include="..\..\sharedsrc\osui\osui\nbutton.c" />
+    <ClCompile Include="..\..\sharedsrc\osui\osui\ncolor.c" />
+    <ClCompile Include="..\..\sharedsrc\osui\osui\nimageview.c" />
+    <ClCompile Include="..\..\sharedsrc\osui\osui\nkey.c" />
+    <ClCompile Include="..\..\sharedsrc\osui\osui\nlabel.c" />
+    <ClCompile Include="..\..\sharedsrc\osui\osui\nlayout.c" />
+    <ClCompile Include="..\..\sharedsrc\osui\osui\ntextfield.c" />
+    <ClCompile Include="..\..\sharedsrc\osui\osui\nview.c" />
+    <ClCompile Include="..\..\sharedsrc\osui\osui\nwindow.c" />
     <ClCompile Include="..\..\sharedsrc\osui\osui_win32\NWin32Main.c" />
     <ClCompile Include="winmain.c" />
   </ItemGroup>
@@ -110,7 +119,17 @@
     <ClInclude Include="..\..\sharedsrc\osplat\osplat\nthread.h" />
     <ClInclude Include="..\..\sharedsrc\osplat\osplat\osplat.h" />
     <ClInclude Include="..\..\sharedsrc\osplat\osplat_win32\NWin32AppContext.h" />
+    <ClInclude Include="..\..\sharedsrc\osui\osui\nbrush.h" />
+    <ClInclude Include="..\..\sharedsrc\osui\osui\nbutton.h" />
+    <ClInclude Include="..\..\sharedsrc\osui\osui\ncolor.h" />
+    <ClInclude Include="..\..\sharedsrc\osui\osui\nimageview.h" />
+    <ClInclude Include="..\..\sharedsrc\osui\osui\nkey.h" />
+    <ClInclude Include="..\..\sharedsrc\osui\osui\nlabel.h" />
     <ClInclude Include="..\..\sharedsrc\osui\osui\nlaunch.h" />
+    <ClInclude Include="..\..\sharedsrc\osui\osui\nlayout.h" />
+    <ClInclude Include="..\..\sharedsrc\osui\osui\ntextfield.h" />
+    <ClInclude Include="..\..\sharedsrc\osui\osui\nview.h" />
+    <ClInclude Include="..\..\sharedsrc\osui\osui\nwindow.h" />
     <ClInclude Include="..\..\sharedsrc\osui\osui\osui.h" />
     <ClInclude Include="..\..\sharedsrc\osui\osui_win32\NWin32Main.h" />
   </ItemGroup>

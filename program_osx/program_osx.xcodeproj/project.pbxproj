@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		CE1A1C2726077AE000ECF9A7 /* nlambda.c in Sources */ = {isa = PBXBuildFile; fileRef = CE1A1C2526077AE000ECF9A7 /* nlambda.c */; };
-		CE2468F125DFF38500ED25DE /* nactionref.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE2468EC25DFF38400ED25DE /* nactionref.cpp */; };
 		CE2468F225DFF38500ED25DE /* nobjectref.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE2468ED25DFF38400ED25DE /* nobjectref.cpp */; };
 		CE2468F325DFF38500ED25DE /* ncpprefs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE2468F025DFF38400ED25DE /* ncpprefs.cpp */; };
 		CE37F6FA25D0364D00C8302C /* nsocket_posix.c in Sources */ = {isa = PBXBuildFile; fileRef = CE37F67025D0364D00C8302C /* nsocket_posix.c */; };
@@ -40,7 +39,6 @@
 		CE37F72A25D0364D00C8302C /* cerpool.c in Sources */ = {isa = PBXBuildFile; fileRef = CE37F6E025D0364D00C8302C /* cerpool.c */; };
 		CE37F72B25D0364D00C8302C /* nmemory.c in Sources */ = {isa = PBXBuildFile; fileRef = CE37F6E325D0364D00C8302C /* nmemory.c */; };
 		CE37F72C25D0364D00C8302C /* npod.c in Sources */ = {isa = PBXBuildFile; fileRef = CE37F6E525D0364D00C8302C /* npod.c */; };
-		CE37F72D25D0364D00C8302C /* naction.c in Sources */ = {isa = PBXBuildFile; fileRef = CE37F6E825D0364D00C8302C /* naction.c */; };
 		CE37F72E25D0364D00C8302C /* ndata.c in Sources */ = {isa = PBXBuildFile; fileRef = CE37F6EC25D0364D00C8302C /* ndata.c */; };
 		CE37F72F25D0364D00C8302C /* nlock.c in Sources */ = {isa = PBXBuildFile; fileRef = CE37F6EE25D0364D00C8302C /* nlock.c */; };
 		CE60F86F260632480077AE18 /* ntypemeta_p.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE60F862260632480077AE18 /* ntypemeta_p.cpp */; };
@@ -53,6 +51,7 @@
 		CEA0184725FF8874000064C2 /* NMACJavaScriptCore.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA0184125FF8874000064C2 /* NMACJavaScriptCore.m */; };
 		CED80C2624F2ADA30063F3DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CED80C2524F2ADA30063F3DE /* Assets.xcassets */; };
 		CED80C2C24F2ADA30063F3DE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CED80C2B24F2ADA30063F3DE /* main.m */; };
+		CEEA24A92638532B004A2A1E /* nlambdaref.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEEA24A82638532B004A2A1E /* nlambdaref.cpp */; };
 		CEF62B6425F10D6D0050F57C /* jslaunch.c in Sources */ = {isa = PBXBuildFile; fileRef = CEF62B5D25F10D6D0050F57C /* jslaunch.c */; };
 		CEF62B6525F10D6D0050F57C /* launch.c in Sources */ = {isa = PBXBuildFile; fileRef = CEF62B6025F10D6D0050F57C /* launch.c */; };
 		CEF62B6625F10D6D0050F57C /* claunch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEF62B6325F10D6D0050F57C /* claunch.cpp */; };
@@ -61,8 +60,6 @@
 /* Begin PBXFileReference section */
 		CE1A1C2526077AE000ECF9A7 /* nlambda.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = nlambda.c; sourceTree = "<group>"; };
 		CE1A1C2626077AE000ECF9A7 /* nlambda.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nlambda.h; sourceTree = "<group>"; };
-		CE2468EB25DFF38400ED25DE /* nactionref.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nactionref.h; sourceTree = "<group>"; };
-		CE2468EC25DFF38400ED25DE /* nactionref.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = nactionref.cpp; sourceTree = "<group>"; };
 		CE2468ED25DFF38400ED25DE /* nobjectref.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = nobjectref.cpp; sourceTree = "<group>"; };
 		CE2468EE25DFF38400ED25DE /* nobjectref.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nobjectref.h; sourceTree = "<group>"; };
 		CE2468EF25DFF38400ED25DE /* ncpprefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ncpprefs.h; sourceTree = "<group>"; };
@@ -100,7 +97,6 @@
 		CE37F6CA25D0364D00C8302C /* niterator.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = niterator.c; sourceTree = "<group>"; };
 		CE37F6CB25D0364D00C8302C /* npod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = npod.h; sourceTree = "<group>"; };
 		CE37F6CC25D0364D00C8302C /* basis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = basis.h; sourceTree = "<group>"; };
-		CE37F6CD25D0364D00C8302C /* naction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = naction.h; sourceTree = "<group>"; };
 		CE37F6CE25D0364D00C8302C /* nenviron.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nenviron.h; sourceTree = "<group>"; };
 		CE37F6CF25D0364D00C8302C /* nstring.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = nstring.c; sourceTree = "<group>"; };
 		CE37F6D025D0364D00C8302C /* ntable.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ntable.c; sourceTree = "<group>"; };
@@ -126,7 +122,6 @@
 		CE37F6E525D0364D00C8302C /* npod.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = npod.c; sourceTree = "<group>"; };
 		CE37F6E625D0364D00C8302C /* nnumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nnumber.h; sourceTree = "<group>"; };
 		CE37F6E725D0364D00C8302C /* nstring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nstring.h; sourceTree = "<group>"; };
-		CE37F6E825D0364D00C8302C /* naction.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = naction.c; sourceTree = "<group>"; };
 		CE37F6E925D0364D00C8302C /* nunicode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nunicode.h; sourceTree = "<group>"; };
 		CE37F6EA25D0364D00C8302C /* nio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nio.h; sourceTree = "<group>"; };
 		CE37F6EB25D0364D00C8302C /* narray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = narray.h; sourceTree = "<group>"; };
@@ -156,6 +151,8 @@
 		CED80C2A24F2ADA30063F3DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CED80C2B24F2ADA30063F3DE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CED80C2D24F2ADA30063F3DE /* program.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = program.entitlements; sourceTree = "<group>"; };
+		CEEA24A72638532B004A2A1E /* nlambdaref.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nlambdaref.h; sourceTree = "<group>"; };
+		CEEA24A82638532B004A2A1E /* nlambdaref.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = nlambdaref.cpp; sourceTree = "<group>"; };
 		CEF62B5D25F10D6D0050F57C /* jslaunch.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = jslaunch.c; sourceTree = "<group>"; };
 		CEF62B6025F10D6D0050F57C /* launch.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = launch.c; sourceTree = "<group>"; };
 		CEF62B6325F10D6D0050F57C /* claunch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = claunch.cpp; sourceTree = "<group>"; };
@@ -290,10 +287,10 @@
 			isa = PBXGroup;
 			children = (
 				CE37F6AA25D0364D00C8302C /* cplus.h */,
-				CE2468EC25DFF38400ED25DE /* nactionref.cpp */,
-				CE2468EB25DFF38400ED25DE /* nactionref.h */,
 				CE2468F025DFF38400ED25DE /* ncpprefs.cpp */,
 				CE2468EF25DFF38400ED25DE /* ncpprefs.h */,
+				CEEA24A82638532B004A2A1E /* nlambdaref.cpp */,
+				CEEA24A72638532B004A2A1E /* nlambdaref.h */,
 				CE2468ED25DFF38400ED25DE /* nobjectref.cpp */,
 				CE2468EE25DFF38400ED25DE /* nobjectref.h */,
 			);
@@ -346,8 +343,6 @@
 			children = (
 				CE37F6D625D0364D00C8302C /* algorithm */,
 				CE37F6CC25D0364D00C8302C /* basis.h */,
-				CE37F6E825D0364D00C8302C /* naction.c */,
-				CE37F6CD25D0364D00C8302C /* naction.h */,
 				CE37F6D425D0364D00C8302C /* narray.c */,
 				CE37F6EB25D0364D00C8302C /* narray.h */,
 				CE37F6EC25D0364D00C8302C /* ndata.c */,
@@ -608,9 +603,9 @@
 				CE1A1C2726077AE000ECF9A7 /* nlambda.c in Sources */,
 				CE37F71F25D0364D00C8302C /* niterator.c in Sources */,
 				CE60F86F260632480077AE18 /* ntypemeta_p.cpp in Sources */,
-				CE37F72D25D0364D00C8302C /* naction.c in Sources */,
 				CE37F72125D0364D00C8302C /* ntable.c in Sources */,
 				CEF62B6625F10D6D0050F57C /* claunch.cpp in Sources */,
+				CEEA24A92638532B004A2A1E /* nlambdaref.cpp in Sources */,
 				CE37F70525D0364D00C8302C /* osbind.c in Sources */,
 				CE37F6FB25D0364D00C8302C /* nsocket.c in Sources */,
 				CEF62B6425F10D6D0050F57C /* jslaunch.c in Sources */,
@@ -636,7 +631,6 @@
 				CE37F71E25D0364D00C8302C /* nnumber.c in Sources */,
 				CE37F72C25D0364D00C8302C /* npod.c in Sources */,
 				CEA0184725FF8874000064C2 /* NMACJavaScriptCore.m in Sources */,
-				CE2468F125DFF38500ED25DE /* nactionref.cpp in Sources */,
 				CE2468F225DFF38500ED25DE /* nobjectref.cpp in Sources */,
 				CE37F72B25D0364D00C8302C /* nmemory.c in Sources */,
 				CE37F70A25D0364D00C8302C /* NOSXViewController.m in Sources */,

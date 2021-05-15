@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		CE1A1C2726077AE000ECF9A7 /* nlambda.c in Sources */ = {isa = PBXBuildFile; fileRef = CE1A1C2526077AE000ECF9A7 /* nlambda.c */; };
+		CE26FEF7264FA9E70089898A /* ntextfield.c in Sources */ = {isa = PBXBuildFile; fileRef = CE26FEF3264FA9E70089898A /* ntextfield.c */; };
+		CE26FEF8264FA9E70089898A /* nbrush.c in Sources */ = {isa = PBXBuildFile; fileRef = CE26FEF5264FA9E70089898A /* nbrush.c */; };
+		CE26FEF9264FA9E70089898A /* nimage.c in Sources */ = {isa = PBXBuildFile; fileRef = CE26FEF6264FA9E70089898A /* nimage.c */; };
 		CE37F6FA25D0364D00C8302C /* nsocket_posix.c in Sources */ = {isa = PBXBuildFile; fileRef = CE37F67025D0364D00C8302C /* nsocket_posix.c */; };
 		CE37F6FB25D0364D00C8302C /* nsocket.c in Sources */ = {isa = PBXBuildFile; fileRef = CE37F67325D0364D00C8302C /* nsocket.c */; };
 		CE37F6FD25D0364D00C8302C /* nsocket_win32.c in Sources */ = {isa = PBXBuildFile; fileRef = CE37F67625D0364D00C8302C /* nsocket_win32.c */; };
@@ -38,16 +41,7 @@
 		CE37F72C25D0364D00C8302C /* npod.c in Sources */ = {isa = PBXBuildFile; fileRef = CE37F6E525D0364D00C8302C /* npod.c */; };
 		CE37F72E25D0364D00C8302C /* ndata.c in Sources */ = {isa = PBXBuildFile; fileRef = CE37F6EC25D0364D00C8302C /* ndata.c */; };
 		CE37F72F25D0364D00C8302C /* nlock.c in Sources */ = {isa = PBXBuildFile; fileRef = CE37F6EE25D0364D00C8302C /* nlock.c */; };
-		CE474A3F263AC6A400E3F49F /* nlabel.c in Sources */ = {isa = PBXBuildFile; fileRef = CE474A2C263AC6A400E3F49F /* nlabel.c */; };
 		CE474A40263AC6A400E3F49F /* nwindow.c in Sources */ = {isa = PBXBuildFile; fileRef = CE474A2E263AC6A400E3F49F /* nwindow.c */; };
-		CE474A41263AC6A400E3F49F /* nimageview.c in Sources */ = {isa = PBXBuildFile; fileRef = CE474A2F263AC6A400E3F49F /* nimageview.c */; };
-		CE474A42263AC6A400E3F49F /* nbutton.c in Sources */ = {isa = PBXBuildFile; fileRef = CE474A30263AC6A400E3F49F /* nbutton.c */; };
-		CE474A43263AC6A400E3F49F /* nbrush.c in Sources */ = {isa = PBXBuildFile; fileRef = CE474A31263AC6A400E3F49F /* nbrush.c */; };
-		CE474A44263AC6A400E3F49F /* ntextfield.c in Sources */ = {isa = PBXBuildFile; fileRef = CE474A32263AC6A400E3F49F /* ntextfield.c */; };
-		CE474A45263AC6A400E3F49F /* ncolor.c in Sources */ = {isa = PBXBuildFile; fileRef = CE474A34263AC6A400E3F49F /* ncolor.c */; };
-		CE474A46263AC6A400E3F49F /* nview.c in Sources */ = {isa = PBXBuildFile; fileRef = CE474A36263AC6A400E3F49F /* nview.c */; };
-		CE474A47263AC6A400E3F49F /* nkey.c in Sources */ = {isa = PBXBuildFile; fileRef = CE474A38263AC6A400E3F49F /* nkey.c */; };
-		CE474A48263AC6A400E3F49F /* nlayout.c in Sources */ = {isa = PBXBuildFile; fileRef = CE474A3D263AC6A400E3F49F /* nlayout.c */; };
 		CE60F86F260632480077AE18 /* ntypemeta_p.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE60F862260632480077AE18 /* ntypemeta_p.cpp */; };
 		CE60F870260632480077AE18 /* ntypes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE60F865260632480077AE18 /* ntypes.cpp */; };
 		CE60F871260632480077AE18 /* nfunccall_p.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE60F866260632480077AE18 /* nfunccall_p.cpp */; };
@@ -66,6 +60,13 @@
 /* Begin PBXFileReference section */
 		CE1A1C2526077AE000ECF9A7 /* nlambda.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = nlambda.c; sourceTree = "<group>"; };
 		CE1A1C2626077AE000ECF9A7 /* nlambda.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nlambda.h; sourceTree = "<group>"; };
+		CE26FEF0264FA9E60089898A /* ntextfield.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ntextfield.h; sourceTree = "<group>"; };
+		CE26FEF1264FA9E70089898A /* nbrush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nbrush.h; sourceTree = "<group>"; };
+		CE26FEF2264FA9E70089898A /* nlaunch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nlaunch.h; sourceTree = "<group>"; };
+		CE26FEF3264FA9E70089898A /* ntextfield.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ntextfield.c; sourceTree = "<group>"; };
+		CE26FEF4264FA9E70089898A /* nimage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nimage.h; sourceTree = "<group>"; };
+		CE26FEF5264FA9E70089898A /* nbrush.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = nbrush.c; sourceTree = "<group>"; };
+		CE26FEF6264FA9E70089898A /* nimage.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = nimage.c; sourceTree = "<group>"; };
 		CE37F67025D0364D00C8302C /* nsocket_posix.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = nsocket_posix.c; sourceTree = "<group>"; };
 		CE37F67225D0364D00C8302C /* net.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = net.h; sourceTree = "<group>"; };
 		CE37F67325D0364D00C8302C /* nsocket.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = nsocket.c; sourceTree = "<group>"; };
@@ -75,7 +76,6 @@
 		CE37F68925D0364D00C8302C /* osbind.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = osbind.c; sourceTree = "<group>"; };
 		CE37F68B25D0364D00C8302C /* NOBJCBind.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = NOBJCBind.c; sourceTree = "<group>"; };
 		CE37F68C25D0364D00C8302C /* NOBJCBind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NOBJCBind.h; sourceTree = "<group>"; };
-		CE37F69925D0364D00C8302C /* nlaunch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nlaunch.h; sourceTree = "<group>"; };
 		CE37F69A25D0364D00C8302C /* osui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = osui.h; sourceTree = "<group>"; };
 		CE37F69C25D0364D00C8302C /* NOSXViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NOSXViewController.m; sourceTree = "<group>"; };
 		CE37F69D25D0364D00C8302C /* NOSXWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NOSXWindowController.h; sourceTree = "<group>"; };
@@ -129,26 +129,8 @@
 		CE37F6ED25D0364D00C8302C /* ntable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ntable.h; sourceTree = "<group>"; };
 		CE37F6EE25D0364D00C8302C /* nlock.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = nlock.c; sourceTree = "<group>"; };
 		CE37F6EF25D0364D00C8302C /* nmemory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nmemory.h; sourceTree = "<group>"; };
-		CE474A2B263AC6A400E3F49F /* ncolor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ncolor.h; sourceTree = "<group>"; };
-		CE474A2C263AC6A400E3F49F /* nlabel.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = nlabel.c; sourceTree = "<group>"; };
-		CE474A2D263AC6A400E3F49F /* nlayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nlayout.h; sourceTree = "<group>"; };
 		CE474A2E263AC6A400E3F49F /* nwindow.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = nwindow.c; sourceTree = "<group>"; };
-		CE474A2F263AC6A400E3F49F /* nimageview.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = nimageview.c; sourceTree = "<group>"; };
-		CE474A30263AC6A400E3F49F /* nbutton.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = nbutton.c; sourceTree = "<group>"; };
-		CE474A31263AC6A400E3F49F /* nbrush.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = nbrush.c; sourceTree = "<group>"; };
-		CE474A32263AC6A400E3F49F /* ntextfield.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ntextfield.c; sourceTree = "<group>"; };
 		CE474A33263AC6A400E3F49F /* nwindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nwindow.h; sourceTree = "<group>"; };
-		CE474A34263AC6A400E3F49F /* ncolor.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ncolor.c; sourceTree = "<group>"; };
-		CE474A35263AC6A400E3F49F /* nview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nview.h; sourceTree = "<group>"; };
-		CE474A36263AC6A400E3F49F /* nview.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = nview.c; sourceTree = "<group>"; };
-		CE474A37263AC6A400E3F49F /* ntextfield.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ntextfield.h; sourceTree = "<group>"; };
-		CE474A38263AC6A400E3F49F /* nkey.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = nkey.c; sourceTree = "<group>"; };
-		CE474A39263AC6A400E3F49F /* nbrush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nbrush.h; sourceTree = "<group>"; };
-		CE474A3A263AC6A400E3F49F /* nlabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nlabel.h; sourceTree = "<group>"; };
-		CE474A3B263AC6A400E3F49F /* nimageview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nimageview.h; sourceTree = "<group>"; };
-		CE474A3C263AC6A400E3F49F /* nbutton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nbutton.h; sourceTree = "<group>"; };
-		CE474A3D263AC6A400E3F49F /* nlayout.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = nlayout.c; sourceTree = "<group>"; };
-		CE474A3E263AC6A400E3F49F /* nkey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nkey.h; sourceTree = "<group>"; };
 		CE60F861260632480077AE18 /* ntypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ntypes.h; sourceTree = "<group>"; };
 		CE60F862260632480077AE18 /* ntypemeta_p.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ntypemeta_p.cpp; sourceTree = "<group>"; };
 		CE60F863260632480077AE18 /* nfunccall_p.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nfunccall_p.h; sourceTree = "<group>"; };
@@ -272,25 +254,13 @@
 		CE37F69725D0364D00C8302C /* osui */ = {
 			isa = PBXGroup;
 			children = (
-				CE474A31263AC6A400E3F49F /* nbrush.c */,
-				CE474A39263AC6A400E3F49F /* nbrush.h */,
-				CE474A30263AC6A400E3F49F /* nbutton.c */,
-				CE474A3C263AC6A400E3F49F /* nbutton.h */,
-				CE474A34263AC6A400E3F49F /* ncolor.c */,
-				CE474A2B263AC6A400E3F49F /* ncolor.h */,
-				CE474A2F263AC6A400E3F49F /* nimageview.c */,
-				CE474A3B263AC6A400E3F49F /* nimageview.h */,
-				CE474A38263AC6A400E3F49F /* nkey.c */,
-				CE474A3E263AC6A400E3F49F /* nkey.h */,
-				CE474A2C263AC6A400E3F49F /* nlabel.c */,
-				CE474A3A263AC6A400E3F49F /* nlabel.h */,
-				CE37F69925D0364D00C8302C /* nlaunch.h */,
-				CE474A3D263AC6A400E3F49F /* nlayout.c */,
-				CE474A2D263AC6A400E3F49F /* nlayout.h */,
-				CE474A32263AC6A400E3F49F /* ntextfield.c */,
-				CE474A37263AC6A400E3F49F /* ntextfield.h */,
-				CE474A36263AC6A400E3F49F /* nview.c */,
-				CE474A35263AC6A400E3F49F /* nview.h */,
+				CE26FEF5264FA9E70089898A /* nbrush.c */,
+				CE26FEF1264FA9E70089898A /* nbrush.h */,
+				CE26FEF6264FA9E70089898A /* nimage.c */,
+				CE26FEF4264FA9E70089898A /* nimage.h */,
+				CE26FEF2264FA9E70089898A /* nlaunch.h */,
+				CE26FEF3264FA9E70089898A /* ntextfield.c */,
+				CE26FEF0264FA9E60089898A /* ntextfield.h */,
 				CE474A2E263AC6A400E3F49F /* nwindow.c */,
 				CE474A33263AC6A400E3F49F /* nwindow.h */,
 				CE37F69A25D0364D00C8302C /* osui.h */,
@@ -609,11 +579,10 @@
 				CE37F72625D0364D00C8302C /* scalist.c in Sources */,
 				CE37F70625D0364D00C8302C /* NOBJCBind.c in Sources */,
 				CE37F70C25D0364D00C8302C /* NOSXWindowController.m in Sources */,
+				CE26FEF9264FA9E70089898A /* nimage.c in Sources */,
 				CE37F72525D0364D00C8302C /* binlist.c in Sources */,
-				CE474A41263AC6A400E3F49F /* nimageview.c in Sources */,
 				CE37F71D25D0364D00C8302C /* osplat.c in Sources */,
 				CE37F71125D0364D00C8302C /* NMACBundle.m in Sources */,
-				CE474A42263AC6A400E3F49F /* nbutton.c in Sources */,
 				CE37F71225D0364D00C8302C /* NMACThread.m in Sources */,
 				CE37F72225D0364D00C8302C /* nio.c in Sources */,
 				CE37F72F25D0364D00C8302C /* nlock.c in Sources */,
@@ -622,6 +591,7 @@
 				CE60F86F260632480077AE18 /* ntypemeta_p.cpp in Sources */,
 				CE37F72125D0364D00C8302C /* ntable.c in Sources */,
 				CEF62B6625F10D6D0050F57C /* claunch.cpp in Sources */,
+				CE26FEF7264FA9E70089898A /* ntextfield.c in Sources */,
 				CE37F70525D0364D00C8302C /* osbind.c in Sources */,
 				CE37F6FB25D0364D00C8302C /* nsocket.c in Sources */,
 				CEF62B6425F10D6D0050F57C /* jslaunch.c in Sources */,
@@ -631,26 +601,20 @@
 				CE37F6FA25D0364D00C8302C /* nsocket_posix.c in Sources */,
 				CE37F72825D0364D00C8302C /* avltree.c in Sources */,
 				CE60F872260632480077AE18 /* nfuncmeta_p.cpp in Sources */,
-				CE474A46263AC6A400E3F49F /* nview.c in Sources */,
 				CE37F72425D0364D00C8302C /* nunicode.c in Sources */,
 				CE37F70B25D0364D00C8302C /* NOSXAppDelegate.m in Sources */,
 				CE60F871260632480077AE18 /* nfunccall_p.cpp in Sources */,
-				CE474A43263AC6A400E3F49F /* nbrush.c in Sources */,
 				CE60F873260632480077AE18 /* nfuncs.cpp in Sources */,
-				CE474A45263AC6A400E3F49F /* ncolor.c in Sources */,
-				CE474A47263AC6A400E3F49F /* nkey.c in Sources */,
 				CE37F71325D0364D00C8302C /* NMACRunloop.m in Sources */,
 				CE60F870260632480077AE18 /* ntypes.cpp in Sources */,
 				CE37F6FD25D0364D00C8302C /* nsocket_win32.c in Sources */,
-				CE474A44263AC6A400E3F49F /* ntextfield.c in Sources */,
 				CED80C2C24F2ADA30063F3DE /* main.m in Sources */,
 				CEA0184225FF8874000064C2 /* osjs.c in Sources */,
 				CE60F874260632480077AE18 /* NGEN.cpp in Sources */,
+				CE26FEF8264FA9E70089898A /* nbrush.c in Sources */,
 				CE37F72325D0364D00C8302C /* narray.c in Sources */,
 				CE37F71E25D0364D00C8302C /* nnumber.c in Sources */,
 				CE37F72C25D0364D00C8302C /* npod.c in Sources */,
-				CE474A48263AC6A400E3F49F /* nlayout.c in Sources */,
-				CE474A3F263AC6A400E3F49F /* nlabel.c in Sources */,
 				CEA0184725FF8874000064C2 /* NMACJavaScriptCore.m in Sources */,
 				CE37F72B25D0364D00C8302C /* nmemory.c in Sources */,
 				CE37F70A25D0364D00C8302C /* NOSXViewController.m in Sources */,

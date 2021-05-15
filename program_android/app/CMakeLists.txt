@@ -11,7 +11,6 @@ list(APPEND src_aims ../../appsrc/main/main/*.c)
 
 list(APPEND src_aims ../../sharedsrc/basis/basis/*.c)
 list(APPEND src_aims ../../sharedsrc/cmeta/cmeta/*.cpp)
-list(APPEND src_aims ../../sharedsrc/cplus/cplus/*.cpp)
 list(APPEND src_aims ../../sharedsrc/net/net/*.c)
 list(APPEND src_aims ../../sharedsrc/osbind/osbind/*.c)
 list(APPEND src_aims ../../sharedsrc/osbind/osbind_android/*.c)

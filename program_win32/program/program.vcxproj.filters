@@ -19,12 +19,6 @@
     <Filter Include="sharedsrc\cmeta\cmeta">
       <UniqueIdentifier>{dc34b2b3-c370-4db4-82b9-d3b2d78986eb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="sharedsrc\cplus">
-      <UniqueIdentifier>{af63d8e8-741f-41fe-92c0-abcd255252a4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="sharedsrc\cplus\cplus">
-      <UniqueIdentifier>{38befe4a-aa22-4195-9b76-ef14b52be627}</UniqueIdentifier>
-    </Filter>
     <Filter Include="sharedsrc\osplat">
       <UniqueIdentifier>{c938c8ab-f92a-4267-8f38-50f4db3c43e0}</UniqueIdentifier>
     </Filter>
@@ -177,12 +171,6 @@
     <ClCompile Include="..\..\sharedsrc\basis\basis\algorithm\avltree.c">
       <Filter>sharedsrc\basis\basis\algorithm</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sharedsrc\cplus\cplus\nobjectref.cpp">
-      <Filter>sharedsrc\cplus\cplus</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sharedsrc\cplus\cplus\ncpprefs.cpp">
-      <Filter>sharedsrc\cplus\cplus</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sharedsrc\osui\osui_win32\NWin32Main.c">
       <Filter>sharedsrc\osui\osui_win32</Filter>
     </ClCompile>
@@ -225,34 +213,13 @@
     <ClCompile Include="..\..\sharedsrc\basis\basis\nlambda.c">
       <Filter>sharedsrc\basis\basis</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sharedsrc\cplus\cplus\nlambdaref.cpp">
-      <Filter>sharedsrc\cplus\cplus</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sharedsrc\osui\osui\nbrush.c">
       <Filter>sharedsrc\osui\osui</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sharedsrc\osui\osui\nbutton.c">
-      <Filter>sharedsrc\osui\osui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sharedsrc\osui\osui\ncolor.c">
-      <Filter>sharedsrc\osui\osui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sharedsrc\osui\osui\nimageview.c">
-      <Filter>sharedsrc\osui\osui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sharedsrc\osui\osui\nkey.c">
-      <Filter>sharedsrc\osui\osui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sharedsrc\osui\osui\nlabel.c">
-      <Filter>sharedsrc\osui\osui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sharedsrc\osui\osui\nlayout.c">
+    <ClCompile Include="..\..\sharedsrc\osui\osui\nimage.c">
       <Filter>sharedsrc\osui\osui</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sharedsrc\osui\osui\ntextfield.c">
-      <Filter>sharedsrc\osui\osui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sharedsrc\osui\osui\nview.c">
       <Filter>sharedsrc\osui\osui</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sharedsrc\osui\osui\nwindow.c">
@@ -305,9 +272,6 @@
     <ClInclude Include="..\..\sharedsrc\cmeta\cmeta\nfuncs.h">
       <Filter>sharedsrc\cmeta\cmeta</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\sharedsrc\cplus\cplus\cplus.h">
-      <Filter>sharedsrc\cplus\cplus</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\sharedsrc\net\net\net.h">
       <Filter>sharedsrc\net\net</Filter>
     </ClInclude>
@@ -329,12 +293,6 @@
     <ClInclude Include="..\..\sharedsrc\osplat\osplat\osplat.h">
       <Filter>sharedsrc\osplat\osplat</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\sharedsrc\osui\osui\nlaunch.h">
-      <Filter>sharedsrc\osui\osui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\sharedsrc\osui\osui\osui.h">
-      <Filter>sharedsrc\osui\osui</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\sharedsrc\cmeta\cmeta\ntypes.h">
       <Filter>sharedsrc\cmeta\cmeta</Filter>
     </ClInclude>
@@ -355,12 +313,6 @@
     </ClInclude>
     <ClInclude Include="..\..\sharedsrc\basis\basis\algorithm\avltree.h">
       <Filter>sharedsrc\basis\basis\algorithm</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\sharedsrc\cplus\cplus\ncpprefs.h">
-      <Filter>sharedsrc\cplus\cplus</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\sharedsrc\cplus\cplus\nobjectref.h">
-      <Filter>sharedsrc\cplus\cplus</Filter>
     </ClInclude>
     <ClInclude Include="..\..\sharedsrc\osui\osui_win32\NWin32Main.h">
       <Filter>sharedsrc\osui\osui_win32</Filter>
@@ -395,37 +347,22 @@
     <ClInclude Include="..\..\sharedsrc\basis\basis\nlambda.h">
       <Filter>sharedsrc\basis\basis</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\sharedsrc\cplus\cplus\nlambdaref.h">
-      <Filter>sharedsrc\cplus\cplus</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\sharedsrc\osui\osui\nbrush.h">
       <Filter>sharedsrc\osui\osui</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\sharedsrc\osui\osui\nbutton.h">
+    <ClInclude Include="..\..\sharedsrc\osui\osui\nimage.h">
       <Filter>sharedsrc\osui\osui</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\sharedsrc\osui\osui\ncolor.h">
-      <Filter>sharedsrc\osui\osui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\sharedsrc\osui\osui\nimageview.h">
-      <Filter>sharedsrc\osui\osui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\sharedsrc\osui\osui\nkey.h">
-      <Filter>sharedsrc\osui\osui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\sharedsrc\osui\osui\nlabel.h">
-      <Filter>sharedsrc\osui\osui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\sharedsrc\osui\osui\nlayout.h">
+    <ClInclude Include="..\..\sharedsrc\osui\osui\nlaunch.h">
       <Filter>sharedsrc\osui\osui</Filter>
     </ClInclude>
     <ClInclude Include="..\..\sharedsrc\osui\osui\ntextfield.h">
       <Filter>sharedsrc\osui\osui</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\sharedsrc\osui\osui\nview.h">
+    <ClInclude Include="..\..\sharedsrc\osui\osui\nwindow.h">
       <Filter>sharedsrc\osui\osui</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\sharedsrc\osui\osui\nwindow.h">
+    <ClInclude Include="..\..\sharedsrc\osui\osui\osui.h">
       <Filter>sharedsrc\osui\osui</Filter>
     </ClInclude>
   </ItemGroup>

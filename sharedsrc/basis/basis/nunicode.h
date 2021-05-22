@@ -14,11 +14,11 @@ nfunc(int, NWriteU32, (void *nonnull_dst, char32_t chr));
 nfunc(int, NWriteU16, (void *nonnull_dst, char32_t chr));
 nfunc(int, NWriteU8 , (void *nonnull_dst, char32_t chr));
 
-nenum(NUTFType) {
+nenum(NUTFType, {
     NUTF8  = 1,
     NUTF16 = 2,
     NUTF32 = 3,
-};
+});
 
 nstruct(NUTFCharsStat, {
     int bit7 ; //the count of characters occupying up to 7 bits.

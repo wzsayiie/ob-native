@@ -79,9 +79,9 @@
     typedef uint32_t char32_t;
 #endif
 
-#define nenum(name) typedef int name; enum
+#define nenum(name, ...) typedef int name; enum __VA_ARGS__
 
-nenum(NType) {
+nenum(NType, {
 
     NTYPE_BLUR_STRUCT = 1, //unknown struct.
     NTYPE_BLUR_PTR    = 2, //unknown ptr.
@@ -135,7 +135,7 @@ nenum(NType) {
     NTYPE_INT_PTR  = NTYPE_INT32_PTR ,
     NTYPE_UINT_PTR = NTYPE_UINT32_PTR,
   #endif
-};
+});
 
 //type modifiers:
 

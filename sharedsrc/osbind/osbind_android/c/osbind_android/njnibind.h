@@ -5,7 +5,7 @@
 
 //import a jni type:
 
-nenum(_NJNIClassType) {
+nenum(_NJNIClassType, {
     _NJNI_CLASS_VOID    =  1,
     _NJNI_CLASS_BOOLEAN =  2,
     _NJNI_CLASS_CHAR    =  3,
@@ -18,7 +18,7 @@ nenum(_NJNIClassType) {
     _NJNI_CLASS_STRING  = 10,
     _NJNI_CLASS_OBJECT  = 11,
     _NJNI_CLASS_ARRAY   = 12,
-};
+});
 
 nclass(NJNIClass, NObject, {
     union {
@@ -66,11 +66,11 @@ nfunc(NData      *, NJNICopyPODItems    , (NJNIObject *array));
 
 //find a jni method:
 
-nenum(_NJNIMethodType) {
+nenum(_NJNIMethodType, {
     _NJNI_METHOD_INIT     = 1,
     _NJNI_METHOD_INSTANCE = 2,
     _NJNI_METHOD_STATIC   = 3,
-};
+});
 
 #define _NJNI_MAX_ARG_NUM 4
 

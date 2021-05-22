@@ -26,7 +26,7 @@ nfunc(NWindow *, NMainWindow, (void));
 
 nfunc(void, NWindowSetTick, (NWindow *window, int milliseconds));
 
-nenum(NWindowEvent) {
+nenum(NWindowEvent, {
     
     //the lifecycle events.
     NWE_LOAD   = 1,
@@ -50,7 +50,7 @@ nenum(NWindowEvent) {
     //the window resize event.
     //get new size by "NWindowGetWidth" and "NWindowHetHeight".
     NWE_RESIZE = 10,
-};
+});
 
 nfunc(void, NWindowSetListener, (NWindow *window, NLambda *listener));
 

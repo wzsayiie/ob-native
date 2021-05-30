@@ -1,6 +1,7 @@
 #include <jni.h>
 #include "basis.h"
 
+/*
 JNIEXPORT void JNICALL
 Java_src_shared_osbind_NLambda_retainWord(__unused JNIEnv *env, __unused jclass cls,
     jlong word)
@@ -154,3 +155,4 @@ Java_src_shared_osbind_NLambda_invokeLamWord(__unused JNIEnv *env, __unused jcla
     NLambda *retVal = NLambdaCallLambda(lambda);
     return (jlong)retVal;
 }
+*/

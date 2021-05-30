@@ -1,47 +1,28 @@
 #include "ndata.h"
 
-void _NDataInitWithBytes(NData *data, const void *bytes, int size) {
-    _NObjectInit(nsuperof(data));
+static void DataDestroy(NData *data) {
+    NFreeMemory(data->bytes);
+}
 
+NData *NDataCreateWithBytes(const void *bytes, int size) {
+    NData *data = NCreate(NData, DataDestroy);
     if (bytes && size > 0) {
         data->bytes = NAllocMemory(size);
         NMoveMemory(data->bytes, bytes, size);
     }
-}
-
-void _NDataInitWithSize(NData *data, int size) {
-    _NObjectInit(nsuperof(data));
-
-    if (size > 0) {
-        data->bytes = NAllocMemory(size);
-    }
-}
-
-void _NDataInit(NData *data) {
-    _NObjectInit(nsuperof(data));
-}
-
-void _NDataDeinit(NData *data) {
-    NFreeMemory(data->bytes);
-    _NObjectDeinit(nsuperof(data));
-}
-
-NData *NDataCreateWithBytes(const void *bytes, int size) {
-    NData *data = NAlloc(NData, _NDataDeinit);
-    _NDataInitWithBytes(data, bytes, size);
     return data;
 }
 
 NData *NDataCreateWithSize(int size) {
-    NData *data = NAlloc(NData, _NDataDeinit);
-    _NDataInitWithSize(data, size);
+    NData *data = NCreate(NData, DataDestroy);
+    if (size > 0) {
+        data->bytes = NAllocMemory(size);
+    }
     return data;
 }
 
 NData *NDataCreate(void) {
-    NData *data = NAlloc(NData, _NDataDeinit);
-    _NDataInit(data);
-    return data;
+    return NCreate(NData, DataDestroy);
 }
 
 NData *NDataCopy(NData *that) {

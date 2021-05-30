@@ -2,18 +2,9 @@
 
 #include "nmemory.h"
 
-nclass(NData, NObject, {
-    union {
-        NObject Object;
-        NObject Super ;
-    };
-
+nstruct(NData, {
     void *bytes;
 });
-
-void _NDataInitWithBytes(NData *data, const void *bytes, int size);
-void _NDataInitWithSize (NData *data, int size);
-void _NDataDeinit       (NData *data);
 
 nfunc(NData *, NDataCreateWithBytes, (const void *bytes, int size));
 nfunc(NData *, NDataCreateWithSize , (int size));

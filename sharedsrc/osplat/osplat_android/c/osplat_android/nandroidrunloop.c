@@ -2,13 +2,14 @@
 #include "cmeta.h"
 #include "osbind.h"
 
-static NJNIClass *RunLoopClass(void) {return NJNIImportClass("src/shared/osplat/NRunLoop");}
-static NJNIClass *LongClass   (void) {return NJNIImportClass("long");}
+//static NJNIClass *RunLoopClass(void) {return NJNIImportClass("src/shared/osplat/NRunLoop");}
+//static NJNIClass *LongClass   (void) {return NJNIImportClass("long");}
 
 //mutex is not necessary here,
 //cause the value obtained by each thread is the same.
 
-void NPostOnMain(NLambda *lambda) {
+void NPostTaskOnMain(int64_t param, NTaskFunc func) {
+    /*
     static NJNIMethod *method = NULL;
     if (!method) {
         NJNIFinderPrepare();
@@ -21,4 +22,5 @@ void NPostOnMain(NLambda *lambda) {
     NJNICallerPrepareCall();
     NJNICallerPushLong(word);
     NJNICallVoid(NULL, method);
+    */
 }

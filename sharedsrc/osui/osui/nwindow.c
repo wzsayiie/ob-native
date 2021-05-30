@@ -1,5 +1,6 @@
 #include "nwindow.h"
 
+/*
 static const int DEFAULT_MS_TICK = 100;
 
 void _NWindowInit  (NWindow *window) {_NObjectInit  (nsuperof(window));}
@@ -77,3 +78,4 @@ void _NWindowSetSize(NWindow *window, float width, float height) {
         window->height = height;
     }
 }
+*/

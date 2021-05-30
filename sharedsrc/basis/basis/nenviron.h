@@ -118,11 +118,10 @@ nenum(NType, {
     NTYPE_FLOAT_PTR  = 31,
     NTYPE_DOUBLE_PTR = 32,
 
-    NTYPE_OBJECT = 33, //NObject ref.
-    NTYPE_STRING = 34, //NString ref.
-    NTYPE_LAMBDA = 35, //NLambda ref.
+    NTYPE_NUMBER = 33, //NNumber ptr.
+    NTYPE_STRING = 34, //NString ptr.
 
-    NTYPE_USER_BEGIN = 36,
+    NTYPE_USER_BEGIN = 35,
 
   #if NPTR_64
     NTYPE_INT      = NTYPE_INT64     ,
@@ -157,9 +156,6 @@ nenum(NType, {
 
 #define _nstruct(name, ...) typedef struct name name; struct name __VA_ARGS__
 #define  nstruct(name, ...) _nstruct(name, __VA_ARGS__)
-
-#define _nclass(name, super, ...) typedef struct name name; struct name __VA_ARGS__
-#define  nclass(name, super, ...) _nclass(name, super, __VA_ARGS__)
 
 #define _nfunc(ret, name, params) nclink ret  name  params
 #define  nfunc(ret, name, params) _nfunc(ret, name, params)

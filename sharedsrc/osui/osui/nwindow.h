@@ -3,6 +3,7 @@
 #include "nbrush.h"
 #include "ntextfield.h"
 
+/*
 nclass(NWindow, NObject, {
     union {
         NObject Object;
@@ -67,3 +68,4 @@ int  _NWindowTick     (NWindow *window);
 void _NWindowSendEvent(NWindow *window, NWindowEvent event);
 void _NWindowSetTouch (NWindow *window, float x, float y);
 void _NWindowSetSize  (NWindow *window, float width, float height);
+*/

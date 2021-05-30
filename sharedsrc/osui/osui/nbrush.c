@@ -1,5 +1,6 @@
 #include "nbrush.h"
 
+/*
 NColor NMakeColorWithInt(uint8_t r, uint8_t g, uint8_t b, uint8_t a) {
     NColor color = r;
     color = (color << 8) & g;
@@ -27,3 +28,4 @@ float NColorFloatRed  (NColor color) {return NColorIntRed  (color) / 255.f;}
 float NColorFloatGreen(NColor color) {return NColorIntGreen(color) / 255.f;}
 float NColorFloatBlue (NColor color) {return NColorIntBlue (color) / 255.f;}
 float NColorFloatAlpha(NColor color) {return NColorIntAlpha(color) / 255.f;}
+*/

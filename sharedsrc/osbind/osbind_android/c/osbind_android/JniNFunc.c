@@ -1,6 +1,7 @@
 #include <jni.h>
 #include "cmeta.h"
 
+/*
 JNIEXPORT jint JNICALL
 Java_src_shared_osbind_NFunc_findFuncIndex(JNIEnv *env, __unused jclass cls,
     jstring name)
@@ -47,3 +48,4 @@ Java_src_shared_osbind_NFunc_funcCall(__unused JNIEnv *env, __unused jclass cls,
 {
     return NFuncCall(index);
 }
+*/

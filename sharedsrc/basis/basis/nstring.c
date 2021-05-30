@@ -1,54 +1,40 @@
 #include "nstring.h"
 
-void _NStringInitWithUTFBytes(NString *string, NUTFType type, const void *begin, const void *end) {
-    _NObjectInit(nsuperof(string));
+static void StringDestroy(NString *string) {
+    NFreeMemory(string->u32chars);
+    NFreeMemory(string->u16chars);
+    NFreeMemory(string->u8chars );
+}
 
+NString *NStringCreateWithUTFBytes(NUTFType type, const void *begin, const void *end) {
+    NString *string = NCreate(NString, StringDestroy);
+    
     string->length = -1;
 
     if /**/ (type == NUTF32) {string->u32chars = NDupU32FromBytes(type, begin, end);}
     else if (type == NUTF16) {string->u16chars = NDupU16FromBytes(type, begin, end);}
     else if (type == NUTF8 ) {string->u8chars  = NDupU8FromBytes (type, begin, end);}
+    
+    return string;
 }
 
-void _NStringInitWithUTFChars(NString *string, NUTFType type, const void *chars) {
-    _NObjectInit(nsuperof(string));
-
+NString *NStringCreateWithUTFChars(NUTFType type, const void *chars) {
+    NString *string = NCreate(NString, StringDestroy);
+    
     string->length = -1;
 
     if /**/ (type == NUTF32) {string->u32chars = NDupU32FromChars(type, chars);}
     else if (type == NUTF16) {string->u16chars = NDupU16FromChars(type, chars);}
     else if (type == NUTF8 ) {string->u8chars  = NDupU8FromChars (type, chars);}
-}
-
-void _NStringInit(NString *string) {
-    _NObjectInit(nsuperof(string));
-
-    string->length = -1;
-}
-
-void _NStringDeinit(NString *string) {
-    NFreeMemory(string->u32chars);
-    NFreeMemory(string->u16chars);
-    NFreeMemory(string->u8chars );
     
-    _NObjectDeinit(nsuperof(string));
-}
-
-NString *NStringCreateWithUTFBytes(NUTFType type, const void *begin, const void *end) {
-    NString *string = NAlloc(NString, _NStringDeinit);
-    _NStringInitWithUTFBytes(string, type, begin, end);
-    return string;
-}
-
-NString *NStringCreateWithUTFChars(NUTFType type, const void *chars) {
-    NString *string = NAlloc(NString, _NStringDeinit);
-    _NStringInitWithUTFChars(string, type, chars);
     return string;
 }
 
 NString *NStringCreate(void) {
-    NString *string = NAlloc(NString, _NStringDeinit);
-    _NStringInit(string);
+    NString *string = NCreate(NString, StringDestroy);
+    
+    string->length = -1;
+    
     return string;
 }
 
@@ -145,43 +131,6 @@ int NStringLength(NString *string) {
     return string->length;
 }
 
-nstruct(StringIterator, {
-    NIterator super;
-
-    int (*step)(const void *, char32_t *);
-    char32_t current;
-    void *remaining;
-});
-
-static bool StringIteratorNext(StringIterator *it) {
-    int size = it->step(it->remaining, &it->current);
-    if (size > 0) {
-        it->remaining = (uint8_t *)it->remaining + size;
-        return true;
-    }
-    return false;
-}
-
-static void *StringIteratorCurr(StringIterator *it) {
-    return &it->current;
-}
-
-NIterator *NStringRange(NString *string) {
-    if (NStringIsEmpty(string)) {
-        return NStoreIterator(NULL, 0);
-    }
-
-    StringIterator it = {0};
-    it.super.next = (NIteratorNext)StringIteratorNext;
-    it.super.curr = (NIteratorCurr)StringIteratorCurr;
-
-    if /**/ (string->u32chars) {it.step = NReadFromU32Chars; it.remaining = string->u32chars;}
-    else if (string->u16chars) {it.step = NReadFromU16Chars; it.remaining = string->u16chars;}
-    else if (string->u8chars ) {it.step = NReadFromU8Chars ; it.remaining = string->u8chars ;}
-
-    return NStoreIterator(&it, sizeof(it));
-}
-
 bool NStringIsEmpty(NString *string) {
     if (string) {
         return (!string->u32chars
@@ -235,31 +184,6 @@ void NStringAppend(NString *string, NString *that) {
 }
 
 int NStringCompare(NString *string, NString *that) {
-    if (string == that) {
-        return 0;
-    }
-    
-    NIterator *thisIter = NStringRange(string);
-    NIterator *thatIter = NStringRange(that);
-    while (true) {
-        bool thisValid = thisIter->next(thisIter);
-        bool thatValid = thatIter->next(thatIter);
-
-        if (thisValid && thatValid) {
-            int thisChar = thisIter->curr(thisIter).asUInt;
-            int thatChar = thatIter->curr(thatIter).asUInt;
-
-            if (thisChar > thatChar) {return  1;}
-            if (thisChar < thatChar) {return -1;}
-
-        } else if (thisValid) {
-            return 1;
-
-        } else if (thatValid) {
-            return -1;
-
-        } else {
-            return 0;
-        }
-    }
+    //TODO.
+    return 0;
 }

@@ -2,6 +2,7 @@
 
 #include "nimage.h"
 
+/*
 //NColor:
 
 typedef uint32_t NColor;
@@ -27,3 +28,4 @@ nclass(NBrush, NObject, {
         NObject Super ;
     };
 });
+*/

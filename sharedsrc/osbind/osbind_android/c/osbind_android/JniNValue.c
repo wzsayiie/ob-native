@@ -3,6 +3,7 @@
 #include "basis.h"
 #include "cmeta.h"
 
+/*
 JNIEXPORT jlong JNICALL
 Java_src_shared_osbind_NValue_floatWord(__unused JNIEnv *env, __unused jclass cls,
     jfloat value)
@@ -79,3 +80,4 @@ Java_src_shared_osbind_NValue_stringValue(JNIEnv *env, __unused jclass cls,
     }
     return NULL;
 }
+*/

@@ -1,14 +1,15 @@
 #include "nfiles.h"
 #include "osbind.h"
 
-static NJNIClass *FilesClass  (void) {return NJNIImportClass("src/shared/osplat/NFiles");}
-static NJNIClass *BooleanClass(void) {return NJNIImportClass("boolean");}
-static NJNIClass *StringClass (void) {return NJNIImportClass("java/lang/String");}
-
-static NJNIClass *BooleanArrayClass(void) {return NJNIImportArrayClass(BooleanClass());}
-static NJNIClass *StringArrayClass (void) {return NJNIImportArrayClass(StringClass ());}
+//static NJNIClass *FilesClass  (void) {return NJNIImportClass("src/shared/osplat/NFiles");}
+//static NJNIClass *BooleanClass(void) {return NJNIImportClass("boolean");}
+//static NJNIClass *StringClass (void) {return NJNIImportClass("java/lang/String");}
+//
+//static NJNIClass *BooleanArrayClass(void) {return NJNIImportArrayClass(BooleanClass());}
+//static NJNIClass *StringArrayClass (void) {return NJNIImportArrayClass(StringClass ());}
 
 NString *NCopyDocumentPath(void) {
+    /*
     static NJNIMethod *method = NULL;
     if (!method) {
         NJNIFinderPrepare();
@@ -18,9 +19,11 @@ NString *NCopyDocumentPath(void) {
 
     NJNICallerPrepareCall();
     return NJNICallRetainString(NULL, method);
+    */
 }
 
 NString *NCopyCachesPath(void) {
+    /*
     static NJNIMethod *method = NULL;
     if (!method) {
         NJNIFinderPrepare();
@@ -30,6 +33,8 @@ NString *NCopyCachesPath(void) {
 
     NJNICallerPrepareCall();
     return NJNICallRetainString(NULL, method);
+    */
+    return NULL;
 }
 
 NString *NCopyTemporaryPath(void) {
@@ -37,6 +42,7 @@ NString *NCopyTemporaryPath(void) {
 }
 
 bool NMakeDirectory(NString *path, bool intermediate) {
+    /*
     static NJNIMethod *method = NULL;
     if (!method) {
         NJNIFinderPrepare();
@@ -50,8 +56,11 @@ bool NMakeDirectory(NString *path, bool intermediate) {
     NJNICallerPushString(path);
     NJNICallerPushBoolean(intermediate);
     return NJNICallBoolean(NULL, method);
+    */
+    return false;
 }
 
+/*
 static void SetOutBool(bool *out, NJNIObject *value) {
     if (out) {
         *out = NJNIBooleanItem(value, 0);
@@ -69,8 +78,10 @@ static NArray *CopyJNIStringArray(NJNIObject *object) {
     }
     return array;
 }
+*/
 
 NArray *NCopySubItems(NString *path, bool *outSuccess) {
+    /*
     static NJNIMethod *method = NULL;
     if (!method) {
         NJNIFinderPrepare();
@@ -96,9 +107,12 @@ NArray *NCopySubItems(NString *path, bool *outSuccess) {
     NRelease(subItemsObject);
 
     return subItems;
+    */
+    return NULL;
 }
 
 bool NPathExists(NString *path, bool *outIsDirectory) {
+    /*
     static NJNIMethod *method = NULL;
     if (!method) {
         NJNIFinderPrepare();
@@ -121,9 +135,12 @@ bool NPathExists(NString *path, bool *outIsDirectory) {
     NRelease(outIsDirectoryObject);
 
     return exists;
+    */
+    return false;
 }
 
 void NRemovePath(NString *path) {
+    /*
     static NJNIMethod *method = NULL;
     if (!method) {
         NJNIFinderPrepare();
@@ -134,4 +151,5 @@ void NRemovePath(NString *path) {
     NJNICallerPrepareCall();
     NJNICallerPushString(path);
     NJNICallVoid(NULL, method);
+    */
 }

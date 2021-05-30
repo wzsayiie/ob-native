@@ -52,7 +52,7 @@ static _Word AllocChars(NUTFType utf, NType type, _Word word, bool *error) {
 }
 
 static _Word RetainPtr(NType dstType, NType srcType, _Word srcWord, bool *error) {
-
+    /*
     //dst and src are both object reference.
     if (dstType >= NTYPE_OBJECT && srcType >= NTYPE_OBJECT) {
         auto object = (NObject *)srcWord;
@@ -83,6 +83,8 @@ static _Word RetainPtr(NType dstType, NType srcType, _Word srcWord, bool *error)
     }
 
     *error = true;
+    return 0;
+    */
     return 0;
 }
 
@@ -154,6 +156,7 @@ static void RetainSuitableArgs(Ticket *ticket, NType *srcTypes, _Word *srcWords)
 }
 
 static void ReleaseSuitableArgs(Ticket *ticket) {
+    /*
     for (int idx = 0; idx < (ticket->pushArgCount); ++idx) {
         NType type = ticket->needArgTypes[idx];
         _Word word = ticket->pushArgWords[idx];
@@ -169,6 +172,7 @@ static void ReleaseSuitableArgs(Ticket *ticket) {
 
     NZeroMemory(ticket->pushArgWords, nsizeof(_Word) * FUNC_MAX_ARG_NUM);
     ticket->pushArgCount = 0;
+    */
 }
 
 template<class Ret>
@@ -233,6 +237,7 @@ static nthreadlocal NType sArgTypes[FUNC_MAX_ARG_NUM] = {0};
 static nthreadlocal _Word sArgWords[FUNC_MAX_ARG_NUM] = {0};
 
 void FuncPrepare() {
+    /*
     for (int idx = 0; idx < sArgCount; ++idx) {
         if (sArgTypes[idx] >= NTYPE_OBJECT) {
             NRelease((NRef)sArgWords[idx]);
@@ -242,9 +247,11 @@ void FuncPrepare() {
     NZeroMemory(sArgTypes, nsizeof(NType) * FUNC_MAX_ARG_NUM);
     NZeroMemory(sArgWords, nsizeof(_Word) * FUNC_MAX_ARG_NUM);
     sArgCount = 0;
+    */
 }
 
 void FuncPushArg(NType type, _Word word) {
+    /*
     if (sArgCount == FUNC_MAX_ARG_NUM) {
         _NError("dynamic calling only supports up to %d arguments", FUNC_MAX_ARG_NUM);
         return;
@@ -277,6 +284,7 @@ void FuncPushArg(NType type, _Word word) {
     sArgTypes[sArgCount] = type;
     sArgWords[sArgCount] = word;
     sArgCount += 1;
+    */
 }
 
 _Word FuncCall(int funcIndex) {

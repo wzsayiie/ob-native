@@ -1,17 +1,13 @@
 #import "nthread.h"
 #import <Foundation/Foundation.h>
 
-void NRunThread(NLambda *lambda) {
-    if (!lambda) {
+void NRunThread(int64_t param, NThreadFunc func) {
+    if (!func) {
         return;
     }
     
-    NRetain(lambda);
     NSThread *thread = [[NSThread alloc] initWithBlock:^{
-        NLambdaPrepareCall(lambda);
-        NLambdaCallVoid(lambda);
-
-        NRelease(lambda);
+        func(param);
     }];
     [thread start];
 }

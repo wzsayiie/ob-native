@@ -11,6 +11,7 @@ struct TypeEntry {
 };
 
 const TypeEntry PREFINED_TYPES[] = {
+    /*
     {"00", "UNDEFINED", 0                  , NULL},
     {"01", "ANYSTRUCT", 0                  , NULL},
     {"02", "ANYPTR"   , nsizeof(void     *), NULL},
@@ -50,7 +51,8 @@ const TypeEntry PREFINED_TYPES[] = {
     {"33", "NObject"  , nsizeof(NObject   ), NULL},
     {"34", "NString"  , nsizeof(NString   ), "33"},
     {"35", "NLambda"  , nsizeof(NLambda   ), "33"},
-
+    */
+    
     {NULL}
 };
 
@@ -121,7 +123,7 @@ TypeAdder::TypeAdder(const char *name, const char *super, int size) {
 }
 
 int StructsBegin() {
-    return NTYPE_OBJECT;
+    return 0; //return NTYPE_OBJECT;
 }
 
 int StructsEnd() {

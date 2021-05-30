@@ -3,6 +3,7 @@
 #include "basis.h"
 #include <jni.h>
 
+/*
 //import a jni type:
 
 nenum(_NJNIClassType, {
@@ -114,3 +115,4 @@ nfunc(int64_t     , NJNICallLong        , (NJNIObject *object, NJNIMethod *metho
 nfunc(double      , NJNICallDouble      , (NJNIObject *object, NJNIMethod *method));
 nfunc(NString    *, NJNICallRetainString, (NJNIObject *object, NJNIMethod *method));
 nfunc(NJNIObject *, NJNICallRetainObject, (NJNIObject *object, NJNIMethod *method));
+*/

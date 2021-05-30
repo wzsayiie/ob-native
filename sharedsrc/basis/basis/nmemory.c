@@ -5,7 +5,7 @@
 
 //pod memory management:
 
-nstruct(NMemoryBlock, {
+nstruct(MemoryBlock, {
     union {
         void *padding ;
         int   loadSize;
@@ -13,18 +13,18 @@ nstruct(NMemoryBlock, {
     int8_t load[];
 });
 
-static void *SysCalloc (int   c, int s) {return calloc ((size_t)c, (size_t)s);}
-static void *SysRealloc(void *p, int s) {return realloc(/* v* */p, (size_t)s);}
+static void *Calloc (int   num, int size) {return calloc ((size_t)num, (size_t)size);}
+static void *Realloc(void *ptr, int size) {return realloc(/* v* */ptr, (size_t)size);}
 
 void *NAllocMemory(int size) {
     if (size <= 0) {
         return NULL;
     }
     
-    int blockSize = nsizeof(NMemoryBlock) + size;
+    int blockSize = nsizeof(MemoryBlock) + size;
     
     //NOTE: "calloc" will initialize all bytes to zero.
-    NMemoryBlock *block = SysCalloc(1, blockSize);
+    MemoryBlock *block = Calloc(1, blockSize);
     block->loadSize = size;
     return block->load;
 }
@@ -38,11 +38,11 @@ void *NReallocMemory(void *ptr, int size) {
         return NAllocMemory(size);
     }
     
-    NMemoryBlock *block = (NMemoryBlock *)ptr - 1;
-    int oldBlockSize = nsizeof(NMemoryBlock) + block->loadSize;
-    int newBlockSize = nsizeof(NMemoryBlock) + size;
+    MemoryBlock *block = (MemoryBlock *)ptr - 1;
+    int oldBlockSize = nsizeof(MemoryBlock) + block->loadSize;
+    int newBlockSize = nsizeof(MemoryBlock) + size;
     
-    block = SysRealloc(block, newBlockSize);
+    block = Realloc(block, newBlockSize);
     block->loadSize = size;
     
     //NOTE: initialize new bytes.
@@ -61,24 +61,24 @@ void *NDupMemory(const void *ptr) {
         return NULL;
     }
     
-    NMemoryBlock *srcBlock = (NMemoryBlock *)ptr - 1;
-    int blockSize = nsizeof(NMemoryBlock) + srcBlock->loadSize;
+    MemoryBlock *srcBlock = (MemoryBlock *)ptr - 1;
+    int blockSize = nsizeof(MemoryBlock) + srcBlock->loadSize;
 
-    NMemoryBlock *dstBlock = SysCalloc(1, blockSize);
+    MemoryBlock *dstBlock = Calloc(1, blockSize);
     NMoveMemory(dstBlock, srcBlock, blockSize);
     return dstBlock->load;
 }
 
 void NFreeMemory(void *ptr) {
     if (ptr) {
-        NMemoryBlock *block = (NMemoryBlock *)ptr - 1;
+        MemoryBlock *block = (MemoryBlock *)ptr - 1;
         free(block);
     }
 }
 
 int NMemorySize(const void *ptr) {
     if (ptr) {
-        NMemoryBlock *block = (NMemoryBlock *)ptr - 1;
+        MemoryBlock *block = (MemoryBlock *)ptr - 1;
         return block->loadSize;
     }
     return 0;
@@ -98,49 +98,66 @@ void NMoveMemory(void *dst, const void *src, int size) {
 
 //object managed with reference counting:
 
-void *NAllocObject(int size, const char *clsName, void *deinit) {
-    NObject *object = NAllocMemory(size);
+nstruct(ObjectBlock, {
+    void (*destroy)(NObject *);
+    int    refCount;
+    int8_t object[];
+});
+
+void *NCreateObject(int size, void *destroy) {
+    if (size <= 0) {
+        return NULL;
+    }
     
-    object->clsName  = clsName;
-    object->deinit   = deinit;
-    object->refCount = 1;
+    //NOTE: "calloc" will initialize all bytes to zero.
+    ObjectBlock *block = Calloc(1, nsizeof(ObjectBlock) + size);
     
+    block->destroy  = destroy;
+    block->refCount = 1;
+    
+    return block->object;
+}
+
+static bool IsValue(NObject *object) {
+  #if NPTR_64
+    return (((uint64_t)object >> 7) & 0xff) == _NOBJECT_VAL_FLAG;
+  #else
+    return (((uint32_t)object >> 3) & 0xff) == _NOBJECT_VAL_FLAG;
+  #endif
+}
+
+NObject *NRetain(NObject *object) {
+    if (!object) {
+        return NULL;
+    }
+    if (IsValue(object)) {
+        return object;
+    }
+    
+    nsynwith(object) {
+        ObjectBlock *block = (ObjectBlock *)object - 1;
+        block->refCount += 1;
+    }
     return object;
 }
 
-NRef NRetain(NRef ref) {
-    if (ref) {
-        nsynwith(ref) {
-            NObject *object = ref;
-            object->refCount += 1;
-        }
+void NRelease(NObject *object) {
+    if (!object) {
+        return;
     }
-    return ref;
-}
-
-void NRelease(NRef ref) {
-    if (!ref) {
+    if (IsValue(object)) {
         return;
     }
     
-    nsynwith(ref) {
-        NObject *object = ref;
-        if (--(object->refCount) > 0) {
-            break;
-        }
+    nsynwith(object) {
+        ObjectBlock *block = (ObjectBlock *)object - 1;
+        block->refCount -= 1;
         
-        if (object->deinit) {
-            object->deinit(object);
+        if (block->refCount <= 0) {
+            if (block->destroy) {
+                block->destroy(object);
+            }
+            free(block);
         }
-        NFreeMemory(object);
     }
-}
-
-void _NObjectInit  (NObject *object) {}
-void _NObjectDeinit(NObject *object) {}
-
-NObject *NObjectCreate(void) {
-    NObject *object = NAlloc(NObject, _NObjectDeinit);
-    _NObjectInit(object);
-    return object;
 }

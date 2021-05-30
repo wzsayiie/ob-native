@@ -15,24 +15,15 @@ nfunc(void, NMoveMemory, (void *dst, const void *src, int size));
 
 //object managed with reference counting:
 
-typedef void *NRef;
+typedef void NObject;
 
-#define NAlloc(cls, deinit) NAllocObject(nsizeof(cls), #cls, deinit)
+#define NCreate(cls, destroy) NCreateObject(nsizeof(cls), destroy)
 
-nfunc(NRef, NAllocObject, (int size, const char *clsName, void *deinit));
+nfunc(NObject *, NCreateObject, (int size, void *destroy));
 
-nfunc(NRef, NRetain , (NRef ref));
-nfunc(void, NRelease, (NRef ref));
+nfunc(NObject *, NRetain , (NObject *object));
+nfunc(void     , NRelease, (NObject *object));
 
-#define nsuperof(object) (&(object)->Super)
-
-nstruct(NObject, {
-    const char *clsName;
-    void (*deinit)(void *);
-    int refCount;
-});
-
-void _NObjectInit  (NObject *object);
-void _NObjectDeinit(NObject *object);
-
-nfunc(NObject *, NObjectCreate, (void));
+//if the high first byte of the pointer is "_NOBJECT_VALUE_FLAG",
+//it means that it is actually a value type.
+#define _NOBJECT_VAL_FLAG 0x55

@@ -2,14 +2,15 @@
 #include "cmeta.h"
 #include "osbind.h"
 
-static NJNIClass *ThreadClass(void) {return NJNIImportClass("src/shared/osplat/NThread");}
-static NJNIClass *LongClass  (void) {return NJNIImportClass("long" );}
-static NJNIClass *FloatClass (void) {return NJNIImportClass("float");}
+//static NJNIClass *ThreadClass(void) {return NJNIImportClass("src/shared/osplat/NThread");}
+//static NJNIClass *LongClass  (void) {return NJNIImportClass("long" );}
+//static NJNIClass *FloatClass (void) {return NJNIImportClass("float");}
 
 //mutex is not necessary here,
 //cause the value obtained by each thread is the same.
 
-void NRunThread(NLambda *lambda) {
+void NRunThread(int64_t param, NThreadFunc func) {
+    /*
     static NJNIMethod *method = NULL;
     if (!method) {
         NJNIFinderPrepare();
@@ -22,9 +23,11 @@ void NRunThread(NLambda *lambda) {
     NJNICallerPrepareCall();
     NJNICallerPushLong(lamWord);
     NJNICallVoid(NULL, method);
+    */
 }
 
 void NThreadSleep(float seconds) {
+    /*
     static NJNIMethod *method = NULL;
     if (!method) {
         NJNIFinderPrepare();
@@ -35,4 +38,5 @@ void NThreadSleep(float seconds) {
     NJNICallerPrepareCall();
     NJNICallerPushDouble(seconds);
     NJNICallVoid(NULL, method);
+    */
 }

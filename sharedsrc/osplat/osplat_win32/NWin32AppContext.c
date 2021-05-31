@@ -11,6 +11,7 @@ void _NWINSetMainHWND(HWND hwnd)
 
 bool _NWINWindowProc(UINT msg, WPARAM wParam, LPARAM lParam)
 {
+    /*
     if (msg == NWM_LAMBDA)
     {
         NLambda *lambda = (NLambda *)wParam;
@@ -20,6 +21,7 @@ bool _NWINWindowProc(UINT msg, WPARAM wParam, LPARAM lParam)
 
         return true;
     }
+    */
     return false;
 }
 
@@ -28,6 +30,7 @@ HWND NWINGetMainHWND(void)
     return sMainHWND;
 }
 
+/*
 void NWINPostLambda(HWND hwnd, NLambda *lambda)
 {
     if (hwnd && lambda)
@@ -36,3 +39,4 @@ void NWINPostLambda(HWND hwnd, NLambda *lambda)
         PostMessageW(hwnd, NWM_LAMBDA, (WPARAM)lambda, 0);
     }
 }
+*/

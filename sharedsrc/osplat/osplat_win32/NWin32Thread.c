@@ -3,21 +3,24 @@
 
 static DWORD WINAPI ThreadProcedure(LPVOID data)
 {
+    /*
     NLambda *lambda = data;
     NLambdaPrepareCall(lambda);
     NLambdaCallVoid(lambda);
     NRelease(lambda);
-
+    */
     return 0;
 }
 
-void NRunThread(NLambda *lambda)
+void NRunThread(int64_t param, NThreadFunc func)
 {
+    /*
     if (lambda)
     {
         NRetain(lambda);
         CreateThread(NULL, 0, ThreadProcedure, lambda, 0, NULL);
     }
+    */
 }
 
 void NThreadSleep(float seconds)

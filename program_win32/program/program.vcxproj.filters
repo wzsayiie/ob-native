@@ -96,12 +96,6 @@
     <ClCompile Include="..\..\sharedsrc\basis\basis\ndata.c">
       <Filter>sharedsrc\basis\basis</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sharedsrc\basis\basis\nio.c">
-      <Filter>sharedsrc\basis\basis</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sharedsrc\basis\basis\niterator.c">
-      <Filter>sharedsrc\basis\basis</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sharedsrc\basis\basis\nlock.c">
       <Filter>sharedsrc\basis\basis</Filter>
     </ClCompile>
@@ -109,9 +103,6 @@
       <Filter>sharedsrc\basis\basis</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sharedsrc\basis\basis\nnumber.c">
-      <Filter>sharedsrc\basis\basis</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sharedsrc\basis\basis\npod.c">
       <Filter>sharedsrc\basis\basis</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sharedsrc\basis\basis\nstring.c">
@@ -210,9 +201,6 @@
     <ClCompile Include="..\..\sharedsrc\cmeta\cmeta\nfunccall_p.cpp">
       <Filter>sharedsrc\cmeta\cmeta</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sharedsrc\basis\basis\nlambda.c">
-      <Filter>sharedsrc\basis\basis</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sharedsrc\osui\osui\nbrush.c">
       <Filter>sharedsrc\osui\osui</Filter>
     </ClCompile>
@@ -224,6 +212,12 @@
     </ClCompile>
     <ClCompile Include="..\..\sharedsrc\osui\osui\nwindow.c">
       <Filter>sharedsrc\osui\osui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharedsrc\basis\basis\ndictionary.c">
+      <Filter>sharedsrc\basis\basis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharedsrc\basis\basis\nprint.c">
+      <Filter>sharedsrc\basis\basis</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -239,12 +233,6 @@
     <ClInclude Include="..\..\sharedsrc\basis\basis\nenviron.h">
       <Filter>sharedsrc\basis\basis</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\sharedsrc\basis\basis\nio.h">
-      <Filter>sharedsrc\basis\basis</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\sharedsrc\basis\basis\niterator.h">
-      <Filter>sharedsrc\basis\basis</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\sharedsrc\basis\basis\nlock.h">
       <Filter>sharedsrc\basis\basis</Filter>
     </ClInclude>
@@ -252,9 +240,6 @@
       <Filter>sharedsrc\basis\basis</Filter>
     </ClInclude>
     <ClInclude Include="..\..\sharedsrc\basis\basis\nnumber.h">
-      <Filter>sharedsrc\basis\basis</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\sharedsrc\basis\basis\npod.h">
       <Filter>sharedsrc\basis\basis</Filter>
     </ClInclude>
     <ClInclude Include="..\..\sharedsrc\basis\basis\nstring.h">
@@ -344,9 +329,6 @@
     <ClInclude Include="..\..\sharedsrc\cmeta\cmeta\nfunccall_p.h">
       <Filter>sharedsrc\cmeta\cmeta</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\sharedsrc\basis\basis\nlambda.h">
-      <Filter>sharedsrc\basis\basis</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\sharedsrc\osui\osui\nbrush.h">
       <Filter>sharedsrc\osui\osui</Filter>
     </ClInclude>
@@ -364,6 +346,12 @@
     </ClInclude>
     <ClInclude Include="..\..\sharedsrc\osui\osui\osui.h">
       <Filter>sharedsrc\osui\osui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sharedsrc\basis\basis\ndictionary.h">
+      <Filter>sharedsrc\basis\basis</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sharedsrc\basis\basis\nprint.h">
+      <Filter>sharedsrc\basis\basis</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

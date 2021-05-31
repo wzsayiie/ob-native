@@ -122,19 +122,19 @@ nenum(NType, {
     NTYPE_STRING = 34, //NString ptr.
 
     NTYPE_USER_BEGIN = 35,
-
-  #if NPTR_64
-    NTYPE_INT      = NTYPE_INT64     ,
-    NTYPE_UINT     = NTYPE_UINT64    ,
-    NTYPE_INT_PTR  = NTYPE_INT64_PTR ,
-    NTYPE_UINT_PTR = NTYPE_UINT64_PTR,
-  #else
-    NTYPE_INT      = NTYPE_INT32     ,
-    NTYPE_UINT     = NTYPE_UINT32    ,
-    NTYPE_INT_PTR  = NTYPE_INT32_PTR ,
-    NTYPE_UINT_PTR = NTYPE_UINT32_PTR,
-  #endif
 });
+
+#if NPTR_64
+    #define NTYPE_INT      NTYPE_INT64
+    #define NTYPE_UINT     NTYPE_UINT64
+    #define NTYPE_INT_PTR  NTYPE_INT64_PTR
+    #define NTYPE_UINT_PTR NTYPE_UINT64_PTR
+#else
+    #define NTYPE_INT      NTYPE_INT32
+    #define NTYPE_UINT     NTYPE_UINT32
+    #define NTYPE_INT_PTR  NTYPE_INT32_PTR
+    #define NTYPE_UINT_PTR NTYPE_UINT32_PTR
+#endif
 
 //type modifiers:
 

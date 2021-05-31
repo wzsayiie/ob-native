@@ -9,4 +9,4 @@ bool _NWINWindowProc(UINT msg, WPARAM wParam, LPARAM lParam);
 
 //user functions.
 HWND NWINGetMainHWND(void);
-void NWINPostLambda(HWND hwnd, NLambda *lambda);
+//void NWINPostLambda(HWND hwnd, NLambda *lambda);

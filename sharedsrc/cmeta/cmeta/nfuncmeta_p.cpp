@@ -20,7 +20,7 @@ bool FuncAdder::RetRetain(NType retType, const char *funcName) {
 }
 
 void FuncAdder::AddEntry(FuncEntry *entry) {
-    nsynonce() {
+    for_once() {
         cpinit(&sEntryPool, nsizeof(FuncEntry));
         blinit(&sEntryList, scmp);
 

@@ -14,7 +14,7 @@ NWindow *_NWindowCreate(void) {
 
 NWindow *NMainWindow(void) {
     static NWindow *window = NULL;
-    nsynonce() {
+    for_once() {
         window = _NWindowCreate();
     }
     return window;

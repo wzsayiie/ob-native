@@ -134,7 +134,7 @@ NObject *NRetain(NObject *object) {
         return object;
     }
     
-    nsynwith(object) {
+    for_lock(object) {
         ObjectBlock *block = (ObjectBlock *)object - 1;
         block->refCount += 1;
     }
@@ -149,7 +149,7 @@ void NRelease(NObject *object) {
         return;
     }
     
-    nsynwith(object) {
+    for_lock(object) {
         ObjectBlock *block = (ObjectBlock *)object - 1;
         block->refCount -= 1;
         

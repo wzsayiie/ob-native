@@ -79,7 +79,8 @@
     typedef uint32_t char32_t;
 #endif
 
-#define nenum(name, ...) typedef int name; enum __VA_ARGS__
+#define nunion(name, ...) typedef union name name; union name __VA_ARGS__
+#define nenum( name, ...) typedef int name; enum __VA_ARGS__
 
 nenum(NType, {
 

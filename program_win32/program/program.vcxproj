@@ -33,7 +33,8 @@
     <ClCompile Include="..\..\sharedsrc\basis\basis\ndictionary.c" />
     <ClCompile Include="..\..\sharedsrc\basis\basis\nlock.c" />
     <ClCompile Include="..\..\sharedsrc\basis\basis\nmemory.c" />
-    <ClCompile Include="..\..\sharedsrc\basis\basis\nnumber.c" />
+    <ClCompile Include="..\..\sharedsrc\basis\basis\nnumber32.c" />
+    <ClCompile Include="..\..\sharedsrc\basis\basis\nnumber64.c" />
     <ClCompile Include="..\..\sharedsrc\basis\basis\nprint.c" />
     <ClCompile Include="..\..\sharedsrc\basis\basis\nstring.c" />
     <ClCompile Include="..\..\sharedsrc\basis\basis\ntable.c" />

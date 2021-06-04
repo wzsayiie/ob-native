@@ -102,9 +102,6 @@
     <ClCompile Include="..\..\sharedsrc\basis\basis\nmemory.c">
       <Filter>sharedsrc\basis\basis</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sharedsrc\basis\basis\nnumber.c">
-      <Filter>sharedsrc\basis\basis</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sharedsrc\basis\basis\nstring.c">
       <Filter>sharedsrc\basis\basis</Filter>
     </ClCompile>
@@ -217,6 +214,12 @@
       <Filter>sharedsrc\basis\basis</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sharedsrc\basis\basis\nprint.c">
+      <Filter>sharedsrc\basis\basis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharedsrc\basis\basis\nnumber32.c">
+      <Filter>sharedsrc\basis\basis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharedsrc\basis\basis\nnumber64.c">
       <Filter>sharedsrc\basis\basis</Filter>
     </ClCompile>
   </ItemGroup>

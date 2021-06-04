@@ -1,7 +1,10 @@
 #include "nlock.h"
 
-void NLock(int hash) {
+void _NInitLocks(void) {
 }
 
-void NUnlock(int hash) {
+void NLock(int64_t hash) {
+}
+
+void NUnlock(int64_t hash) {
 }

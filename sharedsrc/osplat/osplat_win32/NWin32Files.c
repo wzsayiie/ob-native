@@ -69,7 +69,7 @@ static NString *CreateUserDirectory(const WCHAR *parent, const WCHAR *sub)
 NString *NCopyDocumentPath(void)
 {
     static NString *path = NULL;
-    nsynonce()
+    for_once()
     {
         WCHAR directory[MAX_PATH] = L"\0";
         SHGetFolderPathW(NULL, CSIDL_PERSONAL, NULL, 0, directory);
@@ -82,7 +82,7 @@ NString *NCopyDocumentPath(void)
 NString *NCopyCachesPath(void)
 {
     static NString *path = NULL;
-    nsynonce()
+    for_once()
     {
         WCHAR directory[MAX_PATH] = L"\0";
         GetTempPathW(MAX_PATH, directory);
@@ -95,7 +95,7 @@ NString *NCopyCachesPath(void)
 NString *NCopyTemporaryPath(void)
 {
     static NString *path = NULL;
-    nsynonce()
+    for_once()
     {
         WCHAR directory[MAX_PATH] = L"\0";
         GetTempPathW(MAX_PATH, directory);

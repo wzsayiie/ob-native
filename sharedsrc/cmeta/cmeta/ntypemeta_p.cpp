@@ -58,7 +58,7 @@ const TypeEntry PREFINED_TYPES[] = {
 
 static const char *TagFromName(const char *name) {
     static binlist list = {0};
-    nsynonce() {
+    for_once() {
         blinit(&list, scmp);
 
         for (auto itm = PREFINED_TYPES; itm->owningTag; ++itm) {
@@ -79,7 +79,7 @@ static const char *TagFromName(const char *name) {
 
 static TypeEntry *BorrowEntry(const TypeEntry *src) {
     static cerpool pool = {0};
-    nsynonce() {
+    for_once() {
         cpinit(&pool, nsizeof(TypeEntry));
     }
     
@@ -92,7 +92,7 @@ static TypeEntry *BorrowEntry(const TypeEntry *src) {
 
 static binlist *EntryList() {
     static binlist list = {0};
-    nsynonce() {
+    for_once() {
         blinit(&list, scmp);
 
         for (auto itm = PREFINED_TYPES; itm->owningTag; ++itm) {

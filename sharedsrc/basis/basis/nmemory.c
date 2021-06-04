@@ -118,12 +118,35 @@ void *NCreateObject(int size, void *destroy) {
     return block->object;
 }
 
+nunion(ObjectValue32, {
+    struct {
+        int8_t FILL[3];
+        int8_t flag;
+    };
+    NObject *asObject;
+});
+
+nunion(ObjectValue64, {
+    struct {
+        int8_t FILL[7];
+        int8_t flag;
+    };
+    NObject *asObject;
+});
+
 static bool IsValue(NObject *object) {
-  #if NPTR_64
-    return (((uint64_t)object >> 7) & 0xff) == _NOBJECT_VAL_FLAG;
-  #else
-    return (((uint32_t)object >> 3) & 0xff) == _NOBJECT_VAL_FLAG;
-  #endif
+    if (NPTR_32)
+    {
+        ObjectValue32 value = {0};
+        value.asObject = object;
+        return value.flag == _NOBJECT_VALUE_FLAG;
+    }
+    else
+    {
+        ObjectValue64 value = {0};
+        value.asObject = object;
+        return value.flag == _NOBJECT_VALUE_FLAG;
+    }
 }
 
 NObject *NRetain(NObject *object) {
@@ -134,7 +157,7 @@ NObject *NRetain(NObject *object) {
         return object;
     }
     
-    nsynwith(object) {
+    for_lock(object) {
         ObjectBlock *block = (ObjectBlock *)object - 1;
         block->refCount += 1;
     }
@@ -149,7 +172,7 @@ void NRelease(NObject *object) {
         return;
     }
     
-    nsynwith(object) {
+    for_lock(object) {
         ObjectBlock *block = (ObjectBlock *)object - 1;
         block->refCount -= 1;
         

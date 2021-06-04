@@ -25,5 +25,5 @@ nfunc(NObject *, NRetain , (NObject *object));
 nfunc(void     , NRelease, (NObject *object));
 
 //if the high first byte of the pointer is "_NOBJECT_VALUE_FLAG",
-//it means that it is actually a value type.
-#define _NOBJECT_VAL_FLAG 0x55
+//it means that it is actually a value but not pointer.
+#define _NOBJECT_VALUE_FLAG 0x55

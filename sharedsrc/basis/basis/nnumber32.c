@@ -4,168 +4,256 @@
 #if NPTR_32
 
 nenum(NumberType, {
-    NT_INT16 ,
-    NT_UINT16,
-    NT_INT32 ,
-    NT_UINT32,
-    NT_INT64 ,
-    NT_UINT64,
-    NT_FLOAT ,
-    NT_DOUBLE,
+    NT_INT16  = 1,
+    NT_UINT16 = 2,
+
+    NT_INT32  = 3,
+    NT_UINT32 = 4,
+    NT_FLOAT  = 5,
+
+    NT_INT64  = 6,
+    NT_UINT64 = 7,
+    NT_DOUBLE = 8,
 });
 
-nstruct(NumberValue, {
+nunion(NumberWord, {
+    int16_t  asInt16 ;
+    uint16_t asUInt16;
+    
+    int32_t  asInt32 ;
+    uint32_t asUInt32;
+    float    asFloat ;
+    
+    int64_t  asInt64 ;
+    uint64_t asUInt64;
+    double   asDouble;
+});
+
+static bool Is16Bits(NumberType type) {
+    switch (type) {
+        case NT_INT16 : return true;
+        case NT_UINT16: return true;
+        default:;
+    }
+    return false;
+}
+
+static bool Is32Bits(NumberType type) {
+    switch (type) {
+        case NT_INT32 : return true;
+        case NT_UINT32: return true;
+        case NT_FLOAT : return true;
+        default:;
+    }
+    return false;
+}
+
+nunion(NumberValue, {
     struct {
-        int8_t     _PAD[2];
-        NumberType numType;
-        int8_t     objFlag;
-    };
-    struct {
-        int16_t  asInt16 ;
-        uint16_t asUInt16;
+        int16_t store16;
+        int8_t  numType;
+        int8_t  objFlag;
     };
     NNumber *asNumber;
 });
 
-static NumberValue MakeValue(void) {
-    NumberValue value = {0};
-    value.objFlag = _NOBJECT_VALUE_FLAG;
-    return value;
-}
-
 nstruct(NumberObject32, {
-    NumberType numType;
-    union {
-        int32_t  asInt32 ;
-        uint32_t asUInt32;
-        float    asFloat ;
-    };
+    int32_t numType;
+    int32_t store32;
 });
 
 nstruct(NumberObject64, {
-    NumberType numType;
-    union {
-        int64_t  asInt64 ;
-        uint64_t asUInt64;
-        double   asDouble;
-    };
+    int32_t numType;
+    int32_t _FILL32;
+    int64_t store64;
 });
 
-NNumber *NNumberCreateWithBool(bool     raw) {return NNumberCreateWithInt64 (raw);}
-NNumber *NNumberCreateWithInt (int      raw) {return NNumberCreateWithInt64 (raw);}
-NNumber *NNumberCreateWithUInt(unsigned raw) {return NNumberCreateWithUInt64(raw);}
+static NNumber *NumberCreate(NumberType type, NumberWord word) {
+    if (Is16Bits(type)) {
+        NumberValue value = {
+            .objFlag = _NOBJECT_VALUE_FLAG,
+            .numType = type,
+            .store16 = word.asInt16,
+        };
+        return value.asNumber;
+        
+    } else if (Is32Bits(type)) {
+        NumberObject32 *object = NCreate(NumberObject32, NULL);
+        object->numType = type;
+        object->store32 = word.asInt32;
+        return (NNumber *)object;
+        
+    } else {
+        NumberObject64 *object = NCreate(NumberObject64, NULL);
+        object->numType = type;
+        object->store64 = word.asInt64;
+        return (NNumber *)object;
+    }
+}
+
+NNumber *NNumberCreateWithBool(bool raw) {return NNumberCreateWithInt64 (raw);}
+NNumber *NNumberCreateWithInt (int  raw) {return NNumberCreateWithInt64 (raw);}
+NNumber *NNumberCreateWithUInt(uint raw) {return NNumberCreateWithUInt64(raw);}
 
 NNumber *NNumberCreateWithInt64(int64_t raw) {
     if (INT16_MIN <= raw && raw <= INT16_MAX) {
-        NumberValue value = MakeValue();
-        value.numType = NT_INT16;
-        value.asInt16 = (int16_t)raw;
-        return value.asNumber;
+        NumberWord word = {
+            .asInt16 = (int16_t)raw
+        };
+        return NumberCreate(NT_INT16, word);
 
     } else if (INT32_MIN <= raw && raw <= INT32_MAX) {
-        NumberObject32 *object = NCreate(NumberObject32, NULL);
-        object->numType = NT_INT32;
-        object->asInt32 = (int32_t)raw;
-        return (NNumber *)object;
+        NumberWord word = {
+            .asInt32 = (int32_t)raw
+        };
+        return NumberCreate(NT_INT32, word);
 
     } else {
-        NumberObject64 *object = NCreate(NumberObject64, NULL);
-        object->numType = NT_INT64;
-        object->asInt64 = raw;
-        return (NNumber *)object;
+        NumberWord word = {
+            .asInt64 = raw
+        };
+        return NumberCreate(NT_INT64, word);
     }
 }
 
 NNumber *NNumberCreateWithUInt64(uint64_t raw) {
     if (raw <= UINT16_MAX) {
-        NumberValue value = MakeValue();
-        value.numType  = NT_UINT16;
-        value.asUInt16 = (uint16_t)raw;
-        return value.asNumber;
+        NumberWord word = {
+            .asUInt16 = (uint16_t)raw
+        };
+        return NumberCreate(NT_UINT16, word);
 
     } else if (raw <= UINT32_MAX) {
-        NumberObject32 *object = NCreate(NumberObject32, NULL);
-        object->numType  = NT_UINT32;
-        object->asUInt32 = (uint32_t)raw;
-        return (NNumber *)object;
+        NumberWord word = {
+            .asUInt32 = (uint32_t)raw
+        };
+        return NumberCreate(NT_UINT32, word);
 
     } else {
-        NumberObject64 *object = NCreate(NumberObject64, NULL);
-        object->numType  = NT_UINT64;
-        object->asUInt64 = raw;
-        return (NNumber *)object;
+        NumberWord word = {
+            .asUInt64 = raw
+        };
+        return NumberCreate(NT_UINT64, word);
     }
 }
 
 NNumber *NNumberCreateWithFloat(float raw) {
-    NumberObject32 *object = NCreate(NumberObject32, NULL);
-    object->numType = NT_FLOAT;
-    object->asFloat = raw;
-    return (NNumber *)object;
+    NumberWord word = {
+        .asFloat = raw
+    };
+    return NumberCreate(NT_FLOAT, word);
 }
 
 NNumber *NNumberCreateWithDouble(double raw) {
-    NumberObject64 *object = NCreate(NumberObject64, NULL);
-    object->numType  = NT_DOUBLE;
-    object->asDouble = raw;
-    return (NNumber *)object;
+    NumberWord word = {
+        .asDouble = raw
+    };
+    return NumberCreate(NT_DOUBLE, word);
 }
 
-static NumberValue *AsValue(NNumber *number) {
-    NumberValue value = {0};
-    value.asNumber = number;
-    
+static void NumberGetWord(NNumber *number, NumberType *type, NumberWord *word) {
+    NumberValue value = {
+        .asNumber = number
+    };
     if (value.objFlag == _NOBJECT_VALUE_FLAG) {
-        return (NumberValue *)number;
-    } else {
-        return NULL;
+        *type = value.numType;
+        word->asInt16 = value.store16;
+        return;
     }
-}
-
-static NumberObject32 *AsObject32(NNumber *number) {
-    NumberObject32 *object = (NumberObject32 *)number;
-    NumberType type = object->numType;
-
-    if (type == NT_INT32 || type == NT_UINT32 || type == NT_FLOAT) {
-        return object;
-    } else {
-        return NULL;
+    
+    NumberObject32 *object32 = (NumberObject32 *)number;
+    if (Is32Bits(object32->numType)) {
+        *type = object32->numType;
+        word->asInt32 = object32->store32;
+        return;
     }
-}
-
-static NumberObject64 *AsObject64(NNumber *number) {
-    NumberObject64 *object = (NumberObject64 *)number;
-    NumberType type = object->numType;
-
-    if (type == NT_INT64 || type == NT_UINT64 || type == NT_DOUBLE) {
-        return object;
-    } else {
-        return NULL;
-    }
+    
+    NumberObject64 *object64 = (NumberObject64 *)number;
+    *type = object64->numType;
+    word->asInt64 = object64->store64;
 }
 
 NNumber *NNumberCopy(NNumber *that) {
-    return NULL;
+    if (!that) {
+        return NULL;
+    }
+    
+    NumberType type = 0;
+    NumberWord word = {0};
+    NumberGetWord(that, &type, &word);
+    
+    return NumberCreate(type, word);
 }
 
-bool     NNumberGetBool(NNumber *number) {return (bool    )NNumberGetInt64 (number);}
-int      NNumberGetInt (NNumber *number) {return (int     )NNumberGetInt64 (number);}
-unsigned NNumberGetUInt(NNumber *number) {return (unsigned)NNumberGetUInt64(number);}
+bool  NNumberGetBool (NNumber *num) {return (bool )NNumberGetInt64 (num);}
+int   NNumberGetInt  (NNumber *num) {return (int  )NNumberGetInt64 (num);}
+uint  NNumberGetUInt (NNumber *num) {return (uint )NNumberGetUInt64(num);}
+float NNumberGetFloat(NNumber *num) {return (float)NNumberGetDouble(num);}
 
 int64_t NNumberGetInt64(NNumber *number) {
-    return 0;
+    if (!number) {
+        return 0;
+    }
+    
+    NumberType type = 0;
+    NumberWord word = {0};
+    NumberGetWord(number, &type, &word);
+    
+    switch (type) {
+        case NT_INT16 : return (int64_t)word.asInt16 ;
+        case NT_UINT16: return (int64_t)word.asUInt16;
+        case NT_INT32 : return (int64_t)word.asInt32 ;
+        case NT_UINT32: return (int64_t)word.asUInt32;
+        case NT_FLOAT : return (int64_t)word.asFloat ;
+        case NT_INT64 : return (int64_t)word.asInt64 ;
+        case NT_UINT64: return (int64_t)word.asUInt64;
+        case NT_DOUBLE: return (int64_t)word.asDouble;
+        default: return 0;
+    }
 }
 
 uint64_t NNumberGetUInt64(NNumber *number) {
-    return 0;
-}
-
-float NNumberGetFloat(NNumber *number) {
-    return 0;
+    if (!number) {
+        return 0;
+    }
+    
+    NumberType type = 0;
+    NumberWord word = {0};
+    NumberGetWord(number, &type, &word);
+    
+    switch (type) {
+        case NT_INT16 : return (uint64_t)word.asInt16 ;
+        case NT_UINT16: return (uint64_t)word.asUInt16;
+        case NT_INT32 : return (uint64_t)word.asInt32 ;
+        case NT_UINT32: return (uint64_t)word.asUInt32;
+        case NT_FLOAT : return (uint64_t)word.asFloat ;
+        case NT_INT64 : return (uint64_t)word.asInt64 ;
+        case NT_UINT64: return (uint64_t)word.asUInt64;
+        case NT_DOUBLE: return (uint64_t)word.asDouble;
+        default: return 0;
+    }
 }
 
 double NNumberGetDouble(NNumber *number) {
-    return 0;
+    if (!number) {
+        return 0;
+    }
+    
+    NumberType type = 0;
+    NumberWord word = {0};
+    NumberGetWord(number, &type, &word);
+    
+    switch (type) {
+        case NT_INT16 : return (double)word.asInt16 ;
+        case NT_UINT16: return (double)word.asUInt16;
+        case NT_INT32 : return (double)word.asInt32 ;
+        case NT_UINT32: return (double)word.asUInt32;
+        case NT_FLOAT : return (double)word.asFloat ;
+        case NT_INT64 : return (double)word.asInt64 ;
+        case NT_UINT64: return (double)word.asUInt64;
+        case NT_DOUBLE: return (double)word.asDouble;
+        default: return 0;
+    }
 }
 
 int NNumberCompare(NNumber *number, NNumber *that) {

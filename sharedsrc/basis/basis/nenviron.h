@@ -73,6 +73,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
+typedef unsigned int uint;
+
 #if !__cplusplus
     //"charxx_t" are not builtin types for c.
     typedef uint16_t char16_t;

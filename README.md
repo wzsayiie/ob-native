@@ -1,3 +1,11 @@
+## OBSOLETED
+
+This respository has been obsoleted, it will not be improved or updated.
+
+on Sept 14, 2021.
+
+---
+
 ## introduction
 
 a cross-platform program framework that has least dependencies on os api.
